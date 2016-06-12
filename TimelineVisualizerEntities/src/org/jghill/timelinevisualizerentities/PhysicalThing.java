@@ -8,7 +8,7 @@ import java.util.Date;
  * 
  * @author JamesGHill
  */
-abstract class PhysicalThing {
+abstract class PhysicalThing extends Entities {
     
     /**
      * Dates
