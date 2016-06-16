@@ -38,4 +38,13 @@ public class ThingCollections extends Entities {
         return collection.size();
     }
     
+    /**
+     * A setter for naming the collection
+     * 
+     * @param name The name of the collection.
+     */
+    public void setCollectionName(String name) {
+        collectionName = name;
+    }
+    
 }
