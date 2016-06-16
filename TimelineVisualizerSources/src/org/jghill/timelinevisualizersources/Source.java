@@ -5,7 +5,7 @@ package org.jghill.timelinevisualizersources;
  * 
  * @author JGHill
  */
-abstract class Source {
+public abstract class Source {
     
     private String sourceName;
     
