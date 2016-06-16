@@ -39,6 +39,13 @@ public class ThingCollections extends Entities {
     }
     
     /**
+     * A getter for the collection name.
+     */
+    public String getCollectionName() {
+        return  collectionName;
+    }
+    
+    /**
      * A setter for naming the collection
      * 
      * @param name The name of the collection.
