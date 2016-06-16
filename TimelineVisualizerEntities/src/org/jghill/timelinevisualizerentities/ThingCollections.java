@@ -4,7 +4,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
- * Holds collections of other Entities, whether PhysicalThigns or other
+ * Holds collections of other Entities, whether PhysicalThings or other
  * ThingCollections.
  * 
  * @author JGHill
