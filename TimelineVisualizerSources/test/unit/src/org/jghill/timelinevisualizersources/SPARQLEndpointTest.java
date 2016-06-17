@@ -34,16 +34,6 @@ public class SPARQLEndpointTest {
     }
     
     @Test
-    public void testGetWebAddress() {
-        
-    }
-
-    @Test
-    public void testSetWebAddress() {
-        
-    }
-    
-    @Test
     public void testCompareToEquals() {
         SPARQLEndpoint sparql1 = new SPARQLEndpoint("British Museum");
         SPARQLEndpoint sparql2 = new SPARQLEndpoint("British Museum");
