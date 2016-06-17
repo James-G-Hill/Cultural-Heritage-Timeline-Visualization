@@ -59,4 +59,12 @@ public class SPARQLEndpointTest {
         assertTrue(sparql1.compareTo(sparql2) < expected);
     }
     
+    @Test
+    public void testCompareToGreaterThan() {
+        SPARQLEndpoint sparql1 = new SPARQLEndpoint("Victoria and Albert");
+        SPARQLEndpoint sparql2 = new SPARQLEndpoint("British Museum");
+        int expected = 0;
+        assertTrue(sparql1.compareTo(sparql2) > expected);
+    }
+    
 }
