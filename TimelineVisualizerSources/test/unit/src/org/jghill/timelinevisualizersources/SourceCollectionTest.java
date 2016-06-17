@@ -1,5 +1,7 @@
 package org.jghill.timelinevisualizersources;
 
+import static org.mockito.Mockito.*;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,6 +16,8 @@ import static org.junit.Assert.*;
  */
 public class SourceCollectionTest {
     
+    static SourceCollection instance;
+    
     public SourceCollectionTest() {
     }
     
@@ -27,23 +31,18 @@ public class SourceCollectionTest {
     
     @Before
     public void setUp() {
+        instance = new SourceCollection();
     }
     
     @After
     public void tearDown() {
     }
 
-    /**
-     * Test of addSource method, of class SourceCollection.
-     */
     @Test
-    public void testAddSource() {
-        System.out.println("addSource");
-        Source newSource = null;
-        SourceCollection instance = new SourceCollection();
+    public void testDeleteSourceReturnsTrueWhenSourceFound() {
+        Source newSource = mock(Source.class);
         instance.addSource(newSource);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.deleteSource(newSource));
     }
     
 }
