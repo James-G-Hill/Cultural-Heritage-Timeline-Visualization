@@ -13,7 +13,7 @@ public class SourceCollection {
     private final SortedSet<Source> sources;
     
     public SourceCollection() {
-        sources = new TreeSet();
+        sources = new TreeSet<>();
     }
     
     /**
@@ -23,6 +23,15 @@ public class SourceCollection {
      */
     public void addSource(Source newSource) {
         sources.add(newSource);
+    }
+    
+    /**
+     * Delete a source from the collection & return 'true' to confirm
+     * 
+     * @param source The source to be deleted.
+     */
+    public boolean deleteSource(Source source) {
+        return sources.remove(source);
     }
     
 }
