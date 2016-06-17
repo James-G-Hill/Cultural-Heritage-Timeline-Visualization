@@ -39,7 +39,18 @@ public class SourceCollectionTest {
     @After
     public void tearDown() {
     }
-
+    
+    @Test
+    public void testAddSourceReturnsTrueWhenSourceNotFound() {
+        assertTrue(instance.addSource(newSource));
+    }
+    
+    @Test
+    public void testAddSourceReturnsFalseWhenSourceFound() {
+        instance.addSource(newSource);
+        assertFalse(instance.addSource(newSource));
+    }
+    
     @Test
     public void testDeleteSourceReturnsTrueWhenSourceFound() {
         instance.addSource(newSource);
