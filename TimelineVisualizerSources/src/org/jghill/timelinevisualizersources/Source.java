@@ -5,7 +5,7 @@ package org.jghill.timelinevisualizersources;
  * 
  * @author JGHill
  */
-public abstract class Source {
+public abstract class Source implements Comparable<Source> {
     
     private String sourceName;
     
@@ -23,6 +23,11 @@ public abstract class Source {
      */
     public void setSourceName(String name) {
         sourceName = name;
+    }
+    
+    @Override
+    public int compareTo(Source o) {
+        return sourceName.compareTo(o.getSourceName());
     }
     
 }
