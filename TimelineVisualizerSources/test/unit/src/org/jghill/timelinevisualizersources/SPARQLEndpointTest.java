@@ -47,8 +47,16 @@ public class SPARQLEndpointTest {
     public void testCompareToEquals() {
         SPARQLEndpoint sparql1 = new SPARQLEndpoint("British Museum");
         SPARQLEndpoint sparql2 = new SPARQLEndpoint("British Museum");
-        int equals = 0;
-        assertEquals(sparql1.compareTo(sparql2), equals);
+        int expected = 0;
+        assertEquals(sparql1.compareTo(sparql2), expected);
+    }
+    
+    @Test
+    public void testCompareToLessThan() {
+        SPARQLEndpoint sparql1 = new SPARQLEndpoint("British Museum");
+        SPARQLEndpoint sparql2 = new SPARQLEndpoint("Victoria and Albert");
+        int expected = 0;
+        assertTrue(sparql1.compareTo(sparql2) < expected);
     }
     
 }
