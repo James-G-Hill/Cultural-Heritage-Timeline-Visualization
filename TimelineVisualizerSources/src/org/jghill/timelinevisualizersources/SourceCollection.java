@@ -21,8 +21,8 @@ public class SourceCollection {
      * 
      * @param newSource The new source to be added.
      */
-    public void addSource(Source newSource) {
-        sources.add(newSource);
+    public boolean addSource(Source newSource) {
+        return sources.add(newSource);
     }
     
     /**
