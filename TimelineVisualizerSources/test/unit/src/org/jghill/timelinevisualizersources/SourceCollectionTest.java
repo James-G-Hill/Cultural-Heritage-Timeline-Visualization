@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
 public class SourceCollectionTest {
     
     static SourceCollection instance;
+    static Source newSource;
     
     public SourceCollectionTest() {
     }
@@ -32,6 +33,7 @@ public class SourceCollectionTest {
     @Before
     public void setUp() {
         instance = new SourceCollection();
+        newSource = mock(Source.class);
     }
     
     @After
@@ -40,9 +42,13 @@ public class SourceCollectionTest {
 
     @Test
     public void testDeleteSourceReturnsTrueWhenSourceFound() {
-        Source newSource = mock(Source.class);
         instance.addSource(newSource);
         assertTrue(instance.deleteSource(newSource));
+    }
+    
+    @Test
+    public void testDeleteSourceReturnsFalseWhenSourceNotFound() {
+        assertFalse(instance.deleteSource(newSource));
     }
     
 }
