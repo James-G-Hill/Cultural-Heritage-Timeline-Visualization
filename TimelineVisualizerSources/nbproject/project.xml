@@ -6,7 +6,28 @@
             <code-name-base>org.jghill.timelinevisualizersources</code-name-base>
             <suite-component/>
             <module-dependencies/>
+            <test-dependencies>
+                <test-type>
+                    <name>unit</name>
+                    <test-dependency>
+                        <code-name-base>org.netbeans.libs.junit4</code-name-base>
+                        <compile-dependency/>
+                    </test-dependency>
+                </test-type>
+            </test-dependencies>
             <public-packages/>
+            <class-path-extension>
+                <runtime-relative-path>ext/mockito-all-1.10.19-javadoc.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/mockito-all-1.10.19-javadoc.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/mockito-all-1.10.19.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/mockito-all-1.10.19.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/mockito-all-1.10.19-sources.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/mockito-all-1.10.19-sources.jar</binary-origin>
+            </class-path-extension>
         </data>
     </configuration>
 </project>
