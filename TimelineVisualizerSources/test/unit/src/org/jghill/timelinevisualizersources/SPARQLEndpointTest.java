@@ -32,21 +32,23 @@ public class SPARQLEndpointTest {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of getWebAddress method, of class SPARQLEndpoint.
-     */
+    
     @Test
     public void testGetWebAddress() {
         
     }
 
-    /**
-     * Test of setWebAddress method, of class SPARQLEndpoint.
-     */
     @Test
     public void testSetWebAddress() {
         
+    }
+    
+    @Test
+    public void testCompareToEquals() {
+        SPARQLEndpoint sparql1 = new SPARQLEndpoint("British Museum");
+        SPARQLEndpoint sparql2 = new SPARQLEndpoint("British Museum");
+        int equals = 0;
+        assertEquals(sparql1.compareTo(sparql2), equals);
     }
     
 }
