@@ -7,6 +7,10 @@
             <suite-component/>
             <module-dependencies/>
             <public-packages/>
+            <class-path-extension>
+                <runtime-relative-path>ext/jena-arq-3.1.0.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jena-arq-3.1.0.jar</binary-origin>
+            </class-path-extension>
         </data>
     </configuration>
 </project>
