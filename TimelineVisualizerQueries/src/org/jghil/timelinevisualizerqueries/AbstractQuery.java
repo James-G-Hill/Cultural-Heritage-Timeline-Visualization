@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public abstract class AbstractQuery {
     
-    private String queryName;
+    private String queryName = "Untitled";
     private Date lastRunDate;
     
     public String getQueryName() {
