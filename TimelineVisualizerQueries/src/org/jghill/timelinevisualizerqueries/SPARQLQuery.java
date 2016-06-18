@@ -1,4 +1,4 @@
-package org.jghil.timelinevisualizerqueries;
+package org.jghill.timelinevisualizerqueries;
 
 import org.apache.jena.query.*;
 

@@ -1,4 +1,4 @@
-package org.jghil.timelinevisualizerqueries;
+package org.jghill.timelinevisualizerqueries;
 
 import java.util.Date;
 
