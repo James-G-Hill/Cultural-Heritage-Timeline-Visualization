@@ -9,9 +9,11 @@ import org.openide.modules.ModuleInstall;
  */
 public class Installer extends ModuleInstall {
 
+    SourceCollection sources;
+    
     @Override
     public void restored() {
-        
+        sources = new SourceCollection();
     }
 
 }
