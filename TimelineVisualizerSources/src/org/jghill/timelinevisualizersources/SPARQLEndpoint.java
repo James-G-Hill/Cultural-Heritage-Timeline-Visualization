@@ -7,6 +7,7 @@ package org.jghill.timelinevisualizersources;
  */
 public class SPARQLEndpoint extends Source {
     
+    private static final String SOURCE_TYPE = "SPARQL Endpoint";
     private String webAddress;
     
     /**
@@ -19,7 +20,19 @@ public class SPARQLEndpoint extends Source {
     }
     
     /**
+     * Returns the type of the source.
+     * 
+     * @return The source type of this source.
+     */
+    @Override
+    public String getSourceType() {
+        return SOURCE_TYPE;
+    }
+    
+    /**
      * A getter class for returning the web address.
+     * 
+     * @return The web address of the SPARQL endpoint.
      */
     public String getWebAddress() {
         return webAddress;
