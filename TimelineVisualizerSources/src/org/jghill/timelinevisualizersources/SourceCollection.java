@@ -17,6 +17,15 @@ public class SourceCollection {
     }
     
     /**
+     * Return the entire collection.
+     * 
+     * @return The source collection.
+     */
+    public SortedSet<Source> getSourceCollectionSet() {
+        return sources;
+    }
+    
+    /**
      * Add a source to the collection.
      * 
      * @param newSource The new source to be added.
