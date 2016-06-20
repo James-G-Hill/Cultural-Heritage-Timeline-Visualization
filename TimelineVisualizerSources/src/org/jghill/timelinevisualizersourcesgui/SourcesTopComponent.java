@@ -1,4 +1,4 @@
-package org.jghill.timelinevisualizersources;
+package org.jghill.timelinevisualizersourcesgui;
 
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
@@ -19,7 +19,7 @@ import org.openide.util.NbBundle.Messages;
         persistenceType = TopComponent.PERSISTENCE_ALWAYS
 )
 @TopComponent.Registration(mode = "editor", openAtStartup = false)
-@ActionID(category = "Window", id = "org.jghill.timelinevisualizersources.SourcesTopComponent")
+@ActionID(category = "Window", id = "org.jghill.timelinevisualizersourcesgui.SourcesTopComponent")
 @ActionReference(path = "Menu/Window" /*, position = 333 */)
 @TopComponent.OpenActionRegistration(
         displayName = "#CTL_SourcesAction",
@@ -51,13 +51,12 @@ public final class SourcesTopComponent extends TopComponent {
         SourceManagementNewButton = new javax.swing.JButton();
         SourceManagementEditButton = new javax.swing.JButton();
         SourceManagementDeleteButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        SourceManagementScrollPane = new javax.swing.JScrollPane();
+        SourceManagementSourceTable = new javax.swing.JTable();
 
         setMaximumSize(new java.awt.Dimension(400, 300));
         setMinimumSize(new java.awt.Dimension(400, 300));
         setName("Source Management Tool"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(400, 300));
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceManagementNewButton, org.openide.util.NbBundle.getMessage(SourcesTopComponent.class, "SourcesTopComponent.SourceManagementNewButton.text")); // NOI18N
 
@@ -65,15 +64,15 @@ public final class SourcesTopComponent extends TopComponent {
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceManagementDeleteButton, org.openide.util.NbBundle.getMessage(SourcesTopComponent.class, "SourcesTopComponent.SourceManagementDeleteButton.text")); // NOI18N
 
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setHorizontalScrollBar(null);
-        jScrollPane1.setMaximumSize(new java.awt.Dimension(380, 140));
-        jScrollPane1.setMinimumSize(new java.awt.Dimension(380, 140));
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(380, 140));
+        SourceManagementScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        SourceManagementScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        SourceManagementScrollPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        SourceManagementScrollPane.setHorizontalScrollBar(null);
+        SourceManagementScrollPane.setMaximumSize(new java.awt.Dimension(380, 140));
+        SourceManagementScrollPane.setMinimumSize(new java.awt.Dimension(380, 140));
+        SourceManagementScrollPane.setPreferredSize(new java.awt.Dimension(380, 140));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        SourceManagementSourceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -84,9 +83,9 @@ public final class SourcesTopComponent extends TopComponent {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable2.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jTable2.setPreferredSize(new java.awt.Dimension(380, 140));
-        jScrollPane1.setViewportView(jTable2);
+        SourceManagementSourceTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        SourceManagementSourceTable.setPreferredSize(new java.awt.Dimension(380, 140));
+        SourceManagementScrollPane.setViewportView(SourceManagementSourceTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -100,16 +99,15 @@ public final class SourcesTopComponent extends TopComponent {
                         .addGap(18, 18, 18)
                         .addComponent(SourceManagementEditButton)
                         .addGap(18, 18, 18)
-                        .addComponent(SourceManagementDeleteButton)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addComponent(SourceManagementDeleteButton))
+                    .addComponent(SourceManagementScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SourceManagementScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SourceManagementNewButton)
@@ -123,8 +121,8 @@ public final class SourcesTopComponent extends TopComponent {
     private javax.swing.JButton SourceManagementDeleteButton;
     private javax.swing.JButton SourceManagementEditButton;
     private javax.swing.JButton SourceManagementNewButton;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane SourceManagementScrollPane;
+    private javax.swing.JTable SourceManagementSourceTable;
     // End of variables declaration//GEN-END:variables
     @Override
     public void componentOpened() {
