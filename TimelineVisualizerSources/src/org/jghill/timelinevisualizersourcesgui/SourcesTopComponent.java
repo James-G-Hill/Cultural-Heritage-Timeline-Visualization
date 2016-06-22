@@ -1,5 +1,6 @@
 package org.jghill.timelinevisualizersourcesgui;
 
+import org.jghill.timelinevisualizersources.SourceCollection;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
@@ -72,7 +73,7 @@ public final class SourcesTopComponent extends TopComponent {
         SourceManagementScrollPane.setMinimumSize(new java.awt.Dimension(380, 140));
         SourceManagementScrollPane.setPreferredSize(new java.awt.Dimension(380, 140));
 
-        SourceManagementSourceTable.setModel(new SourceTableModel());
+        SourceManagementSourceTable.setModel(new SourceTableModel(SourceCollection.getSourceCollectionSet()));
         SourceManagementSourceTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
         SourceManagementSourceTable.setMaximumSize(new java.awt.Dimension(380, 140));
         SourceManagementSourceTable.setMinimumSize(new java.awt.Dimension(380, 140));
