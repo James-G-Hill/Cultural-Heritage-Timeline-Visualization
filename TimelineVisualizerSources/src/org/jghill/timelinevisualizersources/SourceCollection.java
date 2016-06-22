@@ -10,7 +10,7 @@ import java.util.TreeSet;
  */
 public class SourceCollection {
     
-    private final SortedSet<Source> sources;
+    private static SortedSet<Source> sources;
     
     public SourceCollection() {
         sources = new TreeSet<>();
@@ -21,7 +21,7 @@ public class SourceCollection {
      * 
      * @return The source collection.
      */
-    public SortedSet<Source> getSourceCollectionSet() {
+    public static SortedSet<Source> getSourceCollectionSet() {
         return sources;
     }
     
