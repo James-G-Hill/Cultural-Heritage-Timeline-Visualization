@@ -65,7 +65,13 @@ public class SourceTableModelTest {
      */
     @Test
     public void testGetColumnCount() {
-        fail();
+        SourceTableModel table;
+        SourceCollection sources;
+        sources = SourceCollection.getInstance();
+        table = new SourceTableModel(sources);
+        
+        int colCount = table.getColumnCount();
+        assertTrue("Count is "+colCount, colCount == 2);
     }
 
     /**
