@@ -4,16 +4,24 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
- * Holds collections of sources.
+ * A singleton pattern holding a collections of sources.
  * 
  * @author JGHill
  */
 public class SourceCollection {
     
-    private static SortedSet<Source> sources;
+    private static SortedSet<Source> sources = new TreeSet<>();
+    private static SourceCollection collection = new SourceCollection();
     
-    public SourceCollection() {
-        sources = new TreeSet<>();
+    private SourceCollection() {}
+    
+    /**
+     * Returns the single instance of this singleton pattern.
+     * 
+     * @return 
+     */
+    public static SourceCollection getInstance() {
+        return collection;
     }
     
     /**
@@ -21,7 +29,7 @@ public class SourceCollection {
      * 
      * @return The source collection.
      */
-    public static SortedSet<Source> getSourceCollectionSet() {
+    public SortedSet<Source> getSourceCollectionSet() {
         return sources;
     }
     
