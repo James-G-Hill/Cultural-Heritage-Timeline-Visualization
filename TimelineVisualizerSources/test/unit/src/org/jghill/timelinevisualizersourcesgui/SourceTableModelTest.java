@@ -20,8 +20,6 @@ public class SourceTableModelTest {
     
     Source source1;
     Source source2;
-    SourceTableModel table;
-    SourceCollection sources;
     
     public SourceTableModelTest() {
     }
@@ -38,16 +36,12 @@ public class SourceTableModelTest {
     public void setUp() {
         source1 = mock(Source.class);
         source2 = mock(Source.class);
-        
-        sources = SourceCollection.getInstance();
-        sources.addSource(source1);
-        sources.addSource(source2);
-        
-        table = new SourceTableModel(sources);
     }
     
     @After
     public void tearDown() {
+        //sources.deleteSource(source1);
+        //sources.deleteSource(source2);
     }
 
     /**
@@ -55,6 +49,13 @@ public class SourceTableModelTest {
      */
     @Test
     public void testGetRowCount() {
+        SourceTableModel table;
+        SourceCollection sources;
+        sources = SourceCollection.getInstance();
+        sources.addSource(source1);
+        sources.addSource(source2);
+        table = new SourceTableModel(sources);
+        
         int rowCount = table.getRowCount();
         assertTrue("Count is "+rowCount, rowCount == 2);
     }
