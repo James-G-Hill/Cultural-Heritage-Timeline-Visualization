@@ -5,6 +5,7 @@ import org.jghill.timelinevisualizersources.SourceCollection;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -34,10 +35,10 @@ public class SourceTableModelTest {
     @Before
     public void setUp() {
         Source newSource = mock(Source.class);
-        sources = new SourceCollection();
+        sources = SourceCollection.getInstance();
         sources.addSource(newSource);
         sources.addSource(newSource);
-        table = new SourceTableModel(sources.getSourceCollectionSet());
+        table = new SourceTableModel(sources);
     }
     
     @After
@@ -58,7 +59,7 @@ public class SourceTableModelTest {
      */
     @Test
     public void testGetColumnCount() {
-
+        fail();
     }
 
     /**
@@ -66,7 +67,7 @@ public class SourceTableModelTest {
      */
     @Test
     public void testGetValueAt() {
-
+        fail();
     }
 
     /**
@@ -74,7 +75,7 @@ public class SourceTableModelTest {
      */
     @Test
     public void testGetColumnName() {
-
+        fail();
     }
     
 }
