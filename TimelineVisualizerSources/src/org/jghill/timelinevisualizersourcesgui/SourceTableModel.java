@@ -36,7 +36,7 @@ public class SourceTableModel extends AbstractTableModel {
             case 1:
                 return sources[rowIndex].getSourceType();
             default:
-                return "";
+                return null;
         }
     }
     
@@ -48,7 +48,7 @@ public class SourceTableModel extends AbstractTableModel {
             case 1:
                 return "Type";
             default:
-                return "";
+                return null;
         }
     }
     
