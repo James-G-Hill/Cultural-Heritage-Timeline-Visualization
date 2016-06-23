@@ -18,6 +18,8 @@ import static org.mockito.Mockito.mock;
  */
 public class SourceTableModelTest {
     
+    Source source1;
+    Source source2;
     SourceTableModel table;
     SourceCollection sources;
     
@@ -34,10 +36,13 @@ public class SourceTableModelTest {
     
     @Before
     public void setUp() {
-        Source newSource = mock(Source.class);
+        source1 = mock(Source.class);
+        source2 = mock(Source.class);
+        
         sources = SourceCollection.getInstance();
-        sources.addSource(newSource);
-        sources.addSource(newSource);
+        sources.addSource(source1);
+        sources.addSource(source2);
+        
         table = new SourceTableModel(sources);
     }
     
@@ -51,7 +56,7 @@ public class SourceTableModelTest {
     @Test
     public void testGetRowCount() {
         int rowCount = table.getRowCount();
-        assertTrue(rowCount == 2);
+        assertTrue("Count is "+rowCount, rowCount == 2);
     }
 
     /**
