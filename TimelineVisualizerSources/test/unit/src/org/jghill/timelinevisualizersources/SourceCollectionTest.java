@@ -17,7 +17,8 @@ import static org.junit.Assert.*;
 public class SourceCollectionTest {
     
     static SourceCollection instance;
-    static Source newSource;
+    static Source source1;
+    static Source source2;
     
     public SourceCollectionTest() {
     }
@@ -33,7 +34,8 @@ public class SourceCollectionTest {
     @Before
     public void setUp() {
         instance = SourceCollection.getInstance();
-        newSource = mock(Source.class);
+        source1 = mock(Source.class);
+        source2 = mock(Source.class);
     }
     
     @After
@@ -42,24 +44,30 @@ public class SourceCollectionTest {
     
     @Test
     public void testAddSourceReturnsTrueWhenSourceNotFound() {
-        assertTrue(instance.addSource(newSource));
+        assertTrue(instance.addSource(source1));
     }
     
     @Test
     public void testAddSourceReturnsFalseWhenSourceFound() {
-        instance.addSource(newSource);
-        assertFalse(instance.addSource(newSource));
+        instance.addSource(source1);
+        assertFalse(instance.addSource(source1));
     }
     
     @Test
     public void testDeleteSourceReturnsTrueWhenSourceFound() {
-        instance.addSource(newSource);
-        assertTrue(instance.deleteSource(newSource));
+        instance.addSource(source1);
+        assertTrue(instance.deleteSource(source1));
     }
     
     @Test
     public void testDeleteSourceReturnsFalseWhenSourceNotFound() {
-        assertFalse(instance.deleteSource(newSource));
+        assertFalse(instance.deleteSource(source1));
+    }
+    
+    @Test
+    public void testGetSizeReturnsCorrectNumberOfSources() {
+        instance.addSource(source2);
+        assertTrue(instance.getSize() == 2);
     }
     
 }
