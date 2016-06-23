@@ -1,8 +1,8 @@
 package org.jghill.timelinevisualizersourcesgui;
 
-import java.util.SortedSet;
 import javax.swing.table.AbstractTableModel;
 import org.jghill.timelinevisualizersources.Source;
+import org.jghill.timelinevisualizersources.SourceCollection;
 
 /**
  * A table model for sources to feed into the source management table.
@@ -13,8 +13,8 @@ public class SourceTableModel extends AbstractTableModel {
 
     private final Source[] sources;
     
-    public SourceTableModel(SortedSet<Source> collection) {
-        sources = (Source[]) collection.toArray();
+    public SourceTableModel(SourceCollection collection) {
+        sources = (Source[]) collection.getSourceCollectionSet().toArray();
     }
     
     @Override
