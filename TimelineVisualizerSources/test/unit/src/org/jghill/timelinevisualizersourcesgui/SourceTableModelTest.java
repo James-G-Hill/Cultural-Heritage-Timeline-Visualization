@@ -57,7 +57,7 @@ public class SourceTableModelTest {
     }
     
     @Test
-    public void testGetValueAtFirstColumnForFirstSource() {
+    public void testGetValueAtFirstColumn() {
         SourceCollection sources = SourceCollection.getInstance();
         sources.addSource(source1);
         SourceTableModel table = new SourceTableModel(sources);
@@ -67,7 +67,7 @@ public class SourceTableModelTest {
     }
     
     @Test
-    public void testGetValueAtSecondColumnForFirstSource() {
+    public void testGetValueAtSecondColumn() {
         SourceCollection sources = SourceCollection.getInstance();
         sources.addSource(source1);
         SourceTableModel table = new SourceTableModel(sources);
