@@ -4,7 +4,6 @@ import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.mock;
@@ -36,13 +35,10 @@ public class SourceTableModelTest {
     
     @Test
     public void testGetRowCountReturnsCorrectNumberOfRows() {
-        SourceTableModel table;
-        SourceCollection sources;
-        sources = SourceCollection.getInstance();
+        SourceCollection sources = SourceCollection.getInstance();
         sources.addSource(source1);
         sources.addSource(source2);
-        table = new SourceTableModel(sources);
-        
+        SourceTableModel table = new SourceTableModel(sources);
         int rowCount = table.getRowCount();
         assertTrue("Count is "+rowCount, rowCount == 2);
     }
@@ -51,7 +47,6 @@ public class SourceTableModelTest {
     public void testGetColumnCountReturnsCorrectNumberOfColumns() {
         SourceCollection sources = SourceCollection.getInstance();
         SourceTableModel table = new SourceTableModel(sources);
-        
         int colCount = table.getColumnCount();
         assertTrue("Count is "+colCount, colCount == 2);
     }
@@ -74,11 +69,6 @@ public class SourceTableModelTest {
         int row = 0;
         int col = 1;
         assertEquals(sparql, table.getValueAt(row, col));
-    }
-    
-    @Test
-    public void testGetColumnName() {
-        fail();
     }
     
 }
