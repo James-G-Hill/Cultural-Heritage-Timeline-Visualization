@@ -51,4 +51,13 @@ public class SourceCollection {
         return sources.remove(source);
     }
     
+    /**
+     * Returns the number of sources in the SourceCollection.
+     * 
+     * @return the size of the collection.
+     */
+    public int getSize() {
+        return sources.size();
+    }
+    
 }
