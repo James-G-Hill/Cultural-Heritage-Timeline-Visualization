@@ -3,7 +3,6 @@ package org.jghill.timelinevisualizersourcesgui;
 import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.mock;
@@ -39,16 +38,14 @@ public class SourceTableModelTest {
         sources.addSource(source1);
         sources.addSource(source2);
         SourceTableModel table = new SourceTableModel(sources);
-        int rowCount = table.getRowCount();
-        assertTrue("Count is "+rowCount, rowCount == 2);
+        assertEquals(2, table.getRowCount());
     }
     
     @Test
     public void testGetColumnCountReturnsCorrectNumberOfColumns() {
         SourceCollection sources = SourceCollection.getInstance();
         SourceTableModel table = new SourceTableModel(sources);
-        int colCount = table.getColumnCount();
-        assertTrue("Count is "+colCount, colCount == 2);
+        assertEquals(2, table.getColumnCount());
     }
     
     @Test
