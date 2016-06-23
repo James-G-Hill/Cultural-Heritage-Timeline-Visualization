@@ -73,7 +73,7 @@ public final class SourcesTopComponent extends TopComponent {
         SourceManagementScrollPane.setMinimumSize(new java.awt.Dimension(380, 140));
         SourceManagementScrollPane.setPreferredSize(new java.awt.Dimension(380, 140));
 
-        SourceManagementSourceTable.setModel(new SourceTableModel(SourceCollection.getSourceCollectionSet()));
+        SourceManagementSourceTable.setModel(new SourceTableModel(SourceCollection.getInstance()));
         SourceManagementSourceTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
         SourceManagementSourceTable.setMaximumSize(new java.awt.Dimension(380, 140));
         SourceManagementSourceTable.setMinimumSize(new java.awt.Dimension(380, 140));
