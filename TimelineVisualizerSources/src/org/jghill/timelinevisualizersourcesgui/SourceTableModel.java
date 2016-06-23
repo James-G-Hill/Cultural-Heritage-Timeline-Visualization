@@ -14,7 +14,8 @@ public class SourceTableModel extends AbstractTableModel {
     private final Source[] sources;
     
     public SourceTableModel(SourceCollection collection) {
-        sources = (Source[]) collection.getSourceCollectionSet().toArray();
+        sources = new Source[collection.getSize()];
+        collection.getSourceCollectionSet().toArray(sources);
     }
     
     @Override
