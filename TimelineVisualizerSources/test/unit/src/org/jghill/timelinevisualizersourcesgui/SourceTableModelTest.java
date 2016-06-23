@@ -21,6 +21,7 @@ public class SourceTableModelTest {
     Source source2;
     
     String museum = "British Museum";
+    String sparql = "SPARQL Endpoint";
     
     public SourceTableModelTest() {}
     
@@ -28,7 +29,7 @@ public class SourceTableModelTest {
     public void setUp() {
         source1 = mock(Source.class);
         when(source1.getSourceName()).thenReturn(museum);
-        when(source1.getSourceType()).thenReturn("SPARQL Endpoint");
+        when(source1.getSourceType()).thenReturn(sparql);
         
         source2 = mock(Source.class);
     }
@@ -56,13 +57,23 @@ public class SourceTableModelTest {
     }
     
     @Test
-    public void testGetValueAtForFirstSource() {
+    public void testGetValueAtFirstColumnForFirstSource() {
         SourceCollection sources = SourceCollection.getInstance();
         sources.addSource(source1);
         SourceTableModel table = new SourceTableModel(sources);
-        int firstRow = 0;
-        int firstCol = 0;
-        assertEquals(museum, table.getValueAt(firstRow, firstCol));
+        int row = 0;
+        int col = 0;
+        assertEquals(museum, table.getValueAt(row, col));
+    }
+    
+    @Test
+    public void testGetValueAtSecondColumnForFirstSource() {
+        SourceCollection sources = SourceCollection.getInstance();
+        sources.addSource(source1);
+        SourceTableModel table = new SourceTableModel(sources);
+        int row = 0;
+        int col = 1;
+        assertEquals(sparql, table.getValueAt(row, col));
     }
     
     @Test
