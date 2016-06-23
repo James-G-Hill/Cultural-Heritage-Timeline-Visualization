@@ -32,7 +32,7 @@ public class SourceCollectionTest {
     
     @Before
     public void setUp() {
-        instance = new SourceCollection();
+        instance = SourceCollection.getInstance();
         newSource = mock(Source.class);
     }
     
