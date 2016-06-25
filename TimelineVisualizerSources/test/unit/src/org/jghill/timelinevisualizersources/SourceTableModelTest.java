@@ -1,4 +1,4 @@
-package org.jghill.timelinevisualizersourcesgui;
+package org.jghill.timelinevisualizersources;
 
 import org.jghill.timelinevisualizersources.SourceTableModel;
 import org.jghill.timelinevisualizersources.Source;
