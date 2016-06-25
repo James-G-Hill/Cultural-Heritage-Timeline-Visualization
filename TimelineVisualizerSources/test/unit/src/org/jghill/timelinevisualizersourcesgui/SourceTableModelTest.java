@@ -28,22 +28,20 @@ public class SourceTableModelTest {
         source1 = mock(Source.class);
         when(source1.getSourceName()).thenReturn(museum);
         when(source1.getSourceType()).thenReturn(sparql);
-        
         source2 = mock(Source.class);
     }
     
     @Test
     public void testGetRowCountReturnsCorrectNumberOfRows() {
-        SourceCollection sources = SourceCollection.getInstance();
-        sources.addSource(source1);
-        sources.addSource(source2);
+        SourceCollection sources = mock(SourceCollection.class);
+        when(sources.getSize()).thenReturn(2);
         SourceTableModel table = new SourceTableModel(sources);
         assertEquals(2, table.getRowCount());
     }
     
     @Test
     public void testGetColumnCountReturnsCorrectNumberOfColumns() {
-        SourceCollection sources = SourceCollection.getInstance();
+        SourceCollection sources = mock(SourceCollection.class);
         SourceTableModel table = new SourceTableModel(sources);
         assertEquals(2, table.getColumnCount());
     }
