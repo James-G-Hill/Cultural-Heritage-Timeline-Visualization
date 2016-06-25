@@ -34,6 +34,8 @@ public class SourceManagementTool extends javax.swing.JDialog {
         SourceManagementSourceTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setName("Source Management Tool"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(400, 200));
         setResizable(false);
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceManagementNewButton, org.openide.util.NbBundle.getMessage(SourceManagementTool.class, "SourceManagementTool.SourceManagementNewButton.text")); // NOI18N
