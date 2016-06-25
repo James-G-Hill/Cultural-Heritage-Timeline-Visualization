@@ -1,4 +1,4 @@
-package org.jghill.timelinevisualizersourcesgui;
+package org.jghill.timelinevisualizersources;
 
 import javax.swing.table.AbstractTableModel;
 import org.jghill.timelinevisualizersources.Source;

@@ -1,5 +1,6 @@
 package org.jghill.timelinevisualizersourcesgui;
 
+import org.jghill.timelinevisualizersources.SourceTableModel;
 import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
 import static org.junit.Assert.assertEquals;
