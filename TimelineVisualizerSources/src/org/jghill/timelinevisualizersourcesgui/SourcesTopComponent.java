@@ -60,6 +60,7 @@ public final class SourcesTopComponent extends TopComponent {
         setName("Source Management Tool"); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceManagementNewButton, org.openide.util.NbBundle.getMessage(SourcesTopComponent.class, "SourcesTopComponent.SourceManagementNewButton.text")); // NOI18N
+        SourceManagementNewButton.setToolTipText(org.openide.util.NbBundle.getMessage(SourcesTopComponent.class, "SourcesTopComponent.SourceManagementNewButton.toolTipText")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceManagementEditButton, org.openide.util.NbBundle.getMessage(SourcesTopComponent.class, "SourcesTopComponent.SourceManagementEditButton.text")); // NOI18N
 
