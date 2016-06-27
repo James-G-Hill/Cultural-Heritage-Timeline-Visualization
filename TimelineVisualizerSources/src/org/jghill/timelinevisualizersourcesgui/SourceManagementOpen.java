@@ -20,6 +20,8 @@ public final class SourceManagementOpen implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO implement action body
+        SourceManagementTool s;
+        s = new SourceManagementTool(new javax.swing.JFrame(), true);
+        s.setVisible(true);
     }
 }
