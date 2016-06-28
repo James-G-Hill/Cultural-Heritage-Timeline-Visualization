@@ -4,8 +4,9 @@ import org.jghill.timelinevisualizersources.SPARQLEndpoint;
 import org.jghill.timelinevisualizersources.SourceCollection;
 
 /**
- *
- * @author One
+ * A dialog for adding new sources to the SourceCollection.
+ * 
+ * @author JGHill
  */
 public class SourceManagementNew extends javax.swing.JDialog {
 
@@ -145,13 +146,16 @@ public class SourceManagementNew extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 
+    private javax.swing.JLabel SparqlText;
+    private javax.swing.JTextField SparqlWebText;
+    
     /**
      * A method for creating a new SPARQLEndpoint.
      */
     private void createNewSPARQLEndpoint() {
         
         if(NewSourceSelectionBox.getSelectedIndex() == 1) {
-            SPARQLEndpoint sparql = new SPARQLEndpoint();
+            SPARQLEndpoint sparql = new SPARQLEndpoint("");
             SourceCollection collection = SourceCollection.getInstance();
             collection.addSource(sparql);
         }
@@ -163,7 +167,14 @@ public class SourceManagementNew extends javax.swing.JDialog {
      */
     private void addSPARQLEndpointDialog() {
         
+        String sparqlMessage = "Web address:";
+        SparqlText = new javax.swing.JLabel();
+        SparqlText.setText(sparqlMessage);
         
+        SparqlWebText = new javax.swing.JTextField();
+        
+        this.add(SparqlText);
+        this.add(SparqlWebText);
         
     }
 
