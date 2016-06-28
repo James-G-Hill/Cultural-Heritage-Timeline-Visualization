@@ -116,10 +116,14 @@ public class SourceManagementNew extends javax.swing.JDialog {
 
     private void NewSourceSelectionBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewSourceSelectionBoxActionPerformed
         switch(NewSourceSelectionBox.getSelectedIndex()) {
-            case 0: break;
+            case 0: 
+                break;
             case 1: addSPARQLEndpointDialog();
-            case 2: break;
-            default: break;
+                break;
+            case 2:
+                break;
+            default:
+                break;
         }
     }//GEN-LAST:event_NewSourceSelectionBoxActionPerformed
 
@@ -129,11 +133,16 @@ public class SourceManagementNew extends javax.swing.JDialog {
         
         if(!sourceName.isEmpty()) {
             switch(NewSourceSelectionBox.getSelectedIndex()) {
-                case 0: break;
+                case 0:
+                    break;
                 case 1: createNewSPARQLEndpoint();
-                case 2: break;
-                default: break;
+                    break;
+                case 2:
+                    break;
+                default:
+                    break;
             }
+            this.dispose();
         }
         
     }//GEN-LAST:event_CreateActionPerformed
