@@ -39,10 +39,11 @@ public class SourceManagementNew extends javax.swing.JDialog {
         setTitle(org.openide.util.NbBundle.getMessage(SourceManagementNew.class, "SourceManagementNew.title")); // NOI18N
         setAlwaysOnTop(true);
         setIconImages(null);
+        setLocationByPlatform(true);
         setMaximumSize(new java.awt.Dimension(400, 300));
         setMinimumSize(new java.awt.Dimension(400, 300));
         setName("New Source Tool"); // NOI18N
-        setUndecorated(true);
+        setResizable(false);
 
         SourceNameEntryBox.setText(org.openide.util.NbBundle.getMessage(SourceManagementNew.class, "SourceManagementNew.SourceNameEntryBox.text")); // NOI18N
 
@@ -109,7 +110,8 @@ public class SourceManagementNew extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        setBounds(0, 0, 400, 300);
+        setSize(new java.awt.Dimension(416, 339));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void NewSourceSelectionBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewSourceSelectionBoxActionPerformed
