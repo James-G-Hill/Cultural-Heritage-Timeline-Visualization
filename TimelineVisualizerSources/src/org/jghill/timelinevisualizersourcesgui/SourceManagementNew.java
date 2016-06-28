@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.jghill.timelinevisualizersourcesgui;
+
+import org.jghill.timelinevisualizersources.SPARQLEndpoint;
+import org.jghill.timelinevisualizersources.SourceCollection;
 
 /**
  *
@@ -39,6 +37,11 @@ public class SourceManagementNew extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(SourceManagementNew.class, "SourceManagementNew.title")); // NOI18N
         setAlwaysOnTop(true);
+        setIconImages(null);
+        setMaximumSize(new java.awt.Dimension(400, 300));
+        setMinimumSize(new java.awt.Dimension(400, 300));
+        setName("New Source Tool"); // NOI18N
+        setUndecorated(true);
 
         SourceNameEntryBox.setText(org.openide.util.NbBundle.getMessage(SourceManagementNew.class, "SourceManagementNew.SourceNameEntryBox.text")); // NOI18N
 
@@ -105,15 +108,31 @@ public class SourceManagementNew extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        setBounds(0, 0, 416, 339);
+        setBounds(0, 0, 400, 300);
     }// </editor-fold>//GEN-END:initComponents
 
     private void NewSourceSelectionBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewSourceSelectionBoxActionPerformed
-        // TODO add your handling code here:
+        switch(NewSourceSelectionBox.getSelectedIndex()) {
+            case 0: break;
+            case 1: addSPARQLEndpointDialog();
+            case 2: break;
+            default: break;
+        }
     }//GEN-LAST:event_NewSourceSelectionBoxActionPerformed
 
     private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
-        // TODO add your handling code here:
+        
+        String sourceName = SourceNameEntryBox.getText();
+        
+        if(!sourceName.isEmpty()) {
+            switch(NewSourceSelectionBox.getSelectedIndex()) {
+                case 0: break;
+                case 1: createNewSPARQLEndpoint();
+                case 2: break;
+                default: break;
+            }
+        }
+        
     }//GEN-LAST:event_CreateActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -125,4 +144,27 @@ public class SourceManagementNew extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * A method for creating a new SPARQLEndpoint.
+     */
+    private void createNewSPARQLEndpoint() {
+        
+        if(NewSourceSelectionBox.getSelectedIndex() == 1) {
+            SPARQLEndpoint sparql = new SPARQLEndpoint();
+            SourceCollection collection = SourceCollection.getInstance();
+            collection.addSource(sparql);
+        }
+        
+    }
+    
+    /**
+     * A method for adding options for a SPARQL endpoint.
+     */
+    private void addSPARQLEndpointDialog() {
+        
+        
+        
+    }
+
 }
