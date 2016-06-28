@@ -46,6 +46,11 @@ public class SourceManagementTool extends javax.swing.JDialog {
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceManagementNewButton, org.openide.util.NbBundle.getMessage(SourceManagementTool.class, "SourceManagementTool.SourceManagementNewButton.text")); // NOI18N
         SourceManagementNewButton.setToolTipText(org.openide.util.NbBundle.getMessage(SourceManagementTool.class, "SourceManagementTool.SourceManagementNewButton.toolTipText")); // NOI18N
+        SourceManagementNewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SourceManagementNewButtonActionPerformed(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceManagementEditButton, org.openide.util.NbBundle.getMessage(SourceManagementTool.class, "SourceManagementTool.SourceManagementEditButton.text")); // NOI18N
 
@@ -98,6 +103,12 @@ public class SourceManagementTool extends javax.swing.JDialog {
         setSize(new java.awt.Dimension(416, 235));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SourceManagementNewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SourceManagementNewButtonActionPerformed
+        SourceManagementNew s;
+        s = new SourceManagementNew(new javax.swing.JFrame(), true);
+        s.setVisible(true);
+    }//GEN-LAST:event_SourceManagementNewButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SourceManagementDeleteButton;
