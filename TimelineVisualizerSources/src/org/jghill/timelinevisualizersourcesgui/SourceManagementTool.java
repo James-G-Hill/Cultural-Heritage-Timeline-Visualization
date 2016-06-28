@@ -34,6 +34,12 @@ public class SourceManagementTool extends javax.swing.JDialog {
         SourceManagementSourceTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle(org.openide.util.NbBundle.getMessage(SourceManagementTool.class, "SourceManagementTool.title")); // NOI18N
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setIconImages(null);
+        setLocationByPlatform(true);
+        setMaximumSize(new java.awt.Dimension(400, 200));
+        setMinimumSize(new java.awt.Dimension(400, 200));
         setName("Source Management Tool"); // NOI18N
         setPreferredSize(new java.awt.Dimension(400, 200));
         setResizable(false);
@@ -89,7 +95,8 @@ public class SourceManagementTool extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(416, 235));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
