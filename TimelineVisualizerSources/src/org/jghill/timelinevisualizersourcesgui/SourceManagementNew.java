@@ -165,8 +165,10 @@ public class SourceManagementNew extends javax.swing.JDialog {
      */
     private void createNewSPARQLEndpoint() {
         
-        if(NewSourceSelectionBox.getSelectedIndex() == 1) {
-            SPARQLEndpoint sparql = new SPARQLEndpoint("");
+        String webText = SparqlWebText.getText();
+        if(NewSourceSelectionBox.getSelectedIndex() == 1 &&
+                !webText.isEmpty()) {
+            SPARQLEndpoint sparql = new SPARQLEndpoint(webText);
             SourceCollection collection = SourceCollection.getInstance();
             collection.addSource(sparql);
         }
