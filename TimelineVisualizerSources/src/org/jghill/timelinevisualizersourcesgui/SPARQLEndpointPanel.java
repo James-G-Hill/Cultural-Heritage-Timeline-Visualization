@@ -61,4 +61,21 @@ public class SPARQLEndpointPanel extends javax.swing.JPanel {
     private javax.swing.JLabel DescriptionText;
     private javax.swing.JTextField WebAddressText;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * Returns the text entered into the web address text field unless there
+     * is no text, in which case a null is returned.
+     * 
+     * @return text entered into the text field or a null.
+     */
+    public String getText() {
+        String webAddress;
+        try {
+            webAddress = WebAddressText.getText();
+            return webAddress;
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
+    
 }
