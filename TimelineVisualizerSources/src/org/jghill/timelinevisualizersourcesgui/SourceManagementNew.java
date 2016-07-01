@@ -115,10 +115,12 @@ public class SourceManagementNew extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void NewSourceSelectionBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewSourceSelectionBoxActionPerformed
+        removeInternalPanel();
         switch(NewSourceSelectionBox.getSelectedIndex()) {
-            case 0: 
+            case 0:
                 break;
-            case 1: addSPARQLEndpointDialog();
+            case 1:
+                addSPARQLEndpointDialog();
                 break;
             case 2:
                 break;
@@ -130,19 +132,19 @@ public class SourceManagementNew extends javax.swing.JDialog {
     private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
         
         String sourceName = SourceNameEntryBox.getText();
-        
         if(!sourceName.isEmpty()) {
             switch(NewSourceSelectionBox.getSelectedIndex()) {
                 case 0:
                     break;
-                case 1: createNewSPARQLEndpoint();
+                case 1:
+                    createNewSPARQLEndpoint();
+                    this.dispose();
                     break;
                 case 2:
                     break;
                 default:
                     break;
             }
-            this.dispose();
         }
         
     }//GEN-LAST:event_CreateActionPerformed
@@ -157,15 +159,14 @@ public class SourceManagementNew extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 
-    private javax.swing.JLabel SparqlText;
-    private javax.swing.JTextField SparqlWebText;
+    private SPARQLEndpointPanel internalPanel;
     
     /**
      * A method for creating a new SPARQLEndpoint.
      */
     private void createNewSPARQLEndpoint() {
         
-        String webText = SparqlWebText.getText();
+        String webText = internalPanel.getText();
         if(NewSourceSelectionBox.getSelectedIndex() == 1 &&
                 !webText.isEmpty()) {
             SPARQLEndpoint sparql = new SPARQLEndpoint(webText);
@@ -180,15 +181,23 @@ public class SourceManagementNew extends javax.swing.JDialog {
      */
     private void addSPARQLEndpointDialog() {
         
-        String sparqlMessage = "Web address:";
-        SparqlText = new javax.swing.JLabel();
-        SparqlText.setText(sparqlMessage);
+        internalPanel = new SPARQLEndpointPanel();
+        internalPanel.setSize(360, 120);
+        internalPanel.setLocation(10, 120);
+        this.add(internalPanel);
+        validate();
+        repaint();
         
-        SparqlWebText = new javax.swing.JTextField();
-        
-        this.add(SparqlText);
-        this.add(SparqlWebText);
-        
+    }
+    
+    /**
+     * Remove any internal panel if it exists.
+     */
+    private void removeInternalPanel() {
+        if(internalPanel != null) {
+            this.remove(internalPanel);
+            repaint();
+        }
     }
 
 }
