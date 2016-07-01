@@ -28,6 +28,7 @@ public class SPARQLEndpointPanel extends javax.swing.JPanel {
 
         setMaximumSize(new java.awt.Dimension(360, 120));
         setMinimumSize(new java.awt.Dimension(360, 120));
+        setName("SPARQLpanel"); // NOI18N
         setPreferredSize(new java.awt.Dimension(360, 120));
 
         org.openide.awt.Mnemonics.setLocalizedText(DescriptionText, org.openide.util.NbBundle.getMessage(SPARQLEndpointPanel.class, "SPARQLEndpointPanel.DescriptionText.text")); // NOI18N
@@ -43,7 +44,7 @@ public class SPARQLEndpointPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(DescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(WebAddressText, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -52,7 +53,7 @@ public class SPARQLEndpointPanel extends javax.swing.JPanel {
                 .addComponent(DescriptionText)
                 .addGap(18, 18, 18)
                 .addComponent(WebAddressText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
