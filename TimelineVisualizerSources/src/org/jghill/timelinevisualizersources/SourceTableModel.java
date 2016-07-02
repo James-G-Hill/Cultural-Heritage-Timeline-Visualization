@@ -1,8 +1,6 @@
 package org.jghill.timelinevisualizersources;
 
 import javax.swing.table.AbstractTableModel;
-import org.jghill.timelinevisualizersources.Source;
-import org.jghill.timelinevisualizersources.SourceCollection;
 
 /**
  * A table model for sources to feed into the source management table.
