@@ -53,6 +53,7 @@ public class SourceManagementEdit extends javax.swing.JDialog {
         setTitle(org.openide.util.NbBundle.getMessage(SourceManagementEdit.class, "SourceManagementEdit.title")); // NOI18N
         setAlwaysOnTop(true);
         setIconImages(null);
+        setMaximumSize(new java.awt.Dimension(400, 300));
         setMinimumSize(new java.awt.Dimension(400, 300));
         setName("New Source Tool"); // NOI18N
         setResizable(false);
