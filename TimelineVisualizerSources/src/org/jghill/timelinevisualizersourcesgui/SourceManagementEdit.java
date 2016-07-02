@@ -180,6 +180,8 @@ public class SourceManagementEdit extends javax.swing.JDialog {
         internalPanel = new SPARQLEndpointPanel();
         internalPanel.setSize(360, 120);
         internalPanel.setLocation(10, 120);
+        SPARQLEndpoint sparql = (SPARQLEndpoint)src;
+        internalPanel.setText(sparql.getWebAddress());
         this.add(internalPanel);
         validate();
         repaint();
