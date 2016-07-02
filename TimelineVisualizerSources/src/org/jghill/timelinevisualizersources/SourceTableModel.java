@@ -50,4 +50,9 @@ public class SourceTableModel extends AbstractTableModel {
         }
     }
     
+    @Override
+    public void fireTableDataChanged() {
+        super.fireTableDataChanged();
+    }
+    
 }
