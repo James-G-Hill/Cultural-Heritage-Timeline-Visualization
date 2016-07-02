@@ -15,8 +15,9 @@ public class SPARQLEndpoint extends Source {
      * 
      * @param name A name for the source.
      */
-    public SPARQLEndpoint(String name) {
+    public SPARQLEndpoint(String name, String webText) {
         super.setSourceName(name);
+        this.webAddress = webText;
     }
     
     /**
