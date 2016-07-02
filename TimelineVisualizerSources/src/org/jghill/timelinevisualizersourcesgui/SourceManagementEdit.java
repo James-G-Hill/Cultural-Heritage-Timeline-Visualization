@@ -2,7 +2,6 @@ package org.jghill.timelinevisualizersourcesgui;
 
 import org.jghill.timelinevisualizersources.SPARQLEndpoint;
 import org.jghill.timelinevisualizersources.Source;
-import org.jghill.timelinevisualizersources.SourceCollection;
 import org.jghill.timelinevisualizersources.SourceTableModel;
 
 /**
