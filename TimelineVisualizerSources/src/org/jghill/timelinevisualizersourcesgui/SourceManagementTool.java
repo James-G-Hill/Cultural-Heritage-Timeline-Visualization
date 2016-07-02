@@ -55,6 +55,11 @@ public class SourceManagementTool extends javax.swing.JDialog {
         org.openide.awt.Mnemonics.setLocalizedText(SourceManagementEditButton, org.openide.util.NbBundle.getMessage(SourceManagementTool.class, "SourceManagementTool.SourceManagementEditButton.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceManagementDeleteButton, org.openide.util.NbBundle.getMessage(SourceManagementTool.class, "SourceManagementTool.SourceManagementDeleteButton.text")); // NOI18N
+        SourceManagementDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SourceManagementDeleteButtonActionPerformed(evt);
+            }
+        });
 
         SourceManagementScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         SourceManagementScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -110,6 +115,14 @@ public class SourceManagementTool extends javax.swing.JDialog {
         s.setSourceTableModel((SourceTableModel) SourceManagementSourceTable.getModel());
         s.setVisible(true);
     }//GEN-LAST:event_SourceManagementNewButtonActionPerformed
+
+    private void SourceManagementDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SourceManagementDeleteButtonActionPerformed
+        int row = SourceManagementSourceTable.getSelectedRow();
+        if(row != -1) {
+            SourceTableModel s = (SourceTableModel)SourceManagementSourceTable.getModel();
+            s.deleteSource(row);
+        }
+    }//GEN-LAST:event_SourceManagementDeleteButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SourceManagementDeleteButton;
