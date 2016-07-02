@@ -75,4 +75,14 @@ public class SourceTableModel extends AbstractTableModel {
         fireTableDataChanged();
     }
     
+    /**
+     * Returns a source from the underlying collection.
+     * 
+     * @param index the row number identifying the Source.
+     * @return The source at the row.
+     */
+    public Source returnSource(int index) {
+        return sources[index];
+    }
+    
 }
