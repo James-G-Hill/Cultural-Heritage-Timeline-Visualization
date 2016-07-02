@@ -1,5 +1,6 @@
 package org.jghill.timelinevisualizersourcesgui;
 
+import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
 import org.jghill.timelinevisualizersources.SourceTableModel;
 
@@ -54,6 +55,11 @@ public class SourceManagementTool extends javax.swing.JDialog {
         });
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceManagementEditButton, org.openide.util.NbBundle.getMessage(SourceManagementTool.class, "SourceManagementTool.SourceManagementEditButton.text")); // NOI18N
+        SourceManagementEditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SourceManagementEditButtonActionPerformed(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceManagementDeleteButton, org.openide.util.NbBundle.getMessage(SourceManagementTool.class, "SourceManagementTool.SourceManagementDeleteButton.text")); // NOI18N
         SourceManagementDeleteButton.addActionListener(new java.awt.event.ActionListener() {
@@ -138,6 +144,19 @@ public class SourceManagementTool extends javax.swing.JDialog {
     private void SourceManagementCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SourceManagementCloseButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_SourceManagementCloseButtonActionPerformed
+
+    private void SourceManagementEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SourceManagementEditButtonActionPerformed
+        int row = SourceManagementSourceTable.getSelectedRow();
+        if(row != -1) {
+            SourceTableModel sourceTable;
+            sourceTable = (SourceTableModel)SourceManagementSourceTable.getModel();
+            Source src;
+            src = sourceTable.returnSource(row);
+            SourceManagementEdit editor;
+            editor = new SourceManagementEdit(new javax.swing.JFrame(), true, src);
+            editor.setVisible(true);
+        }
+    }//GEN-LAST:event_SourceManagementEditButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SourceManagementCloseButton;
