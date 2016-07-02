@@ -9,11 +9,12 @@ import javax.swing.table.AbstractTableModel;
  */
 public class SourceTableModel extends AbstractTableModel {
 
-    private final Source[] sources;
+    private final SourceCollection collection;
+    private Source[] sources;
     
-    public SourceTableModel(SourceCollection collection) {
-        sources = new Source[collection.getSize()];
-        collection.getSourceCollectionSet().toArray(sources);
+    public SourceTableModel(SourceCollection c) {
+        this.collection = c;
+        updateDataTable();
     }
     
     @Override
@@ -52,7 +53,14 @@ public class SourceTableModel extends AbstractTableModel {
     
     @Override
     public void fireTableDataChanged() {
+        updateDataTable();
         super.fireTableDataChanged();
+    }
+    
+    
+    private void updateDataTable() {
+        sources = new Source[collection.getSize()];
+        collection.getSourceCollectionSet().toArray(sources);
     }
     
 }
