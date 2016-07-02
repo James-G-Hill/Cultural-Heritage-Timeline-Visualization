@@ -79,4 +79,13 @@ public class SPARQLEndpointPanel extends javax.swing.JPanel {
         }
     }
     
+    /**
+     * Sets the web address text to the passed string.
+     * 
+     * @param webAddress a web address.
+     */
+    public void setText(String webAddress) {
+        WebAddressText.setText(webAddress);
+    }
+    
 }
