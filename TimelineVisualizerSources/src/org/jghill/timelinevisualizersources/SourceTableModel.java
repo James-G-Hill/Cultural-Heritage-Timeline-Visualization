@@ -57,10 +57,22 @@ public class SourceTableModel extends AbstractTableModel {
         super.fireTableDataChanged();
     }
     
-    
+    /**
+     * Updates the array fed from the data table.
+     */
     private void updateDataTable() {
         sources = new Source[collection.getSize()];
         collection.getSourceCollectionSet().toArray(sources);
+    }
+    
+    /**
+     * Deletes a source from the underlying collection.
+     * 
+     * @param index the row number of the source.
+     */
+    public void deleteSource(int index) {
+        collection.deleteSource(sources[index]);
+        fireTableDataChanged();
     }
     
 }
