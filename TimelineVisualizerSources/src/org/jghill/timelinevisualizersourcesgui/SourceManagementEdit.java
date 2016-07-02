@@ -159,8 +159,8 @@ public class SourceManagementEdit extends javax.swing.JDialog {
      */
     private void editSPARQLEndpoint() {
         String webText = internalPanel.getText();
-        SPARQLEndpoint sparql = new SPARQLEndpoint(name, webText);
-        SourceCollection.getInstance().addSource(sparql);
+        SPARQLEndpoint sparql = (SPARQLEndpoint)src;
+        sparql.setWebAddress(webText);
     }
     
     private void setInternalPanelAccordingToType() {
