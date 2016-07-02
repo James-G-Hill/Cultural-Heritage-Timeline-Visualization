@@ -2,6 +2,7 @@ package org.jghill.timelinevisualizersourcesgui;
 
 import org.jghill.timelinevisualizersources.SPARQLEndpoint;
 import org.jghill.timelinevisualizersources.SourceCollection;
+import org.jghill.timelinevisualizersources.SourceTableModel;
 
 /**
  * A dialog for adding new sources to the SourceCollection.
@@ -39,7 +40,6 @@ public class SourceManagementNew extends javax.swing.JDialog {
         setTitle(org.openide.util.NbBundle.getMessage(SourceManagementNew.class, "SourceManagementNew.title")); // NOI18N
         setAlwaysOnTop(true);
         setIconImages(null);
-        setLocationByPlatform(true);
         setMaximumSize(new java.awt.Dimension(400, 300));
         setMinimumSize(new java.awt.Dimension(400, 300));
         setName("New Source Tool"); // NOI18N
@@ -138,6 +138,7 @@ public class SourceManagementNew extends javax.swing.JDialog {
                     break;
                 case 1:
                     createNewSPARQLEndpoint();
+                    sourceTable.fireTableDataChanged();
                     this.dispose();
                     break;
                 case 2:
@@ -160,12 +161,12 @@ public class SourceManagementNew extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private SPARQLEndpointPanel internalPanel;
+    private SourceTableModel sourceTable;
     
     /**
      * A method for creating a new SPARQLEndpoint.
      */
     private void createNewSPARQLEndpoint() {
-        
         String webText = internalPanel.getText();
         if(NewSourceSelectionBox.getSelectedIndex() == 1 &&
                 !webText.isEmpty()) {
@@ -173,21 +174,18 @@ public class SourceManagementNew extends javax.swing.JDialog {
             SourceCollection collection = SourceCollection.getInstance();
             collection.addSource(sparql);
         }
-        
     }
     
     /**
      * A method for adding options for a SPARQL endpoint.
      */
     private void addSPARQLEndpointDialog() {
-        
         internalPanel = new SPARQLEndpointPanel();
         internalPanel.setSize(360, 120);
         internalPanel.setLocation(10, 120);
         this.add(internalPanel);
         validate();
         repaint();
-        
     }
     
     /**
@@ -198,6 +196,15 @@ public class SourceManagementNew extends javax.swing.JDialog {
             this.remove(internalPanel);
             repaint();
         }
+    }
+    
+    /**
+     * A setter for a sourceTableModel to be updated by this class.
+     * 
+     * @param s the sourceTableModel to be added.
+     */
+    public void setSourceTableModel(SourceTableModel s) {
+        sourceTable = s;
     }
 
 }
