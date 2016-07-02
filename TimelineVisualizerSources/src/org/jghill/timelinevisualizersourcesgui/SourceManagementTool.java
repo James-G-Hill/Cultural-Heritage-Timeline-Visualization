@@ -107,6 +107,7 @@ public class SourceManagementTool extends javax.swing.JDialog {
     private void SourceManagementNewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SourceManagementNewButtonActionPerformed
         SourceManagementNew s;
         s = new SourceManagementNew(new javax.swing.JFrame(), true);
+        s.setSourceTableModel((SourceTableModel) SourceManagementSourceTable.getModel());
         s.setVisible(true);
     }//GEN-LAST:event_SourceManagementNewButtonActionPerformed
 
