@@ -10,8 +10,8 @@ import java.util.TreeSet;
  */
 public class SourceCollection {
     
-    private static SortedSet<Source> sources = new TreeSet<>();
-    private static SourceCollection collection = new SourceCollection();
+    private static final SortedSet<Source> SOURCES = new TreeSet<>();
+    private static final SourceCollection COLLECTION = new SourceCollection();
     
     private SourceCollection() {}
     
@@ -21,7 +21,7 @@ public class SourceCollection {
      * @return 
      */
     public static SourceCollection getInstance() {
-        return collection;
+        return COLLECTION;
     }
     
     /**
@@ -30,7 +30,7 @@ public class SourceCollection {
      * @return The source collection.
      */
     public SortedSet<Source> getSourceCollectionSet() {
-        return sources;
+        return SOURCES;
     }
     
     /**
@@ -39,7 +39,7 @@ public class SourceCollection {
      * @param newSource The new source to be added.
      */
     public boolean addSource(Source newSource) {
-        return sources.add(newSource);
+        return SOURCES.add(newSource);
     }
     
     /**
@@ -48,7 +48,7 @@ public class SourceCollection {
      * @param source The source to be deleted.
      */
     public boolean deleteSource(Source source) {
-        return sources.remove(source);
+        return SOURCES.remove(source);
     }
     
     /**
@@ -57,7 +57,7 @@ public class SourceCollection {
      * @return the size of the collection.
      */
     public int getSize() {
-        return sources.size();
+        return SOURCES.size();
     }
     
 }
