@@ -6,6 +6,6 @@ package org.jghill.timelinevisualizerentities;
  * 
  * @author JGHill
  */
-abstract class Entities {
+abstract public class Entities {
     
 }
