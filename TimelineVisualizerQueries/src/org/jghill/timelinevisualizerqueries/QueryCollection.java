@@ -16,4 +16,13 @@ public class QueryCollection {
         collection = new TreeSet<>();
     }
     
+    /**
+     * A method for adding new queries into the collection.
+     * 
+     * @param q A query.
+     */
+    public void addQuery(AbstractQuery q) {
+        collection.add(q);
+    }
+    
 }
