@@ -4,7 +4,7 @@ import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
 
 /**
- * An interface for Projects.
+ * An interface for Collections.
  * 
  * @author JGHill
  */
