@@ -10,14 +10,16 @@ import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
  */
 public class Project implements ProjectInt {
 
+    private String name;
+    
     @Override
     public String getName() {
-        
+        return name;
     }
 
     @Override
     public void setName(String name) {
-        
+        this.name = name;
     }
 
     @Override
