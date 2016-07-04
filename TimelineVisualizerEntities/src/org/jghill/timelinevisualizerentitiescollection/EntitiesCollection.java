@@ -41,6 +41,8 @@ public class EntitiesCollection extends Entities {
     
     /**
      * A getter for the collection name.
+     * 
+     * @return the name of this collection.
      */
     public String getCollectionName() {
         return  collectionName;
