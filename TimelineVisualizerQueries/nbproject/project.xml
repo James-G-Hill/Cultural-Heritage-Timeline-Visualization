@@ -6,7 +6,9 @@
             <code-name-base>org.jghil.timelinevisualizerqueries</code-name-base>
             <suite-component/>
             <module-dependencies/>
-            <public-packages/>
+            <public-packages>
+                <package>org.jghill.timelinevisualizerqueriescollection</package>
+            </public-packages>
             <class-path-extension>
                 <runtime-relative-path>ext/jena-arq-3.1.0.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/jena-arq-3.1.0.jar</binary-origin>

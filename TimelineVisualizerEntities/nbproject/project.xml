@@ -6,7 +6,9 @@
             <code-name-base>org.jghill.timelinevisualizerentities</code-name-base>
             <suite-component/>
             <module-dependencies/>
-            <public-packages/>
+            <public-packages>
+                <package>org.jghill.timelinevisualizerentitiescollection</package>
+            </public-packages>
         </data>
     </configuration>
 </project>
