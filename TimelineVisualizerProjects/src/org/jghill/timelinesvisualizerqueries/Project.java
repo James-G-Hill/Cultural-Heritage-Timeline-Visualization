@@ -14,6 +14,15 @@ public class Project implements ProjectInt {
     private EntitiesCollection entities;
     private QueriesCollection queries;
     
+    public void Project(
+            String name,
+            EntitiesCollection entities,
+            QueriesCollection queries) {
+        
+        this.entities = entities;
+        this.queries = queries;
+    }
+    
     @Override
     public String getName() {
         return name;
@@ -30,18 +39,8 @@ public class Project implements ProjectInt {
     }
 
     @Override
-    public void setEntitiesCollection(EntitiesCollection collection) {
-        this.entities = collection;
-    }
-
-    @Override
     public QueriesCollection getQueriesCollection() {
         return queries;
-    }
-
-    @Override
-    public void setQueriesCollection(QueriesCollection collection) {
-        this.queries = collection;
     }
     
 }
