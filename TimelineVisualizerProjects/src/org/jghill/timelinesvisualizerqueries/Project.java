@@ -11,6 +11,7 @@ import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
 public class Project implements ProjectInt {
 
     private String name;
+    private EntitiesCollection entities;
     
     @Override
     public String getName() {
@@ -24,12 +25,12 @@ public class Project implements ProjectInt {
 
     @Override
     public EntitiesCollection getEntitiesCollection() {
-        
+        return entities;
     }
 
     @Override
     public void setEntitiesCollection(EntitiesCollection collection) {
-        
+        this.entities = collection;
     }
 
     @Override
