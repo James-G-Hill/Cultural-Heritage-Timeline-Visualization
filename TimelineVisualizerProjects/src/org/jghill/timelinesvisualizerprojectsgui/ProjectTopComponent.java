@@ -1,5 +1,6 @@
 package org.jghill.timelinesvisualizerprojectsgui;
 
+import org.jghill.timelinesvisualizerprojects.Project;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
@@ -32,6 +33,8 @@ import org.openide.util.NbBundle.Messages;
 })
 public final class ProjectTopComponent extends TopComponent {
 
+    private Project proj;
+    
     public ProjectTopComponent() {
         initComponents();
         setName(Bundle.CTL_ProjectTopComponent());
@@ -85,6 +88,15 @@ public final class ProjectTopComponent extends TopComponent {
     void readProperties(java.util.Properties p) {
         String version = p.getProperty("version");
         // TODO read your settings according to their version
+    }
+    
+    /**
+     * A setter for a project to be applied to this top component.
+     * 
+     * @param proj the project to be passed to this top component.
+     */
+    public void setProject(Project proj) {
+        this.proj = proj;
     }
 
 }
