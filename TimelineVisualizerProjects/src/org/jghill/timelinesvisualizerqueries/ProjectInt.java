@@ -16,10 +16,6 @@ public interface ProjectInt {
     
     public EntitiesCollection getEntitiesCollection();
     
-    public void setEntitiesCollection(EntitiesCollection collection);
-    
     public QueriesCollection getQueriesCollection();
-    
-    public void setQueriesCollection(QueriesCollection collection);
     
 }
