@@ -1,4 +1,4 @@
-package org.jghill.timelinesvisualizerqueries;
+package org.jghill.timelinesvisualizercollections;
 
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
@@ -8,7 +8,7 @@ import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
  * 
  * @author JGHill
  */
-public interface ProjectInt {
+public interface CollectionInt {
     
     public String getName();
     

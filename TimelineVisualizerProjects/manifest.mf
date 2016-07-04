@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 AutoUpdate-Show-In-Client: true
 OpenIDE-Module: org.jghill.timelinesvisualizerqueries
-OpenIDE-Module-Localizing-Bundle: org/jghill/timelinesvisualizerqueries/Bundle.properties
+OpenIDE-Module-Localizing-Bundle: org/jghill/timelinesvisualizercollections/Bundle.properties
+OpenIDE-Module-Requires: org.openide.windows.WindowManager
 OpenIDE-Module-Specification-Version: 1.0
 

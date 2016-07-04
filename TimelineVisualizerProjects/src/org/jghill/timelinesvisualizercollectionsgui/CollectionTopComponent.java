@@ -1,6 +1,6 @@
-package org.jghill.timelinesvisualizerprojectsgui;
+package org.jghill.timelinesvisualizercollectionsgui;
 
-import org.jghill.timelinesvisualizerprojects.Project;
+import org.jghill.timelinesvisualizercollections.CollectionInt;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
@@ -11,34 +11,34 @@ import org.openide.util.NbBundle.Messages;
  * Top component which displays something.
  */
 @ConvertAsProperties(
-        dtd = "-//org.jghill.timelinesvisualizerprojectsgui//Project//EN",
+        dtd = "-//org.jghill.timelinesvisualizercollectionsgui//Collection//EN",
         autostore = false
 )
 @TopComponent.Description(
-        preferredID = "ProjectTopComponent",
+        preferredID = "CollectionTopComponent",
         //iconBase="SET/PATH/TO/ICON/HERE", 
         persistenceType = TopComponent.PERSISTENCE_ALWAYS
 )
 @TopComponent.Registration(mode = "editor", openAtStartup = false)
-@ActionID(category = "Window", id = "org.jghill.timelinesvisualizerprojectsgui.ProjectTopComponent")
+@ActionID(category = "Window", id = "org.jghill.timelinesvisualizercollectionsgui.CollectionTopComponent")
 @ActionReference(path = "Menu/Window" /*, position = 333 */)
 @TopComponent.OpenActionRegistration(
-        displayName = "#CTL_ProjectAction",
-        preferredID = "ProjectTopComponent"
+        displayName = "#CTL_CollectionAction",
+        preferredID = "CollectionTopComponent"
 )
 @Messages({
-    "CTL_ProjectAction=Project",
-    "CTL_ProjectTopComponent=Project Window",
-    "HINT_ProjectTopComponent=This is a Project window"
+    "CTL_CollectionAction=Collection",
+    "CTL_CollectionTopComponent=Collection Window",
+    "HINT_CollectionTopComponent=This is a Collection window"
 })
-public final class ProjectTopComponent extends TopComponent {
+public final class CollectionTopComponent extends TopComponent {
 
-    private Project proj;
+    private CollectionInt coll;
     
-    public ProjectTopComponent() {
+    public CollectionTopComponent() {
         initComponents();
-        setName(Bundle.CTL_ProjectTopComponent());
-        setToolTipText(Bundle.HINT_ProjectTopComponent());
+        setName(Bundle.CTL_CollectionTopComponent());
+        setToolTipText(Bundle.HINT_CollectionTopComponent());
         putClientProperty(TopComponent.PROP_CLOSING_DISABLED, Boolean.FALSE);
         putClientProperty(TopComponent.PROP_DRAGGING_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
@@ -95,8 +95,8 @@ public final class ProjectTopComponent extends TopComponent {
      * 
      * @param proj the project to be passed to this top component.
      */
-    public void setProject(Project proj) {
-        this.proj = proj;
+    public void setProject(CollectionInt proj) {
+        this.coll = proj;
     }
 
 }

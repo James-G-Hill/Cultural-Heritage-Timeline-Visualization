@@ -1,19 +1,19 @@
-package org.jghill.timelinesvisualizerprojectscollection;
+package org.jghill.timelinesvisualizercollectionscontainer;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
-import org.jghill.timelinesvisualizerprojects.Project;
+import org.jghill.timelinesvisualizercollections.Collection;
 
 /**
  * A collection for holding projects.
  * 
  * @author JGHill
  */
-public class ProjectCollection {
+public class CollectionContainer {
     
-    private final SortedSet<Project> collection;
+    private final SortedSet<Collection> collection;
     
-    public ProjectCollection() {
+    public CollectionContainer() {
         collection = new TreeSet<>();
     }
     
@@ -22,7 +22,7 @@ public class ProjectCollection {
      * 
      * @param proj the project to be added.
      */
-    public void addProject(Project proj) {
+    public void addProject(Collection proj) {
         collection.add(proj);
     }
     
