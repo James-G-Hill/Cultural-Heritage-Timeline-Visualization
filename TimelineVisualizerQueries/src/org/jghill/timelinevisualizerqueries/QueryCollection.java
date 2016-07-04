@@ -25,4 +25,13 @@ public class QueryCollection {
         collection.add(q);
     }
     
+    /**
+     * A method for returning a count of the queries in the collection.
+     * 
+     * @return the count of queries.
+     */
+    public int getCount() {
+        return collection.size();
+    }
+    
 }
