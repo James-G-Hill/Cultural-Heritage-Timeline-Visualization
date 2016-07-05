@@ -257,6 +257,11 @@ public final class CollectionTopComponent extends TopComponent {
         LengthUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         WidthUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        WidthUnitComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                WidthUnitComboBoxActionPerformed(evt);
+            }
+        });
 
         ThicknessUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -338,8 +343,8 @@ public final class CollectionTopComponent extends TopComponent {
                                     .addComponent(UnitLabel2))
                                 .addGap(18, 18, 18)
                                 .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ThicknessUnitComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(WidthUnitComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(WidthUnitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ThicknessUnitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(16, 16, 16)))
                 .addContainerGap())
         );
@@ -471,6 +476,10 @@ public final class CollectionTopComponent extends TopComponent {
     private void LocationOriginTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocationOriginTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LocationOriginTextFieldActionPerformed
+
+    private void WidthUnitComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WidthUnitComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_WidthUnitComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox AcquisitionDateCheckBox;
