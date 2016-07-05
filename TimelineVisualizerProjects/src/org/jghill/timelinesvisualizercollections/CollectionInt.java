@@ -14,6 +14,10 @@ public interface CollectionInt {
     
     public void setName(String name);
     
+    public String getNotes();
+    
+    public void setNotes(String notes);
+    
     public EntitiesCollection getEntitiesCollection();
     
     public QueriesCollection getQueriesCollection();
