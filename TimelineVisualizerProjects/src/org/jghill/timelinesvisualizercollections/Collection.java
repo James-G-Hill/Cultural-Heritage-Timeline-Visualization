@@ -11,6 +11,7 @@ import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
 public class Collection implements CollectionInt {
 
     private String name;
+    private String notes;
     private final EntitiesCollection entities;
     private final QueriesCollection queries;
     
@@ -55,6 +56,16 @@ public class Collection implements CollectionInt {
         this.name = name;
     }
 
+    @Override
+    public String getNotes() {
+        return notes;
+    }
+    
+    @Override
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+    
     @Override
     public EntitiesCollection getEntitiesCollection() {
         return entities;
