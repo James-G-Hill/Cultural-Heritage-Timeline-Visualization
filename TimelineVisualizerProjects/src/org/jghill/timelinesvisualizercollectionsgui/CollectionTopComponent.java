@@ -54,7 +54,79 @@ public final class CollectionTopComponent extends TopComponent {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        Tab = new javax.swing.JTabbedPane();
+        Information = new javax.swing.JPanel();
+        TitleTextPanel = new javax.swing.JScrollPane();
+        TitleTextBox = new javax.swing.JTextPane();
+        NotesTextPanel = new javax.swing.JScrollPane();
+        NotesTextBox = new javax.swing.JTextArea();
+        NotesText = new javax.swing.JLabel();
+        Queries = new javax.swing.JPanel();
+        Visualizer = new javax.swing.JPanel();
+
+        TitleTextBox.setEditable(false);
+        TitleTextBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        TitleTextPanel.setViewportView(TitleTextBox);
+
+        NotesTextBox.setColumns(20);
+        NotesTextBox.setRows(5);
+        NotesTextPanel.setViewportView(NotesTextBox);
+
+        org.openide.awt.Mnemonics.setLocalizedText(NotesText, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.NotesText.text")); // NOI18N
+
+        javax.swing.GroupLayout InformationLayout = new javax.swing.GroupLayout(Information);
+        Information.setLayout(InformationLayout);
+        InformationLayout.setHorizontalGroup(
+            InformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InformationLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(InformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(NotesTextPanel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(TitleTextPanel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(InformationLayout.createSequentialGroup()
+                        .addComponent(NotesText, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 761, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        InformationLayout.setVerticalGroup(
+            InformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InformationLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TitleTextPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(NotesText)
+                .addGap(18, 18, 18)
+                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        Tab.addTab(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Information.TabConstraints.tabTitle"), Information); // NOI18N
+
+        javax.swing.GroupLayout QueriesLayout = new javax.swing.GroupLayout(Queries);
+        Queries.setLayout(QueriesLayout);
+        QueriesLayout.setHorizontalGroup(
+            QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 981, Short.MAX_VALUE)
+        );
+        QueriesLayout.setVerticalGroup(
+            QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 450, Short.MAX_VALUE)
+        );
+
+        Tab.addTab(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Queries.TabConstraints.tabTitle"), Queries); // NOI18N
+
+        javax.swing.GroupLayout VisualizerLayout = new javax.swing.GroupLayout(Visualizer);
+        Visualizer.setLayout(VisualizerLayout);
+        VisualizerLayout.setHorizontalGroup(
+            VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 981, Short.MAX_VALUE)
+        );
+        VisualizerLayout.setVerticalGroup(
+            VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 450, Short.MAX_VALUE)
+        );
+
+        Tab.addTab(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Visualizer.TabConstraints.tabTitle"), Visualizer); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -62,20 +134,28 @@ public final class CollectionTopComponent extends TopComponent {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
+                .addComponent(Tab)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addComponent(Tab)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JPanel Information;
+    private javax.swing.JLabel NotesText;
+    private javax.swing.JTextArea NotesTextBox;
+    private javax.swing.JScrollPane NotesTextPanel;
+    private javax.swing.JPanel Queries;
+    private javax.swing.JTabbedPane Tab;
+    private javax.swing.JTextPane TitleTextBox;
+    private javax.swing.JScrollPane TitleTextPanel;
+    private javax.swing.JPanel Visualizer;
     // End of variables declaration//GEN-END:variables
     @Override
     public void componentOpened() {
