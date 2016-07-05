@@ -65,7 +65,7 @@ public final class CollectionViewerTopComponent extends TopComponent implements 
         ViewerScrollPane = new BeanTreeView();
 
         setDisplayName(org.openide.util.NbBundle.getMessage(CollectionViewerTopComponent.class, "CollectionViewerTopComponent.displayName")); // NOI18N
-        setPreferredSize(new java.awt.Dimension(500, 200));
+        setPreferredSize(new java.awt.Dimension(200, 500));
 
         ViewerScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         ViewerScrollPane.setHorizontalScrollBar(null);
