@@ -209,17 +209,17 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="AcquisitionEndDatePicker" max="32767" attributes="0"/>
                                   <Component id="CreationEndDatePicker" max="32767" attributes="0"/>
-                                  <Component id="LengthUpperTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="WidthUpperTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="ThicknessUpperTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="HasImageCheckBox" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LengthUpperTextField" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="UnitLabel1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="LengthUnitComboBox" pref="126" max="32767" attributes="0"/>
+                                      <Component id="LengthUnitComboBox" min="-2" pref="110" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -233,6 +233,7 @@
                                       </Group>
                                   </Group>
                               </Group>
+                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
