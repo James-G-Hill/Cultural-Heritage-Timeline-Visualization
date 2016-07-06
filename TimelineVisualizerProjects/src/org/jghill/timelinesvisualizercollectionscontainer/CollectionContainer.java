@@ -11,19 +11,36 @@ import org.jghill.timelinesvisualizercollections.Collection;
  */
 public class CollectionContainer {
     
-    private final SortedSet<Collection> collection;
+    private static final CollectionContainer CONTAINER = new CollectionContainer();
+    private static final SortedSet<Collection> COLLECTION = new TreeSet<>();
     
-    public CollectionContainer() {
-        collection = new TreeSet<>();
+    private CollectionContainer() {}
+    
+    /**
+     * Returns the single instance of this singleton pattern.
+     * 
+     * @return 
+     */
+    public static CollectionContainer getInstance() {
+        return CONTAINER;
     }
     
     /**
-     * A method for adding projects to the collection.
+     * A method for adding collections to the container.
      * 
-     * @param proj the project to be added.
+     * @param coll the project to be added.
      */
-    public void addProject(Collection proj) {
-        collection.add(proj);
+    public boolean addCollection(Collection coll) {
+        return COLLECTION.add(coll);
+    }
+    
+    /**
+     * A method for removing collections from the container.
+     * 
+     * @param coll the project to be added.
+     */
+    public boolean deleteCollection(Collection coll) {
+        return COLLECTION.remove(coll);
     }
     
 }
