@@ -1,6 +1,5 @@
 package org.jghill.timelinevisualizerviewer;
 
-import org.jghill.timelinesvisualizercollectionsgui.Bundle;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
@@ -111,4 +110,5 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
     public ExplorerManager getExplorerManager() {
         return explorerManager;
     }
+    
 }
