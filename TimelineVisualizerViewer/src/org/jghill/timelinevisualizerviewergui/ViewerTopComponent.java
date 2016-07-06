@@ -4,7 +4,9 @@ import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.explorer.ExplorerManager;
+import org.openide.explorer.ExplorerUtils;
 import org.openide.explorer.view.BeanTreeView;
+import org.openide.explorer.view.TreeTableView;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 
@@ -16,26 +18,26 @@ import org.openide.util.NbBundle.Messages;
         autostore = false
 )
 @TopComponent.Description(
-        preferredID = "CollectionViewerTopComponent",
+        preferredID = "ViewerTopComponent",
         //iconBase="SET/PATH/TO/ICON/HERE", 
         persistenceType = TopComponent.PERSISTENCE_ALWAYS
 )
 @TopComponent.Registration(mode = "explorer", openAtStartup = true)
-@ActionID(category = "Window", id = "org.jghill.timelinesvisualizercollectionsgui.CollectionViewerTopComponent")
+@ActionID(category = "Window", id = "org.jghill.timelinesvisualizercollectionsgui.ViewerTopComponent")
 @ActionReference(path = "Menu/Window" /*, position = 333 */)
 @TopComponent.OpenActionRegistration(
         displayName = "#CTL_CollectionViewerAction",
-        preferredID = "CollectionViewerTopComponent"
+        preferredID = "ViewerTopComponent"
 )
 @Messages({
-    "CTL_CollectionViewerAction=Collection Viewer",
-    "CTL_CollectionViewerTopComponent=Collection Viewer",
-    "HINT_CollectionViewerTopComponent=This is a Collection Viewer"
+    "CTL_CollectionViewerAction=Viewer",
+    "CTL_CollectionViewerTopComponent=Viewer",
+    "HINT_CollectionViewerTopComponent=This is a Viewer"
 })
 public final class ViewerTopComponent extends TopComponent implements ExplorerManager.Provider {
 
     private final transient ExplorerManager explorerManager = new ExplorerManager();
-    //private final TreeTableView treeView;
+    private final TreeTableView treeView;
     
     public ViewerTopComponent() {
         initComponents();
@@ -45,11 +47,11 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
         putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
         
-        //associateLookup(ExplorerUtils.createLookup(explorerManager, getActionMap()));
-        //explorerManager.getRootContext().setDisplayName("Your Collections");
+        associateLookup(ExplorerUtils.createLookup(explorerManager, getActionMap()));
+        explorerManager.getRootContext().setDisplayName("Your Collections");
         
-//        treeView = new TreeTableView();
-//        add(treeView);
+        treeView = new TreeTableView();
+        add(treeView);
     }
 
     /**
