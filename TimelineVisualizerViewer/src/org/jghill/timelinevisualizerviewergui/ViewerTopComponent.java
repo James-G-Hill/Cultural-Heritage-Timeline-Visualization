@@ -4,14 +4,12 @@ import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.explorer.ExplorerManager;
-import org.openide.explorer.ExplorerUtils;
 import org.openide.explorer.view.BeanTreeView;
-import org.openide.explorer.view.TreeTableView;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 
 /**
- * Top component which displays something.
+ * Viewer for the manipulation of Collections.
  */
 @ConvertAsProperties(
         dtd = "-//org.jghill.timelinesvisualizercollectionsgui//CollectionViewer//EN",
@@ -37,7 +35,7 @@ import org.openide.util.NbBundle.Messages;
 public final class ViewerTopComponent extends TopComponent implements ExplorerManager.Provider {
 
     private final transient ExplorerManager explorerManager = new ExplorerManager();
-    private final TreeTableView treeView;
+    //private final TreeTableView treeView;
     
     public ViewerTopComponent() {
         initComponents();
@@ -47,11 +45,11 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
         putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
         
-        associateLookup(ExplorerUtils.createLookup(explorerManager, getActionMap()));
+        //associateLookup(ExplorerUtils.createLookup(explorerManager, getActionMap()));
         //explorerManager.getRootContext().setDisplayName("Your Collections");
         
-        treeView = new TreeTableView();
-        add(treeView);
+//        treeView = new TreeTableView();
+//        add(treeView);
     }
 
     /**
