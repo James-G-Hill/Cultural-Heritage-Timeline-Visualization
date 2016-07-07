@@ -1,11 +1,11 @@
 package org.jghill.timelinesvisualizercollectionsgui;
 
-import org.jghill.timelinesvisualizercollections.CollectionInt;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
+import org.jghill.timelinesvisualizercollections.Collection;
 
 /**
  * Top component which displays something.
@@ -33,7 +33,7 @@ import org.openide.util.NbBundle.Messages;
 })
 public final class CollectionTopComponent extends TopComponent {
 
-    private CollectionInt coll;
+    private Collection coll;
     
     public CollectionTopComponent() {
         initComponents();
@@ -566,7 +566,7 @@ public final class CollectionTopComponent extends TopComponent {
      * 
      * @param coll the project to be passed to this top component.
      */
-    public void setCollection(CollectionInt coll) {
+    public void setCollection(Collection coll) {
         this.coll = coll;
     }
 
