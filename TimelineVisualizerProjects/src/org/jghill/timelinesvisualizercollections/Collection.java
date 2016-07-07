@@ -8,26 +8,12 @@ import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
  * 
  * @author JGHill
  */
-public class Collection implements CollectionInt {
+public class Collection implements CollectionInt, Comparable<Collection> {
 
     private String name;
     private String notes;
     private final EntitiesCollection entities;
     private final QueriesCollection queries;
-    
-    /**
-     * A constructor accepting containers.
-     * 
-     * @param entities an entities container.
-     * @param queries a queries container.
-     */
-    public Collection(
-            EntitiesCollection entities,
-            QueriesCollection queries) {
-        
-        this.entities = entities;
-        this.queries = queries;
-    }
     
     /**
      * A constructor accepting containers.
@@ -74,6 +60,11 @@ public class Collection implements CollectionInt {
     @Override
     public QueriesCollection getQueriesCollection() {
         return queries;
+    }
+
+    @Override
+    public int compareTo(Collection o) {
+        return name.compareTo(o.getName());
     }
     
 }
