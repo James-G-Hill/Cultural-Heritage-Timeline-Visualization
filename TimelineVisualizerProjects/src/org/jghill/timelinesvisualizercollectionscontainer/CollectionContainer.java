@@ -2,8 +2,8 @@ package org.jghill.timelinesvisualizercollectionscontainer;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
-import org.jghill.timelinesvisualizercollections.CollectionInt;
 import org.openide.nodes.Index;
+import org.jghill.timelinesvisualizercollections.Collection;
 
 /**
  * A collection for holding projects.
@@ -13,7 +13,7 @@ import org.openide.nodes.Index;
 public class CollectionContainer extends Index.ArrayChildren {
     
     private static final CollectionContainer CONTAINER = new CollectionContainer();
-    private static final SortedSet<CollectionInt> COLLECTION = new TreeSet<>();
+    private static final SortedSet<Collection> COLLECTION = new TreeSet<>();
     
     private CollectionContainer() {}
     
@@ -31,7 +31,7 @@ public class CollectionContainer extends Index.ArrayChildren {
      * 
      * @param coll the project to be added.
      */
-    public boolean addCollection(CollectionInt coll) {
+    public boolean addCollection(Collection coll) {
         return COLLECTION.add(coll);
     }
     
@@ -40,7 +40,7 @@ public class CollectionContainer extends Index.ArrayChildren {
      * 
      * @param coll the project to be added.
      */
-    public boolean deleteCollection(CollectionInt coll) {
+    public boolean deleteCollection(Collection coll) {
         return COLLECTION.remove(coll);
     }
     
