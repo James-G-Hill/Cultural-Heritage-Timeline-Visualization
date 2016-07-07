@@ -43,4 +43,13 @@ public class CollectionContainer {
         return COLLECTION.remove(coll);
     }
     
+    /**
+     * Returns the size of the collection.
+     * 
+     * @return the size of the collection.
+     */
+    public int getSize() {
+        return COLLECTION.size();
+    }
+    
 }
