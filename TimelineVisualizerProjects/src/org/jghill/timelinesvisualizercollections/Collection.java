@@ -4,67 +4,22 @@ import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
 
 /**
- * A project for holding data from a set of queries.
+ * An interface for Collections.
  * 
  * @author JGHill
  */
-public class Collection implements CollectionInt, Comparable<Collection> {
-
-    private String name;
-    private String notes;
-    private final EntitiesCollection entities;
-    private final QueriesCollection queries;
+public interface Collection {
     
-    /**
-     * A constructor accepting containers.
-     * 
-     * @param name a name for the project.
-     * @param entities an entities container.
-     * @param queries a queries container.
-     */
-    public Collection(
-            String name,
-            EntitiesCollection entities,
-            QueriesCollection queries) {
-        
-        this.name = name;
-        this.entities = entities;
-        this.queries = queries;
-    }
+    public String getName();
     
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String getNotes() {
-        return notes;
-    }
+    public void setName(String name);
     
-    @Override
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
+    public String getNotes();
     
-    @Override
-    public EntitiesCollection getEntitiesCollection() {
-        return entities;
-    }
-
-    @Override
-    public QueriesCollection getQueriesCollection() {
-        return queries;
-    }
-
-    @Override
-    public int compareTo(Collection o) {
-        return name.compareTo(o.getName());
-    }
+    public void setNotes(String notes);
+    
+    public EntitiesCollection getEntitiesCollection();
+    
+    public QueriesCollection getQueriesCollection();
     
 }
