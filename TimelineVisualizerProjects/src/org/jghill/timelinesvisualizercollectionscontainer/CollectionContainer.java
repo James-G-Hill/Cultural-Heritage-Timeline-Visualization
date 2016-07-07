@@ -2,7 +2,6 @@ package org.jghill.timelinesvisualizercollectionscontainer;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
-import org.openide.nodes.Index;
 import org.jghill.timelinesvisualizercollections.Collection;
 
 /**
@@ -10,7 +9,7 @@ import org.jghill.timelinesvisualizercollections.Collection;
  * 
  * @author JGHill
  */
-public class CollectionContainer extends Index.ArrayChildren {
+public class CollectionContainer {
     
     private static final CollectionContainer CONTAINER = new CollectionContainer();
     private static final SortedSet<Collection> COLLECTION = new TreeSet<>();
