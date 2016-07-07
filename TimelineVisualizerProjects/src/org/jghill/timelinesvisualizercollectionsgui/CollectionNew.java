@@ -30,7 +30,7 @@ public final class CollectionNew implements ActionListener {
         QueriesCollection queries = new QueriesCollection();
         CollectionInt coll = new Collection("New " + LocalDateTime.now(), entities, queries);
         CollectionTopComponent collTC = new CollectionTopComponent();
-        collTC.setProject(coll);
+        collTC.setCollection(coll);
         collTC.open();
         CollectionContainer container = CollectionContainer.getInstance();
         container.addCollection(coll);
