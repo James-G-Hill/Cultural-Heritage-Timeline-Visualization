@@ -1,7 +1,7 @@
 package org.jghill.timelinesvisualizerviewer;
 
 import javax.swing.Action;
-import org.jghill.timelinesvisualizercollections.CollectionImpl;
+import org.jghill.timelinesvisualizercollections.Collection;
 import org.openide.actions.CopyAction;
 import org.openide.actions.CutAction;
 import org.openide.actions.DeleteAction;
@@ -17,9 +17,9 @@ import org.openide.util.lookup.Lookups;
  */
 public class CollectionNode extends AbstractNode {
     
-    private final CollectionImpl coll;
+    private final Collection coll;
     
-    public CollectionNode(CollectionImpl coll) {
+    public CollectionNode(Collection coll) {
         super(Children.LEAF, Lookups.fixed( new Object[] {coll} ));
         this.coll = coll;
         setDisplayName(coll.getName());
