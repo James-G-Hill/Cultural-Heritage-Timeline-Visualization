@@ -1,8 +1,8 @@
 package org.jghill.timelinesvisualizerviewer;
 
-import java.util.ArrayList;
 import org.jghill.timelinesvisualizercollections.Collection;
-import org.openide.nodes.Index;
+import org.jghill.timelinesvisualizercollectionscontainer.CollectionContainer;
+import org.openide.nodes.Children;
 import org.openide.nodes.Node;
 
 /**
@@ -10,26 +10,22 @@ import org.openide.nodes.Node;
  * 
  * @author JGHill
  */
-public class CollectionChildren extends Index.ArrayChildren {
+public class CollectionChildren extends Children.Keys {
     
-    private final ArrayList<Node> coll;
+    public CollectionChildren() {}
     
-    public CollectionChildren() {
-        this.coll = new ArrayList<>();
-    }
-    
-    /**
-     * Add a collection into the ArrayList.
-     * 
-     * @param c a collection to be added.
-     */
-    public void addCollection(Collection c) {
-        coll.add(new CollectionNode(c));
+    @Override
+    protected Node[] createNodes(Object key) {
+        Collection obj = (Collection) key;
+        return new Node[] { new CollectionNode(obj) };
     }
     
     @Override
-    protected java.util.List<Node> initCollection() {
-        return coll;
+    protected void addNotify() {
+        super.addNotify();
+        CollectionContainer cont = CollectionContainer.getInstance();
+        Collection[] objs = cont.collectionsToArray();
+        setKeys(objs);
     }
     
 }
