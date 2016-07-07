@@ -1,11 +1,13 @@
 package org.jghill.timelinevisualizerviewergui;
 
+import org.jghill.timelinesvisualizerviewer.CollectionChildren;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.ExplorerUtils;
 import org.openide.explorer.view.BeanTreeView;
+import org.openide.nodes.AbstractNode;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 
@@ -45,8 +47,8 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
         putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
         
-        associateLookup(ExplorerUtils.createLookup(explorerManager, getActionMap()));
-        //explorerManager.setRootContext(new CollectionNode(new Collection("New", new EntitiesCollection(), new QueriesCollection())));
+        associateLookup(ExplorerUtils.createLookup(explorerManager, this.getActionMap()));
+        explorerManager.setRootContext(new AbstractNode(new CollectionChildren()));
         explorerManager.getRootContext().setDisplayName("Your Collections");
     }
 
