@@ -52,4 +52,13 @@ public class CollectionContainer {
         return COLLECTION.size();
     }
     
+    /**
+     * Returns the container contents as an array.
+     * 
+     * @return the contents of the container.
+     */
+    public Collection[] collectionsToArray() {
+        return COLLECTION.toArray(new Collection[COLLECTION.size()]);
+    }
+    
 }
