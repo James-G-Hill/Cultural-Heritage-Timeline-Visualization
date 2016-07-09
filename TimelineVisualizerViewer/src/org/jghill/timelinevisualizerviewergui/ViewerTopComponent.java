@@ -1,12 +1,12 @@
 package org.jghill.timelinevisualizerviewergui;
 
-import org.jghill.timelinesvisualizerviewer.CollectionChildren;
+import org.jghill.timelinesvisualizercollectionsnode.CollectionChildren;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.ExplorerUtils;
-import org.openide.explorer.view.BeanTreeView;
+import org.openide.explorer.view.IconView;
 import org.openide.nodes.AbstractNode;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
@@ -47,8 +47,9 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
         putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
         
+        CollectionChildren children = CollectionChildren.getInstance();
         associateLookup(ExplorerUtils.createLookup(explorerManager, this.getActionMap()));
-        explorerManager.setRootContext(new AbstractNode(new CollectionChildren()));
+        explorerManager.setRootContext(new AbstractNode(children));
         explorerManager.getRootContext().setDisplayName("Your Collections");
     }
 
@@ -60,7 +61,7 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ViewerScrollPane = new BeanTreeView();
+        ViewerScrollPane = new IconView();
 
         setPreferredSize(new java.awt.Dimension(200, 500));
 
