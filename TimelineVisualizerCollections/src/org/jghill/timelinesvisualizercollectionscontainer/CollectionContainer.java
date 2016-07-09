@@ -19,7 +19,7 @@ public class CollectionContainer {
     /**
      * Returns the single instance of this singleton pattern.
      * 
-     * @return 
+     * @return the single instance of this container.
      */
     public static CollectionContainer getInstance() {
         return CONTAINER;
@@ -38,6 +38,7 @@ public class CollectionContainer {
      * A method for removing collections from the container.
      * 
      * @param coll the project to be added.
+     * @return a boolean confirming deletion has taken place.
      */
     public boolean deleteCollection(Collection coll) {
         return COLLECTION.remove(coll);
