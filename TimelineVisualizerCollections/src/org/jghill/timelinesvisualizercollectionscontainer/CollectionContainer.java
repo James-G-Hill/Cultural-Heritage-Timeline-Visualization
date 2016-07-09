@@ -29,6 +29,7 @@ public class CollectionContainer {
      * A method for adding collections to the container.
      * 
      * @param coll the project to be added.
+     * @return confirms addition took place.
      */
     public boolean addCollection(Collection coll) {
         return COLLECTION.add(coll);
