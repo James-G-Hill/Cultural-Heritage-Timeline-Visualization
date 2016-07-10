@@ -171,6 +171,11 @@ public final class CollectionTopComponent extends TopComponent {
         org.openide.awt.Mnemonics.setLocalizedText(CreateButton, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.CreateButton.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(ResetButton, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ResetButton.text")); // NOI18N
+        ResetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResetButtonActionPerformed(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceTextLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.SourceTextLabel.text")); // NOI18N
 
@@ -483,6 +488,37 @@ public final class CollectionTopComponent extends TopComponent {
     private void WidthUnitComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WidthUnitComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_WidthUnitComboBoxActionPerformed
+
+    private void ResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetButtonActionPerformed
+        AcquisitionDateCheckBox.setSelected(false);
+        ConsistsOfCheckBox.setSelected(false);
+        CreationDateCheckBox.setSelected(false);
+        FoundLocationCheckBox.setSelected(false);
+        HasImageCheckBox.setSelected(false);
+        LengthBetweenCheckBox.setSelected(false);
+        OriginLocationCheckBox.setSelected(false);
+        ThicknessBetweenCheckBox.setSelected(false);
+        WidthBetweenCheckBox.setSelected(false);
+        
+//        LengthUnitComboBox;
+//        ThicknessUnitComboBox;
+//        WidthUnitComboBox;
+        
+        AcquisitionEndDatePicker.setDate(null);
+        AcquisitionStartDatePicker.setDate(null);
+        CreationEndDatePicker.setDate(null);
+        CreationStartDatePicker.setDate(null);
+        
+        ConsistsOfTextField.setText("");
+        LengthLowerTextField.setText("");
+        LengthUpperTextField.setText("");
+        LocationFoundTextField.setText("");
+        LocationOriginTextField.setText("");
+        ThicknessLowerTextField.setText("");
+        ThicknessUpperTextField.setText("");
+        WidthLowerTextField.setText("");
+        WidthUpperTextField.setText("");
+    }//GEN-LAST:event_ResetButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox AcquisitionDateCheckBox;
