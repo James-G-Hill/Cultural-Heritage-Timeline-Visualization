@@ -1,6 +1,5 @@
 package org.jghill.timelinevisualizerviewergui;
 
-import javax.swing.ActionMap;
 import org.jghill.timelinesvisualizercollectionscontainer.CollectionContainer;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
@@ -51,9 +50,6 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
         associateLookup(ExplorerUtils.createLookup(manager, getActionMap()));
         manager.setRootContext(new AbstractNode(CollectionContainer.getInstance().getChildren()));
         manager.getRootContext().setDisplayName("Collections");
-        
-        ActionMap map = this.getActionMap();
-        map.put("delete", ExplorerUtils.actionDelete(manager, true));
     }
 
     /**
