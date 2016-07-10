@@ -2,6 +2,7 @@ package org.jghill.timelinesvisualizercollections;
 
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
+import org.openide.util.Lookup;
 
 /**
  * An interface for Collections.
@@ -21,5 +22,7 @@ public interface Collection {
     public EntitiesCollection getEntitiesCollection();
     
     public QueriesCollection getQueriesCollection();
+    
+    public Lookup getLookup();
     
 }
