@@ -1,5 +1,6 @@
 package org.jghill.timelinesvisualizercollections;
 
+import org.jghill.timelinesvisualizercollectionscontainer.CollectionContainer;
 import org.jghill.timelinesvisualizercollectionsgui.CollectionTopComponent;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
@@ -46,6 +47,17 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl>, L
                     CollectionTopComponent collTC = new CollectionTopComponent();
                     collTC.setCollection(coll);
                     collTC.open();
+                }
+            }
+        );
+        
+        instanceContent.add(
+            new CanDelete() {
+                @Override
+                public void delete(Collection coll) {
+                    CollectionContainer container;
+                    container = CollectionContainer.getInstance();
+                    container.deleteCollection(coll);
                 }
             }
         );
