@@ -1,5 +1,6 @@
 package org.jghill.timelinesvisualizercollections;
 
+import org.jghill.timelinesvisualizercollectionsgui.CollectionTopComponent;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
 import org.openide.util.Lookup;
@@ -25,4 +26,5 @@ public interface Collection {
     
     public Lookup getLookup();
     
+    public void setTopComponent(CollectionTopComponent tc);
 }
