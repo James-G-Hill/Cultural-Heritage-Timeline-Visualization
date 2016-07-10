@@ -3,6 +3,7 @@ package org.jghill.timelinesvisualizercollectionscontainer;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import org.jghill.timelinesvisualizercollections.Collection;
+import org.jghill.timelinesvisualizercollectionsnode.CollectionChildren;
 
 /**
  * A collection for holding projects.
@@ -11,6 +12,7 @@ import org.jghill.timelinesvisualizercollections.Collection;
  */
 public class CollectionContainer {
     
+    private static final CollectionChildren CHILDREN = new CollectionChildren();
     private static final CollectionContainer CONTAINER = new CollectionContainer();
     private static final SortedSet<Collection> COLLECTION = new TreeSet<>();
     
@@ -29,20 +31,20 @@ public class CollectionContainer {
      * A method for adding collections to the container.
      * 
      * @param coll the project to be added.
-     * @return confirms addition took place.
      */
-    public boolean addCollection(Collection coll) {
-        return COLLECTION.add(coll);
+    public void addCollection(Collection coll) {
+        COLLECTION.add(coll);
+        CHILDREN.update(COLLECTION.toArray(new Collection[COLLECTION.size()]));
     }
     
     /**
      * A method for removing collections from the container.
      * 
      * @param coll the project to be added.
-     * @return a boolean confirming deletion has taken place.
      */
-    public boolean deleteCollection(Collection coll) {
-        return COLLECTION.remove(coll);
+    public void deleteCollection(Collection coll) {
+        COLLECTION.remove(coll);
+        CHILDREN.update(COLLECTION.toArray(new Collection[COLLECTION.size()]));
     }
     
     /**
@@ -54,13 +56,8 @@ public class CollectionContainer {
         return COLLECTION.size();
     }
     
-    /**
-     * Returns the container contents as an array.
-     * 
-     * @return the contents of the container.
-     */
-    public Collection[] collectionsToArray() {
-        return COLLECTION.toArray(new Collection[COLLECTION.size()]);
+    public CollectionChildren getChildren() {
+        return CHILDREN;
     }
     
 }
