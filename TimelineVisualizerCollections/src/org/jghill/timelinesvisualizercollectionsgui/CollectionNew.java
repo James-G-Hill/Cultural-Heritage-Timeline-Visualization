@@ -27,11 +27,12 @@ public final class CollectionNew implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Collection coll = 
-                new CollectionImpl("New " + LocalDateTime.now(), new EntitiesCollection(), new QueriesCollection());
+            new CollectionImpl("New " + LocalDateTime.now(), new EntitiesCollection(), new QueriesCollection());
         
         CollectionTopComponent collTC = new CollectionTopComponent();
         collTC.setCollection(coll);
         collTC.open();
+        coll.setTopComponent(collTC);
         
         CollectionContainer container = CollectionContainer.getInstance();
         container.addCollection(coll);
