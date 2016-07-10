@@ -21,6 +21,7 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl>, L
     private final InstanceContent instanceContent;
     private final EntitiesCollection entities;
     private final QueriesCollection queries;
+    private CollectionTopComponent tc;
     
     /**
      * A constructor accepting containers.
@@ -44,9 +45,13 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl>, L
             new CanOpen() {
                 @Override
                 public void open(Collection coll) {
-                    CollectionTopComponent collTC = new CollectionTopComponent();
-                    collTC.setCollection(coll);
-                    collTC.open();
+                    if(!tc.isOpened() || tc == null) {
+                        CollectionTopComponent collTC = new CollectionTopComponent();
+                        collTC.setCollection(coll);
+                        collTC.open();
+                        collTC.requestActive();
+                        tc = collTC;
+                    }
                 }
             }
         );
@@ -58,6 +63,8 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl>, L
                     CollectionContainer container;
                     container = CollectionContainer.getInstance();
                     container.deleteCollection(coll);
+                    tc.close();
+                    tc = null;
                 }
             }
         );
@@ -102,6 +109,11 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl>, L
     @Override
     public Lookup getLookup() {
         return lu;
+    }
+    
+    @Override
+    public void setTopComponent(CollectionTopComponent tc) {
+        this.tc = tc;
     }
     
 }
