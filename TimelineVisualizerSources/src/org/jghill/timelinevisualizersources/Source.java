@@ -39,4 +39,9 @@ public abstract class Source implements Comparable<Source> {
         return sourceName.compareTo(o.getSourceName());
     }
     
+    @Override
+    public String toString() {
+        return sourceName;
+    }
+    
 }
