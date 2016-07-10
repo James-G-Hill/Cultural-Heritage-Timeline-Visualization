@@ -1,12 +1,13 @@
 package org.jghill.timelinevisualizerviewergui;
 
-import org.jghill.timelinesvisualizercollectionsnode.CollectionChildren;
+import javax.swing.ActionMap;
+import org.jghill.timelinesvisualizercollectionscontainer.CollectionContainer;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.ExplorerUtils;
-import org.openide.explorer.view.IconView;
+import org.openide.explorer.view.BeanTreeView;
 import org.openide.nodes.AbstractNode;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
@@ -37,7 +38,7 @@ import org.openide.util.NbBundle.Messages;
 })
 public final class ViewerTopComponent extends TopComponent implements ExplorerManager.Provider {
 
-    private final transient ExplorerManager explorerManager = new ExplorerManager();
+    private ExplorerManager manager = new ExplorerManager();
     
     public ViewerTopComponent() {
         initComponents();
@@ -47,10 +48,13 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
         putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
         
-        CollectionChildren children = CollectionChildren.getInstance();
-        associateLookup(ExplorerUtils.createLookup(explorerManager, this.getActionMap()));
-        explorerManager.setRootContext(new AbstractNode(children));
-        explorerManager.getRootContext().setDisplayName("Your Collections");
+        associateLookup(ExplorerUtils.createLookup(manager, getActionMap()));
+        manager.setRootContext(new AbstractNode(CollectionContainer.getInstance().getChildren()));
+        manager.getRootContext().setDisplayName("Collections");
+        
+        ActionMap map = this.getActionMap();
+        //map.put("open", ViewerOpenAction());
+        map.put("delete", ExplorerUtils.actionDelete(manager, true));
     }
 
     /**
@@ -61,7 +65,7 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ViewerScrollPane = new IconView();
+        ViewerScrollPane = new BeanTreeView();
 
         setPreferredSize(new java.awt.Dimension(200, 500));
 
@@ -85,15 +89,21 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
     private javax.swing.JScrollPane ViewerScrollPane;
     // End of variables declaration//GEN-END:variables
     @Override
-    public void componentOpened() {
-        // TODO add custom code on component opening
-    }
+    public void componentOpened() {}
 
     @Override
-    public void componentClosed() {
-        // TODO add custom code on component closing
-    }
+    public void componentClosed() {}
 
+    @Override
+    protected void componentActivated() {
+        ExplorerUtils.activateActions(manager, true);
+    }
+    
+    @Override
+    protected void componentDeactivated() {
+        ExplorerUtils.activateActions(manager, false);
+    }
+    
     void writeProperties(java.util.Properties p) {
         // better to version settings since initial version as advocated at
         // http://wiki.apidesign.org/wiki/PropertyFiles
@@ -108,7 +118,7 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
 
     @Override
     public ExplorerManager getExplorerManager() {
-        return explorerManager;
+        return manager;
     }
     
 }
