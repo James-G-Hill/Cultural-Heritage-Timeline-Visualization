@@ -1,11 +1,13 @@
 package org.jghill.timelinesvisualizercollectionsgui;
 
+import javax.swing.DefaultComboBoxModel;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.Collection;
+import org.jghill.timelinevisualizersources.SourceCollection;
 
 /**
  * Top component which displays something.
@@ -43,7 +45,6 @@ public final class CollectionTopComponent extends TopComponent {
         putClientProperty(TopComponent.PROP_DRAGGING_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
-
     }
 
     /**
@@ -173,7 +174,7 @@ public final class CollectionTopComponent extends TopComponent {
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceTextLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.SourceTextLabel.text")); // NOI18N
 
-        SourceComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        SourceComboBox.setModel(new DefaultComboBoxModel(SourceCollection.getInstance().collectionToArray()));
         SourceComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SourceComboBoxActionPerformed(evt);
