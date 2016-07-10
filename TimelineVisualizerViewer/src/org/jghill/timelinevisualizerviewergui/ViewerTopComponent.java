@@ -53,7 +53,6 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
         manager.getRootContext().setDisplayName("Collections");
         
         ActionMap map = this.getActionMap();
-        //map.put("open", ViewerOpenAction());
         map.put("delete", ExplorerUtils.actionDelete(manager, true));
     }
 
