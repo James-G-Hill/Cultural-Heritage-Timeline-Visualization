@@ -17,7 +17,7 @@ import org.openide.util.lookup.InstanceContent;
 public class CollectionNode extends AbstractNode {
     
     private Collection coll;
-    private InstanceContent ic;
+    private InstanceContent instanceContent;
     
     public CollectionNode(Collection coll) {
         this(coll, new InstanceContent());
@@ -26,8 +26,8 @@ public class CollectionNode extends AbstractNode {
     public CollectionNode(Collection coll, InstanceContent ic) {
         super(Children.LEAF, new AbstractLookup(ic));
         this.coll = coll;
-        this.ic = ic;
-        this.ic.add(coll);
+        this.instanceContent = ic;
+        this.instanceContent.add(coll);
         setDisplayName(coll.getName());
     }
     
