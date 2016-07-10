@@ -1,17 +1,23 @@
 package org.jghill.timelinesvisualizercollections;
 
+import org.jghill.timelinesvisualizercollectionsgui.CollectionTopComponent;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
+import org.openide.util.Lookup;
+import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.InstanceContent;
 
 /**
  * A project for holding data from a set of queries.
  * 
  * @author JGHill
  */
-public class CollectionImpl implements Collection, Comparable<CollectionImpl> {
+public class CollectionImpl implements Collection, Comparable<CollectionImpl>, Lookup.Provider {
 
     private String name;
     private String notes;
+    private final Lookup lu;
+    private final InstanceContent instanceContent;
     private final EntitiesCollection entities;
     private final QueriesCollection queries;
     
@@ -30,6 +36,20 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl> {
         this.name = name;
         this.entities = entities;
         this.queries = queries;
+        instanceContent = new InstanceContent();
+        lu = new AbstractLookup(instanceContent);
+        
+        instanceContent.add(
+            new CanOpen() {
+                @Override
+                public void open(Collection coll) {
+                    CollectionTopComponent collTC = new CollectionTopComponent();
+                    collTC.setCollection(coll);
+                    collTC.open();
+                }
+            }
+        );
+        
     }
     
     @Override
@@ -65,6 +85,11 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl> {
     @Override
     public int compareTo(CollectionImpl o) {
         return name.compareTo(o.getName());
+    }
+
+    @Override
+    public Lookup getLookup() {
+        return lu;
     }
     
 }
