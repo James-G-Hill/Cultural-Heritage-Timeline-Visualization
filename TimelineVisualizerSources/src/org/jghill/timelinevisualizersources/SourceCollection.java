@@ -37,6 +37,7 @@ public class SourceCollection {
      * Add a source to the collection.
      * 
      * @param newSource The new source to be added.
+     * @return confirmation that a source has been added.
      */
     public boolean addSource(Source newSource) {
         return SOURCES.add(newSource);
@@ -46,6 +47,7 @@ public class SourceCollection {
      * Delete a source from the collection & return 'true' to confirm
      * 
      * @param source The source to be deleted.
+     * @return confirmation that a source has been added.
      */
     public boolean deleteSource(Source source) {
         return SOURCES.remove(source);
@@ -58,6 +60,17 @@ public class SourceCollection {
      */
     public int getSize() {
         return SOURCES.size();
+    }
+    
+    /**
+     * Returns the collection as an array.
+     * 
+     * @return the collection in array form.
+     */
+    public Source[] collectionToArray() {
+        Source[] sources = new Source[SOURCES.size()];
+        sources = SOURCES.toArray(sources);
+        return sources;
     }
     
 }
