@@ -4,8 +4,10 @@ import javax.swing.Action;
 import org.jghill.timelinesvisualizercollections.Collection;
 import org.openide.actions.DeleteAction;
 import org.openide.nodes.AbstractNode;
+import org.openide.nodes.Children;
 import org.openide.util.actions.SystemAction;
-import org.openide.util.lookup.Lookups;
+import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.InstanceContent;
 
 /**
  * A node for holding a Collection in the Viewer.
@@ -14,8 +16,18 @@ import org.openide.util.lookup.Lookups;
  */
 public class CollectionNode extends AbstractNode {
     
+    private Collection coll;
+    private InstanceContent ic;
+    
     public CollectionNode(Collection coll) {
-        super(new CollectionChildren(), Lookups.singleton(coll));
+        this(coll, new InstanceContent());
+    }
+    
+    public CollectionNode(Collection coll, InstanceContent ic) {
+        super(Children.LEAF, new AbstractLookup(ic));
+        this.coll = coll;
+        this.ic = ic;
+        this.ic.add(coll);
         setDisplayName(coll.getName());
     }
     
@@ -32,7 +44,7 @@ public class CollectionNode extends AbstractNode {
     @Override
     public Action[] getActions(boolean popup) {
         return new Action[] {
-            new ViewerOpenAction(),
+            new ViewerOpenAction(getLookup()),
             SystemAction.get(DeleteAction.class)
         };
     }
