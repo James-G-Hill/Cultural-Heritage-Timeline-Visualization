@@ -2,11 +2,8 @@ package org.jghill.timelinesvisualizercollectionsnode;
 
 import javax.swing.Action;
 import org.jghill.timelinesvisualizercollections.Collection;
-import org.openide.actions.CopyAction;
-import org.openide.actions.CutAction;
 import org.openide.actions.DeleteAction;
 import org.openide.nodes.AbstractNode;
-import org.openide.nodes.Children;
 import org.openide.util.actions.SystemAction;
 import org.openide.util.lookup.Lookups;
 
@@ -17,17 +14,14 @@ import org.openide.util.lookup.Lookups;
  */
 public class CollectionNode extends AbstractNode {
     
-    private final Collection coll;
-    
     public CollectionNode(Collection coll) {
-        super(Children.LEAF, Lookups.fixed( new Object[] {coll} ));
-        this.coll = coll;
+        super(new CollectionChildren(), Lookups.singleton(coll));
         setDisplayName(coll.getName());
     }
     
-    @Override
-    public boolean canCut() {
-        return true;
+    public CollectionNode() {
+        super(new CollectionChildren());
+        setDisplayName("Collections");
     }
     
     @Override
@@ -38,10 +32,8 @@ public class CollectionNode extends AbstractNode {
     @Override
     public Action[] getActions(boolean popup) {
         return new Action[] {
-            SystemAction.get( CopyAction.class),
-            SystemAction.get( CutAction.class),
-            null,
-            SystemAction.get( DeleteAction.class)
+            new ViewerOpenAction(),
+            SystemAction.get(DeleteAction.class)
         };
     }
     
