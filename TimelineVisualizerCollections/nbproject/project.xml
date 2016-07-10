@@ -99,6 +99,7 @@
             <public-packages>
                 <package>org.jghill.timelinesvisualizercollections</package>
                 <package>org.jghill.timelinesvisualizercollectionscontainer</package>
+                <package>org.jghill.timelinesvisualizercollectionsgui</package>
                 <package>org.jghill.timelinesvisualizercollectionsnode</package>
             </public-packages>
             <class-path-extension>
