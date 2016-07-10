@@ -2,10 +2,8 @@ package org.jghill.timelinesvisualizercollectionsnode;
 
 import javax.swing.Action;
 import org.jghill.timelinesvisualizercollections.Collection;
-import org.openide.actions.DeleteAction;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
-import org.openide.util.actions.SystemAction;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
 
@@ -45,7 +43,7 @@ public class CollectionNode extends AbstractNode {
     public Action[] getActions(boolean popup) {
         return new Action[] {
             new ViewerOpenAction(getLookup()),
-            SystemAction.get(DeleteAction.class)
+            new ViewerDeleteAction(getLookup())
         };
     }
     
