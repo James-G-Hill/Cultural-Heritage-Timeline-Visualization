@@ -73,7 +73,10 @@
                     </test-dependency>
                 </test-type>
             </test-dependencies>
-            <public-packages/>
+            <public-packages>
+                <package>org.jghill.timelinesvisualizersourcesapi</package>
+                <package>org.jghill.timelinevisualizersources</package>
+            </public-packages>
             <class-path-extension>
                 <runtime-relative-path>ext/mockito-all-1.10.19-javadoc.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/mockito-all-1.10.19-javadoc.jar</binary-origin>
