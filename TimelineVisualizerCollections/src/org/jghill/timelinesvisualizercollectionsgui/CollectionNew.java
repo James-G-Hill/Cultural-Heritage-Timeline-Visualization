@@ -12,7 +12,6 @@ import org.openide.awt.ActionRegistration;
 import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollectionscontainer.CollectionContainer;
 import org.jghill.timelinesvisualizercollections.Collection;
-import org.jghill.timelinesvisualizercollectionsnode.CollectionChildren;
 
 @ActionID(
         category = "File",
@@ -27,16 +26,15 @@ public final class CollectionNew implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        EntitiesCollection entities = new EntitiesCollection();
-        QueriesCollection queries = new QueriesCollection();
-        Collection coll = new CollectionImpl("New " + LocalDateTime.now(), entities, queries);
+        Collection coll = 
+                new CollectionImpl("New " + LocalDateTime.now(), new EntitiesCollection(), new QueriesCollection());
+        
         CollectionTopComponent collTC = new CollectionTopComponent();
         collTC.setCollection(coll);
         collTC.open();
+        
         CollectionContainer container = CollectionContainer.getInstance();
         container.addCollection(coll);
-        CollectionChildren children = CollectionChildren.getInstance();
-        children.update();
     }
     
 }
