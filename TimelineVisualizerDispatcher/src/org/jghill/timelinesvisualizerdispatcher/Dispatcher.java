@@ -1,6 +1,7 @@
 package org.jghill.timelinesvisualizerdispatcher;
 
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
+import org.jghill.timelinevisualizerqueries.Query;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
 
 /**
@@ -35,7 +36,11 @@ public class Dispatcher {
         EntitiesCollection entities;
         entities = new EntitiesCollection();
         
-        //Enter code here.
+        for(Query q : queries) {
+            EntitiesCollection temp;
+            temp = q.run();
+            entities.addThing(temp);
+        }
         
         return entities;
         
