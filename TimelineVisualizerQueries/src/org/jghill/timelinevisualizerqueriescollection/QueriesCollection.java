@@ -1,17 +1,18 @@
 package org.jghill.timelinevisualizerqueriescollection;
 
+import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import org.jghill.timelinevisualizerqueries.AbstractQuery;
+import org.jghill.timelinevisualizerqueries.Query;
 
 /**
  * A collection for holding a set of AbstractQueries.
  * 
  * @author JGHill
  */
-public class QueriesCollection {
+public class QueriesCollection implements Iterable<Query> {
     
-    private final SortedSet<AbstractQuery> collection;
+    private final SortedSet<Query> collection;
     
     public QueriesCollection() {
         collection = new TreeSet<>();
@@ -22,7 +23,7 @@ public class QueriesCollection {
      * 
      * @param q A query.
      */
-    public void addQuery(AbstractQuery q) {
+    public void addQuery(Query q) {
         collection.add(q);
     }
     
@@ -33,6 +34,11 @@ public class QueriesCollection {
      */
     public int getCount() {
         return collection.size();
+    }
+
+    @Override
+    public Iterator iterator() {
+        return collection.iterator();
     }
     
 }
