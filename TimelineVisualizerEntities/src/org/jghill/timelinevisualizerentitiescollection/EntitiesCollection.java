@@ -57,4 +57,13 @@ public class EntitiesCollection extends Entities {
         collectionName = name;
     }
     
+    /**
+     * Adds another EntityCollection to this Collection.
+     * 
+     * @param coll 
+     */
+    public void addEntityCollection(EntitiesCollection coll) {
+        collection.add(coll);
+    }
+    
 }
