@@ -108,6 +108,7 @@ public final class CollectionTopComponent extends TopComponent {
         LengthUnitComboBox = new javax.swing.JComboBox<>();
         WidthUnitComboBox = new javax.swing.JComboBox<>();
         ThicknessUnitComboBox = new javax.swing.JComboBox<>();
+        RunButton = new javax.swing.JButton();
         Visualizer = new javax.swing.JPanel();
 
         TitleTextBox.setEditable(false);
@@ -271,16 +272,21 @@ public final class CollectionTopComponent extends TopComponent {
 
         ThicknessUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        org.openide.awt.Mnemonics.setLocalizedText(RunButton, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.RunButton.text")); // NOI18N
+
         javax.swing.GroupLayout QueriesLayout = new javax.swing.GroupLayout(Queries);
         Queries.setLayout(QueriesLayout);
         QueriesLayout.setHorizontalGroup(
             QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(QueriesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ExistingQueriesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(QueriesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DeleteButton))
+                    .addGroup(QueriesLayout.createSequentialGroup()
+                        .addComponent(DeleteButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(RunButton)))
                 .addGap(18, 18, 18)
                 .addComponent(QuerySeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -367,7 +373,9 @@ public final class CollectionTopComponent extends TopComponent {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(QueriesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DeleteButton))
+                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DeleteButton)
+                            .addComponent(RunButton)))
                     .addGroup(QueriesLayout.createSequentialGroup()
                         .addComponent(QueryBuilderText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -556,6 +564,7 @@ public final class CollectionTopComponent extends TopComponent {
     private javax.swing.JLabel QueryBuilderText;
     private javax.swing.JSeparator QuerySeparator;
     private javax.swing.JButton ResetButton;
+    private javax.swing.JButton RunButton;
     private javax.swing.JComboBox<String> SourceComboBox;
     private javax.swing.JLabel SourceTextLabel;
     private javax.swing.JTabbedPane Tab;
