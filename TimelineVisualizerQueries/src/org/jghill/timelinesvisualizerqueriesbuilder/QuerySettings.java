@@ -20,9 +20,9 @@ public class QuerySettings {
     public final boolean thicknessCheck;
     public final boolean widthCheck;
         
-//        LengthUnitComboBox;
-//        ThicknessUnitComboBox;
-//        WidthUnitComboBox;
+    public final String lengthUnit;
+    public final String thicknessUnit;
+    public final String widthUnit;
         
     public final Date acquisitionEndDate;
     public final Date acquisitionStartDate;
@@ -50,6 +50,9 @@ public class QuerySettings {
             boolean originCheck,
             boolean thicknessCheck,
             boolean widthCheck,
+            String lengthUnit,
+            String thicknessUnit,
+            String widthUnit,
             Date acquisitionEndDate,
             Date acquisitionStartDate,
             Date creationEndDate,
@@ -73,6 +76,9 @@ public class QuerySettings {
         this.originCheck = originCheck;
         this.thicknessCheck = thicknessCheck;
         this.widthCheck = widthCheck;
+        this.lengthUnit = lengthUnit;
+        this.thicknessUnit = thicknessUnit;
+        this.widthUnit = widthUnit;
         this.acquisitionEndDate = acquisitionEndDate;
         this.acquisitionStartDate = acquisitionStartDate;
         this.creationEndDate = creationEndDate;
