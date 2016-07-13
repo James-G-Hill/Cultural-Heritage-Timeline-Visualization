@@ -24,17 +24,18 @@ public class QueryBuilder {
      * @param settings the object containing the settings.
      * @return an object.
      */
-    public static Query buildQuery(QuerySettings settings) {
+    public Query buildQuery(QuerySettings settings) {
         
         Source src = settings.theSource;
-        Query qry;
+        QueryTranslator trans;
+        
         switch(src.getSourceType()){
             case "SPARQL Endpoint":
-                ;
+                trans = new SPARQLTranslator();
+                return trans.translate(settings);
             default:
-                ;
+                return null;
         }
-        return qry;
     }
     
 }
