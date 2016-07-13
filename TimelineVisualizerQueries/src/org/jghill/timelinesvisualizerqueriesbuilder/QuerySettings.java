@@ -1,6 +1,7 @@
 package org.jghill.timelinesvisualizerqueriesbuilder;
 
 import java.util.Date;
+import org.jghill.timelinevisualizersources.Source;
 
 /**
  * An object for holding settings for queries that can be passed from the
@@ -9,6 +10,8 @@ import java.util.Date;
  * @author JGHill
  */
 public class QuerySettings {
+    
+    public final Source theSource;
     
     public final boolean acquisitionDateCheck;
     public final boolean consistsOfCheck;
@@ -41,6 +44,7 @@ public class QuerySettings {
     public final String widthUpper;
     
     public QuerySettings(
+            Source theSource,
             boolean acquisitionDateCheck,
             boolean consistsOfCheck,
             boolean creationDateCheck,
@@ -67,6 +71,7 @@ public class QuerySettings {
             String widthLower,
             String widthUpper) {
         
+        this.theSource = theSource;
         this.acquisitionDateCheck = acquisitionDateCheck;
         this.consistsOfCheck = consistsOfCheck;
         this.creationDateCheck = creationDateCheck;
