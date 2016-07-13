@@ -21,7 +21,7 @@ public class Dispatcher {
      * 
      * @return the instance.
      */
-    public Dispatcher getInstance() {
+    public static Dispatcher getInstance() {
         return DISPATCHER;
     }
     
