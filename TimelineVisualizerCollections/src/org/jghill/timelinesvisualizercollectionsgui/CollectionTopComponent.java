@@ -7,8 +7,10 @@ import org.openide.awt.ActionReference;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.Collection;
+import org.jghill.timelinesvisualizerdispatcher.Dispatcher;
 import org.jghill.timelinesvisualizerqueriesbuilder.QueryBuilder;
 import org.jghill.timelinesvisualizerqueriesbuilder.QuerySettings;
+import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueries.Query;
 import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
@@ -190,33 +192,18 @@ public final class CollectionTopComponent extends TopComponent {
         org.openide.awt.Mnemonics.setLocalizedText(SourceTextLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.SourceTextLabel.text")); // NOI18N
 
         SourceComboBox.setModel(new DefaultComboBoxModel(SourceCollection.getInstance().collectionToArray()));
-        SourceComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SourceComboBoxActionPerformed(evt);
-            }
-        });
 
         org.openide.awt.Mnemonics.setLocalizedText(CreationDateCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.CreationDateCheckBox.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(AcquisitionDateCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.AcquisitionDateCheckBox.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(LengthBetweenCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.LengthBetweenCheckBox.text")); // NOI18N
-        LengthBetweenCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LengthBetweenCheckBoxActionPerformed(evt);
-            }
-        });
 
         org.openide.awt.Mnemonics.setLocalizedText(WidthBetweenCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.WidthBetweenCheckBox.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(ThicknessBetweenCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ThicknessBetweenCheckBox.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(ConsistsOfCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ConsistsOfCheckBox.text")); // NOI18N
-        ConsistsOfCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsistsOfCheckBoxActionPerformed(evt);
-            }
-        });
 
         org.openide.awt.Mnemonics.setLocalizedText(HasImageCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasImageCheckBox.text")); // NOI18N
 
@@ -225,11 +212,6 @@ public final class CollectionTopComponent extends TopComponent {
         org.openide.awt.Mnemonics.setLocalizedText(DeleteButton, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.DeleteButton.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(FoundLocationCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.FoundLocationCheckBox.text")); // NOI18N
-        FoundLocationCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FoundLocationCheckBoxActionPerformed(evt);
-            }
-        });
 
         org.openide.awt.Mnemonics.setLocalizedText(AndText1, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.AndText1.text")); // NOI18N
 
@@ -258,11 +240,6 @@ public final class CollectionTopComponent extends TopComponent {
         LocationFoundTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.LocationFoundTextField.text")); // NOI18N
 
         LocationOriginTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.LocationOriginTextField.text")); // NOI18N
-        LocationOriginTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LocationOriginTextFieldActionPerformed(evt);
-            }
-        });
 
         org.openide.awt.Mnemonics.setLocalizedText(UnitLabel1, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.UnitLabel1.text")); // NOI18N
 
@@ -273,15 +250,15 @@ public final class CollectionTopComponent extends TopComponent {
         LengthUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mm", "cm", "m", "km" }));
 
         WidthUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mm", "cm", "m", "km" }));
-        WidthUnitComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                WidthUnitComboBoxActionPerformed(evt);
-            }
-        });
 
         ThicknessUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mm", "cm", "m", "km" }));
 
         org.openide.awt.Mnemonics.setLocalizedText(RunButton, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.RunButton.text")); // NOI18N
+        RunButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RunButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout QueriesLayout = new javax.swing.GroupLayout(Queries);
         Queries.setLayout(QueriesLayout);
@@ -482,30 +459,6 @@ public final class CollectionTopComponent extends TopComponent {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SourceComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SourceComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SourceComboBoxActionPerformed
-
-    private void LengthBetweenCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LengthBetweenCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LengthBetweenCheckBoxActionPerformed
-
-    private void ConsistsOfCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsistsOfCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ConsistsOfCheckBoxActionPerformed
-
-    private void FoundLocationCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FoundLocationCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FoundLocationCheckBoxActionPerformed
-
-    private void LocationOriginTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocationOriginTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LocationOriginTextFieldActionPerformed
-
-    private void WidthUnitComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WidthUnitComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_WidthUnitComboBoxActionPerformed
-
     private void ResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetButtonActionPerformed
         AcquisitionDateCheckBox.setSelected(false);
         ConsistsOfCheckBox.setSelected(false);
@@ -516,7 +469,7 @@ public final class CollectionTopComponent extends TopComponent {
         OriginLocationCheckBox.setSelected(false);
         ThicknessBetweenCheckBox.setSelected(false);
         WidthBetweenCheckBox.setSelected(false);
-        
+
         SourceComboBox.setSelectedIndex(-1);
         LengthUnitComboBox.setSelectedIndex(-1);
         ThicknessUnitComboBox.setSelectedIndex(-1);
@@ -570,10 +523,19 @@ public final class CollectionTopComponent extends TopComponent {
             WidthUpperTextField.getText()
         );
         Query qry;
-        qry = QueryBuilder.buildQuery(settings);
+        QueryBuilder builder = QueryBuilder.getInstance();
+        qry = builder.buildQuery(settings);
         coll.getQueriesCollection().addQuery(qry);
         
     }//GEN-LAST:event_CreateButtonActionPerformed
+
+    private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
+        
+        Dispatcher dispatch = Dispatcher.getInstance();
+        EntitiesCollection entities = coll.getEntitiesCollection();
+        entities = dispatch.runQueries(coll.getQueriesCollection());
+        
+    }//GEN-LAST:event_RunButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox AcquisitionDateCheckBox;

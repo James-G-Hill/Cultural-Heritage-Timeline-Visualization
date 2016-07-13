@@ -421,9 +421,6 @@
                   <Connection code="new DefaultComboBoxModel(SourceCollection.getInstance().collectionToArray())" type="code"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SourceComboBoxActionPerformed"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -448,9 +445,6 @@
                   <ResourceString bundle="org/jghill/timelinesvisualizercollectionsgui/Bundle.properties" key="CollectionTopComponent.LengthBetweenCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LengthBetweenCheckBoxActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="WidthBetweenCheckBox">
               <Properties>
@@ -472,9 +466,6 @@
                   <ResourceString bundle="org/jghill/timelinesvisualizercollectionsgui/Bundle.properties" key="CollectionTopComponent.ConsistsOfCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConsistsOfCheckBoxActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="HasImageCheckBox">
               <Properties>
@@ -503,9 +494,6 @@
                   <ResourceString bundle="org/jghill/timelinesvisualizercollectionsgui/Bundle.properties" key="CollectionTopComponent.FoundLocationCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FoundLocationCheckBoxActionPerformed"/>
-              </Events>
             </Component>
             <Component class="org.jdesktop.swingx.JXDatePicker" name="CreationStartDatePicker">
             </Component>
@@ -612,9 +600,6 @@
                   <ResourceString bundle="org/jghill/timelinesvisualizercollectionsgui/Bundle.properties" key="CollectionTopComponent.LocationOriginTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LocationOriginTextFieldActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="UnitLabel1">
               <Properties>
@@ -663,9 +648,6 @@
                   </StringArray>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="WidthUnitComboBoxActionPerformed"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -691,6 +673,9 @@
                   <ResourceString bundle="org/jghill/timelinesvisualizercollectionsgui/Bundle.properties" key="CollectionTopComponent.RunButton.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RunButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
