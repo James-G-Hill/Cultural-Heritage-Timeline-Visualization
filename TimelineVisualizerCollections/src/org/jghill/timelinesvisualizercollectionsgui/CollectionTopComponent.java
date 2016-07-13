@@ -9,10 +9,11 @@ import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinesvisualizerqueriesbuilder.QueryBuilder;
 import org.jghill.timelinesvisualizerqueriesbuilder.QuerySettings;
+import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
 
 /**
- * Top component which displays something.
+ * A window for displaying a collection and it's internals.
  */
 @ConvertAsProperties(
         dtd = "-//org.jghill.timelinesvisualizercollectionsgui//Collection//EN",
@@ -515,6 +516,7 @@ public final class CollectionTopComponent extends TopComponent {
         ThicknessBetweenCheckBox.setSelected(false);
         WidthBetweenCheckBox.setSelected(false);
         
+        SourceComboBox.setSelectedIndex(-1);
         LengthUnitComboBox.setSelectedIndex(-1);
         ThicknessUnitComboBox.setSelectedIndex(-1);
         WidthUnitComboBox.setSelectedIndex(-1);
@@ -539,6 +541,7 @@ public final class CollectionTopComponent extends TopComponent {
         
         QuerySettings query;
         query = new QuerySettings(
+            (Source) SourceComboBox.getSelectedItem(),
             AcquisitionDateCheckBox.isSelected(),
             ConsistsOfCheckBox.isSelected(),
             CreationDateCheckBox.isSelected(),
