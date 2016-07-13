@@ -1,6 +1,7 @@
 package org.jghill.timelinesvisualizerqueriesbuilder;
 
 import org.jghill.timelinevisualizerqueries.Query;
+import org.jghill.timelinevisualizersources.Source;
 
 /**
  * A singleton for building queries.
@@ -9,11 +10,11 @@ import org.jghill.timelinevisualizerqueries.Query;
  */
 public class QueryBuilder {
     
-    QueryBuilder BUILDER = new QueryBuilder();
+    private static final QueryBuilder BUILDER = new QueryBuilder();
     
     private QueryBuilder() {}
     
-    public QueryBuilder getInstance() {
+    public static QueryBuilder getInstance() {
         return BUILDER;
     }
     
@@ -23,8 +24,17 @@ public class QueryBuilder {
      * @param settings the object containing the settings.
      * @return an object.
      */
-    public Query buildQuery(QuerySettings settings) {
+    public static Query buildQuery(QuerySettings settings) {
         
+        Source src = settings.theSource;
+        Query qry;
+        switch(src.getSourceType()){
+            case "SPARQL Endpoint":
+                ;
+            default:
+                ;
+        }
+        return qry;
     }
     
 }
