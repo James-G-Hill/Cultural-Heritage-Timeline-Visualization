@@ -13,6 +13,10 @@ public class QueryBuilder {
     
     private QueryBuilder() {}
     
+    public QueryBuilder getInstance() {
+        return BUILDER;
+    }
+    
     /**
      * A method for building queries from a QuerySettings object.
      * 
