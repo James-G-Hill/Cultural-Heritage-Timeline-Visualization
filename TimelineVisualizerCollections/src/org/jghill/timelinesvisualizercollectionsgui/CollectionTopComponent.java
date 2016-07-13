@@ -7,6 +7,8 @@ import org.openide.awt.ActionReference;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.Collection;
+import org.jghill.timelinesvisualizerqueriesbuilder.QueryBuilder;
+import org.jghill.timelinesvisualizerqueriesbuilder.QuerySettings;
 import org.jghill.timelinevisualizersources.SourceCollection;
 
 /**
@@ -170,6 +172,11 @@ public final class CollectionTopComponent extends TopComponent {
         org.openide.awt.Mnemonics.setLocalizedText(QueryBuilderText, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.QueryBuilderText.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(CreateButton, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.CreateButton.text")); // NOI18N
+        CreateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateButtonActionPerformed(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(ResetButton, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ResetButton.text")); // NOI18N
         ResetButton.addActionListener(new java.awt.event.ActionListener() {
@@ -527,6 +534,40 @@ public final class CollectionTopComponent extends TopComponent {
         WidthLowerTextField.setText("");
         WidthUpperTextField.setText("");
     }//GEN-LAST:event_ResetButtonActionPerformed
+
+    private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
+        
+        QuerySettings query;
+        query = new QuerySettings(
+            AcquisitionDateCheckBox.isSelected(),
+            ConsistsOfCheckBox.isSelected(),
+            CreationDateCheckBox.isSelected(),
+            FoundLocationCheckBox.isSelected(),
+            HasImageCheckBox.isSelected(),
+            LengthBetweenCheckBox.isSelected(),
+            OriginLocationCheckBox.isSelected(),
+            ThicknessBetweenCheckBox.isSelected(),
+            WidthBetweenCheckBox.isSelected(),
+            LengthUnitComboBox.getSelectedItem().toString(),
+            ThicknessUnitComboBox.getSelectedItem().toString(),
+            WidthUnitComboBox.getSelectedItem().toString(),
+            AcquisitionEndDatePicker.getDate(),
+            AcquisitionStartDatePicker.getDate(),
+            CreationEndDatePicker.getDate(),
+            CreationStartDatePicker.getDate(),
+            LengthUpperTextField.getText(),
+            LocationFoundTextField.getText(),
+            ConsistsOfTextField.getText(),
+            LengthLowerTextField.getText(),
+            LocationOriginTextField.getText(),
+            ThicknessLowerTextField.getText(),
+            ThicknessUpperTextField.getText(),
+            WidthLowerTextField.getText(),
+            WidthUpperTextField.getText()
+        );
+        QueryBuilder.buildQuery(query);
+        
+    }//GEN-LAST:event_CreateButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox AcquisitionDateCheckBox;
