@@ -33,12 +33,12 @@ public class QuerySettings {
     public final String locationFound;
     public final String locationOrigin;
     
-    public final Double lengthLower;
-    public final Double lengthUpper;
-    public final Double thicknessLower;
-    public final Double thicknessUpper;
-    public final Double widthLower;
-    public final Double widthUpper;
+    public final String lengthLower;
+    public final String lengthUpper;
+    public final String thicknessLower;
+    public final String thicknessUpper;
+    public final String widthLower;
+    public final String widthUpper;
     
     public QuerySettings(
             boolean acquisitionDateCheck,
@@ -60,12 +60,12 @@ public class QuerySettings {
             String consistsOf,
             String locationFound,
             String locationOrigin,
-            Double lengthLower,
-            Double lengthUpper,
-            Double thicknessLower,
-            Double thicknessUpper,
-            Double widthLower,
-            Double widthUpper) {
+            String lengthLower,
+            String lengthUpper,
+            String thicknessLower,
+            String thicknessUpper,
+            String widthLower,
+            String widthUpper) {
         
         this.acquisitionDateCheck = acquisitionDateCheck;
         this.consistsOfCheck = consistsOfCheck;
