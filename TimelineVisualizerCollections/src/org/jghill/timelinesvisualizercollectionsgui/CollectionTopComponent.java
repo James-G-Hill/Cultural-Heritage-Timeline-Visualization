@@ -9,6 +9,7 @@ import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinesvisualizerqueriesbuilder.QueryBuilder;
 import org.jghill.timelinesvisualizerqueriesbuilder.QuerySettings;
+import org.jghill.timelinevisualizerqueries.Query;
 import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
 
@@ -539,8 +540,8 @@ public final class CollectionTopComponent extends TopComponent {
 
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
         
-        QuerySettings query;
-        query = new QuerySettings(
+        QuerySettings settings;
+        settings = new QuerySettings(
             (Source) SourceComboBox.getSelectedItem(),
             AcquisitionDateCheckBox.isSelected(),
             ConsistsOfCheckBox.isSelected(),
@@ -568,7 +569,9 @@ public final class CollectionTopComponent extends TopComponent {
             WidthLowerTextField.getText(),
             WidthUpperTextField.getText()
         );
-        QueryBuilder.buildQuery(query);
+        Query qry;
+        qry = QueryBuilder.buildQuery(settings);
+        coll.getQueriesCollection().addQuery(qry);
         
     }//GEN-LAST:event_CreateButtonActionPerformed
 
