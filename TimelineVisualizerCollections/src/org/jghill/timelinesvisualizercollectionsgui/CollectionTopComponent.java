@@ -261,16 +261,16 @@ public final class CollectionTopComponent extends TopComponent {
 
         org.openide.awt.Mnemonics.setLocalizedText(UnitLabel3, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.UnitLabel3.text")); // NOI18N
 
-        LengthUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        LengthUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mm", "cm", "m", "km" }));
 
-        WidthUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        WidthUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mm", "cm", "m", "km" }));
         WidthUnitComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 WidthUnitComboBoxActionPerformed(evt);
             }
         });
 
-        ThicknessUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ThicknessUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mm", "cm", "m", "km" }));
 
         org.openide.awt.Mnemonics.setLocalizedText(RunButton, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.RunButton.text")); // NOI18N
 
@@ -508,9 +508,9 @@ public final class CollectionTopComponent extends TopComponent {
         ThicknessBetweenCheckBox.setSelected(false);
         WidthBetweenCheckBox.setSelected(false);
         
-//        LengthUnitComboBox;
-//        ThicknessUnitComboBox;
-//        WidthUnitComboBox;
+        LengthUnitComboBox.setSelectedIndex(-1);
+        ThicknessUnitComboBox.setSelectedIndex(-1);
+        WidthUnitComboBox.setSelectedIndex(-1);
         
         AcquisitionEndDatePicker.setDate(null);
         AcquisitionStartDatePicker.setDate(null);
