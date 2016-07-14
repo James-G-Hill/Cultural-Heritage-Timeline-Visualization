@@ -503,7 +503,8 @@ public final class CollectionTopComponent extends TopComponent {
         OriginLocationCheckBox.setSelected(false);
         ThicknessBetweenCheckBox.setSelected(false);
         WidthBetweenCheckBox.setSelected(false);
-
+        HasLimitCheckBox.setSelected(true);
+        
         SourceComboBox.setSelectedIndex(-1);
         LengthUnitComboBox.setSelectedIndex(-1);
         ThicknessUnitComboBox.setSelectedIndex(-1);
@@ -514,6 +515,7 @@ public final class CollectionTopComponent extends TopComponent {
         CreationEndDatePicker.setDate(null);
         CreationStartDatePicker.setDate(null);
         
+        SourceNameTextLabel.setText("");
         ConsistsOfTextField.setText("");
         LengthLowerTextField.setText("");
         LengthUpperTextField.setText("");
@@ -523,9 +525,8 @@ public final class CollectionTopComponent extends TopComponent {
         ThicknessUpperTextField.setText("");
         WidthLowerTextField.setText("");
         WidthUpperTextField.setText("");
-        
-        HasLimitCheckBox.setSelected(true);
         HasLimitTextField.setText("10");
+        
     }//GEN-LAST:event_ResetButtonActionPerformed
 
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
