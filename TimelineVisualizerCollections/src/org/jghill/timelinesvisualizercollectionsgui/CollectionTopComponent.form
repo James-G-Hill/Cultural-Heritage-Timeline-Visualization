@@ -31,7 +31,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="Tab" max="32767" attributes="0"/>
+              <Component id="Tab" pref="500" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -78,7 +78,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="NotesText" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="NotesTextPanel" pref="344" max="32767" attributes="0"/>
+                      <Component id="NotesTextPanel" pref="350" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -147,6 +147,8 @@
                           <Component id="QueriesScrollPane" min="-2" pref="300" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="DeleteButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="EditButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="RunButton" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -155,23 +157,11 @@
                       <Component id="QuerySeparator" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="ResetButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="CreateButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="VerticalSeparator" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="QueryBuilderText" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="SourceTextLabel" min="-2" pref="66" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="SourceComboBox" min="-2" pref="203" max="-2" attributes="0"/>
-                                  </Group>
                                   <Component id="FoundLocationCheckBox" min="-2" max="-2" attributes="0"/>
                                   <Component id="OriginLocationCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="HasLimitCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
@@ -195,7 +185,7 @@
                                                           <Component id="WidthLowerTextField" alignment="0" max="32767" attributes="0"/>
                                                           <Component id="AcquisitionStartDatePicker" alignment="0" max="32767" attributes="0"/>
                                                           <Component id="LengthLowerTextField" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="LocationOriginTextField1" alignment="1" max="32767" attributes="0"/>
+                                                          <Component id="HasLimitTextField" alignment="1" max="32767" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -211,6 +201,11 @@
                                           <Component id="WidthBetweenCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="ThicknessBetweenCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="ConsistsOfCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="SourceTextLabel" min="-2" pref="66" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="SourceComboBox" min="-2" pref="203" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -241,9 +236,22 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <Component id="OriginLocationCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="VerticalSeparator" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="QueryBuilderText" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="SourceNameTextLabel" min="-2" pref="66" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="QueryNameTextField" min="-2" pref="186" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="ResetButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="CreateButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -264,10 +272,15 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="DeleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="RunButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="EditButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="QueryBuilderText" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="QueryBuilderText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="SourceNameTextLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="QueryNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="VerticalSeparator" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -334,10 +347,10 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="OriginLocationCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="LocationOriginTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="HasLimitCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="HasLimitTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="6" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="CreateButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="ResetButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -684,17 +697,38 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RunButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="OriginLocationCheckBox1">
+            <Component class="javax.swing.JCheckBox" name="HasLimitCheckBox">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollectionsgui/Bundle.properties" key="CollectionTopComponent.OriginLocationCheckBox1.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollectionsgui/Bundle.properties" key="CollectionTopComponent.HasLimitCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="LocationOriginTextField1">
+            <Component class="javax.swing.JTextField" name="HasLimitTextField">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollectionsgui/Bundle.properties" key="CollectionTopComponent.LocationOriginTextField1.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollectionsgui/Bundle.properties" key="CollectionTopComponent.HasLimitTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="SourceNameTextLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollectionsgui/Bundle.properties" key="CollectionTopComponent.SourceNameTextLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="QueryNameTextField">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollectionsgui/Bundle.properties" key="CollectionTopComponent.QueryNameTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="EditButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollectionsgui/Bundle.properties" key="CollectionTopComponent.EditButton.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
@@ -719,7 +753,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="466" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="472" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
