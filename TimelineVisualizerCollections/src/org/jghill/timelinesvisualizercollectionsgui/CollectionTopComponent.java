@@ -115,6 +115,8 @@ public final class CollectionTopComponent extends TopComponent {
         WidthUnitComboBox = new javax.swing.JComboBox<>();
         ThicknessUnitComboBox = new javax.swing.JComboBox<>();
         RunButton = new javax.swing.JButton();
+        OriginLocationCheckBox1 = new javax.swing.JCheckBox();
+        LocationOriginTextField1 = new javax.swing.JTextField();
         Visualizer = new javax.swing.JPanel();
 
         TitleTextBox.setEditable(false);
@@ -149,7 +151,7 @@ public final class CollectionTopComponent extends TopComponent {
                 .addGap(18, 18, 18)
                 .addComponent(NotesText)
                 .addGap(18, 18, 18)
-                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -260,6 +262,10 @@ public final class CollectionTopComponent extends TopComponent {
             }
         });
 
+        org.openide.awt.Mnemonics.setLocalizedText(OriginLocationCheckBox1, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.OriginLocationCheckBox1.text")); // NOI18N
+
+        LocationOriginTextField1.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.LocationOriginTextField1.text")); // NOI18N
+
         javax.swing.GroupLayout QueriesLayout = new javax.swing.GroupLayout(Queries);
         Queries.setLayout(QueriesLayout);
         QueriesLayout.setHorizontalGroup(
@@ -312,7 +318,8 @@ public final class CollectionTopComponent extends TopComponent {
                                                     .addComponent(ThicknessLowerTextField, javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(WidthLowerTextField, javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(AcquisitionStartDatePicker, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(LengthLowerTextField, javax.swing.GroupLayout.Alignment.LEADING))
+                                                    .addComponent(LengthLowerTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(LocationOriginTextField1))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(AndText3)
@@ -344,7 +351,8 @@ public final class CollectionTopComponent extends TopComponent {
                                         .addGap(18, 18, 18)
                                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(WidthUnitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(ThicknessUnitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(ThicknessUnitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(OriginLocationCheckBox1))
                         .addGap(16, 16, 16)))
                 .addContainerGap())
         );
@@ -419,7 +427,11 @@ public final class CollectionTopComponent extends TopComponent {
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(OriginLocationCheckBox)
                             .addComponent(LocationOriginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(OriginLocationCheckBox1)
+                            .addComponent(LocationOriginTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(CreateButton)
                             .addComponent(ResetButton))))
@@ -436,7 +448,7 @@ public final class CollectionTopComponent extends TopComponent {
         );
         VisualizerLayout.setVerticalGroup(
             VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 451, Short.MAX_VALUE)
+            .addGap(0, 466, Short.MAX_VALUE)
         );
 
         Tab.addTab(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Visualizer.TabConstraints.tabTitle"), Visualizer); // NOI18N
@@ -563,10 +575,12 @@ public final class CollectionTopComponent extends TopComponent {
     private javax.swing.JTextField LengthUpperTextField;
     private javax.swing.JTextField LocationFoundTextField;
     private javax.swing.JTextField LocationOriginTextField;
+    private javax.swing.JTextField LocationOriginTextField1;
     private javax.swing.JLabel NotesText;
     private javax.swing.JTextArea NotesTextBox;
     private javax.swing.JScrollPane NotesTextPanel;
     private javax.swing.JCheckBox OriginLocationCheckBox;
+    private javax.swing.JCheckBox OriginLocationCheckBox1;
     private javax.swing.JPanel Queries;
     private javax.swing.JScrollPane QueriesScrollPane;
     private javax.swing.JTable QueriesTable;
