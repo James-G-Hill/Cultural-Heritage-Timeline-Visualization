@@ -1,6 +1,5 @@
 package org.jghill.timelinevisualizerqueries;
 
-import org.apache.jena.query.*;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 
 /**
@@ -10,14 +9,10 @@ import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
  */
 public class SPARQLQuery extends Query {
     
-    Query sparqlQuery;
+    String queryString;
     
-    public SPARQLQuery(Query q) {
-        sparqlQuery = q;
-    }
-    
-    public SPARQLQuery(Query q, String name) {
-        sparqlQuery = q;
+    public SPARQLQuery(String queryString, String name) {
+        this.queryString = queryString;
         super.setQueryName(name);
     }
 
