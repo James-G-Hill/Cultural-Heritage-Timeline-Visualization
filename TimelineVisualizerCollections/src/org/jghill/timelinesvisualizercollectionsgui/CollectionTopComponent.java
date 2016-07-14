@@ -265,8 +265,10 @@ public final class CollectionTopComponent extends TopComponent {
             }
         });
 
+        HasLimitCheckBox.setSelected(true);
         org.openide.awt.Mnemonics.setLocalizedText(HasLimitCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasLimitCheckBox.text")); // NOI18N
 
+        HasLimitTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         HasLimitTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasLimitTextField.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceNameTextLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.SourceNameTextLabel.text")); // NOI18N
@@ -521,6 +523,9 @@ public final class CollectionTopComponent extends TopComponent {
         ThicknessUpperTextField.setText("");
         WidthLowerTextField.setText("");
         WidthUpperTextField.setText("");
+        
+        HasLimitCheckBox.setSelected(true);
+        HasLimitTextField.setText("10");
     }//GEN-LAST:event_ResetButtonActionPerformed
 
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
