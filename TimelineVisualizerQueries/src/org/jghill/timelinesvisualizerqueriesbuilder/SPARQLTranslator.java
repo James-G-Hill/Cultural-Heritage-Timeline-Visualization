@@ -18,6 +18,8 @@ public class SPARQLTranslator implements QueryTranslator {
     private final String LIMIT = "LIMIT ";
     
     private final String OBJECT = "?object ";
+    private final String IMAGE = "?image ";
+    private final String IMAGENOTE = "?imageNote ";
     private final String OWNER = "?owner ";
     private final String DESCRIPTION = "?description ";
     private final String BEGIN = "?begin ";
@@ -80,6 +82,19 @@ public class SPARQLTranslator implements QueryTranslator {
         return OBJECT + "ecrm:P52_has_current_owner " + OWNER + ". ";
     }
     
+    /**
+     * Returns the image address and note.
+     */
+    private String getImage() {
+        String image = "";
+        image += OBJECT + "bmo:PX_has_main_representation" + IMAGE + ". ";
+        image += IMAGE + "ecrm:P3_has_note " + IMAGENOTE + ". ";
+        return image;
+    }
+    
+    /**
+     * Returns the dates.
+     */
     private String getDates() {
         String dates = "";
         dates += OBJECT + "ecrm:P108i_was_produced_by " + PRODUCTION + ". ";
