@@ -12,6 +12,7 @@ import org.jghill.timelinevisualizersources.Source;
 public class QuerySettings {
     
     public final Source theSource;
+    public final String name;
     
     public final boolean acquisitionDateCheck;
     public final boolean consistsOfCheck;
@@ -43,8 +44,11 @@ public class QuerySettings {
     public final String widthLower;
     public final String widthUpper;
     
+    public final int limit;
+    
     public QuerySettings(
             Source theSource,
+            String name,
             boolean acquisitionDateCheck,
             boolean consistsOfCheck,
             boolean creationDateCheck,
@@ -69,9 +73,11 @@ public class QuerySettings {
             String thicknessLower,
             String thicknessUpper,
             String widthLower,
-            String widthUpper) {
+            String widthUpper,
+            int limit) {
         
         this.theSource = theSource;
+        this.name = name;
         this.acquisitionDateCheck = acquisitionDateCheck;
         this.consistsOfCheck = consistsOfCheck;
         this.creationDateCheck = creationDateCheck;
@@ -97,6 +103,7 @@ public class QuerySettings {
         this.thicknessUpper = thicknessUpper;
         this.widthLower = widthLower;
         this.widthUpper = widthUpper;
+        this.limit = limit;
     }
     
 }
