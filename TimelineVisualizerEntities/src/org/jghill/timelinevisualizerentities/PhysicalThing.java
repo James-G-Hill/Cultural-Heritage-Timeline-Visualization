@@ -38,11 +38,6 @@ public abstract class PhysicalThing extends Entities {
     private String mainImage;
     
     /**
-     * Ownership
-     */
-    private String currentOwner;
-    
-    /**
      * Metadata
      */
     private String identifier;
