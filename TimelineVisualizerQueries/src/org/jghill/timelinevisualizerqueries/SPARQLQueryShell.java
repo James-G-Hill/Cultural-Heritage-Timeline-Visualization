@@ -50,11 +50,13 @@ public class SPARQLQueryShell extends QueryShell {
     private EntitiesCollection buildEntities(ResultSet results) {
         EntitiesCollection entities = new EntitiesCollection();
         for(; results.hasNext();) {
+            QuerySolution soln = results.next();
             
-            QuerySolution soln = results.nextSolution();
+            String owner = soln.getLiteral("owner").getString();
+            
             ManMadeObject thing;
             thing = new ManMadeObject(
-                    soln.getLiteral("owner")
+                    owner
             );
             entities.addThing(thing);
         }
