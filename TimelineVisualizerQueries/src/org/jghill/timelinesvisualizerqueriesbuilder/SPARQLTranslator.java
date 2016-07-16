@@ -1,7 +1,7 @@
 package org.jghill.timelinesvisualizerqueriesbuilder;
 
-import org.jghill.timelinevisualizerqueries.Query;
-import org.jghill.timelinevisualizerqueries.SPARQLQuery;
+import org.jghill.timelinevisualizerqueries.QueryShell;
+import org.jghill.timelinevisualizerqueries.SPARQLQueryShell;
 
 /**
  * An implementation of QueryTranslator for SPARQL queries.
@@ -29,9 +29,9 @@ public class SPARQLTranslator implements QueryTranslator {
     private final String SPAN = "?span ";
     
     @Override
-    public Query translate(QuerySettings settings) {
+    public QueryShell translate(QuerySettings settings) {
         this.settings = settings;
-        Query query = new SPARQLQuery(build(), settings.name);
+        QueryShell query = new SPARQLQueryShell(build(), settings.name);
         return query;
     }
     
