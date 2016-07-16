@@ -44,7 +44,7 @@ public class QuerySettings {
     public final String widthLower;
     public final String widthUpper;
     
-    public final int limit;
+    public final String limit;
     
     public QuerySettings(
             Source theSource,
@@ -74,7 +74,7 @@ public class QuerySettings {
             String thicknessUpper,
             String widthLower,
             String widthUpper,
-            int limit) {
+            String limit) {
         
         this.theSource = theSource;
         this.name = name;
