@@ -64,6 +64,7 @@ public class SPARQLTranslator implements QueryTranslator {
         String where = "";
         where += getDescription();
         where += getOwner();
+        where += getImage();
         where += getDates();
         return where;
     }
