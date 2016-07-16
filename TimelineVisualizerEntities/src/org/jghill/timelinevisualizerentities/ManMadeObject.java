@@ -7,4 +7,9 @@ package org.jghill.timelinevisualizerentities;
  */
 public class ManMadeObject extends PhysicalThing {
     
+    /**
+     * Ownership
+     */
+    private String currentOwner;
+    
 }
