@@ -534,6 +534,7 @@ public final class CollectionTopComponent extends TopComponent {
         QuerySettings settings;
         settings = new QuerySettings(
             (Source) SourceComboBox.getSelectedItem(),
+            QueryNameTextField.getText(),
             AcquisitionDateCheckBox.isSelected(),
             ConsistsOfCheckBox.isSelected(),
             CreationDateCheckBox.isSelected(),
@@ -558,7 +559,8 @@ public final class CollectionTopComponent extends TopComponent {
             ThicknessLowerTextField.getText(),
             ThicknessUpperTextField.getText(),
             WidthLowerTextField.getText(),
-            WidthUpperTextField.getText()
+            WidthUpperTextField.getText(),
+            HasLimitTextField.getText()
         );
         Query qry;
         QueryBuilder builder = QueryBuilder.getInstance();
