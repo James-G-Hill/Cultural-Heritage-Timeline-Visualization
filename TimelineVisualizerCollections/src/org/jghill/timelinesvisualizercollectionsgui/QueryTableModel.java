@@ -5,7 +5,7 @@ import org.jghill.timelinevisualizerqueries.QueryShell;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
 
 /**
- * A model for assisting display of Queries in the Query Table.
+ * A model for assisting display of QueryShell in the Query Table.
  * 
  * @author JGHill
  */

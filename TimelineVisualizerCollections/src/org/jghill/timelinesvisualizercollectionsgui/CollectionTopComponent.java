@@ -474,17 +474,7 @@ public final class CollectionTopComponent extends TopComponent {
 
         EntitiesScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        EntitiesTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        EntitiesTable.setModel(new EntityTableModel(coll.getEntitiesCollection()));
         EntitiesScrollPane.setViewportView(EntitiesTable);
 
         javax.swing.GroupLayout EntitiesLayout = new javax.swing.GroupLayout(Entities);
