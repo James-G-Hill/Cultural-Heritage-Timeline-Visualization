@@ -7,6 +7,7 @@
             <suite-component/>
             <module-dependencies/>
             <public-packages>
+                <package>org.jghill.timelinevisualizerentities</package>
                 <package>org.jghill.timelinevisualizerentitiescollection</package>
             </public-packages>
         </data>
