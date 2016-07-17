@@ -2,6 +2,7 @@ package org.jghill.timelinesvisualizercollectionsgui;
 
 import javax.swing.table.AbstractTableModel;
 import org.jghill.timelinevisualizerentities.Entities;
+import org.jghill.timelinevisualizerentities.PhysicalThing;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 
 /**
@@ -12,7 +13,7 @@ import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 public class EntityTableModel extends AbstractTableModel {
 
     private final EntitiesCollection entitiesCollection;
-    private Entities[] entities;
+    private PhysicalThing[] things;
     
     public EntityTableModel(EntitiesCollection entities) {
         this.entitiesCollection = entities;
@@ -32,6 +33,12 @@ public class EntityTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
+            case 0:
+                return things[rowIndex].identifier;
+            case 1:
+                return things[rowIndex].name;
+            default:
+                return null;
         }
     }
     
@@ -57,8 +64,8 @@ public class EntityTableModel extends AbstractTableModel {
      * Updates the array fed from the data table.
      */
     private void updateDataTable() {
-        entities = new Entities[entitiesCollection.count()];
-        entitiesCollection.getCollectionSet().toArray(entities);
+        things = new PhysicalThing[entitiesCollection.count()];
+        entitiesCollection.getCollectionSet().toArray(things);
     }
     
     
@@ -69,7 +76,7 @@ public class EntityTableModel extends AbstractTableModel {
      * @return The entity at the row.
      */
     public Entities returnQuery(int index) {
-        return entities[index];
+        return things[index];
     }
     
 }
