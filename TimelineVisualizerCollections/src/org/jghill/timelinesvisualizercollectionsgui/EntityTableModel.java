@@ -38,6 +38,12 @@ public class EntityTableModel extends AbstractTableModel {
     @Override
     public String getColumnName(int col) {
         switch(col) {
+            case 0:
+                return "identifier";
+            case 1:
+                return "name";
+            default:
+                return null;
         }
     }
     
