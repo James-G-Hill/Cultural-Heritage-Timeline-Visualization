@@ -1,5 +1,6 @@
 package org.jghill.timelinesvisualizercollectionsgui;
 
+import java.time.LocalDateTime;
 import javax.swing.DefaultComboBoxModel;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
@@ -7,11 +8,14 @@ import org.openide.awt.ActionReference;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.Collection;
+import org.jghill.timelinesvisualizercollections.CollectionImpl;
+import org.jghill.timelinesvisualizercollectionscontainer.CollectionContainer;
 import org.jghill.timelinesvisualizerdispatcher.Dispatcher;
 import org.jghill.timelinesvisualizerqueriesbuilder.QueryBuilder;
 import org.jghill.timelinesvisualizerqueriesbuilder.QuerySettings;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueries.QueryShell;
+import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
 import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
 
@@ -41,7 +45,11 @@ import org.jghill.timelinevisualizersources.SourceCollection;
 })
 public final class CollectionTopComponent extends TopComponent {
 
-    private Collection coll;
+    private Collection coll = 
+            new CollectionImpl(
+                    "New " + LocalDateTime.now(), 
+                    new EntitiesCollection(), 
+                    new QueriesCollection());
     
     public CollectionTopComponent() {
         initComponents();
@@ -51,6 +59,9 @@ public final class CollectionTopComponent extends TopComponent {
         putClientProperty(TopComponent.PROP_DRAGGING_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
+        
+        CollectionContainer container = CollectionContainer.getInstance();
+        container.addCollection(coll);
     }
 
     /**
@@ -652,12 +663,21 @@ public final class CollectionTopComponent extends TopComponent {
     }
     
     /**
-     * A setter for a project to be applied to this top component.
+     * A setter for a collection to be applied to this top component.
      * 
-     * @param coll the project to be passed to this top component.
+     * @param coll the collection to be passed to this top component.
      */
     public void setCollection(Collection coll) {
         this.coll = coll;
+    }
+    
+    /**
+     * A getter for the collection to be returned from this top component.
+     * 
+     * @return the collection.
+     */
+    public Collection getCollection() {
+        return coll;
     }
 
 }
