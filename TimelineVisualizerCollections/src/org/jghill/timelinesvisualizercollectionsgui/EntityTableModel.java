@@ -15,7 +15,7 @@ public class EntityTableModel extends AbstractTableModel {
     private final EntitiesCollection entitiesCollection;
     private PhysicalThing[] things;
     
-    private int columnCount = 2;
+    private final int columnCount = 2;
     
     public EntityTableModel(EntitiesCollection entities) {
         this.entitiesCollection = entities;
