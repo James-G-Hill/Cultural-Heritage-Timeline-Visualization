@@ -14,10 +14,11 @@ public class SPARQLEndpoint extends Source {
      * Constructor for the SPARQL endpoint.
      * 
      * @param name A name for the source.
+     * @param webAddress the web address.
      */
-    public SPARQLEndpoint(String name, String webText) {
+    public SPARQLEndpoint(String name, String webAddress) {
         super.setSourceName(name);
-        this.webAddress = webText;
+        this.webAddress = webAddress;
     }
     
     /**
