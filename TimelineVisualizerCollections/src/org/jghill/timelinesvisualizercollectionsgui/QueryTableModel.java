@@ -26,7 +26,7 @@ public class QueryTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -36,6 +36,8 @@ public class QueryTableModel extends AbstractTableModel {
                 return shells[rowIndex].getQueryName();
             case 1:
                 return shells[rowIndex].getLastRunDate();
+            case 2:
+                return shells[rowIndex].getQueryType();
             default:
                 return null;
         }
@@ -48,6 +50,8 @@ public class QueryTableModel extends AbstractTableModel {
                 return "Name";
             case 1:
                 return "Last Run";
+            case 2:
+                return "Query Type";
             default:
                 return null;
         }
