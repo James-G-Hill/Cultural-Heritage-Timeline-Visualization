@@ -14,10 +14,11 @@ import org.openide.util.Lookup;
 public class ViewerOpenAction extends AbstractAction {
 
     private final Collection coll;
+    private final String actionName = "Open";
     
     public ViewerOpenAction(Lookup lu) {
         coll = lu.lookup(Collection.class);
-        putValue(NAME, "Open");
+        putValue(NAME, actionName);
     }
     
     @Override
