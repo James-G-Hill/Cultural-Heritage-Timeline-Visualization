@@ -58,8 +58,6 @@ public final class CollectionTopComponent extends TopComponent {
         putClientProperty(TopComponent.PROP_DRAGGING_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
-        
-        coll.setTopComponent(this);
     }
 
     /**
@@ -497,39 +495,7 @@ public final class CollectionTopComponent extends TopComponent {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetButtonActionPerformed
-        AcquisitionDateCheckBox.setSelected(false);
-        ConsistsOfCheckBox.setSelected(false);
-        CreationDateCheckBox.setSelected(false);
-        FoundLocationCheckBox.setSelected(false);
-        HasImageCheckBox.setSelected(false);
-        LengthBetweenCheckBox.setSelected(false);
-        OriginLocationCheckBox.setSelected(false);
-        ThicknessBetweenCheckBox.setSelected(false);
-        WidthBetweenCheckBox.setSelected(false);
-        HasLimitCheckBox.setSelected(true);
-        
-        SourceComboBox.setSelectedIndex(-1);
-        LengthUnitComboBox.setSelectedIndex(-1);
-        ThicknessUnitComboBox.setSelectedIndex(-1);
-        WidthUnitComboBox.setSelectedIndex(-1);
-        
-        AcquisitionEndDatePicker.setDate(null);
-        AcquisitionStartDatePicker.setDate(null);
-        CreationEndDatePicker.setDate(null);
-        CreationStartDatePicker.setDate(null);
-        
-        SourceNameTextLabel.setText("");
-        ConsistsOfTextField.setText("");
-        LengthLowerTextField.setText("");
-        LengthUpperTextField.setText("");
-        LocationFoundTextField.setText("");
-        LocationOriginTextField.setText("");
-        ThicknessLowerTextField.setText("");
-        ThicknessUpperTextField.setText("");
-        WidthLowerTextField.setText("");
-        WidthUpperTextField.setText("");
-        HasLimitTextField.setText("10");
-        
+        resetQueryBuilder();
     }//GEN-LAST:event_ResetButtonActionPerformed
 
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
@@ -569,15 +535,14 @@ public final class CollectionTopComponent extends TopComponent {
         QueryBuilder builder = QueryBuilder.getInstance();
         qry = builder.buildQuery(settings);
         coll.getQueriesCollection().addQuery(qry);
+        resetQueryBuilder();
         
     }//GEN-LAST:event_CreateButtonActionPerformed
 
     private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
-        
         Dispatcher dispatch = Dispatcher.getInstance();
         EntitiesCollection entities = coll.getEntitiesCollection();
         entities = dispatch.runQueries(coll.getQueriesCollection());
-        
     }//GEN-LAST:event_RunButtonActionPerformed
 
     private void TitleTextBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TitleTextBoxPropertyChange
@@ -649,7 +614,7 @@ public final class CollectionTopComponent extends TopComponent {
     
     @Override
     public void componentOpened() {
-        TitleTextBox.setText(coll.getName());
+//        TitleTextBox.setText(coll.getName());
     }
 
     @Override
@@ -687,6 +652,44 @@ public final class CollectionTopComponent extends TopComponent {
      */
     public Collection getCollection() {
         return coll;
+    }
+    
+    /**
+     * Resets the query building section of the GUI.
+     */
+    public void resetQueryBuilder() {
+        AcquisitionDateCheckBox.setSelected(false);
+        ConsistsOfCheckBox.setSelected(false);
+        CreationDateCheckBox.setSelected(false);
+        FoundLocationCheckBox.setSelected(false);
+        HasImageCheckBox.setSelected(false);
+        LengthBetweenCheckBox.setSelected(false);
+        OriginLocationCheckBox.setSelected(false);
+        ThicknessBetweenCheckBox.setSelected(false);
+        WidthBetweenCheckBox.setSelected(false);
+        HasLimitCheckBox.setSelected(true);
+        
+        SourceComboBox.setSelectedIndex(-1);
+        LengthUnitComboBox.setSelectedIndex(-1);
+        ThicknessUnitComboBox.setSelectedIndex(-1);
+        WidthUnitComboBox.setSelectedIndex(-1);
+        
+        AcquisitionEndDatePicker.setDate(null);
+        AcquisitionStartDatePicker.setDate(null);
+        CreationEndDatePicker.setDate(null);
+        CreationStartDatePicker.setDate(null);
+        
+        SourceNameTextLabel.setText("");
+        ConsistsOfTextField.setText("");
+        LengthLowerTextField.setText("");
+        LengthUpperTextField.setText("");
+        LocationFoundTextField.setText("");
+        LocationOriginTextField.setText("");
+        ThicknessLowerTextField.setText("");
+        ThicknessUpperTextField.setText("");
+        WidthLowerTextField.setText("");
+        WidthUpperTextField.setText("");
+        HasLimitTextField.setText("10");
     }
 
 }
