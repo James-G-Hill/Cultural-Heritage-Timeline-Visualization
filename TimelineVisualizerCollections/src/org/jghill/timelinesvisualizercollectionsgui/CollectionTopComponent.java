@@ -52,12 +52,13 @@ public final class CollectionTopComponent extends TopComponent {
     
     public CollectionTopComponent() {
         initComponents();
-        setName(Bundle.CTL_CollectionTopComponent());
         setToolTipText(Bundle.HINT_CollectionTopComponent());
         putClientProperty(TopComponent.PROP_CLOSING_DISABLED, Boolean.FALSE);
         putClientProperty(TopComponent.PROP_DRAGGING_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
+        
+        TitleTextBox.setText(coll.getName());
     }
 
     /**
@@ -499,44 +500,9 @@ public final class CollectionTopComponent extends TopComponent {
     }//GEN-LAST:event_ResetButtonActionPerformed
 
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
-        
-        QuerySettings settings;
-        settings = new QuerySettings(
-            (Source) SourceComboBox.getSelectedItem(),
-            QueryNameTextField.getText(),
-            AcquisitionDateCheckBox.isSelected(),
-            ConsistsOfCheckBox.isSelected(),
-            CreationDateCheckBox.isSelected(),
-            FoundLocationCheckBox.isSelected(),
-            HasImageCheckBox.isSelected(),
-            LengthBetweenCheckBox.isSelected(),
-            OriginLocationCheckBox.isSelected(),
-            ThicknessBetweenCheckBox.isSelected(),
-            WidthBetweenCheckBox.isSelected(),
-            LengthUnitComboBox.getSelectedItem().toString(),
-            ThicknessUnitComboBox.getSelectedItem().toString(),
-            WidthUnitComboBox.getSelectedItem().toString(),
-            AcquisitionEndDatePicker.getDate(),
-            AcquisitionStartDatePicker.getDate(),
-            CreationEndDatePicker.getDate(),
-            CreationStartDatePicker.getDate(),
-            LengthUpperTextField.getText(),
-            LocationFoundTextField.getText(),
-            ConsistsOfTextField.getText(),
-            LengthLowerTextField.getText(),
-            LocationOriginTextField.getText(),
-            ThicknessLowerTextField.getText(),
-            ThicknessUpperTextField.getText(),
-            WidthLowerTextField.getText(),
-            WidthUpperTextField.getText(),
-            HasLimitTextField.getText()
-        );
-        QueryShell qry;
-        QueryBuilder builder = QueryBuilder.getInstance();
-        qry = builder.buildQuery(settings);
-        coll.getQueriesCollection().addQuery(qry);
-        resetQueryBuilder();
-        
+        if(!checkQuerySettings()) {
+            createQuery();
+        }
     }//GEN-LAST:event_CreateButtonActionPerformed
 
     private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
@@ -614,7 +580,7 @@ public final class CollectionTopComponent extends TopComponent {
     
     @Override
     public void componentOpened() {
-//        TitleTextBox.setText(coll.getName());
+        setName(coll.getName());
     }
 
     @Override
@@ -657,7 +623,7 @@ public final class CollectionTopComponent extends TopComponent {
     /**
      * Resets the query building section of the GUI.
      */
-    public void resetQueryBuilder() {
+    private void resetQueryBuilder() {
         AcquisitionDateCheckBox.setSelected(false);
         ConsistsOfCheckBox.setSelected(false);
         CreationDateCheckBox.setSelected(false);
@@ -669,16 +635,17 @@ public final class CollectionTopComponent extends TopComponent {
         WidthBetweenCheckBox.setSelected(false);
         HasLimitCheckBox.setSelected(true);
         
-        SourceComboBox.setSelectedIndex(-1);
-        LengthUnitComboBox.setSelectedIndex(-1);
-        ThicknessUnitComboBox.setSelectedIndex(-1);
-        WidthUnitComboBox.setSelectedIndex(-1);
+        SourceComboBox.setSelectedIndex(0);
+        LengthUnitComboBox.setSelectedIndex(0);
+        ThicknessUnitComboBox.setSelectedIndex(0);
+        WidthUnitComboBox.setSelectedIndex(0);
         
         AcquisitionEndDatePicker.setDate(null);
         AcquisitionStartDatePicker.setDate(null);
         CreationEndDatePicker.setDate(null);
         CreationStartDatePicker.setDate(null);
         
+        QueryNameTextField.setText("");
         SourceNameTextLabel.setText("");
         ConsistsOfTextField.setText("");
         LengthLowerTextField.setText("");
@@ -690,6 +657,57 @@ public final class CollectionTopComponent extends TopComponent {
         WidthLowerTextField.setText("");
         WidthUpperTextField.setText("");
         HasLimitTextField.setText("10");
+    }
+    
+    /**
+     * Checks whether the query builder section has been filled correctly.
+     * 
+     * @return where it has been filled correctly.
+     */
+    private boolean checkQuerySettings() {
+        return SourceComboBox.getSelectedItem().toString() == null;
+    }
+    
+    /**
+     * Creates a query.
+     */
+    private void createQuery() {
+        QuerySettings settings;
+        settings = new QuerySettings(
+            (Source) SourceComboBox.getSelectedItem(),
+            QueryNameTextField.getText(),
+            AcquisitionDateCheckBox.isSelected(),
+            ConsistsOfCheckBox.isSelected(),
+            CreationDateCheckBox.isSelected(),
+            FoundLocationCheckBox.isSelected(),
+            HasImageCheckBox.isSelected(),
+            LengthBetweenCheckBox.isSelected(),
+            OriginLocationCheckBox.isSelected(),
+            ThicknessBetweenCheckBox.isSelected(),
+            WidthBetweenCheckBox.isSelected(),
+            LengthUnitComboBox.getSelectedItem().toString(),
+            ThicknessUnitComboBox.getSelectedItem().toString(),
+            WidthUnitComboBox.getSelectedItem().toString(),
+            AcquisitionEndDatePicker.getDate(),
+            AcquisitionStartDatePicker.getDate(),
+            CreationEndDatePicker.getDate(),
+            CreationStartDatePicker.getDate(),
+            LengthUpperTextField.getText(),
+            LocationFoundTextField.getText(),
+            ConsistsOfTextField.getText(),
+            LengthLowerTextField.getText(),
+            LocationOriginTextField.getText(),
+            ThicknessLowerTextField.getText(),
+            ThicknessUpperTextField.getText(),
+            WidthLowerTextField.getText(),
+            WidthUpperTextField.getText(),
+            HasLimitTextField.getText()
+        );
+        QueryShell qry;
+        QueryBuilder builder = QueryBuilder.getInstance();
+        qry = builder.buildQuery(settings);
+        coll.getQueriesCollection().addQuery(qry);
+        resetQueryBuilder();
     }
 
 }
