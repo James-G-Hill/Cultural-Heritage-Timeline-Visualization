@@ -14,10 +14,11 @@ import org.openide.util.Lookup;
 public class ViewerDeleteAction extends AbstractAction {
     
     private final Collection coll;
+    private final String actionName = "Delete";
     
     public ViewerDeleteAction(Lookup lu) {
         coll = lu.lookup(Collection.class);
-        putValue(NAME, "Delete");
+        putValue(NAME, actionName);
     }
 
     @Override
