@@ -9,7 +9,6 @@ import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinesvisualizercollections.CollectionImpl;
-import org.jghill.timelinesvisualizercollectionscontainer.CollectionContainer;
 import org.jghill.timelinesvisualizerdispatcher.Dispatcher;
 import org.jghill.timelinesvisualizerqueriesbuilder.QueryBuilder;
 import org.jghill.timelinesvisualizerqueriesbuilder.QuerySettings;
@@ -60,8 +59,7 @@ public final class CollectionTopComponent extends TopComponent {
         putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
         
-        CollectionContainer container = CollectionContainer.getInstance();
-        container.addCollection(coll);
+        coll.setTopComponent(this);
     }
 
     /**
@@ -640,6 +638,7 @@ public final class CollectionTopComponent extends TopComponent {
     private javax.swing.JTextField WidthUpperTextField;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     // End of variables declaration//GEN-END:variables
+    
     @Override
     public void componentOpened() {
         TitleTextBox.setText(coll.getName());
@@ -669,6 +668,8 @@ public final class CollectionTopComponent extends TopComponent {
      */
     public void setCollection(Collection coll) {
         this.coll = coll;
+        TitleTextBox.setText(coll.getName());
+        coll.setTopComponent(this);
     }
     
     /**
