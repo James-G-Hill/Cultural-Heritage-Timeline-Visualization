@@ -23,6 +23,7 @@ public final class CollectionNew implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         CollectionTopComponent collTC = new CollectionTopComponent();
         collTC.open();
+        collTC.getCollection().setTopComponent(collTC);
         CollectionContainer container = CollectionContainer.getInstance();
         container.addCollection(collTC.getCollection());
     }
