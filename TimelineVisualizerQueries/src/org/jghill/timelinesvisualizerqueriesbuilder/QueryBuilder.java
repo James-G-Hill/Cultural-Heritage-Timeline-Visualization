@@ -1,6 +1,6 @@
 package org.jghill.timelinesvisualizerqueriesbuilder;
 
-import org.jghill.timelinevisualizerqueries.Query;
+import org.jghill.timelinevisualizerqueries.QueryShell;
 import org.jghill.timelinevisualizersources.Source;
 
 /**
@@ -24,7 +24,7 @@ public class QueryBuilder {
      * @param settings the object containing the settings.
      * @return an object.
      */
-    public Query buildQuery(QuerySettings settings) {
+    public QueryShell buildQuery(QuerySettings settings) {
         
         Source src = settings.theSource;
         QueryTranslator trans;
