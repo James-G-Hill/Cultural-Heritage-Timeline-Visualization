@@ -62,5 +62,11 @@ public class SPARQLQueryShell extends QueryShell {
         }
         return entities;
     }
+
+    @Override
+    public int compareTo(Object o) {
+        QueryShell query = (QueryShell) o;
+        return super.getQueryName().compareTo(query.getQueryName());
+    }
     
 }
