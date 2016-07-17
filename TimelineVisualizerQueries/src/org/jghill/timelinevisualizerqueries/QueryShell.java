@@ -13,6 +13,11 @@ public abstract class QueryShell implements Comparable {
     private String queryName = "Untitled";
     private Date lastRunDate;
     
+    /**
+     * @return The type of the query.
+     */
+    public abstract String getQueryType();
+    
     public String getQueryName() {
         return queryName;
     }
