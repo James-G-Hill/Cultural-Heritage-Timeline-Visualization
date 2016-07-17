@@ -217,6 +217,11 @@ public final class CollectionTopComponent extends TopComponent {
         org.openide.awt.Mnemonics.setLocalizedText(OriginLocationCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.OriginLocationCheckBox.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(DeleteButton, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.DeleteButton.text")); // NOI18N
+        DeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteButtonActionPerformed(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(FoundLocationCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.FoundLocationCheckBox.text")); // NOI18N
 
@@ -515,6 +520,15 @@ public final class CollectionTopComponent extends TopComponent {
         coll.setName(TitleTextBox.getText());
     }//GEN-LAST:event_TitleTextBoxPropertyChange
 
+    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
+        int row = QueriesTable.getSelectedRow();
+        if(row != -1) {
+            QueryTableModel qtb = (QueryTableModel) QueriesTable.getModel();
+            qtb.deleteSource(row);
+            queryModelChange();
+        }
+    }//GEN-LAST:event_DeleteButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox AcquisitionDateCheckBox;
     private org.jdesktop.swingx.JXDatePicker AcquisitionEndDatePicker;
@@ -708,6 +722,15 @@ public final class CollectionTopComponent extends TopComponent {
         qry = builder.buildQuery(settings);
         coll.getQueriesCollection().addQuery(qry);
         resetQueryBuilder();
+        queryModelChange();
+    }
+    
+    /**
+     * Fires changes to the query model table;
+     */
+    private void queryModelChange() {
+        QueryTableModel qtb = (QueryTableModel) QueriesTable.getModel();
+        qtb.fireTableDataChanged();
     }
 
 }
