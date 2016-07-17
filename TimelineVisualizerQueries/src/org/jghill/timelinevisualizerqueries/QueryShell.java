@@ -8,7 +8,7 @@ import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
  * 
  * @author JGHill
  */
-public abstract class QueryShell {
+public abstract class QueryShell implements Comparable {
     
     private String queryName = "Untitled";
     private Date lastRunDate;
