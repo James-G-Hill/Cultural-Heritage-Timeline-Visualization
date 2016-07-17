@@ -41,4 +41,15 @@ public class QueriesCollection implements Iterable<QueryShell> {
         return collection.iterator();
     }
     
+    /**
+     * Returns the collection as an array.
+     * 
+     * @return the collection in array form.
+     */
+    public QueryShell[] collectionToArray() {
+        QueryShell[] queries = new QueryShell[collection.size()];
+        queries = collection.toArray(queries);
+        return queries;
+    }
+    
 }
