@@ -28,6 +28,25 @@ public class QueriesCollection implements Iterable<QueryShell> {
     }
     
     /**
+     * Delete a query from the collection & return 'true' to confirm
+     * 
+     * @param query The query to be deleted.
+     * @return confirmation that a query has been added.
+     */
+    public boolean deleteQuery(QueryShell query) {
+        return collection.remove(query);
+    }
+    
+    /**
+     * Return the entire collection.
+     * 
+     * @return the query collection.
+     */
+    public SortedSet<QueryShell> getCollectionSet() {
+        return collection;
+    }
+    
+    /**
      * A method for returning a count of the queries in the collection.
      * 
      * @return the count of queries.
