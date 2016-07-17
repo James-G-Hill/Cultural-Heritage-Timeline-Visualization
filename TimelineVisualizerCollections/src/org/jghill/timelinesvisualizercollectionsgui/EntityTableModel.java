@@ -15,6 +15,8 @@ public class EntityTableModel extends AbstractTableModel {
     private final EntitiesCollection entitiesCollection;
     private PhysicalThing[] things;
     
+    private int columnCount = 2;
+    
     public EntityTableModel(EntitiesCollection entities) {
         this.entitiesCollection = entities;
         updateDataTable();
@@ -27,7 +29,7 @@ public class EntityTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return columnCount;
     }
 
     @Override
