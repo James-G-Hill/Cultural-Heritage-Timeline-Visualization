@@ -40,7 +40,8 @@ public abstract class PhysicalThing extends Entities {
     /**
      * Metadata
      */
-    private String identifier;
+    public String identifier;
+    public String name;
     private String label;
     private String commentary;
     
