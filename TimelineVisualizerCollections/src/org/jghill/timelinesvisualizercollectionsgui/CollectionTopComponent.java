@@ -128,6 +128,9 @@ public final class CollectionTopComponent extends TopComponent {
         SourceNameTextLabel = new javax.swing.JLabel();
         QueryNameTextField = new javax.swing.JTextField();
         EditButton = new javax.swing.JButton();
+        Entities = new javax.swing.JPanel();
+        EntitiesScrollPane = new javax.swing.JScrollPane();
+        EntitiesTable = new javax.swing.JTable();
         Visualizer = new javax.swing.JPanel();
 
         TitleTextBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -469,6 +472,40 @@ public final class CollectionTopComponent extends TopComponent {
 
         Tab.addTab(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Queries.TabConstraints.tabTitle"), Queries); // NOI18N
 
+        EntitiesScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        EntitiesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        EntitiesScrollPane.setViewportView(EntitiesTable);
+
+        javax.swing.GroupLayout EntitiesLayout = new javax.swing.GroupLayout(Entities);
+        Entities.setLayout(EntitiesLayout);
+        EntitiesLayout.setHorizontalGroup(
+            EntitiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EntitiesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 961, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        EntitiesLayout.setVerticalGroup(
+            EntitiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EntitiesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        Tab.addTab(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Entities.TabConstraints.tabTitle"), Entities); // NOI18N
+
         javax.swing.GroupLayout VisualizerLayout = new javax.swing.GroupLayout(Visualizer);
         Visualizer.setLayout(VisualizerLayout);
         VisualizerLayout.setHorizontalGroup(
@@ -546,6 +583,9 @@ public final class CollectionTopComponent extends TopComponent {
     private org.jdesktop.swingx.JXDatePicker CreationStartDatePicker;
     private javax.swing.JButton DeleteButton;
     private javax.swing.JButton EditButton;
+    private javax.swing.JPanel Entities;
+    private javax.swing.JScrollPane EntitiesScrollPane;
+    private javax.swing.JTable EntitiesTable;
     private javax.swing.JLabel ExistingQueriesText;
     private javax.swing.JCheckBox FoundLocationCheckBox;
     private javax.swing.JCheckBox HasImageCheckBox;
