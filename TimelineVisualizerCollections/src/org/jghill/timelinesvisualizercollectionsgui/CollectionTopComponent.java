@@ -11,7 +11,7 @@ import org.jghill.timelinesvisualizerdispatcher.Dispatcher;
 import org.jghill.timelinesvisualizerqueriesbuilder.QueryBuilder;
 import org.jghill.timelinesvisualizerqueriesbuilder.QuerySettings;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
-import org.jghill.timelinevisualizerqueries.Query;
+import org.jghill.timelinevisualizerqueries.QueryShell;
 import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
 
@@ -160,17 +160,7 @@ public final class CollectionTopComponent extends TopComponent {
 
         Tab.addTab(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Information.TabConstraints.tabTitle"), Information); // NOI18N
 
-        QueriesTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        QueriesTable.setModel(new QueryTableModel(coll.getQueriesCollection()));
         QueriesScrollPane.setViewportView(QueriesTable);
 
         org.openide.awt.Mnemonics.setLocalizedText(ExistingQueriesText, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ExistingQueriesText.text")); // NOI18N
@@ -562,7 +552,7 @@ public final class CollectionTopComponent extends TopComponent {
             WidthUpperTextField.getText(),
             HasLimitTextField.getText()
         );
-        Query qry;
+        QueryShell qry;
         QueryBuilder builder = QueryBuilder.getInstance();
         qry = builder.buildQuery(settings);
         coll.getQueriesCollection().addQuery(qry);
