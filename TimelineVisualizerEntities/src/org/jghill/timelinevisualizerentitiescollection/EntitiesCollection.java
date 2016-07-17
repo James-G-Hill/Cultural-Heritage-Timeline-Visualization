@@ -57,4 +57,13 @@ public class EntitiesCollection extends Entities {
         collectionName = name;
     }
     
+     /**
+     * Return the entire collection.
+     * 
+     * @return the entity collection.
+     */
+    public SortedSet<Entities> getCollectionSet() {
+        return collection;
+    }
+    
 }
