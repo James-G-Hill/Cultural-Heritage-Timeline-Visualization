@@ -31,10 +31,13 @@ public final class CollectionNew implements ActionListener {
         output(collTC.getCollection().getName());
     }
     
+    /**
+     * Outputs an explanation of the action.
+     * @param name the name of the Collection that was created.
+     */
     private void output(String name) {
-        InputOutput io = IOProvider.getDefault().getIO("Any", false);
+        InputOutput io = IOProvider.getDefault().getIO("Main", false);
         io.getOut().println("Collection " + name + " has been created");
-        io.close();
     }
     
 }
