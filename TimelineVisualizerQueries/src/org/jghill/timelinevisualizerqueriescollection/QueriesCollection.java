@@ -3,16 +3,16 @@ package org.jghill.timelinevisualizerqueriescollection;
 import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import org.jghill.timelinevisualizerqueries.Query;
+import org.jghill.timelinevisualizerqueries.QueryShell;
 
 /**
  * A collection for holding a set of AbstractQueries.
  * 
  * @author JGHill
  */
-public class QueriesCollection implements Iterable<Query> {
+public class QueriesCollection implements Iterable<QueryShell> {
     
-    private final SortedSet<Query> collection;
+    private final SortedSet<QueryShell> collection;
     
     public QueriesCollection() {
         collection = new TreeSet<>();
@@ -23,7 +23,7 @@ public class QueriesCollection implements Iterable<Query> {
      * 
      * @param q A query.
      */
-    public void addQuery(Query q) {
+    public void addQuery(QueryShell q) {
         collection.add(q);
     }
     
