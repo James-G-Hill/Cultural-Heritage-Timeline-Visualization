@@ -7,6 +7,8 @@ import org.openide.awt.ActionReference;
 import org.openide.awt.ActionRegistration;
 import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollectionscontainer.CollectionContainer;
+import org.netbeans.api.io.IOProvider;
+import org.netbeans.api.io.InputOutput;
 
 @ActionID(
         category = "File",
@@ -26,6 +28,13 @@ public final class CollectionNew implements ActionListener {
         collTC.getCollection().setTopComponent(collTC);
         CollectionContainer container = CollectionContainer.getInstance();
         container.addCollection(collTC.getCollection());
+        output(collTC.getCollection().getName());
+    }
+    
+    private void output(String name) {
+        InputOutput io = IOProvider.getDefault().getIO("Any", false);
+        io.getOut().println("Collection " + name + " has been created");
+        io.close();
     }
     
 }
