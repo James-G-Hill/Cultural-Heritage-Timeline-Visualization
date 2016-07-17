@@ -131,8 +131,12 @@ public final class CollectionTopComponent extends TopComponent {
         EditButton = new javax.swing.JButton();
         Visualizer = new javax.swing.JPanel();
 
-        TitleTextBox.setEditable(false);
         TitleTextBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        TitleTextBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                TitleTextBoxPropertyChange(evt);
+            }
+        });
         TitleTextPanel.setViewportView(TitleTextBox);
 
         NotesTextBox.setColumns(20);
@@ -575,6 +579,10 @@ public final class CollectionTopComponent extends TopComponent {
         entities = dispatch.runQueries(coll.getQueriesCollection());
         
     }//GEN-LAST:event_RunButtonActionPerformed
+
+    private void TitleTextBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TitleTextBoxPropertyChange
+        coll.setName(TitleTextBox.getText());
+    }//GEN-LAST:event_TitleTextBoxPropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox AcquisitionDateCheckBox;
