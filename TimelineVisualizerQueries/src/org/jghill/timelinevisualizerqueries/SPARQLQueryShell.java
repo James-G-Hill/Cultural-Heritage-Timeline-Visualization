@@ -17,12 +17,23 @@ import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 public class SPARQLQueryShell extends QueryShell {
     
     private final String queryString;
+    private static final String QUERY_TYPE = "SPARQL Endpoint";
     
     public SPARQLQueryShell(String queryString, String name) {
         this.queryString = queryString;
         super.setQueryName(name);
     }
-
+    
+    /**
+     * Returns the type of the query.
+     * 
+     * @return The query type.
+     */
+    @Override
+    public String getQueryType() {
+        return QUERY_TYPE;
+    }
+    
     @Override
     public EntitiesCollection run() {
         return getResults(QueryFactory.create(queryString));
