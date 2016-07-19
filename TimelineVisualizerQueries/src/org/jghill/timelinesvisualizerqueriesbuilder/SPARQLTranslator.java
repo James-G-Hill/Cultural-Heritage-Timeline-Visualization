@@ -23,6 +23,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private final String LIMIT = "LIMIT ";
     
     private final String OBJECT = "?object ";
+    private final String TITLE = "?title";
     private final String IMAGE = "?image ";
     private final String IMAGENOTE = "?imageNote ";
     private final String OWNER = "?owner ";
@@ -78,11 +79,16 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String whereClause() {
         String where = "";
+        where += getTitle();
         where += getDescription();
         where += getOwner();
         where += getImage();
         where += getDates();
         return where;
+    }
+    
+    private String getTitle() {
+        return OBJECT + "ecrm:P102_has_title" + TITLE + ". ";
     }
     
     /**
