@@ -2,6 +2,7 @@ package org.jghill.timelinesvisualizerqueriesbuilder;
 
 import org.jghill.timelinevisualizerqueries.QueryShell;
 import org.jghill.timelinevisualizerqueries.SPARQLQueryShell;
+import org.jghill.timelinevisualizersources.SPARQLEndpoint;
 
 /**
  * An implementation of QueryTranslator for SPARQL queries.
@@ -35,8 +36,9 @@ public class SPARQLTranslator implements QueryTranslator {
     @Override
     public QueryShell translate(QuerySettings settings) {
         this.settings = settings;
-        QueryShell query = new SPARQLQueryShell(build(), settings.name);
-        return query;
+        SPARQLEndpoint sparql = (SPARQLEndpoint) settings.theSource;
+        String service =  sparql.getWebAddress();
+        return new SPARQLQueryShell(build(), service, settings.name);
     }
     
     private String build() {
