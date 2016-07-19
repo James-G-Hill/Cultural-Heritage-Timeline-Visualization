@@ -17,6 +17,8 @@ import org.jghill.timelinevisualizerqueries.QueryShell;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
 import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
+import org.netbeans.api.io.IOProvider;
+import org.netbeans.api.io.InputOutput;
 
 /**
  * A window for displaying a collection and it's internals.
@@ -44,6 +46,10 @@ import org.jghill.timelinevisualizersources.SourceCollection;
 })
 public final class CollectionTopComponent extends TopComponent {
 
+    private static final int TAB_VISUAL = 4;
+    
+    private final QueryTableModel qtb;
+    
     private Collection coll = 
             new CollectionImpl(
                     "New " + LocalDateTime.now(), 
@@ -59,6 +65,7 @@ public final class CollectionTopComponent extends TopComponent {
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
         
         TitleTextBox.setText(coll.getName());
+        qtb = (QueryTableModel) QueriesTable.getModel();
     }
 
     /**
@@ -538,9 +545,14 @@ public final class CollectionTopComponent extends TopComponent {
     }//GEN-LAST:event_CreateButtonActionPerformed
 
     private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
-        Dispatcher dispatch = Dispatcher.getInstance();
-        EntitiesCollection entities = coll.getEntitiesCollection();
-        entities = dispatch.runQueries(coll.getQueriesCollection());
+        try {
+            Dispatcher dispatch = Dispatcher.getInstance();
+            EntitiesCollection entities = coll.getEntitiesCollection();
+            entities = dispatch.runQueries(coll.getQueriesCollection());
+            Tab.setEnabledAt(TAB_VISUAL, true);
+        } catch (Exception ex) {
+            output("502 Proxy Error: endpoint not available.");
+        }
     }//GEN-LAST:event_RunButtonActionPerformed
 
     private void TitleTextBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TitleTextBoxPropertyChange
@@ -759,8 +771,17 @@ public final class CollectionTopComponent extends TopComponent {
      * Fires changes to the query model table;
      */
     private void queryModelChange() {
-        QueryTableModel qtb = (QueryTableModel) QueriesTable.getModel();
         qtb.fireTableDataChanged();
+    }
+    
+    /**
+     * Outputs an explanation of the action.
+     * 
+     * @param text toString of the returned entity.
+     */
+    private void output(String text) {
+        InputOutput io = IOProvider.getDefault().getIO("Main", false);
+        io.getOut().println(text);
     }
 
 }
