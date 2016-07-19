@@ -10,25 +10,19 @@ public abstract class Source implements Comparable<Source> {
     private String sourceName;
     
     /**
-     * Returns the type of the source.
-     * 
-     * @return The type of the source.
+     * @return the type of the source.
      */
     public abstract String getSourceType();
     
     /**
-     * Returns the name of this source.
-     * 
-     * @return The name of the source.
+     * @return the name of the source.
      */
     public String getSourceName() {
         return sourceName;
     }
     
     /**
-     * Sets the sourceName to a passed name.
-     * 
-     * @param name The name for this source.
+     * @param name the name for this source.
      */
     public void setSourceName(String name) {
         sourceName = name;
