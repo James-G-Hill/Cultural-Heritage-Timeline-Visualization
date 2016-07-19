@@ -12,6 +12,10 @@ public class SPARQLTranslator implements QueryTranslator {
 
     private QuerySettings settings;
     
+    private final String BMO = "bmo: <http://collection.britishmuseum.org/id/ontology/>";
+    private final String ECRM = "ecrm: <http://erlangen-crm.org/current/> ";
+    
+    private final String PREFIX = "PREFIX ";
     private final String SELECTDISTINCT = "SELECT DISTINCT ";
     private final String WHERE = "WHERE { ";
     private final String END = "} ";
@@ -37,11 +41,21 @@ public class SPARQLTranslator implements QueryTranslator {
     
     private String build() {
         return
+                prefix() +
                 select() +
                 WHERE +
                 whereClause() +
                 END +
                 limit();
+    }
+    
+    /**
+     * Builds the PREFIX part of the expression.
+     */
+    private String prefix() {
+        return
+                PREFIX + BMO +
+                PREFIX + ECRM;
     }
     
     /**
@@ -102,7 +116,7 @@ public class SPARQLTranslator implements QueryTranslator {
         dates += PRODUCTION + "ecrm:P9_consists_of " + CONSISTS + ". ";
         dates += CONSISTS + "ecrm:P4_has_time-span " + SPAN + ". ";
         dates += SPAN + "ecrm:P82a_begin_of_the_begin " + BEGIN + ". ";
-        dates += SPAN + "ecrm:P82b_end_of_the_end " + END + ". ";
+        dates += SPAN + "ecrm:P82b_end_of_the_end " + FINAL + ". ";
         return dates;
     }
     
