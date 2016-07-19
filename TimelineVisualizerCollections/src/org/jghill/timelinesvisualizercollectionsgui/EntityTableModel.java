@@ -38,7 +38,7 @@ public class EntityTableModel extends AbstractTableModel {
             case 0:
                 return things[rowIndex].identifier;
             case 1:
-                return things[rowIndex].name;
+                return things[rowIndex].getName();
             default:
                 return null;
         }
