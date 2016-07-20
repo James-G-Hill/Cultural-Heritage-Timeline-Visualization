@@ -8,20 +8,20 @@ package org.jghill.timelinevisualizerentities;
  */
 abstract public class Entities implements Comparable {
     
-    private String name = "";
+    private String identifier = "";
     
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String identifier) {
+        this.identifier = identifier;
     }
     
     public String getName() {
-        return name;
+        return identifier;
     }
     
     @Override
     public int compareTo(Object o) {
         Entities e = (Entities) o;
-        return name.compareTo(e.name);
+        return identifier.compareTo(e.identifier);
     } 
     
 }
