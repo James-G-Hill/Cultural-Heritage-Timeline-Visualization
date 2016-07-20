@@ -13,7 +13,7 @@ import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 public class EntityTableModel extends AbstractTableModel {
 
     private final EntitiesCollection entitiesCollection;
-    private PhysicalThing[] things;
+    private Entities[] things;
     
     private final int columnCount = 2;
     
@@ -36,7 +36,7 @@ public class EntityTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return things[rowIndex].identifier;
+                return things[rowIndex].getName();
             case 1:
                 return things[rowIndex].getName();
             default:
