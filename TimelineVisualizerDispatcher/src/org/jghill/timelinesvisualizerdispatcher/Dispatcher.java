@@ -3,6 +3,8 @@ package org.jghill.timelinesvisualizerdispatcher;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueries.QueryShell;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
+import org.netbeans.api.io.IOProvider;
+import org.netbeans.api.io.InputOutput;
 
 /**
  * A dispatcher sends queries and collects the results to create a collection
@@ -36,14 +38,27 @@ public class Dispatcher {
         EntitiesCollection entities;
         entities = new EntitiesCollection();
         
+        output("Running campaigns");
         for(QueryShell q : queries) {
+            output("Running query: " + q.getQueryName());
             EntitiesCollection temp;
             temp = q.run();
             entities.addThing(temp);
         }
+        output("All campaigns run");
         
         return entities;
         
+    }
+    
+    /**
+     * Outputs an explanation of the action.
+     * 
+     * @param text toString of the returned entity.
+     */
+    private void output(String text) {
+        InputOutput io = IOProvider.getDefault().getIO("Main", false);
+        io.getOut().println(text);
     }
     
 }
