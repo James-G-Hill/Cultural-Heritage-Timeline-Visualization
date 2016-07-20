@@ -8,7 +8,7 @@ package org.jghill.timelinevisualizerentities;
  */
 abstract public class Entities implements Comparable {
     
-    private String name;
+    private String name = "";
     
     public void setName(String name) {
         this.name = name;
