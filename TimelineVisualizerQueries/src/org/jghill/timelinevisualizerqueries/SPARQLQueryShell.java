@@ -75,6 +75,9 @@ public class SPARQLQueryShell extends QueryShell {
             String title = soln.getResource("title").toString();
             String owner = soln.getResource("owner").toString();
             
+            output("Title: " + title);
+            output("Owner: " + owner);
+            
             ManMadeObject thing;
             thing = new ManMadeObject(
                     owner
@@ -83,12 +86,6 @@ public class SPARQLQueryShell extends QueryShell {
             entities.addThing(thing);
         }
         return entities;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        QueryShell query = (QueryShell) o;
-        return super.getQueryName().compareTo(query.getQueryName());
     }
     
     /**
