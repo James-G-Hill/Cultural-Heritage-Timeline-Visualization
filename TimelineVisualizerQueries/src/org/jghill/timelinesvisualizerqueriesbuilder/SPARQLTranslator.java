@@ -23,6 +23,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private final String LIMIT = "LIMIT ";
     
     private final String OBJECT = "?object ";
+    private final String IDENTIFIER = "?identifier ";
     private final String TITLE = "?title";
     private final String IMAGE = "?image ";
     private final String IMAGENOTE = "?imageNote ";
@@ -79,6 +80,7 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String whereClause() {
         String where = "";
+        where += getIdentifier();
         where += getTitle();
         where += getDescription();
         where += getOwner();
@@ -87,6 +89,16 @@ public class SPARQLTranslator implements QueryTranslator {
         return where;
     }
     
+    /**
+     * The identifier of the object.
+     */
+    private String getIdentifier() {
+        return OBJECT + "ecrm:P1_is_identified_by" + IDENTIFIER + ". ";
+    }
+    
+    /**
+     * The name of the object.
+     */
     private String getTitle() {
         return OBJECT + "ecrm:P102_has_title" + TITLE + ". ";
     }
