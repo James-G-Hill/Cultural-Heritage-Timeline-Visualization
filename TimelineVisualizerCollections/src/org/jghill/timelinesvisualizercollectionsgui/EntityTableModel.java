@@ -2,7 +2,6 @@ package org.jghill.timelinesvisualizercollectionsgui;
 
 import javax.swing.table.AbstractTableModel;
 import org.jghill.timelinevisualizerentities.Entities;
-import org.jghill.timelinevisualizerentities.PhysicalThing;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 
 /**
@@ -15,7 +14,7 @@ public class EntityTableModel extends AbstractTableModel {
     private final EntitiesCollection entitiesCollection;
     private Entities[] things;
     
-    private final int columnCount = 2;
+    private static final int COL_COUNT = 2;
     
     public EntityTableModel(EntitiesCollection entities) {
         this.entitiesCollection = entities;
@@ -29,7 +28,7 @@ public class EntityTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return columnCount;
+        return COL_COUNT;
     }
 
     @Override
@@ -66,7 +65,7 @@ public class EntityTableModel extends AbstractTableModel {
      * Updates the array fed from the data table.
      */
     private void updateDataTable() {
-        things = new PhysicalThing[entitiesCollection.count()];
+        things = new Entities[entitiesCollection.count()];
         entitiesCollection.getCollectionSet().toArray(things);
     }
     
