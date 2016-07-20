@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import javax.swing.DefaultComboBoxModel;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
-import org.openide.awt.ActionReference;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.Collection;
@@ -34,7 +33,6 @@ import org.netbeans.api.io.InputOutput;
 )
 @TopComponent.Registration(mode = "explorer", openAtStartup = false)
 @ActionID(category = "Window", id = "org.jghill.timelinesvisualizercollectionsgui.CollectionTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
 @TopComponent.OpenActionRegistration(
         displayName = "#CTL_CollectionAction",
         preferredID = "CollectionTopComponent"
@@ -639,6 +637,7 @@ public final class CollectionTopComponent extends TopComponent {
     @Override
     public void componentOpened() {
         setName(coll.getName());
+        queryModelChange();
     }
 
     @Override
