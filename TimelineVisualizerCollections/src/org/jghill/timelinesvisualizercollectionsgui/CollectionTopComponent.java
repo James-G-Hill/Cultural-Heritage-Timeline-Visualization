@@ -2,6 +2,7 @@ package org.jghill.timelinesvisualizercollectionsgui;
 
 import java.time.LocalDateTime;
 import javax.swing.DefaultComboBoxModel;
+import org.apache.jena.atlas.web.HttpException;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.windows.TopComponent;
@@ -44,7 +45,7 @@ import org.netbeans.api.io.InputOutput;
 })
 public final class CollectionTopComponent extends TopComponent {
 
-    private static final int TAB_VISUAL = 4;
+    private static final int TAB_VISUAL = 3;
     
     private final QueryTableModel qtb;
     
@@ -545,13 +546,15 @@ public final class CollectionTopComponent extends TopComponent {
     }//GEN-LAST:event_CreateButtonActionPerformed
 
     private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
-        try {
-            Dispatcher dispatch = Dispatcher.getInstance();
-            EntitiesCollection entities = coll.getEntitiesCollection();
-            entities = dispatch.runQueries(coll.getQueriesCollection());
-            Tab.setEnabledAt(TAB_VISUAL, true);
-        } catch (Exception ex) {
-            output("502 Proxy Error: endpoint not available.");
+        EntitiesCollection entities = coll.getEntitiesCollection();
+        if (entities != null) {
+            try {
+                Dispatcher dispatch = Dispatcher.getInstance();
+                entities.addThing(dispatch.runQueries(coll.getQueriesCollection()));
+                Tab.setEnabledAt(TAB_VISUAL, true);
+            } catch (HttpException ex) {
+                output("502 Proxy Error: endpoint not available.");
+            }
         }
     }//GEN-LAST:event_RunButtonActionPerformed
 
@@ -562,7 +565,6 @@ public final class CollectionTopComponent extends TopComponent {
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
         int row = QueriesTable.getSelectedRow();
         if(row != -1) {
-            QueryTableModel qtb = (QueryTableModel) QueriesTable.getModel();
             qtb.deleteSource(row);
             queryModelChange();
         }
@@ -722,7 +724,9 @@ public final class CollectionTopComponent extends TopComponent {
      * @return where it has been filled correctly.
      */
     private boolean checkQuerySettings() {
-        return SourceComboBox.getSelectedItem().toString() == null;
+        if(QueryNameTextField.getText().equals("")) {return false;}
+        if(SourceComboBox.getSelectedItem().toString() != null) {return false;}
+        return true;
     }
     
     /**
