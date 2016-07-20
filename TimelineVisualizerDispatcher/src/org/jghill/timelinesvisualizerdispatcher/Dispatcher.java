@@ -41,9 +41,7 @@ public class Dispatcher {
         output("Running campaigns");
         for(QueryShell q : queries) {
             output("Running query: " + q.getQueryName());
-            EntitiesCollection temp;
-            temp = q.run();
-            entities.addThing(temp);
+            entities.addThing(q.run());
         }
         output("All campaigns run");
         
