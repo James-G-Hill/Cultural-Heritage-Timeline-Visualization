@@ -9,6 +9,8 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
+import org.netbeans.api.io.IOProvider;
+import org.netbeans.api.io.InputOutput;
 
 /**
  * A concrete implementation of the QueryShell class representing a SPARQL query.
@@ -68,6 +70,8 @@ public class SPARQLQueryShell extends QueryShell {
         for(; results.hasNext();) {
             QuerySolution soln = results.next();
             
+            output(soln.toString());
+            
             String title = soln.getResource("title").toString();
             String owner = soln.getResource("owner").toString();
             
@@ -85,6 +89,16 @@ public class SPARQLQueryShell extends QueryShell {
     public int compareTo(Object o) {
         QueryShell query = (QueryShell) o;
         return super.getQueryName().compareTo(query.getQueryName());
+    }
+    
+    /**
+     * Outputs an explanation of the action.
+     * 
+     * @param text toString of the returned entity.
+     */
+    private void output(String text) {
+        InputOutput io = IOProvider.getDefault().getIO("Main", false);
+        io.getOut().println(text);
     }
     
 }
