@@ -41,6 +41,7 @@ public class SPARQLQueryShell extends QueryShell {
     
     @Override
     public EntitiesCollection run() {
+        output("Running query");
         return getResults(QueryFactory.create(queryString));
     }
     
@@ -51,11 +52,16 @@ public class SPARQLQueryShell extends QueryShell {
      * @return the entities.
      */
     private EntitiesCollection getResults(Query query) throws HttpException {
+        output("getting results");
+        ResultSet results;
         try(QueryExecution qexec = QueryExecutionFactory.sparqlService(service, query)) {
-            ResultSet results = qexec.execSelect();
+            results = qexec.execSelect();
             return buildEntities(results);
         } catch (HttpException ex) {
             throw new HttpException("502 Proxy Error:");
+        } catch (Exception ex) {
+            output(ex.toString());
+            return new EntitiesCollection();
         }
     }
     
@@ -66,17 +72,20 @@ public class SPARQLQueryShell extends QueryShell {
      * @return the entities.
      */
     private EntitiesCollection buildEntities(ResultSet results) {
+        output("building entities: " + results.toString());
         EntitiesCollection entities = new EntitiesCollection();
         for(; results.hasNext();) {
             QuerySolution soln = results.next();
             
-            output(soln.toString());
+            output("Solution: " + soln.toString());
             
+            String identity = soln.getResource("identifier").toString();
             String title = soln.getResource("title").toString();
             String owner = soln.getResource("owner").toString();
             
-            output("Title: " + title);
-            output("Owner: " + owner);
+            output("Identifier  : " + identity);
+            output("Title       : " + title);
+            output("Owner       : " + owner);
             
             ManMadeObject thing;
             thing = new ManMadeObject(
