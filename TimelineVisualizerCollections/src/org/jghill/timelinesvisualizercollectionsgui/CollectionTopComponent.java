@@ -47,6 +47,7 @@ public final class CollectionTopComponent extends TopComponent {
 
     private static final int TAB_VISUAL = 3;
     
+    private final EntityTableModel etb;
     private final QueryTableModel qtb;
     
     private Collection coll = 
@@ -65,6 +66,7 @@ public final class CollectionTopComponent extends TopComponent {
         
         TitleTextBox.setText(coll.getName());
         qtb = (QueryTableModel) QueriesTable.getModel();
+        etb = (EntityTableModel) EntitiesTable.getModel();
     }
 
     /**
@@ -551,7 +553,8 @@ public final class CollectionTopComponent extends TopComponent {
             try {
                 Dispatcher dispatch = Dispatcher.getInstance();
                 entities.addThing(dispatch.runQueries(coll.getQueriesCollection()));
-                Tab.setEnabledAt(TAB_VISUAL, true);
+                entityModelChange();
+                Tab.setSelectedIndex(TAB_VISUAL);
             } catch (HttpException ex) {
                 output("502 Proxy Error: endpoint not available.");
             }
@@ -777,6 +780,13 @@ public final class CollectionTopComponent extends TopComponent {
      */
     private void queryModelChange() {
         qtb.fireTableDataChanged();
+    }
+    
+    /**
+     * Fires changes to the entity model table;
+     */
+    private void entityModelChange() {
+        etb.fireTableDataChanged();
     }
     
     /**
