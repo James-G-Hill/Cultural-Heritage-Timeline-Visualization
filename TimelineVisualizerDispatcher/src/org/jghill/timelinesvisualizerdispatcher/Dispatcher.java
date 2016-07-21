@@ -36,12 +36,14 @@ public class Dispatcher {
     public EntitiesCollection runQueries(QueriesCollection queries) {
         
         EntitiesCollection entities;
-        entities = new EntitiesCollection();
+        entities = new EntitiesCollection("Collection");
         
         output("Running campaigns");
         for(QueryShell q : queries) {
             output("Running query: " + q.getQueryName());
-            entities.addThing(q.run());
+            EntitiesCollection queryResults;
+            queryResults = q.run();
+            entities.addThing(queryResults);
         }
         output("All campaigns run");
         
