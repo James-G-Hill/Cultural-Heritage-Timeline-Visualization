@@ -5,7 +5,6 @@ import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 
 /**
  * A testing class for the EntityTableModel.
@@ -14,32 +13,32 @@ import static org.mockito.Mockito.mock;
  */
 public class EntityTableModelTest {
     
-    EntitiesCollection coll1;
-    EntitiesCollection coll2;
-    EntitiesCollection coll3;
-    EntitiesCollection coll4;
+    static EntitiesCollection coll1;
+    static EntitiesCollection coll2;
+    static EntitiesCollection coll3;
+    static EntitiesCollection coll4;
     
-    ManMadeObject mmo1;
-    ManMadeObject mmo2;
-    ManMadeObject mmo3;
-    ManMadeObject mmo4;
+    static ManMadeObject mmo1;
+    static ManMadeObject mmo2;
+    static ManMadeObject mmo3;
+    static ManMadeObject mmo4;
     
-    EntityTableModel table;
+    static EntityTableModel table;
     
     public EntityTableModelTest() {}
     
     @Before
     public void setUp() {
         
-        coll1 = mock(EntitiesCollection.class);
-        coll2 = mock(EntitiesCollection.class);
-        coll3 = mock(EntitiesCollection.class);
-        coll4 = mock(EntitiesCollection.class);
+        coll1 = new EntitiesCollection("Test1");
+        coll2 = new EntitiesCollection("Test2");
+        coll3 = new EntitiesCollection("Test3");
+        coll4 = new EntitiesCollection("Test4");
         
-        mmo1 = mock(ManMadeObject.class);
-        mmo2 = mock(ManMadeObject.class);
-        mmo3 = mock(ManMadeObject.class);
-        mmo4 = mock(ManMadeObject.class);
+        mmo1 = new ManMadeObject("A", "B", "C");
+        mmo2 = new ManMadeObject("D", "E", "F");
+        mmo3 = new ManMadeObject("G", "H", "I");
+        mmo4 = new ManMadeObject("J", "K", "L");
         
         coll1.addThing(coll2);
         coll1.addThing(coll3);
@@ -48,6 +47,7 @@ public class EntityTableModelTest {
         coll2.addThing(mmo2);
         coll3.addThing(mmo3);
         coll4.addThing(mmo4);
+        
         table = new EntityTableModel(coll1);
         
     }
@@ -55,7 +55,8 @@ public class EntityTableModelTest {
     @Test
     public void testEntitiesFlattenReturnsCorrectArraySize() {
         int rowCount = 4;
-        assertTrue(table.getRowCount() == rowCount);
+        assertEquals(rowCount, table.getRowCount());
     }
+    
     
 }
