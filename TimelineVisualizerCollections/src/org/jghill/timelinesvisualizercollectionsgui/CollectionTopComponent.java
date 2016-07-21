@@ -53,7 +53,7 @@ public final class CollectionTopComponent extends TopComponent {
     private Collection coll = 
             new CollectionImpl(
                     "New " + LocalDateTime.now(), 
-                    new EntitiesCollection(), 
+                    new EntitiesCollection("Collection"), 
                     new QueriesCollection());
     
     public CollectionTopComponent() {
@@ -542,7 +542,7 @@ public final class CollectionTopComponent extends TopComponent {
     }//GEN-LAST:event_ResetButtonActionPerformed
 
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
-        if(!checkQuerySettings()) {
+        if(querySettingsAreValid()) {
             createQuery();
         }
     }//GEN-LAST:event_CreateButtonActionPerformed
@@ -726,9 +726,9 @@ public final class CollectionTopComponent extends TopComponent {
      * 
      * @return where it has been filled correctly.
      */
-    private boolean checkQuerySettings() {
+    private boolean querySettingsAreValid() {
         if(QueryNameTextField.getText().equals("")) {return false;}
-        if(SourceComboBox.getSelectedItem().toString() != null) {return false;}
+        if(SourceComboBox.getSelectedItem().toString() == null) {return false;}
         return true;
     }
     
