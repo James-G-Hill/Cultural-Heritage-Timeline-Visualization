@@ -7,12 +7,15 @@ package org.jghill.timelinevisualizerentities;
  */
 public class ManMadeObject extends PhysicalThing {
     
+    public final String currentOwner;
+    
     public ManMadeObject(
+            String name,
+            String identifier,
             String currentOwner
     ) {
+        super(name, identifier);
         this.currentOwner = currentOwner;
     }
-    
-    public final String currentOwner;
     
 }
