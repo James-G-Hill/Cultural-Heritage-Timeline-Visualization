@@ -42,6 +42,7 @@ public class SPARQLQueryShell extends QueryShell {
     @Override
     public EntitiesCollection run() {
         output("Running query");
+        output(queryString);
         return getResults(QueryFactory.create(queryString));
     }
     
@@ -58,10 +59,7 @@ public class SPARQLQueryShell extends QueryShell {
             results = qexec.execSelect();
             return buildEntities(results);
         } catch (HttpException ex) {
-            throw new HttpException("502 Proxy Error:");
-        } catch (Exception ex) {
-            output(ex.toString());
-            return new EntitiesCollection();
+            throw new HttpException("502 Proxy Error: ");
         }
     }
     
@@ -72,8 +70,8 @@ public class SPARQLQueryShell extends QueryShell {
      * @return the entities.
      */
     private EntitiesCollection buildEntities(ResultSet results) {
-        output("building entities: " + results.toString());
-        EntitiesCollection entities = new EntitiesCollection();
+        EntitiesCollection entities;
+        entities = new EntitiesCollection(this.getQueryName());
         for(; results.hasNext();) {
             QuerySolution soln = results.next();
             
@@ -81,17 +79,18 @@ public class SPARQLQueryShell extends QueryShell {
             
             String identity = soln.getResource("identifier").toString();
             String title = soln.getResource("title").toString();
-            String owner = soln.getResource("owner").toString();
+            String keeper = soln.getResource("keeper").toString();
             
             output("Identifier  : " + identity);
             output("Title       : " + title);
-            output("Owner       : " + owner);
+            output("Keeper      : " + keeper);
             
             ManMadeObject thing;
             thing = new ManMadeObject(
-                    owner
+                    title,
+                    identity,
+                    keeper
             );
-            thing.setName(title);
             entities.addThing(thing);
         }
         return entities;
