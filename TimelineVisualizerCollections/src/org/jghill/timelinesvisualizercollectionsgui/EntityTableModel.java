@@ -1,7 +1,6 @@
 package org.jghill.timelinesvisualizercollectionsgui;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import org.jghill.timelinevisualizerentities.Entities;
