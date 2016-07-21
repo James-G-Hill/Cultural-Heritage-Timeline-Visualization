@@ -1,5 +1,8 @@
 package org.jghill.timelinevisualizerentitiescollection;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import org.jghill.timelinevisualizerentities.Entities;
@@ -12,13 +15,11 @@ import org.jghill.timelinevisualizerentities.Entities;
  */
 public class EntitiesCollection extends Entities {
     
-    private String originalQuery;
-    
-    private final SortedSet<Entities> collection;
+    private final List<Entities> list;
     
     public EntitiesCollection(String name) {
         super(name);
-        collection = new TreeSet<>();
+        list = new ArrayList<>();
     }
     
     /**
@@ -27,25 +28,28 @@ public class EntitiesCollection extends Entities {
      * @param e another entity to be added.
      */
     public void addThing(Entities e) {
-        collection.add(e);
+        list.add(e);
+        Collections.sort(list);
     }
     
     /**
      * Allows a count of the entities to be returned.
      * 
-     * @return a count of the entities within the collection.
+     * @return a count of the entities within the list.
      */
     public int count() {
-        return collection.size();
+        return list.size();
     }
     
     /**
-     * Return the entire collection.
+     * Return the entire list.
      * 
-     * @return the entity collection.
+     * @return the entity list.
      */
     public SortedSet<Entities> getCollectionSet() {
-        return collection;
+        SortedSet<Entities> sorted = new TreeSet<>();
+        sorted.addAll(list);
+        return sorted;
     }
     
 }
