@@ -13,27 +13,27 @@ public class SPARQLTranslator implements QueryTranslator {
 
     private QuerySettings settings;
     
-    private final String BMO = "bmo: <http://collection.britishmuseum.org/id/ontology/> ";
-    private final String ECRM = "crm: <http://www.cidoc-crm.org/cidoc-crm/> ";
+    private static final String BMO = "bmo: <http://collection.britishmuseum.org/id/ontology/> ";
+    private static final String ECRM = "crm: <http://www.cidoc-crm.org/cidoc-crm/> ";
     
-    private final String PREFIX = "PREFIX ";
-    private final String SELECTDISTINCT = "SELECT DISTINCT ";
-    private final String WHERE = "WHERE { ";
-    private final String END = "} ";
-    private final String LIMIT = "LIMIT ";
+    private static final String PREFIX = "PREFIX ";
+    private static final String SELECTDISTINCT = "SELECT DISTINCT ";
+    private static final String WHERE = "WHERE { ";
+    private static final String END = "} ";
+    private static final String LIMIT = "LIMIT ";
     
-    private final String OBJECT = "?object ";
-    private final String IDENTIFIER = "?identifier ";
-    private final String TITLE = "?title ";
-    private final String IMAGE = "?image ";
-    private final String IMAGENOTE = "?imageNote ";
-    private final String KEEPER = "?keeper ";
-    private final String DESCRIPTION = "?description ";
-    private final String BEGIN = "?begin ";
-    private final String FINAL = "?final ";
-    private final String PRODUCTION = "?production ";
-    private final String CONSISTS = "?consists ";
-    private final String SPAN = "?span ";
+    private static final String OBJECT = "?object ";
+    private static final String IDENTIFIER = "?identifier ";
+    private static final String TITLE = "?title ";
+    private static final String IMAGE = "?image ";
+    private static final String IMAGENOTE = "?imageNote ";
+    private static final String KEEPER = "?keeper ";
+    private static final String DESCRIPTION = "?description ";
+    private static final String BEGIN = "?begin ";
+    private static final String FINAL = "?final ";
+    private static final String PRODUCTION = "?production ";
+    private static final String CONSISTS = "?consists ";
+    private static final String SPAN = "?span ";
     
     @Override
     public QueryShell translate(QuerySettings settings) {
