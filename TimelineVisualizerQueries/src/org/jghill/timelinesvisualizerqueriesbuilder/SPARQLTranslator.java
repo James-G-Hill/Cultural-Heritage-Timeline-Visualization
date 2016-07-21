@@ -13,8 +13,8 @@ public class SPARQLTranslator implements QueryTranslator {
 
     private QuerySettings settings;
     
-    private final String BMO = "bmo: <http://collection.britishmuseum.org/id/ontology/>";
-    private final String ECRM = "ecrm: <http://erlangen-crm.org/current/> ";
+    private final String BMO = "bmo: <http://collection.britishmuseum.org/id/ontology/> ";
+    private final String ECRM = "crm: <http://www.cidoc-crm.org/cidoc-crm/> ";
     
     private final String PREFIX = "PREFIX ";
     private final String SELECTDISTINCT = "SELECT DISTINCT ";
@@ -24,10 +24,10 @@ public class SPARQLTranslator implements QueryTranslator {
     
     private final String OBJECT = "?object ";
     private final String IDENTIFIER = "?identifier ";
-    private final String TITLE = "?title";
+    private final String TITLE = "?title ";
     private final String IMAGE = "?image ";
     private final String IMAGENOTE = "?imageNote ";
-    private final String OWNER = "?owner ";
+    private final String KEEPER = "?keeper ";
     private final String DESCRIPTION = "?description ";
     private final String BEGIN = "?begin ";
     private final String FINAL = "?final ";
@@ -69,10 +69,12 @@ public class SPARQLTranslator implements QueryTranslator {
         return
                 SELECTDISTINCT +
                 OBJECT +
-                OWNER +
-                DESCRIPTION +
-                BEGIN +
-                FINAL;
+                IDENTIFIER +
+                TITLE +
+                KEEPER;
+//                DESCRIPTION +
+//                BEGIN +
+//                FINAL
     }
     
     /**
@@ -82,10 +84,10 @@ public class SPARQLTranslator implements QueryTranslator {
         String where = "";
         where += getIdentifier();
         where += getTitle();
-        where += getDescription();
-        where += getOwner();
-        where += getImage();
-        where += getDates();
+//        where += getDescription();
+        where += getKeeper();
+//        where += getImage();
+//        where += getDates();
         return where;
     }
     
@@ -93,14 +95,14 @@ public class SPARQLTranslator implements QueryTranslator {
      * The identifier of the object.
      */
     private String getIdentifier() {
-        return OBJECT + "ecrm:P1_is_identified_by" + IDENTIFIER + ". ";
+        return OBJECT + "crm:P1_is_identified_by " + IDENTIFIER + ". ";
     }
     
     /**
      * The name of the object.
      */
     private String getTitle() {
-        return OBJECT + "ecrm:P102_has_title" + TITLE + ". ";
+        return OBJECT + "crm:P102_has_title " + TITLE + ". ";
     }
     
     /**
@@ -111,10 +113,10 @@ public class SPARQLTranslator implements QueryTranslator {
     }
     
     /**
-     * Line for obtaining the objects current owner.
+     * Line for obtaining the objects current keeper.
      */
-    private String getOwner() {
-        return OBJECT + "ecrm:P52_has_current_owner " + OWNER + ". ";
+    private String getKeeper() {
+        return OBJECT + "crm:P50_has_current_keeper " + KEEPER + ". ";
     }
     
     /**
@@ -123,7 +125,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getImage() {
         String image = "";
         image += OBJECT + "bmo:PX_has_main_representation" + IMAGE + ". ";
-        image += IMAGE + "ecrm:P3_has_note " + IMAGENOTE + ". ";
+        image += IMAGE + "crm:P3_has_note " + IMAGENOTE + ". ";
         return image;
     }
     
@@ -132,11 +134,11 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getDates() {
         String dates = "";
-        dates += OBJECT + "ecrm:P108i_was_produced_by " + PRODUCTION + ". ";
-        dates += PRODUCTION + "ecrm:P9_consists_of " + CONSISTS + ". ";
-        dates += CONSISTS + "ecrm:P4_has_time-span " + SPAN + ". ";
-        dates += SPAN + "ecrm:P82a_begin_of_the_begin " + BEGIN + ". ";
-        dates += SPAN + "ecrm:P82b_end_of_the_end " + FINAL + ". ";
+        dates += OBJECT + "crm:P108i_was_produced_by " + PRODUCTION + ". ";
+        dates += PRODUCTION + "crm:P9_consists_of " + CONSISTS + ". ";
+        dates += CONSISTS + "crm:P4_has_time-span " + SPAN + ". ";
+        dates += SPAN + "crm:P82a_begin_of_the_begin " + BEGIN + ". ";
+        dates += SPAN + "crm:P82b_end_of_the_end " + FINAL + ". ";
         return dates;
     }
     
