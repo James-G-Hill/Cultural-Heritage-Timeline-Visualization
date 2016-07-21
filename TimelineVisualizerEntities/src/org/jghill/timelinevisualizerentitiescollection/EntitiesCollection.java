@@ -12,12 +12,12 @@ import org.jghill.timelinevisualizerentities.Entities;
  */
 public class EntitiesCollection extends Entities {
     
-    private String collectionName;
     private String originalQuery;
     
     private final SortedSet<Entities> collection;
     
-    public EntitiesCollection() {
+    public EntitiesCollection(String name) {
+        super(name);
         collection = new TreeSet<>();
     }
     
@@ -40,24 +40,6 @@ public class EntitiesCollection extends Entities {
     }
     
     /**
-     * A getter for the collection name.
-     * 
-     * @return the name of this collection.
-     */
-    public String getCollectionName() {
-        return  collectionName;
-    }
-    
-    /**
-     * A setter for naming the collection
-     * 
-     * @param name The name of the collection.
-     */
-    public void setCollectionName(String name) {
-        collectionName = name;
-    }
-    
-     /**
      * Return the entire collection.
      * 
      * @return the entity collection.
