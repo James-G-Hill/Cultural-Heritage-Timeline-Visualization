@@ -10,15 +10,9 @@ import java.util.Date;
  */
 public abstract class PhysicalThing extends Entities {
     
-    /**
-     * Dates
-     */
     private Date creationDate;
     private Date acquisitionDate;
     
-    /**
-     * Dimensions
-     */
     private String length;
     private String width;
     private String height;
@@ -26,22 +20,16 @@ public abstract class PhysicalThing extends Entities {
     private String widthUnit;
     private String heightUnit;
     
-    /**
-     * Physical properties
-     */
     private String consistsOf;
     private String physicalDescription;
     
-    /**
-     * Images
-     */
     private String mainImage;
     
-    /**
-     * Metadata
-     */
-    public String identifier;
     private String label;
     private String commentary;
+
+    public PhysicalThing(String name, String identifier) {
+        super(name, identifier);
+    }
     
 }
