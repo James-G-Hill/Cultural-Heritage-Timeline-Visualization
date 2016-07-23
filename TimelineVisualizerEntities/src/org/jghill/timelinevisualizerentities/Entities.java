@@ -34,7 +34,7 @@ abstract public class Entities implements Comparable {
     @Override
     public int compareTo(Object o) {
         Entities e = (Entities) o;
-        return identifier.compareTo(e.identifier);
-    } 
+        return name.compareTo(e.name);
+    }
     
 }
