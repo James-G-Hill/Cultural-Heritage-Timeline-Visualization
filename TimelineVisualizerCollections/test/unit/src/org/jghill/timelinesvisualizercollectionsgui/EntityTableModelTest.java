@@ -42,8 +42,6 @@ public class EntityTableModelTest {
         mmo3 = new ManMadeObject("G", "H", "I");
         mmo4 = new ManMadeObject("J", "K", "L");
         
-        table = new EntityTableModel(coll1);
-        
     }
 
     @Test
@@ -52,6 +50,7 @@ public class EntityTableModelTest {
         coll1.addThing(mmo2);
         coll1.addThing(mmo3);
         coll1.addThing(mmo4);
+        table = new EntityTableModel(coll1);
         assertEquals(rowCount, table.getRowCount());
     }
     
@@ -64,6 +63,7 @@ public class EntityTableModelTest {
         coll2.addThing(mmo2);
         coll3.addThing(mmo3);
         coll4.addThing(mmo4);
+        table = new EntityTableModel(coll1);
         assertEquals(rowCount, table.getRowCount());
     }
     
@@ -75,6 +75,7 @@ public class EntityTableModelTest {
         coll2.addThing(mmo2);
         coll3.addThing(mmo3);
         coll3.addThing(mmo4);
+        table = new EntityTableModel(coll1);
         assertEquals(rowCount, table.getRowCount());
     }
     
