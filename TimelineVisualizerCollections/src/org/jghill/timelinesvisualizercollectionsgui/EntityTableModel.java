@@ -85,12 +85,12 @@ public class EntityTableModel extends AbstractTableModel {
      * Flattens the entities collection into a single list.
      * 
      * @param coll the EntitiesCollection.
-     * @return a list containing all internal non collections.
+     * @return a list containing all internal non-collections.
      */
     private List<Entities> entitiesFlatten(EntitiesCollection coll) {
         List<Entities> arr = new ArrayList<>();
         for (Entities e : coll.getCollectionSet()) {
-            if(e.getClass() == EntitiesCollection.class) {
+            if(e instanceof EntitiesCollection) {
                 arr.addAll(entitiesFlatten((EntitiesCollection)e));
             } else {
                 arr.add(e);
