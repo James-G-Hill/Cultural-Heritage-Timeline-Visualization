@@ -57,8 +57,8 @@ public class EntityTableModelTest {
     @Test
     public void testEntitiesFlattenReturnsCorrectArraySizeFourLayers() {
         coll1.addThing(coll2);
-        coll1.addThing(coll3);
-        coll1.addThing(coll4);
+        coll2.addThing(coll3);
+        coll3.addThing(coll4);
         coll1.addThing(mmo1);
         coll2.addThing(mmo2);
         coll3.addThing(mmo3);
@@ -75,6 +75,19 @@ public class EntityTableModelTest {
         coll2.addThing(mmo2);
         coll3.addThing(mmo3);
         coll3.addThing(mmo4);
+        table = new EntityTableModel(coll1);
+        assertEquals(rowCount, table.getRowCount());
+    }
+    
+    @Test
+    public void testEntitiesFlattenReturnsCorrectArraySizeAllFourthLayer() {
+        coll1.addThing(coll2);
+        coll2.addThing(coll3);
+        coll3.addThing(coll4);
+        coll4.addThing(mmo1);
+        coll4.addThing(mmo2);
+        coll4.addThing(mmo3);
+        coll4.addThing(mmo4);
         table = new EntityTableModel(coll1);
         assertEquals(rowCount, table.getRowCount());
     }
