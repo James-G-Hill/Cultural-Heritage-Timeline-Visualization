@@ -13,6 +13,8 @@ import static org.junit.Assert.*;
  */
 public class EntityTableModelTest {
     
+    int rowCount = 4;
+    
     static EntitiesCollection coll1;
     static EntitiesCollection coll2;
     static EntitiesCollection coll3;
@@ -40,23 +42,40 @@ public class EntityTableModelTest {
         mmo3 = new ManMadeObject("G", "H", "I");
         mmo4 = new ManMadeObject("J", "K", "L");
         
-        coll1.addThing(coll2);
-        coll1.addThing(coll3);
-        coll2.addThing(coll4);
-        coll1.addThing(mmo1);
-        coll2.addThing(mmo2);
-        coll3.addThing(mmo3);
-        coll4.addThing(mmo4);
-        
         table = new EntityTableModel(coll1);
         
     }
 
     @Test
-    public void testEntitiesFlattenReturnsCorrectArraySize() {
-        int rowCount = 4;
+    public void testEntitiesFlattenReturnsCorrectArraySizeOneLayer() {
+        coll1.addThing(mmo1);
+        coll1.addThing(mmo2);
+        coll1.addThing(mmo3);
+        coll1.addThing(mmo4);
         assertEquals(rowCount, table.getRowCount());
     }
     
+    @Test
+    public void testEntitiesFlattenReturnsCorrectArraySizeFourLayers() {
+        coll1.addThing(coll2);
+        coll1.addThing(coll3);
+        coll1.addThing(coll4);
+        coll1.addThing(mmo1);
+        coll2.addThing(mmo2);
+        coll3.addThing(mmo3);
+        coll4.addThing(mmo4);
+        assertEquals(rowCount, table.getRowCount());
+    }
+    
+    @Test
+    public void testEntitiesFlattenReturnsCorrectArraySizeAllSecondLayer() {
+        coll1.addThing(coll2);
+        coll1.addThing(coll3);
+        coll2.addThing(mmo1);
+        coll2.addThing(mmo2);
+        coll3.addThing(mmo3);
+        coll3.addThing(mmo4);
+        assertEquals(rowCount, table.getRowCount());
+    }
     
 }
