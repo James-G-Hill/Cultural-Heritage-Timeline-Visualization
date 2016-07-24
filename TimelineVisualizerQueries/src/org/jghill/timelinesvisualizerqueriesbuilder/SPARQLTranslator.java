@@ -14,7 +14,8 @@ public class SPARQLTranslator implements QueryTranslator {
     private QuerySettings settings;
     
     private static final String BMO = "bmo: <http://collection.britishmuseum.org/id/ontology/> ";
-    private static final String ECRM = "crm: <http://www.cidoc-crm.org/cidoc-crm/> ";
+    private static final String CRM = "crm: <http://www.cidoc-crm.org/cidoc-crm/> ";
+    private static final String RDF = "rdfs: <http://www.w3.org/2000/01/rdf-schema#> ";
     
     private static final String PREFIX = "PREFIX ";
     private static final String SELECTDISTINCT = "SELECT DISTINCT ";
@@ -59,7 +60,8 @@ public class SPARQLTranslator implements QueryTranslator {
     private String prefix() {
         return
                 PREFIX + BMO +
-                PREFIX + ECRM;
+                PREFIX + CRM +
+                PREFIX + RDF;
     }
     
     /**
@@ -71,7 +73,8 @@ public class SPARQLTranslator implements QueryTranslator {
                 OBJECT +
                 IDENTIFIER +
                 TITLE +
-                KEEPER;
+                IMAGE;
+//                KEEPER;
 //                DESCRIPTION +
 //                BEGIN +
 //                FINAL
@@ -95,14 +98,14 @@ public class SPARQLTranslator implements QueryTranslator {
      * The identifier of the object.
      */
     private String getIdentifier() {
-        return OBJECT + "crm:P1_is_identified_by " + IDENTIFIER + ". ";
+        return OBJECT + "crm:P48_has_preferred_identifier/rdfs:label " + IDENTIFIER + ". ";
     }
     
     /**
      * The name of the object.
      */
     private String getTitle() {
-        return OBJECT + "crm:P102_has_title " + TITLE + ". ";
+        return OBJECT + "crm:P102_has_title/rdfs:label " + TITLE + ". ";
     }
     
     /**
@@ -124,8 +127,8 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getImage() {
         String image = "";
-        image += OBJECT + "bmo:PX_has_main_representation" + IMAGE + ". ";
-        image += IMAGE + "crm:P3_has_note " + IMAGENOTE + ". ";
+        image += "OPTIONAL { " + OBJECT + "crm:P138i_has_representation" + IMAGE + ". ";
+        image += "OPTIONAL { " + IMAGE + "crm:P3_has_note " + IMAGENOTE + " } . ";
         return image;
     }
     
