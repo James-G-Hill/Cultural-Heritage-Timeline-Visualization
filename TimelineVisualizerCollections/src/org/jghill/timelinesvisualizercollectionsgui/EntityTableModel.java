@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import org.jghill.timelinevisualizerentities.Entities;
+import org.jghill.timelinevisualizerentities.ManMadeObject;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 
 /**
@@ -14,9 +15,9 @@ import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 public class EntityTableModel extends AbstractTableModel {
 
     private final EntitiesCollection entitiesCollection;
-    private Entities[] entities;
+    private ManMadeObject[] entities;
     
-    private static final int COL_COUNT = 2;
+    private static final int COL_COUNT = 3;
     
     public EntityTableModel(EntitiesCollection entities) {
         this.entitiesCollection = entities;
@@ -37,9 +38,11 @@ public class EntityTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return entities[rowIndex].getName();
+                return entities[rowIndex].getIdentifier();
             case 1:
                 return entities[rowIndex].getName();
+            case 2:
+                return entities[rowIndex].getImage();
             default:
                 return null;
         }
@@ -49,9 +52,11 @@ public class EntityTableModel extends AbstractTableModel {
     public String getColumnName(int col) {
         switch(col) {
             case 0:
-                return "identifier";
+                return "Identifier";
             case 1:
-                return "name";
+                return "Name";
+            case 2:
+                return "Image";
             default:
                 return null;
         }
@@ -68,7 +73,7 @@ public class EntityTableModel extends AbstractTableModel {
      */
     private void updateDataTable() {
         List flat = entitiesFlatten(entitiesCollection);
-        entities = (Entities[]) flat.toArray(new Entities[flat.size()]);
+        entities = (ManMadeObject[]) flat.toArray(new ManMadeObject[flat.size()]);
     }
     
     /**
