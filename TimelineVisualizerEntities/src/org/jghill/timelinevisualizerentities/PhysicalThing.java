@@ -10,8 +10,11 @@ import java.util.Date;
  */
 public abstract class PhysicalThing extends Entities {
     
-    private Date creationDate;
-    private Date acquisitionDate;
+    private final String timeBegin;
+    private final String timeFinal;
+    
+    private String creationDate;
+    private String acquisitionDate;
     
     private String length;
     private String width;
@@ -29,13 +32,28 @@ public abstract class PhysicalThing extends Entities {
     private String label;
     private String commentary;
 
-    public PhysicalThing(String name, String identifier, String image) {
+    public PhysicalThing(
+            String name,
+            String identifier,
+            String image,
+            String timeBegin,
+            String timeFinal
+    ) {
         super(name, identifier);
         this.image = image;
+        this.timeBegin = timeBegin;
+        this.timeFinal = timeFinal;
     }
     
     public String getImage() {
         return image;
     }
     
+    public String getTimeBegin() {
+        return timeBegin;
+    }
+    
+    public String getTimeFinal() {
+        return timeFinal;
+    }
 }
