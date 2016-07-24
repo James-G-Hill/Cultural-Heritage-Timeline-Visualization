@@ -77,19 +77,23 @@ public class SPARQLQueryShell extends QueryShell {
             
             output("Solution: " + soln.toString());
             
-            String identity = soln.getResource("identifier").toString();
-            String title = soln.getResource("title").toString();
-            String keeper = soln.getResource("keeper").toString();
+            String identity = soln.get("identifier").toString();
+            String title = soln.get("title").toString();
+            
+            String image = "";
+            if(soln.get("image") != null) {
+                image = soln.get("image").toString();
+            }
             
             output("Identifier  : " + identity);
             output("Title       : " + title);
-            output("Keeper      : " + keeper);
+            output("Image       : " + image);
             
             ManMadeObject thing;
             thing = new ManMadeObject(
                     title,
                     identity,
-                    keeper
+                    image
             );
             entities.addThing(thing);
         }
