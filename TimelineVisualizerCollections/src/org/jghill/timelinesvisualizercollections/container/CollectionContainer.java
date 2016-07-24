@@ -1,9 +1,9 @@
-package org.jghill.timelinesvisualizercollectionscontainer;
+package org.jghill.timelinesvisualizercollections.container;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
 import org.jghill.timelinesvisualizercollections.Collection;
-import org.jghill.timelinesvisualizercollectionsnode.CollectionChildren;
+import org.jghill.timelinesvisualizercollections.node.CollectionChildren;
 
 /**
  * A collection for holding projects.

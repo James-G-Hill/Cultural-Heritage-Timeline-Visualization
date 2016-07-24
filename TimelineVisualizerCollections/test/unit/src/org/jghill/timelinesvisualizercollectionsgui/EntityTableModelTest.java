@@ -1,5 +1,6 @@
 package org.jghill.timelinesvisualizercollectionsgui;
 
+import org.jghill.timelinesvisualizercollections.gui.EntityTableModel;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.junit.Before;

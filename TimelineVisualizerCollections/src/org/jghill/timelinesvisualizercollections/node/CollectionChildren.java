@@ -1,4 +1,4 @@
-package org.jghill.timelinesvisualizercollectionsnode;
+package org.jghill.timelinesvisualizercollections.node;
 
 import org.jghill.timelinesvisualizercollections.Collection;
 import org.openide.nodes.Children;

@@ -1,4 +1,4 @@
-package org.jghill.timelinesvisualizercollectionsgui;
+package org.jghill.timelinesvisualizercollections.gui;
 
 import javax.swing.table.AbstractTableModel;
 import org.jghill.timelinevisualizerqueries.QueryShell;

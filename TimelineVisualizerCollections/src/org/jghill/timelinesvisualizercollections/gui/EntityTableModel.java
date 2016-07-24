@@ -1,4 +1,4 @@
-package org.jghill.timelinesvisualizercollectionsgui;
+package org.jghill.timelinesvisualizercollections.gui;
 
 import java.util.ArrayList;
 import java.util.List;

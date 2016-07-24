@@ -1,7 +1,7 @@
 package org.jghill.timelinesvisualizercollections;
 
-import org.jghill.timelinesvisualizercollectionscontainer.CollectionContainer;
-import org.jghill.timelinesvisualizercollectionsgui.CollectionTopComponent;
+import org.jghill.timelinesvisualizercollections.container.CollectionContainer;
+import org.jghill.timelinesvisualizercollections.gui.CollectionTopComponent;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
 import org.openide.util.Lookup;

@@ -1,4 +1,4 @@
-package org.jghill.timelinesvisualizercollectionsgui;
+package org.jghill.timelinesvisualizercollections.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,7 +6,7 @@ import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionRegistration;
 import org.openide.util.NbBundle.Messages;
-import org.jghill.timelinesvisualizercollectionscontainer.CollectionContainer;
+import org.jghill.timelinesvisualizercollections.container.CollectionContainer;
 import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
 

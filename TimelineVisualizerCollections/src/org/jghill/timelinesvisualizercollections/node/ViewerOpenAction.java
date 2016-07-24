@@ -1,4 +1,4 @@
-package org.jghill.timelinesvisualizercollectionsnode;
+package org.jghill.timelinesvisualizercollections.node;
 
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;

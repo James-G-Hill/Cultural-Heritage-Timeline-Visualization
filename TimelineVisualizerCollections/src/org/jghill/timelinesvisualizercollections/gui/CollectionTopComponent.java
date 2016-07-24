@@ -1,4 +1,4 @@
-package org.jghill.timelinesvisualizercollectionsgui;
+package org.jghill.timelinesvisualizercollections.gui;
 
 import java.time.LocalDateTime;
 import javax.swing.DefaultComboBoxModel;
