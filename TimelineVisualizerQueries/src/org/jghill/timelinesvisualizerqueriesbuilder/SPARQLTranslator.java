@@ -31,10 +31,9 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String KEEPER = "?keeper ";
     private static final String DESCRIPTION = "?description ";
     private static final String BEGIN = "?begin ";
-    private static final String FINAL = "?final ";
+    private static final String FINISH = "?finish ";
     private static final String PRODUCTION = "?production ";
-    private static final String CONSISTS = "?consists ";
-    private static final String SPAN = "?span ";
+    private static final String TIME = "?time ";
     
     @Override
     public QueryShell translate(QuerySettings settings) {
@@ -70,14 +69,11 @@ public class SPARQLTranslator implements QueryTranslator {
     private String select() {
         return
                 SELECTDISTINCT +
-                OBJECT +
                 IDENTIFIER +
                 TITLE +
-                IMAGE;
-//                KEEPER;
-//                DESCRIPTION +
-//                BEGIN +
-//                FINAL
+                IMAGE +
+                BEGIN +
+                FINISH;
     }
     
     /**
@@ -88,9 +84,9 @@ public class SPARQLTranslator implements QueryTranslator {
         where += getIdentifier();
         where += getTitle();
 //        where += getDescription();
-        where += getKeeper();
-//        where += getImage();
-//        where += getDates();
+//        where += getKeeper();
+        where += getImage();
+        where += getDates();
         return where;
     }
     
@@ -127,7 +123,7 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getImage() {
         String image = "";
-        image += "OPTIONAL { " + OBJECT + "crm:P138i_has_representation" + IMAGE + ". ";
+        image += "OPTIONAL { " + OBJECT + "crm:P138i_has_representation " + IMAGE + " } . ";
         image += "OPTIONAL { " + IMAGE + "crm:P3_has_note " + IMAGENOTE + " } . ";
         return image;
     }
@@ -137,11 +133,11 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getDates() {
         String dates = "";
-        dates += OBJECT + "crm:P108i_was_produced_by " + PRODUCTION + ". ";
-        dates += PRODUCTION + "crm:P9_consists_of " + CONSISTS + ". ";
-        dates += CONSISTS + "crm:P4_has_time-span " + SPAN + ". ";
-        dates += SPAN + "crm:P82a_begin_of_the_begin " + BEGIN + ". ";
-        dates += SPAN + "crm:P82b_end_of_the_end " + FINAL + ". ";
+        dates += PRODUCTION + " a crm:E12_Production ";
+        dates += "; crm:P108_has_produced " + OBJECT + " ";
+        dates += "; crm:P4_has_time-span " + TIME + ". ";
+        dates += TIME + "crm:P79_beginning_is_qualified_by " + BEGIN + ". ";
+        dates += TIME + "crm:P80_end_is_qualified_by " + FINISH + ". ";
         return dates;
     }
     
