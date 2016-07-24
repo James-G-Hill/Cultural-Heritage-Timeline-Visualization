@@ -12,9 +12,11 @@ public class ManMadeObject extends PhysicalThing {
     public ManMadeObject(
             String name,
             String identifier,
-            String image
+            String image,
+            String timeBegin,
+            String timeFinal
     ) {
-        super(name, identifier, image);
+        super(name, identifier, image, timeBegin, timeFinal);
     }
     
 }
