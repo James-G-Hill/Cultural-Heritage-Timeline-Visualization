@@ -27,7 +27,6 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String IDENTIFIER = "?identifier ";
     private static final String TITLE = "?title ";
     private static final String IMAGE = "?image ";
-    private static final String IMAGENOTE = "?imageNote ";
     private static final String KEEPER = "?keeper ";
     private static final String DESCRIPTION = "?description ";
     private static final String BEGIN = "?begin ";
@@ -124,7 +123,6 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getImage() {
         String image = "";
         image += "OPTIONAL { " + OBJECT + "crm:P138i_has_representation " + IMAGE + " } . ";
-        image += "OPTIONAL { " + IMAGE + "crm:P3_has_note " + IMAGENOTE + " } . ";
         return image;
     }
     
