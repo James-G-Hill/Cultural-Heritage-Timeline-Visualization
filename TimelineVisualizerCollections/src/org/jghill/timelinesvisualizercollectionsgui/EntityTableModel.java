@@ -17,7 +17,7 @@ public class EntityTableModel extends AbstractTableModel {
     private final EntitiesCollection collection;
     private ManMadeObject[] entities;
     
-    private static final int COL_COUNT = 3;
+    private static final int COL_COUNT = 5;
     
     public EntityTableModel(EntitiesCollection e) {
         this.collection = e;
@@ -43,6 +43,10 @@ public class EntityTableModel extends AbstractTableModel {
                 return entities[rowIndex].getName();
             case 2:
                 return entities[rowIndex].getImage();
+            case 3:
+                return entities[rowIndex].getTimeBegin();
+            case 4:
+                return entities[rowIndex].getTimeFinal();
             default:
                 return null;
         }
@@ -57,6 +61,10 @@ public class EntityTableModel extends AbstractTableModel {
                 return "Name";
             case 2:
                 return "Image";
+            case 3:
+                return "Time Start";
+            case 4:
+                return "Time Finish";
             default:
                 return null;
         }
