@@ -85,15 +85,22 @@ public class SPARQLQueryShell extends QueryShell {
                 image = soln.get("image").toString();
             }
             
+            String begin = soln.get("begin").toString();
+            String finish = soln.get("finish").toString();
+            
             output("Identifier  : " + identity);
             output("Title       : " + title);
             output("Image       : " + image);
+            output("Begin       : " + begin);
+            output("Finish      : " + finish);
             
             ManMadeObject thing;
             thing = new ManMadeObject(
                     title,
                     identity,
-                    image
+                    image,
+                    begin,
+                    finish
             );
             entities.addThing(thing);
         }
