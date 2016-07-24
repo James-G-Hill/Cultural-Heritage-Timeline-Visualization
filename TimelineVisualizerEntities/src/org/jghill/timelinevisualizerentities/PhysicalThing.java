@@ -23,13 +23,19 @@ public abstract class PhysicalThing extends Entities {
     private String consistsOf;
     private String physicalDescription;
     
-    private String mainImage;
+    protected String image;
+    protected String imageNote;
     
     private String label;
     private String commentary;
 
-    public PhysicalThing(String name, String identifier) {
+    public PhysicalThing(String name, String identifier, String image) {
         super(name, identifier);
+        this.image = image;
+    }
+    
+    public String getImage() {
+        return image;
     }
     
 }
