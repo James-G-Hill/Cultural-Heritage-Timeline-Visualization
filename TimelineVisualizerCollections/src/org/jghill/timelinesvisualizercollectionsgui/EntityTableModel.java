@@ -14,13 +14,13 @@ import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
  */
 public class EntityTableModel extends AbstractTableModel {
 
-    private final EntitiesCollection entitiesCollection;
+    private final EntitiesCollection collection;
     private ManMadeObject[] entities;
     
     private static final int COL_COUNT = 3;
     
-    public EntityTableModel(EntitiesCollection entities) {
-        this.entitiesCollection = entities;
+    public EntityTableModel(EntitiesCollection e) {
+        this.collection = e;
         updateDataTable();
     }
     
@@ -72,8 +72,9 @@ public class EntityTableModel extends AbstractTableModel {
      * Updates the array fed from the data table.
      */
     private void updateDataTable() {
-        List flat = entitiesFlatten(entitiesCollection);
-        entities = (ManMadeObject[]) flat.toArray(new ManMadeObject[flat.size()]);
+        List flat = entitiesFlatten(collection);
+        entities = new ManMadeObject[flat.size()];
+        flat.toArray(entities);
     }
     
     /**
