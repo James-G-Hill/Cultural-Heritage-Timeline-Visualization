@@ -1,5 +1,6 @@
 package org.jghill.timelinesvisualizercollections.gui;
 
+import java.awt.BorderLayout;
 import java.time.LocalDateTime;
 import javax.swing.DefaultComboBoxModel;
 import org.apache.jena.atlas.web.HttpException;
@@ -9,6 +10,7 @@ import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinesvisualizercollections.CollectionImpl;
+import org.jghill.timelinesvisualizercollections.display.TimeLine;
 import org.jghill.timelinesvisualizerdispatcher.Dispatcher;
 import org.jghill.timelinesvisualizerqueriesbuilder.QueryBuilder;
 import org.jghill.timelinesvisualizerqueriesbuilder.QuerySettings;
@@ -510,7 +512,7 @@ public final class CollectionTopComponent extends TopComponent {
         Visualizer.setLayout(VisualizerLayout);
         VisualizerLayout.setHorizontalGroup(
             VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 981, Short.MAX_VALUE)
+            .addGap(0, 985, Short.MAX_VALUE)
         );
         VisualizerLayout.setVerticalGroup(
             VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -554,6 +556,9 @@ public final class CollectionTopComponent extends TopComponent {
                 Dispatcher dispatch = Dispatcher.getInstance();
                 entities.addThing(dispatch.runQueries(coll.getQueriesCollection()));
                 entityModelChange();
+                TimeLine tm = new TimeLine(etb.getFlattenedCollection());
+                Visualizer.setLayout(new BorderLayout());
+                Visualizer.add(tm, BorderLayout.NORTH);
                 Tab.setSelectedIndex(TAB_VISUAL);
             } catch (HttpException ex) {
                 output("502 Proxy Error: endpoint not available.");
