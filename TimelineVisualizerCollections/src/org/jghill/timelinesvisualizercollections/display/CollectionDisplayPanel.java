@@ -19,15 +19,17 @@ public class CollectionDisplayPanel extends JPanel {
     private int interval;
     private int intervalsCount;
     
-    public void setArray(ManMadeObject[] collection) {
+    public void setArray(ManMadeObject[] collection, TimeLine tm) {
         calculateEarliestLatest(collection);
         interval = calculateInterval();
         intervalsCount = countIntervals();
+        tm.setArray(getArrayOfDates());
     }
     
     /**
+     * Calculate the earliest and latest dates to display on the timeline.
      * 
-     * @param collection 
+     * @param collection the colleciton of objects to calculate from.
      */
     private void calculateEarliestLatest(ManMadeObject[] collection) {
         
@@ -54,8 +56,9 @@ public class CollectionDisplayPanel extends JPanel {
     }
     
     /**
+     * Calculates the intervals size.
      * 
-     * @return 
+     * @return the size of the interval.
      */
     private int calculateInterval() {
        int difference = 
@@ -64,13 +67,23 @@ public class CollectionDisplayPanel extends JPanel {
     }
     
     /**
+     * Calculates the number of intervals to display on the timeline.
      * 
-     * @return 
+     * @return the number of intervals.
      */
     private int countIntervals() {
         int lower = (int) Math.floor(Math.abs(earliest.get(Calendar.YEAR)/interval));
         int higher = (int) Math.ceil(Math.abs(latest.get(Calendar.YEAR)/interval));
         return (higher - lower) / interval;
+    }
+    
+    
+    private int[] getArrayOfDates() {
+        int[] dates = new int[intervalsCount];
+        for(int i = 0; i < intervalsCount; i++) {
+            dates[i] = earliest.get(Calendar.YEAR) + (i * interval);
+        }
+        return dates;
     }
     
 }
