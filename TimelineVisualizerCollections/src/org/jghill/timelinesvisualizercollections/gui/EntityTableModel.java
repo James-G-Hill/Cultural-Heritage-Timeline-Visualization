@@ -113,4 +113,11 @@ public class EntityTableModel extends AbstractTableModel {
         return arr;
     }
     
+    /**
+     * @return the flattened collection as an array.
+     */
+    public ManMadeObject[] getFlattenedCollection() {
+        return entities;
+    }
+    
 }
