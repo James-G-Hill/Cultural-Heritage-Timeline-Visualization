@@ -1,6 +1,5 @@
 package org.jghill.timelinesvisualizercollections.gui;
 
-import java.awt.BorderLayout;
 import java.time.LocalDateTime;
 import javax.swing.DefaultComboBoxModel;
 import org.apache.jena.atlas.web.HttpException;
@@ -10,7 +9,6 @@ import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinesvisualizercollections.CollectionImpl;
-import org.jghill.timelinesvisualizercollections.display.TimeLine;
 import org.jghill.timelinesvisualizerdispatcher.Dispatcher;
 import org.jghill.timelinesvisualizerqueriesbuilder.QueryBuilder;
 import org.jghill.timelinesvisualizerqueriesbuilder.QuerySettings;
@@ -142,6 +140,7 @@ public final class CollectionTopComponent extends TopComponent {
         EntitiesScrollPane = new javax.swing.JScrollPane();
         EntitiesTable = new javax.swing.JTable();
         Visualizer = new javax.swing.JPanel();
+        collectionDisplayPanel = new org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel();
 
         Tab.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -508,15 +507,35 @@ public final class CollectionTopComponent extends TopComponent {
 
         Tab.addTab(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Entities.TabConstraints.tabTitle"), Entities); // NOI18N
 
+        collectionDisplayPanel.setBackground(new java.awt.Color(255, 255, 255));
+        collectionDisplayPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        javax.swing.GroupLayout collectionDisplayPanelLayout = new javax.swing.GroupLayout(collectionDisplayPanel);
+        collectionDisplayPanel.setLayout(collectionDisplayPanelLayout);
+        collectionDisplayPanelLayout.setHorizontalGroup(
+            collectionDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 963, Short.MAX_VALUE)
+        );
+        collectionDisplayPanelLayout.setVerticalGroup(
+            collectionDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 450, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout VisualizerLayout = new javax.swing.GroupLayout(Visualizer);
         Visualizer.setLayout(VisualizerLayout);
         VisualizerLayout.setHorizontalGroup(
             VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 985, Short.MAX_VALUE)
+            .addGroup(VisualizerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(collectionDisplayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         VisualizerLayout.setVerticalGroup(
             VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 474, Short.MAX_VALUE)
+            .addGroup(VisualizerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(collectionDisplayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         Tab.addTab(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Visualizer.TabConstraints.tabTitle"), Visualizer); // NOI18N
@@ -556,10 +575,7 @@ public final class CollectionTopComponent extends TopComponent {
                 Dispatcher dispatch = Dispatcher.getInstance();
                 entities.addThing(dispatch.runQueries(coll.getQueriesCollection()));
                 entityModelChange();
-                TimeLine tm = new TimeLine(etb.getFlattenedCollection());
-                Visualizer.setLayout(new BorderLayout());
-                Visualizer.add(tm, BorderLayout.NORTH);
-                Tab.setSelectedIndex(TAB_VISUAL);
+                collectionDisplayPanel.setArray(etb.getFlattenedCollection());
             } catch (HttpException ex) {
                 output("502 Proxy Error: endpoint not available.");
             }
@@ -641,6 +657,7 @@ public final class CollectionTopComponent extends TopComponent {
     private javax.swing.JTextField WidthLowerTextField;
     private javax.swing.JComboBox<String> WidthUnitComboBox;
     private javax.swing.JTextField WidthUpperTextField;
+    private org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel collectionDisplayPanel;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     // End of variables declaration//GEN-END:variables
     
