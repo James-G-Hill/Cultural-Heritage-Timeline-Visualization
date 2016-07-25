@@ -141,6 +141,7 @@ public final class CollectionTopComponent extends TopComponent {
         EntitiesTable = new javax.swing.JTable();
         Visualizer = new javax.swing.JPanel();
         collectionDisplayPanel = new org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel();
+        timeLine = new org.jghill.timelinesvisualizercollections.display.TimeLine();
 
         Tab.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -510,15 +511,34 @@ public final class CollectionTopComponent extends TopComponent {
         collectionDisplayPanel.setBackground(new java.awt.Color(255, 255, 255));
         collectionDisplayPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
+        timeLine.setBackground(new java.awt.Color(237, 237, 255));
+
+        javax.swing.GroupLayout timeLineLayout = new javax.swing.GroupLayout(timeLine);
+        timeLine.setLayout(timeLineLayout);
+        timeLineLayout.setHorizontalGroup(
+            timeLineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 943, Short.MAX_VALUE)
+        );
+        timeLineLayout.setVerticalGroup(
+            timeLineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout collectionDisplayPanelLayout = new javax.swing.GroupLayout(collectionDisplayPanel);
         collectionDisplayPanel.setLayout(collectionDisplayPanelLayout);
         collectionDisplayPanelLayout.setHorizontalGroup(
             collectionDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 963, Short.MAX_VALUE)
+            .addGroup(collectionDisplayPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(timeLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         collectionDisplayPanelLayout.setVerticalGroup(
             collectionDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, collectionDisplayPanelLayout.createSequentialGroup()
+                .addContainerGap(379, Short.MAX_VALUE)
+                .addComponent(timeLine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout VisualizerLayout = new javax.swing.GroupLayout(Visualizer);
@@ -659,6 +679,7 @@ public final class CollectionTopComponent extends TopComponent {
     private javax.swing.JTextField WidthUpperTextField;
     private org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel collectionDisplayPanel;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
+    private org.jghill.timelinesvisualizercollections.display.TimeLine timeLine;
     // End of variables declaration//GEN-END:variables
     
     @Override
