@@ -3,7 +3,7 @@ package org.jghill.timelinesvisualizercollections.display;
 import java.util.Calendar;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
 import static org.junit.Assert.assertEquals;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -20,8 +20,8 @@ public class CollectionDisplayUtilitiesTest {
     
     static ManMadeObject[] mmo;
     
-    @BeforeClass
-    public static void setUpClass() {
+    @Before
+    public void setUp() {
         
         earliest = mock(Calendar.class);
         latest = mock(Calendar.class);
