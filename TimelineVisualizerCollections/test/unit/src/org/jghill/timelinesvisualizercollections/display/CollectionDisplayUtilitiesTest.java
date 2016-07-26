@@ -68,4 +68,13 @@ public class CollectionDisplayUtilitiesTest {
         assertEquals(predicted, result);
     }
     
+    @Test
+    public void testCountIntervals() {
+        when(earliest.get(Calendar.YEAR)).thenReturn(1000);
+        when(latest.get(Calendar.YEAR)).thenReturn(1015);
+        int predicted = 15;
+        int result = CollectionDisplayUtilities.countIntervals(earliest, latest);
+        assertEquals(predicted, result);
+    }
+    
 }
