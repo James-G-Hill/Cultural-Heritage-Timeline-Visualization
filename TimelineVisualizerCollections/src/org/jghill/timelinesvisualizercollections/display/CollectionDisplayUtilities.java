@@ -40,18 +40,21 @@ public final class CollectionDisplayUtilities {
      * 
      * @param collection the collection of objects to calculate from.
      */
-    public static Calendar calculateLatest(ManMadeObject[] collection, Calendar latest) {
-        Calendar temp = latest;
+    public static Calendar calculateLatest(ManMadeObject[] collection) {
+        Calendar latest = null;
+        Calendar temp;
         for(ManMadeObject e : collection) {
             try {
                 int year = Integer.parseInt(e.getTimeBegin());
                 temp = new GregorianCalendar(year, 1, 1);
-                if (latest.before(temp)) {
-                    return temp;
+                if (latest == null) {
+                    latest = temp;
+                } else if (latest.before(temp)) {
+                    latest = temp;
                 }
             } catch (Exception ex) {}
         }
-        return temp;
+        return latest;
     }
     
     /**
