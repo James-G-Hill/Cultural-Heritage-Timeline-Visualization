@@ -23,14 +23,38 @@ public class CollectionDisplayUtilitiesTest {
         latest = mock(Calendar.class);
     }
 
-    /**
-     * Test of setArray method, of class CollectionDisplayPanel.
-     */
     @Test
     public void testCalculateIntervalTen() {
         when(earliest.get(Calendar.YEAR)).thenReturn(1000);
         when(latest.get(Calendar.YEAR)).thenReturn(1010);
         int predicted = 1;
+        int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
+        assertEquals(predicted, result);
+    }
+    
+    @Test
+    public void testCalculateIntervalHundred() {
+        when(earliest.get(Calendar.YEAR)).thenReturn(2000);
+        when(latest.get(Calendar.YEAR)).thenReturn(2100);
+        int predicted = 10;
+        int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
+        assertEquals(predicted, result);
+    }
+    
+    @Test
+    public void testCalculateIntervalThousand() {
+        when(earliest.get(Calendar.YEAR)).thenReturn(1000);
+        when(latest.get(Calendar.YEAR)).thenReturn(2000);
+        int predicted = 100;
+        int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
+        assertEquals(predicted, result);
+    }
+    
+    @Test
+    public void testCalculateIntervalOverEra() {
+        when(earliest.get(Calendar.YEAR)).thenReturn(-1000);
+        when(latest.get(Calendar.YEAR)).thenReturn(1000);
+        int predicted = 1000;
         int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
         assertEquals(predicted, result);
     }
