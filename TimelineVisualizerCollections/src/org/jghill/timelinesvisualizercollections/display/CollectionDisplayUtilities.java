@@ -59,7 +59,7 @@ public final class CollectionDisplayUtilities {
     public static int calculateInterval(Calendar earliest, Calendar latest) {
        int difference = 
                latest.get(Calendar.YEAR) - earliest.get(Calendar.YEAR);
-        return (int) Math.floor(difference/10) * 10;
+        return (int) Math.floor(difference / 10);
     }
     
     /**
