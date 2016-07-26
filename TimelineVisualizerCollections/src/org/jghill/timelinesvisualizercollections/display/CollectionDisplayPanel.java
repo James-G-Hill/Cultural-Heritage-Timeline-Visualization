@@ -14,14 +14,14 @@ public class CollectionDisplayPanel extends JPanel {
     
     public CollectionDisplayPanel() {}
     
-    private Calendar earliest = null;
-    private Calendar latest = null;
+    private Calendar earliest;
+    private Calendar latest;
     private int interval;
     private int intervalsCount;
     
     public void setArray(ManMadeObject[] collection, TimeLine tm) {
-        earliest = calculateEarliest(collection, earliest);
-        latest = calculateLatest(collection, latest);
+        earliest = calculateEarliest(collection);
+        latest = calculateLatest(collection);
         interval = calculateInterval(earliest, latest);
         intervalsCount = countIntervals(earliest, latest);
         int[] dateArray = getArrayOfDates(earliest, interval, intervalsCount);
