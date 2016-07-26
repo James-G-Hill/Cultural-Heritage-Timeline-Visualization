@@ -67,10 +67,15 @@ public final class CollectionDisplayUtilities {
      * 
      * @return the number of intervals.
      */
-    public static int countIntervals(Calendar earliest, Calendar latest, int interval) {
-        int lower = (int) Math.floor(Math.abs(earliest.get(Calendar.YEAR)/interval));
-        int higher = (int) Math.ceil(Math.abs(latest.get(Calendar.YEAR)/interval));
-        return (higher - lower) / interval;
+    public static int countIntervals(Calendar earliest, Calendar latest) {
+        int interval = calculateInterval(earliest, latest);
+        if (interval == 0) {
+            return 1;
+        } else {
+            int lower = (int) Math.floor(Math.abs(earliest.get(Calendar.YEAR)/interval));
+            int higher = (int) Math.ceil(Math.abs(latest.get(Calendar.YEAR)/interval));
+            return (higher - lower) / interval;
+        }
     }
     
     /**
