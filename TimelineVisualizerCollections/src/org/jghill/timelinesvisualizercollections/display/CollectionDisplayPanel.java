@@ -1,8 +1,8 @@
 package org.jghill.timelinesvisualizercollections.display;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import javax.swing.JPanel;
+import static org.jghill.timelinesvisualizercollections.display.CollectionDisplayUtilities.*;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
 
 /**
@@ -14,76 +14,18 @@ public class CollectionDisplayPanel extends JPanel {
     
     public CollectionDisplayPanel() {}
     
-    private Calendar earliest;
-    private Calendar latest;
+    private Calendar earliest = null;
+    private Calendar latest = null;
     private int interval;
     private int intervalsCount;
     
     public void setArray(ManMadeObject[] collection, TimeLine tm) {
-        calculateEarliestLatest(collection);
-        interval = calculateInterval();
-        intervalsCount = countIntervals();
-        tm.setArray(getArrayOfDates());
-    }
-    
-    /**
-     * Calculate the earliest and latest dates to display on the timeline.
-     * 
-     * @param collection the colleciton of objects to calculate from.
-     */
-    private void calculateEarliestLatest(ManMadeObject[] collection) {
-        
-        Calendar temp;
-        
-        for(ManMadeObject e : collection) {
-            try {
-                int year = Integer.parseInt(e.getTimeBegin());
-                temp = new GregorianCalendar(year, 1, 1);
-                if (earliest == null && latest == null) {
-                    earliest = temp;
-                    latest = temp;
-                } else {
-                    if(earliest.after(temp)) {
-                        earliest = temp;
-                    }
-                    if (latest.before(temp)) {
-                        latest = temp;
-                    }
-                }
-            } catch (Exception ex) {}
-        }
-        
-    }
-    
-    /**
-     * Calculates the intervals size.
-     * 
-     * @return the size of the interval.
-     */
-    private int calculateInterval() {
-       int difference = 
-               latest.get(Calendar.YEAR) - earliest.get(Calendar.YEAR);
-        return (int) Math.floor(difference/10) * 10;
-    }
-    
-    /**
-     * Calculates the number of intervals to display on the timeline.
-     * 
-     * @return the number of intervals.
-     */
-    private int countIntervals() {
-        int lower = (int) Math.floor(Math.abs(earliest.get(Calendar.YEAR)/interval));
-        int higher = (int) Math.ceil(Math.abs(latest.get(Calendar.YEAR)/interval));
-        return (higher - lower) / interval;
-    }
-    
-    
-    private int[] getArrayOfDates() {
-        int[] dates = new int[intervalsCount];
-        for(int i = 0; i < intervalsCount; i++) {
-            dates[i] = earliest.get(Calendar.YEAR) + (i * interval);
-        }
-        return dates;
+        earliest = calculateEarliest(collection, earliest);
+        latest = calculateLatest(collection, latest);
+        interval = calculateInterval(earliest, latest);
+        intervalsCount = countIntervals(earliest, latest, interval);
+        int[] dateArray = getArrayOfDates(earliest, interval, intervalsCount);
+        tm.setArray(dateArray);
     }
     
 }
