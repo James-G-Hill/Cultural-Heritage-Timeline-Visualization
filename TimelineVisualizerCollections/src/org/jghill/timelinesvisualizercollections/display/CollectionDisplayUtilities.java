@@ -79,7 +79,7 @@ public final class CollectionDisplayUtilities {
     }
     
     /**
-     * Returns an array of dates between dates.
+     * Returns an array of dates from the start date.
      * 
      * @param earliest the earliest Calendar date.
      * @param interval the size of the intervals.
@@ -88,10 +88,16 @@ public final class CollectionDisplayUtilities {
      */
     public static int[] getArrayOfDates(Calendar earliest, int interval, int intervalsCount) {
         int[] dates = new int[intervalsCount];
-        for(int i = 0; i < intervalsCount; i++) {
-            dates[i] = earliest.get(Calendar.YEAR) + (i * interval);
+        if (interval == 0) {
+            dates[0] = 0;
+            return dates;
+        } else {
+            int startYear = (int) Math.floor(Math.abs(earliest.get(Calendar.YEAR)/interval)) * interval;
+            for(int i = 0; i < intervalsCount; i++) {
+                dates[i] = startYear + (i * interval);
+            }
+            return dates;
         }
-        return dates;
     }
     
 }
