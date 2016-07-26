@@ -86,4 +86,16 @@ public class CollectionDisplayUtilitiesTest {
         assertEquals(predicted, result);
     }
     
+    @Test
+    public void testGetArrayOfDates() {
+        when(earliest.get(Calendar.YEAR)).thenReturn(1995);
+        int predicted1 = 1990;
+        int predicted2 = 2000;
+        int predicted3 = 2010;
+        int[] result = CollectionDisplayUtilities.getArrayOfDates(earliest, 10, 3);
+        assertEquals(predicted1, result[0]);
+        assertEquals(predicted2, result[1]);
+        assertEquals(predicted3, result[2]);
+    }
+    
 }
