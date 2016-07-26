@@ -1,6 +1,7 @@
 package org.jghill.timelinesvisualizercollections.display;
 
 import java.util.Calendar;
+import org.jghill.timelinevisualizerentities.ManMadeObject;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,12 +18,46 @@ public class CollectionDisplayUtilitiesTest {
     static Calendar earliest;
     static Calendar latest;
     
+    static ManMadeObject[] mmo;
+    
     @BeforeClass
     public static void setUpClass() {
+        
         earliest = mock(Calendar.class);
         latest = mock(Calendar.class);
+        
+        mmo = new ManMadeObject[3];
+        ManMadeObject mmo1 = mock(ManMadeObject.class);
+        ManMadeObject mmo2 = mock(ManMadeObject.class);
+        ManMadeObject mmo3 = mock(ManMadeObject.class);
+        mmo[0] = mmo1;
+        mmo[1] = mmo2;
+        mmo[2] = mmo3;
+        
     }
-
+    
+    @Test
+    public void testCalculateEarliest() {
+        earliest = null;
+        when(mmo[0].getTimeBegin()).thenReturn("1985");
+        when(mmo[1].getTimeBegin()).thenReturn("1973");
+        when(mmo[2].getTimeBegin()).thenReturn("1978");
+        int predicted = 1973;
+        Calendar result = CollectionDisplayUtilities.calculateEarliest(mmo, earliest);
+        assertEquals(predicted, result.get(Calendar.YEAR));
+    }
+    
+    @Test
+    public void testCalculateLatest() {
+        latest = null;
+        when(mmo[0].getTimeBegin()).thenReturn("1985");
+        when(mmo[1].getTimeBegin()).thenReturn("1973");
+        when(mmo[2].getTimeBegin()).thenReturn("1978");
+        int predicted = 1985;
+        Calendar result = CollectionDisplayUtilities.calculateEarliest(mmo, latest);
+        assertEquals(predicted, result.get(Calendar.YEAR));
+    }
+    
     @Test
     public void testCalculateIntervalTen() {
         when(earliest.get(Calendar.YEAR)).thenReturn(1000);
