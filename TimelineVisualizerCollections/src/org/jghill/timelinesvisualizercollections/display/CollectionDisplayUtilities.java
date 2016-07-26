@@ -18,18 +18,21 @@ public final class CollectionDisplayUtilities {
      * 
      * @param collection the collection of objects to calculate from.
      */
-    public static Calendar calculateEarliest(ManMadeObject[] collection, Calendar earliest) {
-        Calendar temp = earliest;
+    public static Calendar calculateEarliest(ManMadeObject[] collection) {
+        Calendar earliest = null;
+        Calendar temp;
         for(ManMadeObject e : collection) {
             try {
                 int year = Integer.parseInt(e.getTimeBegin());
                 temp = new GregorianCalendar(year, 1, 1);
-                if(earliest.after(temp)) {
-                    return temp;
+                if (earliest == null) {
+                    earliest = temp;
+                } else if (earliest.after(temp)) {
+                    earliest = temp;
                 }
             } catch (Exception ex) {}
         }
-        return temp;
+        return earliest;
     }
     
     /**
