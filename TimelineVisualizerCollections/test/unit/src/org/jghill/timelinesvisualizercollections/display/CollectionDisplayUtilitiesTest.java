@@ -54,7 +54,16 @@ public class CollectionDisplayUtilitiesTest {
     public void testCalculateIntervalOverEra() {
         when(earliest.get(Calendar.YEAR)).thenReturn(-1000);
         when(latest.get(Calendar.YEAR)).thenReturn(1000);
-        int predicted = 1000;
+        int predicted = 200;
+        int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
+        assertEquals(predicted, result);
+    }
+    
+    @Test
+    public void testCalculateIntervalNotMultipleTen() {
+        when(earliest.get(Calendar.YEAR)).thenReturn(1000);
+        when(latest.get(Calendar.YEAR)).thenReturn(1015);
+        int predicted = 1;
         int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
         assertEquals(predicted, result);
     }
