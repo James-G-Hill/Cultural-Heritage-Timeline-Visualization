@@ -38,10 +38,10 @@ public class EntityTableModelTest {
         coll3 = new EntitiesCollection("Test3");
         coll4 = new EntitiesCollection("Test4");
         
-        mmo1 = new ManMadeObject("A", "B", "C");
-        mmo2 = new ManMadeObject("D", "E", "F");
-        mmo3 = new ManMadeObject("G", "H", "I");
-        mmo4 = new ManMadeObject("J", "K", "L");
+        mmo1 = new ManMadeObject("A", "A", "A", "A", "A");
+        mmo2 = new ManMadeObject("B", "B", "B", "B", "B");
+        mmo3 = new ManMadeObject("C", "C", "C", "C", "C");
+        mmo4 = new ManMadeObject("D", "D", "D", "D", "D");
         
     }
 
