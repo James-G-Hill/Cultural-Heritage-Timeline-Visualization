@@ -23,7 +23,7 @@ public class CollectionDisplayPanel extends JPanel {
         earliest = calculateEarliest(collection, earliest);
         latest = calculateLatest(collection, latest);
         interval = calculateInterval(earliest, latest);
-        intervalsCount = countIntervals(earliest, latest, interval);
+        intervalsCount = countIntervals(earliest, latest);
         int[] dateArray = getArrayOfDates(earliest, interval, intervalsCount);
         tm.setArray(dateArray);
     }
