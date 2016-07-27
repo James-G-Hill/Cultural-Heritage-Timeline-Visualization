@@ -17,12 +17,18 @@ public class TimeLine extends JPanel {
     private final static int DOWNNOTCH = 15;
     
     private int[] intervals;
+    private JLabel[] labels;
     
     public TimeLine() {}
     
     public void setArray(int[] intervals) {
         this.setLayout(null);
         this.intervals = intervals;
+        labels = new JLabel[intervals.length];
+        for(int i = 0; i < intervals.length; i++) {
+            labels[i] = new JLabel();
+            this.add(labels[i]);
+        }
     }
     
     @Override
@@ -54,7 +60,7 @@ public class TimeLine extends JPanel {
             x = INDENT + ((lineLength / intervals.length) * i);
             y = vertical;
             g.drawLine(x, y - UPNOTCH, x, y + DOWNNOTCH);
-            addLabel(x, y, intervals[i]);
+            addLabel(x, y, intervals[i], labels[i]);
         }
         g.drawLine(width - INDENT, vertical - UPNOTCH, width - INDENT, vertical + DOWNNOTCH);
         this.repaint();
@@ -67,11 +73,9 @@ public class TimeLine extends JPanel {
      * @param y vertical coordinate.
      * @param year the label text.
      */
-    private void addLabel(int x, int y, int year) {
-        JLabel yearLabel = new JLabel();
-        this.add(yearLabel);
-        yearLabel.setBounds(x + 5, y + 5, 50, 15);
-        yearLabel.setText(String.valueOf(year));
+    private void addLabel(int x, int y, int year, JLabel label) {
+        label.setBounds(x + 5, y + 5, 50, 15);
+        label.setText(String.valueOf(year));
     }
     
 }
