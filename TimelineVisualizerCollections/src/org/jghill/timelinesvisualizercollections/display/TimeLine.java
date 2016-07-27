@@ -21,6 +21,7 @@ public class TimeLine extends JPanel {
     public TimeLine() {}
     
     public void setArray(int[] intervals) {
+        this.setLayout(null);
         this.intervals = intervals;
     }
     
@@ -56,7 +57,7 @@ public class TimeLine extends JPanel {
             addLabel(x, y, intervals[i]);
         }
         g.drawLine(width - INDENT, vertical - UPNOTCH, width - INDENT, vertical + DOWNNOTCH);
-        
+        this.repaint();
     }
     
     /**
@@ -68,9 +69,9 @@ public class TimeLine extends JPanel {
      */
     private void addLabel(int x, int y, int year) {
         JLabel yearLabel = new JLabel();
-        yearLabel.setLocation(x + 5, y + 5);
-        yearLabel.setText(String.valueOf(year));
         this.add(yearLabel);
+        yearLabel.setBounds(x + 5, y + 5, 50, 15);
+        yearLabel.setText(String.valueOf(year));
     }
     
 }
