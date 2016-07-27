@@ -22,6 +22,12 @@ public class TimeLine extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        if (intervals != null) {
+            paintScale(g);
+        }
+    }
+    
+    private void paintScale(Graphics g) {
         
         int height = getHeight();
         int width = getWidth();
@@ -30,9 +36,10 @@ public class TimeLine extends JPanel {
         g.drawLine(10, 10, width - 10, 10);
         
         int lineLength = width - 20;
+        int x;
         for(int i = 0; i < intervals.length; i++) {
-            int x = 10 + ((lineLength / intervals.length) * (i + 1));
-            g.drawLine(x, x, x, x + 30);
+            x = 10 + ((lineLength / intervals.length) * i);
+            g.drawLine(x, x - 5, x, x + 15);
         }
         
     }
