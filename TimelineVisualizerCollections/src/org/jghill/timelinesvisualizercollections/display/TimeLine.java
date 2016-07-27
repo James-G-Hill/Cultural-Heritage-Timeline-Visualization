@@ -32,28 +32,44 @@ public class TimeLine extends JPanel {
         }
     }
     
+    /**
+     * Paints the scale onto the TimeLine.
+     * 
+     * @param g the Graphics object.
+     */
     private void paintScale(Graphics g) {
         
         int height = getHeight();
         int width = getWidth();
         
+        int vertical = height - 25;
+        
         g.setColor(Color.BLACK);
-        g.drawLine(INDENT, INDENT, width - INDENT, INDENT);
+        g.drawLine(INDENT, vertical, width - INDENT, vertical);
         
         int lineLength = width - (INDENT * 2);
-        int x;
+        int x, y;
         for(int i = 0; i < intervals.length; i++) {
             x = INDENT + ((lineLength / intervals.length) * i);
-            g.drawLine(x, 10 - UPNOTCH, x, 10 + DOWNNOTCH);
-            addLabel(x, intervals[i]);
+            y = vertical;
+            g.drawLine(x, y - UPNOTCH, x, y + DOWNNOTCH);
+            addLabel(x, y, intervals[i]);
         }
+        g.drawLine(width - INDENT, vertical - UPNOTCH, width - INDENT, vertical + DOWNNOTCH);
         
     }
     
-    private void addLabel(int x, int year) {
+    /**
+     * Adds labels to the scale.
+     * 
+     * @param x horizontal coordinate.
+     * @param y vertical coordinate.
+     * @param year the label text.
+     */
+    private void addLabel(int x, int y, int year) {
         JLabel yearLabel = new JLabel();
-        yearLabel.setLocation(x + 5, x + 5);
-        yearLabel.setText("Interval: " + String.valueOf(year));
+        yearLabel.setLocation(x + 5, y + 5);
+        yearLabel.setText(String.valueOf(year));
         this.add(yearLabel);
     }
     
