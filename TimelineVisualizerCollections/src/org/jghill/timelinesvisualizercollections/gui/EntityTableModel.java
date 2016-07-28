@@ -35,18 +35,21 @@ public class EntityTableModel extends AbstractTableModel {
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
+    public String getValueAt(int rowIndex, int columnIndex) {
+        int year;
         switch(columnIndex){
             case 0:
                 return entities[rowIndex].getIdentifier();
             case 1:
                 return entities[rowIndex].getName();
             case 2:
-                return entities[rowIndex].getImage();
+                return entities[rowIndex].getImageURL().toString();
             case 3:
-                return entities[rowIndex].getTimeBegin();
+                year = entities[rowIndex].getTimeBegin();
+                return formatYear(year);
             case 4:
-                return entities[rowIndex].getTimeFinal();
+                year = entities[rowIndex].getTimeFinal();
+                return formatYear(year);
             default:
                 return null;
         }
@@ -120,4 +123,17 @@ public class EntityTableModel extends AbstractTableModel {
         return entities;
     }
     
+    /**
+     * Formats the year.
+     * 
+     * @param i the year as int.
+     * @return text to represent the year.
+     */
+    private String formatYear(int i) {
+        if (i == -1) {
+            return "No Year";
+        } else {
+            return String.valueOf(i);
+        }
+    }
 }
