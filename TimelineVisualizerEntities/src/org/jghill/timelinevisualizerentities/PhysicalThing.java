@@ -123,6 +123,10 @@ public abstract class PhysicalThing extends Entities {
         }
     }
     
+    public URL getImageURL() {
+        return imageURL;
+    }
+    
     public int getTimeBegin() {
         return beingYear;
     }
