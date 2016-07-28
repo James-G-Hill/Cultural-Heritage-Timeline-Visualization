@@ -59,6 +59,28 @@ public class CollectionDisplayUtilitiesTest {
     }
     
     @Test
+    public void testCalculateEarliestWithNegative() {
+        earliest = null;
+        when(mmo[0].getTimeBegin()).thenReturn(-1);
+        when(mmo[1].getTimeBegin()).thenReturn(1973);
+        when(mmo[2].getTimeBegin()).thenReturn(1978);
+        int predicted = 1973;
+        Calendar result = CollectionDisplayUtilities.calculateEarliest(mmo);
+        assertEquals(predicted, result.get(Calendar.YEAR));
+    }
+    
+    @Test
+    public void testCalculateLatestWithNegative() {
+        latest = null;
+        when(mmo[0].getTimeBegin()).thenReturn(1985);
+        when(mmo[1].getTimeBegin()).thenReturn(-1);
+        when(mmo[2].getTimeBegin()).thenReturn(1978);
+        int predicted = 1985;
+        Calendar result = CollectionDisplayUtilities.calculateLatest(mmo);
+        assertEquals(predicted, result.get(Calendar.YEAR));
+    }
+    
+    @Test
     public void testCalculateIntervalTen() {
         when(earliest.get(Calendar.YEAR)).thenReturn(1000);
         when(latest.get(Calendar.YEAR)).thenReturn(1010);
