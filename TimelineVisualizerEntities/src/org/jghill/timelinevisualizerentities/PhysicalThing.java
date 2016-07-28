@@ -1,6 +1,11 @@
 package org.jghill.timelinevisualizerentities;
 
-import java.util.Date;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import javax.imageio.ImageIO;
 
 /**
  * An abstraction of a physical object for subclasses that represent real
@@ -26,8 +31,9 @@ public abstract class PhysicalThing extends Entities {
     private String consistsOf;
     private String physicalDescription;
     
-    protected String image;
-    protected String imageNote;
+    protected URL imageURL;
+    protected String fileLocation;
+    protected BufferedImage image;
     
     private String label;
     private String commentary;
@@ -40,13 +46,49 @@ public abstract class PhysicalThing extends Entities {
             String timeFinal
     ) {
         super(name, identifier);
-        this.image = image;
+        this.imageURL = createURL(image);
         this.timeBegin = timeBegin;
         this.timeFinal = timeFinal;
     }
     
-    public String getImage() {
-        return image;
+    /**
+     * Creates a URL from the returned String.
+     * 
+     * @param text the URL text from the query results.
+     * @return a URL object.
+     */
+    private URL createURL(String text) {
+        URL temp;
+        try {
+            temp = new URL(text);
+        } catch(MalformedURLException ex) {
+            temp = null;
+        }
+        return temp;
+    }
+        
+    /**
+     * Checks if the image has already been loaded.  If loaded return the image,
+     * otherwise attempt to load the image then return it, otherwise return
+     * null.
+     * 
+     * @return the Image related to this Thing or a null.
+     */
+    public BufferedImage getImage() {
+        if (image == null) {
+            if(imageURL == null) {
+                return null;
+            } else {
+                try {
+                    image = ImageIO.read(imageURL);
+                } catch(IOException ex) {
+                    return null;
+                }
+                return image;
+            }
+        } else {
+            return image;
+        }
     }
     
     public String getTimeBegin() {
