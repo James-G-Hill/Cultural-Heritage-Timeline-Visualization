@@ -1,5 +1,7 @@
 package org.jghill.timelinesvisualizercollections.display;
 
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import static java.lang.Math.min;
@@ -15,6 +17,7 @@ import org.jghill.timelinevisualizerentities.PhysicalThing;
 public class EntityDisplay extends JPanel {
     
     private static final int MAX_DIMENSION = 100;
+    private static final int BOUNDARY = 5;
     
     private final Entities entity;
     
@@ -24,16 +27,19 @@ public class EntityDisplay extends JPanel {
     
     public EntityDisplay(Entities entity) {
         this.entity = entity;
-        
+        setUpDisplay();
+    }
+    
+    private void setUpDisplay() {
+        this.setLayout(new FlowLayout());
+        getImage();
     }
     
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        getImage();
         paintBase(g);
         paintImage(g);
-        paintConnection(g);
     }
     
     private void getImage() {
@@ -54,16 +60,19 @@ public class EntityDisplay extends JPanel {
         
     }
     
+    /**
+     * Paints the base which the image can sit on.
+     */
     private void paintBase(Graphics g) {
-        this.setSize(WIDTH, HEIGHT);
+        this.setSize(thumbWidth + (BOUNDARY * 2), thumbHeight + (BOUNDARY * 2));
+        this.setBackground(Color.LIGHT_GRAY);
     }
     
+    /**
+     * Resizes image to thumbnail then adds into this object.
+     */
     private void paintImage(Graphics g) {
-        
-    }
-    
-    private void paintConnection(Graphics g) {
-        
+        g.drawImage(fullSize, BOUNDARY, BOUNDARY, thumbWidth, thumbHeight, null);
     }
     
 }
