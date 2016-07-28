@@ -39,9 +39,9 @@ public class CollectionDisplayUtilitiesTest {
     @Test
     public void testCalculateEarliest() {
         earliest = null;
-        when(mmo[0].getTimeBegin()).thenReturn("1985");
-        when(mmo[1].getTimeBegin()).thenReturn("1973");
-        when(mmo[2].getTimeBegin()).thenReturn("1978");
+        when(mmo[0].getTimeBegin()).thenReturn(1985);
+        when(mmo[1].getTimeBegin()).thenReturn(1973);
+        when(mmo[2].getTimeBegin()).thenReturn(1978);
         int predicted = 1973;
         Calendar result = CollectionDisplayUtilities.calculateEarliest(mmo);
         assertEquals(predicted, result.get(Calendar.YEAR));
@@ -50,9 +50,9 @@ public class CollectionDisplayUtilitiesTest {
     @Test
     public void testCalculateLatest() {
         latest = null;
-        when(mmo[0].getTimeBegin()).thenReturn("1985");
-        when(mmo[1].getTimeBegin()).thenReturn("1973");
-        when(mmo[2].getTimeBegin()).thenReturn("1978");
+        when(mmo[0].getTimeBegin()).thenReturn(1985);
+        when(mmo[1].getTimeBegin()).thenReturn(1973);
+        when(mmo[2].getTimeBegin()).thenReturn(1978);
         int predicted = 1985;
         Calendar result = CollectionDisplayUtilities.calculateLatest(mmo);
         assertEquals(predicted, result.get(Calendar.YEAR));
