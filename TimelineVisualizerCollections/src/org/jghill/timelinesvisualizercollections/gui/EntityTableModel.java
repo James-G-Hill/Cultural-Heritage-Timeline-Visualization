@@ -43,7 +43,11 @@ public class EntityTableModel extends AbstractTableModel {
             case 1:
                 return entities[rowIndex].getName();
             case 2:
-                return entities[rowIndex].getImageURL().toString();
+                String urlString = "";
+                if (entities[rowIndex].getImageURL() != null) {
+                    urlString = entities[rowIndex].getImageURL().toString();
+                }
+                return urlString;
             case 3:
                 year = entities[rowIndex].getTimeBegin();
                 return formatYear(year);
@@ -131,7 +135,7 @@ public class EntityTableModel extends AbstractTableModel {
      */
     private String formatYear(int i) {
         if (i == -1) {
-            return "No Year";
+            return "";
         } else {
             return String.valueOf(i);
         }
