@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import org.jghill.timelinevisualizerentities.Entities;
 
 /**
  * Displays the timeline relevant to the selection.
@@ -18,16 +19,24 @@ public class TimeLine extends JPanel {
     
     private int[] intervals;
     private JLabel[] labels;
+    private EntityDisplay[] eDisplays;
     
     public TimeLine() {}
     
-    public void setArray(int[] intervals) {
+    public void setArray(int[] intervals, Entities[] entities) {
         this.setLayout(null);
         this.intervals = intervals;
+        
         labels = new JLabel[intervals.length];
         for(int i = 0; i < intervals.length; i++) {
             labels[i] = new JLabel();
             this.add(labels[i]);
+        }
+        
+        eDisplays = new EntityDisplay[entities.length];
+        for(int i = 0; i < entities.length; i++) {
+            eDisplays[i] = new EntityDisplay(entities[i]);
+            this.add(eDisplays[i]);
         }
     }
     
@@ -55,12 +64,24 @@ public class TimeLine extends JPanel {
         g.drawLine(INDENT, vertical, width - INDENT, vertical);
         
         int lineLength = width - (INDENT * 2);
-        int x, y;
         for(int i = 0; i < intervals.length; i++) {
+            int x, y;
             x = INDENT + ((lineLength / intervals.length) * i);
             y = vertical;
             g.drawLine(x, y - UPNOTCH, x, y + DOWNNOTCH);
             addLabel(x, y, intervals[i], labels[i]);
+        }
+        for (EntityDisplay eDisplay : eDisplays) {
+            int x, y;
+            int thisYear = eDisplay.getYear();
+            int firstYear = intervals[0];
+            int lastYear = intervals[intervals.length - 1];
+            int timeSpan = lastYear - firstYear;
+            int timePosition = thisYear - firstYear;
+            int ratio = timeSpan / lineLength;
+            x = INDENT + (timePosition / ratio);
+            y = vertical - 110;
+            addDisplay(x, y, eDisplay);
         }
         g.drawLine(width - INDENT, vertical - UPNOTCH, width - INDENT, vertical + DOWNNOTCH);
         this.repaint();
@@ -76,6 +97,17 @@ public class TimeLine extends JPanel {
     private void addLabel(int x, int y, int year, JLabel label) {
         label.setBounds(x + 5, y + 5, 50, 15);
         label.setText(String.valueOf(year));
+    }
+    
+    /**
+     * Adds an EntityDisplay to the TimeLine.
+     * 
+     * @param x horizontal coordinate.
+     * @param y vertical coordinate.
+     * @param ed the EntityDisplay.
+     */
+    private void addDisplay(int x, int y, EntityDisplay ed) {
+        ed.setBounds(x, y, ed.getWidth(), ed.getHeight());
     }
     
 }
