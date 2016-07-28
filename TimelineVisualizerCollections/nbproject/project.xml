@@ -131,9 +131,8 @@
             </test-dependencies>
             <public-packages>
                 <package>org.jghill.timelinesvisualizercollections</package>
-                <package>org.jghill.timelinesvisualizercollectionscontainer</package>
-                <package>org.jghill.timelinesvisualizercollectionsgui</package>
-                <package>org.jghill.timelinesvisualizercollectionsnode</package>
+                <package>org.jghill.timelinesvisualizercollections.container</package>
+                <package>org.jghill.timelinesvisualizercollections.node</package>
             </public-packages>
             <class-path-extension>
                 <runtime-relative-path>ext/swingx-all-1.6.4.jar</runtime-relative-path>
