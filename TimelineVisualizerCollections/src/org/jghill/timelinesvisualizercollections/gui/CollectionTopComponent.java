@@ -80,11 +80,10 @@ public final class CollectionTopComponent extends TopComponent {
         jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
         Tab = new javax.swing.JTabbedPane();
         Information = new javax.swing.JPanel();
-        TitleTextPanel = new javax.swing.JScrollPane();
-        TitleTextBox = new javax.swing.JTextPane();
         NotesTextPanel = new javax.swing.JScrollPane();
         NotesTextBox = new javax.swing.JTextArea();
         NotesText = new javax.swing.JLabel();
+        TitleTextBox = new javax.swing.JTextField();
         Queries = new javax.swing.JPanel();
         QueriesScrollPane = new javax.swing.JScrollPane();
         QueriesTable = new javax.swing.JTable();
@@ -145,39 +144,38 @@ public final class CollectionTopComponent extends TopComponent {
 
         Tab.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        TitleTextBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        TitleTextBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                TitleTextBoxPropertyChange(evt);
-            }
-        });
-        TitleTextPanel.setViewportView(TitleTextBox);
-
         NotesTextBox.setColumns(20);
         NotesTextBox.setRows(5);
         NotesTextPanel.setViewportView(NotesTextBox);
 
         org.openide.awt.Mnemonics.setLocalizedText(NotesText, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.NotesText.text")); // NOI18N
 
+        TitleTextBox.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        TitleTextBox.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        TitleTextBox.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.TitleTextBox.text")); // NOI18N
+        TitleTextBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        TitleTextBox.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        TitleTextBox.setMinimumSize(new java.awt.Dimension(50, 50));
+
         javax.swing.GroupLayout InformationLayout = new javax.swing.GroupLayout(Information);
         Information.setLayout(InformationLayout);
         InformationLayout.setHorizontalGroup(
             InformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InformationLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InformationLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(InformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NotesTextPanel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(TitleTextPanel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(InformationLayout.createSequentialGroup()
+                .addGroup(InformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(TitleTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NotesTextPanel)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, InformationLayout.createSequentialGroup()
                         .addComponent(NotesText, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 761, Short.MAX_VALUE)))
+                        .addGap(0, 769, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         InformationLayout.setVerticalGroup(
             InformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(InformationLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(TitleTextPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TitleTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(NotesText)
                 .addGap(18, 18, 18)
@@ -521,7 +519,7 @@ public final class CollectionTopComponent extends TopComponent {
         );
         timeLineLayout.setVerticalGroup(
             timeLineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
+            .addGap(0, 428, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout collectionDisplayPanelLayout = new javax.swing.GroupLayout(collectionDisplayPanel);
@@ -536,8 +534,8 @@ public final class CollectionTopComponent extends TopComponent {
         collectionDisplayPanelLayout.setVerticalGroup(
             collectionDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, collectionDisplayPanelLayout.createSequentialGroup()
-                .addContainerGap(379, Short.MAX_VALUE)
-                .addComponent(timeLine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(timeLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -595,16 +593,13 @@ public final class CollectionTopComponent extends TopComponent {
                 Dispatcher dispatch = Dispatcher.getInstance();
                 entities.addThing(dispatch.runQueries(coll.getQueriesCollection()));
                 entityModelChange();
-                collectionDisplayPanel.setArray(etb.getFlattenedCollection());
+                collectionDisplayPanel.setArray(etb.getFlattenedCollection(), timeLine);
+                Tab.setSelectedIndex(TAB_VISUAL);
             } catch (HttpException ex) {
                 output("502 Proxy Error: endpoint not available.");
             }
         }
     }//GEN-LAST:event_RunButtonActionPerformed
-
-    private void TitleTextBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TitleTextBoxPropertyChange
-        coll.setName(TitleTextBox.getText());
-    }//GEN-LAST:event_TitleTextBoxPropertyChange
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
         int row = QueriesTable.getSelectedRow();
@@ -666,8 +661,7 @@ public final class CollectionTopComponent extends TopComponent {
     private javax.swing.JTextField ThicknessLowerTextField;
     private javax.swing.JComboBox<String> ThicknessUnitComboBox;
     private javax.swing.JTextField ThicknessUpperTextField;
-    private javax.swing.JTextPane TitleTextBox;
-    private javax.swing.JScrollPane TitleTextPanel;
+    private javax.swing.JTextField TitleTextBox;
     private javax.swing.JLabel UnitLabel1;
     private javax.swing.JLabel UnitLabel2;
     private javax.swing.JLabel UnitLabel3;
