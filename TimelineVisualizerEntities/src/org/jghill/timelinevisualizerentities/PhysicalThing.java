@@ -1,6 +1,5 @@
 package org.jghill.timelinevisualizerentities;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -15,8 +14,8 @@ import javax.imageio.ImageIO;
  */
 public abstract class PhysicalThing extends Entities {
     
-    private final String timeBegin;
-    private final String timeFinal;
+    private final int beingYear;
+    private final int finalYear;
     
     private String creationDate;
     private String acquisitionDate;
@@ -42,13 +41,13 @@ public abstract class PhysicalThing extends Entities {
             String name,
             String identifier,
             String image,
-            String timeBegin,
-            String timeFinal
+            String beginYear,
+            String finalYear
     ) {
         super(name, identifier);
         this.imageURL = createURL(image);
-        this.timeBegin = timeBegin;
-        this.timeFinal = timeFinal;
+        this.beingYear = createYear(beginYear);
+        this.finalYear = createYear(finalYear);
     }
     
     /**
@@ -66,7 +65,21 @@ public abstract class PhysicalThing extends Entities {
         }
         return temp;
     }
-        
+    
+    /**
+     * Creates a year as int from a 4 character String or returns a -1.
+     * 
+     * @param yearText the String to be transformed.
+     * @return the year or a -1.
+     */
+    private int createYear(String yearText) {
+        if (yearStringIsInt(yearText)) {
+            return Integer.parseInt(yearText);
+        } else {
+            return -1;
+        }
+    }
+    
     /**
      * Checks if the image has already been loaded.  If loaded return the image,
      * otherwise attempt to load the image then return it, otherwise return
@@ -91,11 +104,31 @@ public abstract class PhysicalThing extends Entities {
         }
     }
     
-    public String getTimeBegin() {
-        return timeBegin;
+    public int getTimeBegin() {
+        return beingYear;
     }
     
-    public String getTimeFinal() {
-        return timeFinal;
+    public int getTimeFinal() {
+        return finalYear;
     }
+    
+    /**
+     * Checks if a string is a year.
+     * 
+     * @param yearText the string to check.
+     * @return true if the text can convert to a year.
+     */
+    private boolean yearStringIsInt(String yearText) {
+        if (yearText.length() == 4) {
+            for(int i = 0; i < yearText.length(); i++) {
+               if (!Character.isDigit(yearText.charAt(i))) {
+                   return false;
+               }
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
 }
