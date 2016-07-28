@@ -81,6 +81,25 @@ public abstract class PhysicalThing extends Entities {
     }
     
     /**
+     * Checks if a string is a year.
+     * 
+     * @param yearText the string to check.
+     * @return true if the text can convert to a year.
+     */
+    private boolean yearStringIsInt(String yearText) {
+        if (yearText.length() == 4) {
+            for(int i = 0; i < yearText.length(); i++) {
+               if (!Character.isDigit(yearText.charAt(i))) {
+                   return false;
+               }
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    /**
      * Checks if the image has already been loaded.  If loaded return the image,
      * otherwise attempt to load the image then return it, otherwise return
      * null.
@@ -110,25 +129,6 @@ public abstract class PhysicalThing extends Entities {
     
     public int getTimeFinal() {
         return finalYear;
-    }
-    
-    /**
-     * Checks if a string is a year.
-     * 
-     * @param yearText the string to check.
-     * @return true if the text can convert to a year.
-     */
-    private boolean yearStringIsInt(String yearText) {
-        if (yearText.length() == 4) {
-            for(int i = 0; i < yearText.length(); i++) {
-               if (!Character.isDigit(yearText.charAt(i))) {
-                   return false;
-               }
-            }
-            return true;
-        } else {
-            return false;
-        }
     }
     
 }
