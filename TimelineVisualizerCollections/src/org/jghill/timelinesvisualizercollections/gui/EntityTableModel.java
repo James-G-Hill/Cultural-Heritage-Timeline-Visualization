@@ -36,7 +36,7 @@ public class EntityTableModel extends AbstractTableModel {
 
     @Override
     public String getValueAt(int rowIndex, int columnIndex) {
-        int year;
+        Integer year;
         switch(columnIndex){
             case 0:
                 return entities[rowIndex].getIdentifier();
