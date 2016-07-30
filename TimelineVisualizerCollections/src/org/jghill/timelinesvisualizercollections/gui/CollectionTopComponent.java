@@ -19,6 +19,7 @@ import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
 import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
+import org.openide.*;
 
 /**
  * A window for displaying a collection and it's internals.
@@ -593,8 +594,15 @@ public final class CollectionTopComponent extends TopComponent {
                 Dispatcher dispatch = Dispatcher.getInstance();
                 entities.addThing(dispatch.runQueries(coll.getQueriesCollection()));
                 entityModelChange();
-                collectionDisplayPanel.setArray(etb.getFlattenedCollection(), timeLine);
-                Tab.setSelectedIndex(TAB_VISUAL);
+                if (etb.getFlattenedCollection().length > 0) {
+                    collectionDisplayPanel.setArray(etb.getFlattenedCollection(), timeLine);
+                    Tab.setSelectedIndex(TAB_VISUAL);
+                } else {
+                    NotifyDescriptor notice;
+                    notice = new NotifyDescriptor.Message(
+                            "No entities were returned."
+                    );
+                }
             } catch (HttpException ex) {
                 output("502 Proxy Error: endpoint not available.");
             }
