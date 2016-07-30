@@ -43,7 +43,7 @@ public class TimeLine extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (intervals != null) {
+        if (intervals != null && intervals.length > 1) {
             paintScale(g);
         }
     }
@@ -78,10 +78,12 @@ public class TimeLine extends JPanel {
             int lastYear = intervals[intervals.length - 1];
             int timeSpan = lastYear - firstYear;
             int timePosition = thisYear - firstYear;
-            int ratio = timeSpan / lineLength;
-            x = INDENT + (timePosition / ratio);
-            y = vertical - 110;
-            addDisplay(x, y, eDisplay);
+            int ratio = lineLength / timeSpan;
+            if (ratio > 0) {
+                x = INDENT + (timePosition * ratio);
+                y = vertical - 110;
+                addDisplay(x, y, eDisplay);
+            }
         }
         g.drawLine(width - INDENT, vertical - UPNOTCH, width - INDENT, vertical + DOWNNOTCH);
         this.repaint();
