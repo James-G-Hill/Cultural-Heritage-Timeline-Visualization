@@ -14,6 +14,8 @@ import javax.imageio.ImageIO;
  */
 public abstract class PhysicalThing extends Entities {
     
+    private static final int YEAR_LENGTH = 4;
+    
     private final Integer beginYear;
     private final Integer finalYear;
     
@@ -111,11 +113,12 @@ public abstract class PhysicalThing extends Entities {
         for(int i = 0; i < yearText.length(); i++) {
             if (Character.isDigit(yearText.charAt(i))) {
                 digitCount++;
+                if (digitCount == YEAR_LENGTH) {
+                    int j = i + 1;
+                    return Integer.parseInt(yearText.substring(j - digitCount, j));
+                }
             } else {
                 digitCount = 0;
-            }
-            if (digitCount == 4) {
-                Integer.parseInt(yearText.substring(i-4, i));
             }
         }
         return null;
