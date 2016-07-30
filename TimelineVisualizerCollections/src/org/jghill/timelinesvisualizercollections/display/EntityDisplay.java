@@ -19,27 +19,33 @@ public class EntityDisplay extends JPanel {
     private static final int MAX_DIMENSION = 100;
     private static final int BOUNDARY = 5;
     
-    private final Entities entity;
+    private Entities entity;
     
     private BufferedImage fullSize;
     private int thumbWidth = MAX_DIMENSION;
     private int thumbHeight = MAX_DIMENSION;
     
-    public EntityDisplay(Entities entity) {
+    public EntityDisplay() {}
+    
+    public void setEntity(Entities entity) {
         this.entity = entity;
         setUpDisplay();
     }
     
     private void setUpDisplay() {
         this.setLayout(new FlowLayout());
+        this.setOpaque(true);
         getImage();
     }
     
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        paintBase(g);
-        if (fullSize != null) {paintImage(g);}
+        this.setBackground(Color.LIGHT_GRAY);
+        this.setSize(thumbWidth + (BOUNDARY * 2), thumbHeight + (BOUNDARY * 2));
+        if (fullSize != null) {
+            g.drawImage(fullSize, BOUNDARY, BOUNDARY, thumbWidth, thumbHeight, null);
+        }
     }
     
     /**
@@ -49,7 +55,6 @@ public class EntityDisplay extends JPanel {
     private void getImage() {
         PhysicalThing pt = (PhysicalThing) entity;
         fullSize = pt.getImage();
-        
         if (fullSize != null) {
             int x = fullSize.getWidth();
             int y = fullSize.getHeight();
@@ -66,21 +71,6 @@ public class EntityDisplay extends JPanel {
     }
     
     /**
-     * Paints the base which the image can sit on.
-     */
-    private void paintBase(Graphics g) {
-        this.setSize(thumbWidth + (BOUNDARY * 2), thumbHeight + (BOUNDARY * 2));
-        this.setBackground(Color.LIGHT_GRAY);
-    }
-    
-    /**
-     * Resizes image to thumbnail then adds into this object.
-     */
-    private void paintImage(Graphics g) {
-        g.drawImage(fullSize, BOUNDARY, BOUNDARY, thumbWidth, thumbHeight, null);
-    }
-    
-    /**
      * @return the year from the entity that this display represents.
      */
     public int getYear() {
@@ -88,4 +78,13 @@ public class EntityDisplay extends JPanel {
         return pt.getTimeBegin();
     }
     
+    @Override
+    public int getWidth() {
+        return thumbWidth;
+    }
+    
+    @Override
+    public int getHeight() {
+        return thumbHeight;
+    }
 }
