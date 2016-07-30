@@ -14,8 +14,8 @@ import javax.imageio.ImageIO;
  */
 public abstract class PhysicalThing extends Entities {
     
-    private final int beingYear;
-    private final int finalYear;
+    private final Integer beginYear;
+    private final Integer finalYear;
     
     private String creationDate;
     private String acquisitionDate;
@@ -46,7 +46,7 @@ public abstract class PhysicalThing extends Entities {
     ) {
         super(name, identifier);
         this.imageURL = createURL(image);
-        this.beingYear = createYear(beginYear);
+        this.beginYear = createYear(beginYear);
         this.finalYear = createYear(finalYear);
     }
     
@@ -72,11 +72,11 @@ public abstract class PhysicalThing extends Entities {
      * @param yearText the String to be transformed.
      * @return the year or a -1.
      */
-    private int createYear(String yearText) {
+    private Integer createYear(String yearText) {
         if (yearStringIsInt(yearText)) {
             return Integer.parseInt(yearText);
         } else {
-            return -1;
+            return extractYearFromString(yearText);
         }
     }
     
@@ -97,6 +97,28 @@ public abstract class PhysicalThing extends Entities {
         } else {
             return false;
         }
+    }
+    
+    /**
+     * Attempts to extract a 4-digit year from a String; otherwise returns a
+     * null.
+     * 
+     * @param yearText the String to extract from.
+     * @return an integer year.
+     */
+    private Integer extractYearFromString(String yearText) {
+        int digitCount = 0;
+        for(int i = 0; i < yearText.length(); i++) {
+            if (Character.isDigit(yearText.charAt(i))) {
+                digitCount++;
+            } else {
+                digitCount = 0;
+            }
+            if (digitCount == 4) {
+                Integer.parseInt(yearText.substring(i-4, i));
+            }
+        }
+        return null;
     }
     
     /**
@@ -128,7 +150,7 @@ public abstract class PhysicalThing extends Entities {
     }
     
     public int getTimeBegin() {
-        return beingYear;
+        return beginYear;
     }
     
     public int getTimeFinal() {
