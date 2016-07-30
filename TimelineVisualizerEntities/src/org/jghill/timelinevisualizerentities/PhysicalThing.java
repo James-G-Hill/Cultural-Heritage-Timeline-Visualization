@@ -42,12 +42,12 @@ public abstract class PhysicalThing extends Entities {
     public PhysicalThing(
             String name,
             String identifier,
-            String image,
+            String imageString,
             String beginYear,
             String finalYear
     ) {
         super(name, identifier);
-        this.imageURL = createURL(image);
+        this.imageURL = createURL(imageString);
         this.beginYear = createYear(beginYear);
         this.finalYear = createYear(finalYear);
     }
@@ -59,9 +59,11 @@ public abstract class PhysicalThing extends Entities {
      * @return a URL object.
      */
     private URL createURL(String text) {
-        URL temp;
+        URL temp = null;
         try {
-            temp = new URL(text);
+            if (!text.isEmpty()) {
+                temp = new URL(text);
+            }
         } catch(MalformedURLException ex) {
             temp = null;
         }
@@ -137,11 +139,11 @@ public abstract class PhysicalThing extends Entities {
                 return null;
             } else {
                 try {
-                    image = ImageIO.read(imageURL);
+                    image = (BufferedImage) ImageIO.read(imageURL);
+                    return image;
                 } catch(IOException ex) {
                     return null;
                 }
-                return image;
             }
         } else {
             return image;
