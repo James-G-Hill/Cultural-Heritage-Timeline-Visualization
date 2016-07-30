@@ -22,15 +22,13 @@ public final class CollectionDisplayUtilities {
         Calendar earliest = null;
         Calendar temp;
         for(ManMadeObject e : collection) {
-            try {
-                int year = Integer.parseInt(e.getTimeBegin());
-                temp = new GregorianCalendar(year, 1, 1);
-                if (earliest == null) {
-                    earliest = temp;
-                } else if (earliest.after(temp)) {
-                    earliest = temp;
-                }
-            } catch (Exception ex) {}
+            int year = e.getTimeBegin();
+            temp = new GregorianCalendar(year, 1, 1);
+            if (earliest == null) {
+                earliest = temp;
+            } else if (earliest.after(temp)) {
+                earliest = temp;
+            }
         }
         return earliest;
     }
@@ -44,15 +42,13 @@ public final class CollectionDisplayUtilities {
         Calendar latest = null;
         Calendar temp;
         for(ManMadeObject e : collection) {
-            try {
-                int year = Integer.parseInt(e.getTimeBegin());
-                temp = new GregorianCalendar(year, 1, 1);
-                if (latest == null) {
-                    latest = temp;
-                } else if (latest.before(temp)) {
-                    latest = temp;
-                }
-            } catch (Exception ex) {}
+            int year = e.getTimeBegin();
+            temp = new GregorianCalendar(year, 1, 1);
+            if (latest == null) {
+                latest = temp;
+            } else if (latest.before(temp)) {
+                latest = temp;
+            }
         }
         return latest;
     }
@@ -63,7 +59,7 @@ public final class CollectionDisplayUtilities {
      * @return the size of the interval.
      */
     public static int calculateInterval(Calendar earliest, Calendar latest) {
-       int difference = 
+        int difference = 
                latest.get(Calendar.YEAR) - earliest.get(Calendar.YEAR);
         return (int) Math.floor(difference / 10);
     }
@@ -74,14 +70,15 @@ public final class CollectionDisplayUtilities {
      * @return the number of intervals.
      */
     public static int countIntervals(Calendar earliest, Calendar latest) {
-        int interval = calculateInterval(earliest, latest);
-        if (interval == 0) {
-            return 1;
-        } else {
-            int lower = (int) Math.floor(Math.abs(earliest.get(Calendar.YEAR)/interval));
-            int higher = (int) Math.ceil(Math.abs(latest.get(Calendar.YEAR)/interval));
-            return (higher - lower) / interval;
-        }
+        return 10;
+//        int interval = calculateInterval(earliest, latest);
+//        if (interval == 0) {
+//            return 1;
+//        } else {
+//            int lower = (int) Math.floor(Math.abs(earliest.get(Calendar.YEAR)/interval));
+//            int higher = (int) Math.ceil(Math.abs(latest.get(Calendar.YEAR)/interval));
+//            return (higher - lower) / interval;
+//        }
     }
     
     /**
