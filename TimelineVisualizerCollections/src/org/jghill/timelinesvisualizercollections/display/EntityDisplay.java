@@ -19,7 +19,7 @@ import org.openide.util.Utilities;
  * 
  * @author JGHill
  */
-public class EntityDisplay extends JPanel {
+public class EntityDisplay extends JPanel implements Comparable<EntityDisplay> {
     
     private static final int BOUNDARY = 5;
     
@@ -105,6 +105,15 @@ public class EntityDisplay extends JPanel {
     @Override
     public int getHeight() {
         return h;
+    }
+
+    @Override
+    public int compareTo(EntityDisplay o) {
+        if (this.getYear() == null || o.getYear() == null) {
+            return 0;
+        } else {
+            return Integer.compare(this.getYear(), o.getYear());
+        }
     }
     
 }
