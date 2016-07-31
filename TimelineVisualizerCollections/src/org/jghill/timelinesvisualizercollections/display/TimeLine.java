@@ -23,6 +23,9 @@ public class TimeLine extends JPanel {
     private JLabel[] labels;
     private EntityDisplay[] eDisplays;
     
+    private int vertical;
+    private int lineLength;
+    
     public TimeLine() {}
     
     /**
@@ -53,7 +56,7 @@ public class TimeLine extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (intervals != null && intervals.length > 1) {
-            paintScale(g);
+            paintTimeLine(g);
         }
     }
     
@@ -62,41 +65,16 @@ public class TimeLine extends JPanel {
      * 
      * @param g the Graphics object.
      */
-    private void paintScale(Graphics g) {
+    private void paintTimeLine(Graphics g) {
         
         int height = getHeight();
         int width = getWidth();
         
-        int vertical = height - 25;
+        vertical = height - 25;
+        lineLength = width - (INDENT * 2);
         
-        g.setColor(Color.BLACK);
-        g.drawLine(INDENT, vertical, width - INDENT, vertical);
-        
-        int lineLength = width - (INDENT * 2);
-        for(int i = 0; i < intervals.length; i++) {
-            int x, y;
-            x = INDENT + ((lineLength / intervals.length) * i);
-            y = vertical;
-            g.drawLine(x, y - UPNOTCH, x, y + DOWNNOTCH);
-            positionLabel(x, y, intervals[i], labels[i]);
-        }
-        for (EntityDisplay eDisplay : eDisplays) {
-            int x, y;
-            int thisYear = eDisplay.getYear();
-            int firstYear = intervals[0];
-            int lastYear = intervals[intervals.length - 1];
-            int timeSpan = lastYear - firstYear;
-            int timePosition = thisYear - firstYear;
-            int ratio = lineLength / timeSpan;
-            if (ratio > 0) {
-                x = INDENT + (timePosition * ratio);
-                y = vertical - IMAGE_UPPER;
-                positionDisplay(x, y, eDisplay);
-                g.drawLine(x, y + eDisplay.getHeight(), x, vertical);
-                g.drawOval(x, vertical - (CIRCLE_DIAM / 2), CIRCLE_DIAM, CIRCLE_DIAM);
-            }
-        }
-        g.drawLine(width - INDENT, vertical - UPNOTCH, width - INDENT, vertical + DOWNNOTCH);
+        paintScale(g);
+        paintEntities(g);
         this.repaint();
     }
     
@@ -121,6 +99,48 @@ public class TimeLine extends JPanel {
      */
     private void positionDisplay(int x, int y, EntityDisplay ed) {
         ed.setBounds(x, y, ed.getWidth(), ed.getHeight());
+    }
+    
+    /**
+     * Paints the scale onto the TimeLine.
+     * 
+     * @param g the Graphics component.
+     */
+    private void paintScale(Graphics g) {
+        g.setColor(Color.BLACK);
+        g.drawLine(INDENT, vertical, lineLength, vertical);
+        int x, y;
+        y = vertical;
+        for(int i = 0; i < intervals.length; i++) {
+            x = INDENT + ((lineLength / intervals.length) * i);
+            g.drawLine(x, y - UPNOTCH, x, y + DOWNNOTCH);
+            positionLabel(x, y, intervals[i], labels[i]);
+        }
+        g.drawLine(INDENT + lineLength, y - UPNOTCH, INDENT + lineLength, y + DOWNNOTCH);
+    }
+    
+    /**
+     * Paints the entities onto the TimeLine.
+     * 
+     * @param g the Graphics component.
+     */
+    private void paintEntities(Graphics g) {
+        for (EntityDisplay eDisplay : eDisplays) {
+            int x, y;
+            int thisYear = eDisplay.getYear();
+            int firstYear = intervals[0];
+            int lastYear = intervals[intervals.length - 1];
+            int timeSpan = lastYear - firstYear;
+            int timePosition = thisYear - firstYear;
+            int ratio = lineLength / timeSpan;
+            if (ratio > 0) {
+                x = INDENT + (timePosition * ratio);
+                y = vertical - IMAGE_UPPER;
+                positionDisplay(x, y, eDisplay);
+                g.drawLine(x, y + eDisplay.getHeight(), x, vertical);
+                g.fillOval(x, vertical - (CIRCLE_DIAM / 2), CIRCLE_DIAM, CIRCLE_DIAM);
+            }
+        }
     }
     
 }
