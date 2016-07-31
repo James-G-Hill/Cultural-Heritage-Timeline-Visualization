@@ -14,6 +14,9 @@ public class CollectionDisplayPanel extends JPanel {
     
     public CollectionDisplayPanel() {}
     
+    private ManMadeObject[] collection;
+    private int[] dateArray;
+    
     private Calendar earliest;
     private Calendar latest;
     
@@ -24,14 +27,29 @@ public class CollectionDisplayPanel extends JPanel {
     private int intervalsCount;
     
     public void setArray(ManMadeObject[] collection, TimeLine tm) {
+        this.collection = collection;
         earliest = calculateEarliest(collection);
         latest = calculateLatest(collection);
         start = getStart(earliest, latest);
         end = getEnd(earliest, latest);
         interval = calculateInterval(start, end);
         intervalsCount = countIntervals(earliest, latest);
-        int[] dateArray = getArrayOfDates(start, interval, intervalsCount);
-        tm.setArray(dateArray, collection);
+        dateArray = getArrayOfDates(start, interval, intervalsCount);
+        tm.setArray(this);
+    }
+    
+    /**
+     * @return the dateArray.
+     */
+    public int[] getDateArray() {
+        return dateArray;
+    }
+    
+    /**
+     * @return the collection.
+     */
+    public ManMadeObject[] getCollection() {
+        return collection;
     }
     
     /**
