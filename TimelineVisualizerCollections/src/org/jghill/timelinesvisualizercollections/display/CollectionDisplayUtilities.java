@@ -11,6 +11,8 @@ import org.jghill.timelinevisualizerentities.ManMadeObject;
  */
 public final class CollectionDisplayUtilities {
     
+    private final static int NUMBER_INTERVALS = 10;
+    
     private CollectionDisplayUtilities() {}
     
     /**
@@ -65,7 +67,7 @@ public final class CollectionDisplayUtilities {
     public static int calculateInterval(Calendar earliest, Calendar latest) {
         int difference = 
                latest.get(Calendar.YEAR) - earliest.get(Calendar.YEAR);
-        return (int) Math.ceil(difference / 10);
+        return (int) Math.ceil(difference / NUMBER_INTERVALS);
     }
     
     /**
@@ -74,7 +76,7 @@ public final class CollectionDisplayUtilities {
      * @return the number of intervals.
      */
     public static int countIntervals(Calendar earliest, Calendar latest) {
-        return 10;
+        return NUMBER_INTERVALS;
     }
     
     /**
