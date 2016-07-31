@@ -4,12 +4,16 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.MalformedURLException;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import org.jghill.timelinevisualizerentities.Entities;
 import org.jghill.timelinevisualizerentities.PhysicalThing;
+import org.openide.util.Exceptions;
+import org.openide.util.Utilities;
 
 /**
  * A component for displaying entities.
@@ -22,7 +26,6 @@ public class EntityDisplay extends JPanel {
     
     private Entities entity;
     
-    private BufferedImage fullSize;
     private BufferedImage thumb;
     
     private int w = 110;
@@ -52,15 +55,25 @@ public class EntityDisplay extends JPanel {
         if (thumb != null) {
             w = thumb.getWidth() + (BOUNDARY * 2);
             h = thumb.getHeight() + (BOUNDARY * 2);
-            this.setSize(w, h);
             JLabel picLabel = new JLabel(new ImageIcon(thumb));
             this.add(picLabel);
+            PhysicalThing pt = (PhysicalThing) entity;
+            try {
+                this.setToolTipText(
+                        "<html><img src=\"" +
+                                Utilities.toURI(pt.getImageFile()).toURL() +
+                                "\">"
+                );
+            } catch (MalformedURLException ex) {
+                Exceptions.printStackTrace(ex);
+            }
         } else {
             JLabel label = new JLabel(entity.getName());
-            w = label.getWidth() + (BOUNDARY * 2);
-            h = label.getHeight() + (BOUNDARY * 2);
+            w = label.getPreferredSize().width + (BOUNDARY * 2);
+            h = label.getPreferredSize().height + (BOUNDARY * 2);
             this.add(label);
         }
+        this.setSize(w, h);
     }
     
     @Override
@@ -74,14 +87,13 @@ public class EntityDisplay extends JPanel {
      */
     private void getImage() {
         PhysicalThing pt = (PhysicalThing) entity;
-        fullSize = pt.getImage();
         thumb = pt.getThumb();
     }
     
     /**
      * @return the year from the entity that this display represents.
      */
-    public int getYear() {
+    public Integer getYear() {
         PhysicalThing pt = (PhysicalThing) entity;
         return pt.getTimeBegin();
     }
