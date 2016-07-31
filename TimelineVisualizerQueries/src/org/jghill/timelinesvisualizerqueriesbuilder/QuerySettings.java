@@ -17,7 +17,6 @@ public class QuerySettings {
     public final boolean acquisitionDateCheck;
     public final boolean consistsOfCheck;
     public final boolean creationDateCheck;
-    public final boolean foundLocationCheck;
     public final boolean hasImageCheck;
     public final boolean lengthCheck;
     public final boolean originCheck;
@@ -34,7 +33,6 @@ public class QuerySettings {
     public final Date creationStartDate;
         
     public final String consistsOf;
-    public final String locationFound;
     public final String locationOrigin;
     
     public final String lengthLower;
@@ -52,7 +50,6 @@ public class QuerySettings {
             boolean acquisitionDateCheck,
             boolean consistsOfCheck,
             boolean creationDateCheck,
-            boolean foundLocationCheck,
             boolean hasImageCheck,
             boolean lengthCheck,
             boolean originCheck,
@@ -66,7 +63,6 @@ public class QuerySettings {
             Date creationEndDate,
             Date creationStartDate,
             String consistsOf,
-            String locationFound,
             String locationOrigin,
             String lengthLower,
             String lengthUpper,
@@ -81,7 +77,6 @@ public class QuerySettings {
         this.acquisitionDateCheck = acquisitionDateCheck;
         this.consistsOfCheck = consistsOfCheck;
         this.creationDateCheck = creationDateCheck;
-        this.foundLocationCheck = foundLocationCheck;
         this.hasImageCheck = hasImageCheck;
         this.lengthCheck = lengthCheck;
         this.originCheck = originCheck;
@@ -95,7 +90,6 @@ public class QuerySettings {
         this.creationEndDate = creationEndDate;
         this.creationStartDate = creationStartDate;
         this.consistsOf = consistsOf;
-        this.locationFound = locationFound;
         this.locationOrigin = locationOrigin;
         this.lengthLower = lengthLower;
         this.lengthUpper = lengthUpper;
