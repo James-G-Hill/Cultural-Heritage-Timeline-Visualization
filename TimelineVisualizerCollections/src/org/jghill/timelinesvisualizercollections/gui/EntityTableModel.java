@@ -133,8 +133,8 @@ public class EntityTableModel extends AbstractTableModel {
      * @param i the year as int.
      * @return text to represent the year.
      */
-    private String formatYear(int i) {
-        if (i == -1) {
+    private String formatYear(Integer i) {
+        if (i == null) {
             return "";
         } else {
             return String.valueOf(i);
