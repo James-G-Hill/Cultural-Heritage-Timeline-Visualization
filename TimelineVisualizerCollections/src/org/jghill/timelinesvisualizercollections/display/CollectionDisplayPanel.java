@@ -16,15 +16,21 @@ public class CollectionDisplayPanel extends JPanel {
     
     private Calendar earliest;
     private Calendar latest;
+    
+    private int start;
+    private int end;
+    
     private int interval;
     private int intervalsCount;
     
     public void setArray(ManMadeObject[] collection, TimeLine tm) {
         earliest = calculateEarliest(collection);
         latest = calculateLatest(collection);
-        interval = calculateInterval(earliest, latest);
+        start = getStart(earliest, latest);
+        end = getEnd(earliest, latest);
+        interval = calculateInterval(start, end);
         intervalsCount = countIntervals(earliest, latest);
-        int[] dateArray = getArrayOfDates(earliest, interval, intervalsCount);
+        int[] dateArray = getArrayOfDates(start, interval, intervalsCount);
         tm.setArray(dateArray, collection);
     }
     
