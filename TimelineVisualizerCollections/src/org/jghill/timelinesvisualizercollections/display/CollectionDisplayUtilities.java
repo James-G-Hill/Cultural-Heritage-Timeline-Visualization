@@ -66,7 +66,7 @@ public final class CollectionDisplayUtilities {
      * @param latest the latest date.
      * @return the first year date for the scale.
      */
-    public static int getStart(Calendar earliest, Calendar latest) {
+    public static Integer getStart(Calendar earliest, Calendar latest) {
         int earlyYear = earliest.get(Calendar.YEAR);
         int laterYear = latest.get(Calendar.YEAR);
         int difference = laterYear - earlyYear;
@@ -80,7 +80,7 @@ public final class CollectionDisplayUtilities {
      * @param latest
      * @return the last year date for the scale.
      */
-    public static int getEnd(Calendar earliest, Calendar latest) {
+    public static Integer getEnd(Calendar earliest, Calendar latest) {
         int earlyYear = earliest.get(Calendar.YEAR);
         int laterYear = latest.get(Calendar.YEAR);
         int difference = laterYear - earlyYear;
