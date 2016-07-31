@@ -61,7 +61,7 @@ public final class CollectionDisplayUtilities {
     public static int calculateInterval(Calendar earliest, Calendar latest) {
         int difference = 
                latest.get(Calendar.YEAR) - earliest.get(Calendar.YEAR);
-        return (int) Math.floor(difference / 10);
+        return (int) Math.ceil(difference / 10);
     }
     
     /**
@@ -71,14 +71,6 @@ public final class CollectionDisplayUtilities {
      */
     public static int countIntervals(Calendar earliest, Calendar latest) {
         return 10;
-//        int interval = calculateInterval(earliest, latest);
-//        if (interval == 0) {
-//            return 1;
-//        } else {
-//            int lower = (int) Math.floor(Math.abs(earliest.get(Calendar.YEAR)/interval));
-//            int higher = (int) Math.ceil(Math.abs(latest.get(Calendar.YEAR)/interval));
-//            return (higher - lower) / interval;
-//        }
     }
     
     /**
