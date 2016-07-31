@@ -3,6 +3,7 @@ package org.jghill.timelinevisualizerentities;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -36,7 +37,7 @@ public abstract class PhysicalThing extends Entities {
     private String physicalDescription;
     
     protected URL imageURL;
-    protected String fileLocation;
+    protected File imageFile;
     protected BufferedImage image;
     protected BufferedImage thumb;
     
@@ -137,20 +138,17 @@ public abstract class PhysicalThing extends Entities {
      * 
      * @return the Image related to this Thing or a null.
      */
-    public BufferedImage getImage() {
+    private void getImage() {
         if (image == null) {
-            if(imageURL == null) {
-                return null;
-            } else {
+            if(imageURL != null) {
                 try {
                     image = (BufferedImage) ImageIO.read(imageURL);
-                    return image;
-                } catch(IOException ex) {
-                    return null;
-                }
+                    File temp = File.createTempFile(super.getIdentifier(), "jpg");
+                    imageFile = temp;
+                    temp.deleteOnExit();
+                    ImageIO.write(image, "jpg", temp);
+                } catch(IOException ex) {}
             }
-        } else {
-            return image;
         }
     }
     
@@ -160,6 +158,7 @@ public abstract class PhysicalThing extends Entities {
      * @return the thumbnail image.
      */
     public BufferedImage getThumb() {
+        getImage();
         if (thumb == null) {
             if (image != null) {
             
@@ -194,16 +193,32 @@ public abstract class PhysicalThing extends Entities {
         }
     }
     
+    /**
+     * @return the image source URL.
+     */
     public URL getImageURL() {
         return imageURL;
     }
     
-    public int getTimeBegin() {
+    /**
+     * @return the earliest time.
+     */
+    public Integer getTimeBegin() {
         return beginYear;
     }
     
-    public int getTimeFinal() {
+    /**
+     * @return the final time.
+     */
+    public Integer getTimeFinal() {
         return finalYear;
+    }
+    
+    /**
+     * @return the temporary image file.
+     */
+    public File getImageFile() {
+        return imageFile;
     }
     
 }
