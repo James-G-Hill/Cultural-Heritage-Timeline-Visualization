@@ -114,13 +114,13 @@ public final class CollectionDisplayUtilities {
      * @param intervalsCount the number of intervals.
      * @return an array of years.
      */
-    public static int[] getArrayOfDates(Calendar earliest, int interval, int intervalsCount) {
+    public static int[] getArrayOfDates(int start, int interval, int intervalsCount) {
         int[] dates = new int[intervalsCount];
         if (interval == 0) {
             dates[0] = 0;
             return dates;
         } else {
-            int startYear = (int) Math.floor(Math.abs(earliest.get(Calendar.YEAR)/interval)) * interval;
+            int startYear = (int) Math.floor(Math.abs(start/interval)) * interval;
             for(int i = 0; i < intervalsCount; i++) {
                 dates[i] = startYear + (i * interval);
             }
