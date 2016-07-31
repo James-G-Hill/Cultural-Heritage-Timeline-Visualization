@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -29,15 +30,24 @@ public class EntityDisplay extends JPanel {
     
     public EntityDisplay() {}
     
+    /**
+     * Adds an Entities object to this display.
+     * 
+     * @param entity the Entities object.
+     */
     public void setEntity(Entities entity) {
         this.entity = entity;
         setUpDisplay();
     }
     
+    /**
+     * Initial setup of the EntityDisplay.
+     */
     private void setUpDisplay() {
         this.setLayout(new FlowLayout());
         this.setOpaque(true);
         this.setBackground(Color.LIGHT_GRAY);
+        this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         getImage();
         if (thumb != null) {
             w = thumb.getWidth() + (BOUNDARY * 2);
@@ -45,6 +55,11 @@ public class EntityDisplay extends JPanel {
             this.setSize(w, h);
             JLabel picLabel = new JLabel(new ImageIcon(thumb));
             this.add(picLabel);
+        } else {
+            JLabel label = new JLabel(entity.getName());
+            w = label.getWidth() + (BOUNDARY * 2);
+            h = label.getHeight() + (BOUNDARY * 2);
+            this.add(label);
         }
     }
     
