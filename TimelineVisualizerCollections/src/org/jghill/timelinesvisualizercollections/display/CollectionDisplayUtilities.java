@@ -60,18 +60,41 @@ public final class CollectionDisplayUtilities {
     }
     
     /**
+     * Returns the start date for the scale.
+     * 
+     * @param earliest the earliest date.
+     * @param latest the latest date.
+     * @return the first year date for the scale.
+     */
+    public static int getStart(Calendar earliest, Calendar latest) {
+        int earlyYear = earliest.get(Calendar.YEAR);
+        int laterYear = latest.get(Calendar.YEAR);
+        int difference = laterYear - earlyYear;
+        return (int) ((int) earlyYear - (difference * 0.05));
+    }
+    
+    /**
+     * Returns the end date for the scale.
+     * 
+     * @param earliest
+     * @param latest
+     * @return the last year date for the scale.
+     */
+    public static int getEnd(Calendar earliest, Calendar latest) {
+        int earlyYear = earliest.get(Calendar.YEAR);
+        int laterYear = latest.get(Calendar.YEAR);
+        int difference = laterYear - earlyYear;
+        return (int) ((int) laterYear + (difference * 0.1));
+    }
+    
+    /**
      * Calculates the intervals size.
      * 
      * @return the size of the interval.
      */
-    public static int calculateInterval(Calendar earliest, Calendar latest) {
-        int earlyYear = earliest.get(Calendar.YEAR);
-        int laterYear = latest.get(Calendar.YEAR);
-        int difference = laterYear - earlyYear;
-        int start = (int) ((int) earlyYear - (difference * 0.05));
-        int end = (int) ((int) laterYear + (difference * 0.1));
-        int finalDifference = end - start;
-        return (int) Math.ceil(finalDifference / NUMBER_INTERVALS);
+    public static int calculateInterval(int start, int end) {
+        int difference = end - start;
+        return (int) Math.ceil(difference / NUMBER_INTERVALS);
     }
     
     /**
