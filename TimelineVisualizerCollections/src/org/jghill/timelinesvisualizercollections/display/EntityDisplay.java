@@ -4,7 +4,8 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import static java.lang.Math.min;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import org.jghill.timelinevisualizerentities.Entities;
 import org.jghill.timelinevisualizerentities.PhysicalThing;
@@ -16,14 +17,15 @@ import org.jghill.timelinevisualizerentities.PhysicalThing;
  */
 public class EntityDisplay extends JPanel {
     
-    private static final int MAX_DIMENSION = 100;
     private static final int BOUNDARY = 5;
     
     private Entities entity;
     
     private BufferedImage fullSize;
-    private int thumbWidth = MAX_DIMENSION;
-    private int thumbHeight = MAX_DIMENSION;
+    private BufferedImage thumb;
+    
+    private int w = 110;
+    private int h = 110;
     
     public EntityDisplay() {}
     
@@ -35,17 +37,20 @@ public class EntityDisplay extends JPanel {
     private void setUpDisplay() {
         this.setLayout(new FlowLayout());
         this.setOpaque(true);
+        this.setBackground(Color.LIGHT_GRAY);
         getImage();
+        if (thumb != null) {
+            w = thumb.getWidth() + (BOUNDARY * 2);
+            h = thumb.getHeight() + (BOUNDARY * 2);
+            this.setSize(w, h);
+            JLabel picLabel = new JLabel(new ImageIcon(thumb));
+            this.add(picLabel);
+        }
     }
     
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        this.setBackground(Color.LIGHT_GRAY);
-        this.setSize(thumbWidth + (BOUNDARY * 2), thumbHeight + (BOUNDARY * 2));
-        if (fullSize != null) {
-            g.drawImage(fullSize, BOUNDARY, BOUNDARY, thumbWidth, thumbHeight, null);
-        }
     }
     
     /**
@@ -55,19 +60,7 @@ public class EntityDisplay extends JPanel {
     private void getImage() {
         PhysicalThing pt = (PhysicalThing) entity;
         fullSize = pt.getImage();
-        if (fullSize != null) {
-            int x = fullSize.getWidth();
-            int y = fullSize.getHeight();
-            double ratio = x / y;
-
-            boolean xOversized = (x > MAX_DIMENSION);
-            boolean yOversized = (y > MAX_DIMENSION);
-
-            if(xOversized || yOversized) {
-                thumbWidth = (int) min(MAX_DIMENSION, ratio * MAX_DIMENSION);
-                thumbHeight = (int) min(MAX_DIMENSION, MAX_DIMENSION / ratio);
-            }
-        }
+        thumb = pt.getThumb();
     }
     
     /**
@@ -80,11 +73,12 @@ public class EntityDisplay extends JPanel {
     
     @Override
     public int getWidth() {
-        return thumbWidth;
+        return w;
     }
     
     @Override
     public int getHeight() {
-        return thumbHeight;
+        return h;
     }
+    
 }
