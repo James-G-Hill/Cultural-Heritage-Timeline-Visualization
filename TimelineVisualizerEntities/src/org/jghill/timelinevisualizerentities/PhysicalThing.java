@@ -1,5 +1,7 @@
 package org.jghill.timelinevisualizerentities;
 
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -14,6 +16,7 @@ import javax.imageio.ImageIO;
  */
 public abstract class PhysicalThing extends Entities {
     
+    private static final int MAX_DIMENSION = 100;
     private static final int YEAR_LENGTH = 4;
     
     private final Integer beginYear;
@@ -35,6 +38,7 @@ public abstract class PhysicalThing extends Entities {
     protected URL imageURL;
     protected String fileLocation;
     protected BufferedImage image;
+    protected BufferedImage thumb;
     
     private String label;
     private String commentary;
@@ -147,6 +151,46 @@ public abstract class PhysicalThing extends Entities {
             }
         } else {
             return image;
+        }
+    }
+    
+    /**
+     * Creates a thumbnail image from an existing image.
+     * 
+     * @return the thumbnail image.
+     */
+    public BufferedImage getThumb() {
+        if (thumb == null) {
+            if (image != null) {
+            
+                int x = image.getWidth();
+                int y = image.getHeight();
+                double ratio = ((double) x) / y;
+                
+                int w = MAX_DIMENSION;
+                int h = MAX_DIMENSION;
+                
+                if(x > MAX_DIMENSION || y > MAX_DIMENSION) {
+                    w = (int) Math.min(MAX_DIMENSION, ratio * MAX_DIMENSION);
+                    h = (int) Math.min(MAX_DIMENSION, MAX_DIMENSION / ratio);
+                }
+                
+                BufferedImage reSize;
+                reSize = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g2 = reSize.createGraphics();
+
+                g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+                g2.drawImage(image, 0, 0, w, h, null);
+                g2.dispose();
+
+                thumb = reSize;
+                
+                return thumb;
+            } else {
+                return null;
+            }
+        } else {
+            return thumb;
         }
     }
     
