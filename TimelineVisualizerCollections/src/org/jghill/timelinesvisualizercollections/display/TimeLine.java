@@ -35,7 +35,8 @@ public class TimeLine extends JPanel {
         
         eDisplays = new EntityDisplay[entities.length];
         for(int i = 0; i < entities.length; i++) {
-            eDisplays[i] = new EntityDisplay(entities[i]);
+            eDisplays[i] = new EntityDisplay();
+            eDisplays[i].setEntity(entities[i]);
             this.add(eDisplays[i]);
         }
     }
@@ -69,7 +70,7 @@ public class TimeLine extends JPanel {
             x = INDENT + ((lineLength / intervals.length) * i);
             y = vertical;
             g.drawLine(x, y - UPNOTCH, x, y + DOWNNOTCH);
-            addLabel(x, y, intervals[i], labels[i]);
+            positionLabel(x, y, intervals[i], labels[i]);
         }
         for (EntityDisplay eDisplay : eDisplays) {
             int x, y;
@@ -82,7 +83,7 @@ public class TimeLine extends JPanel {
             if (ratio > 0) {
                 x = INDENT + (timePosition * ratio);
                 y = vertical - 110;
-                addDisplay(x, y, eDisplay);
+                positionDisplay(x, y, eDisplay);
             }
         }
         g.drawLine(width - INDENT, vertical - UPNOTCH, width - INDENT, vertical + DOWNNOTCH);
@@ -96,7 +97,7 @@ public class TimeLine extends JPanel {
      * @param y vertical coordinate.
      * @param year the label text.
      */
-    private void addLabel(int x, int y, int year, JLabel label) {
+    private void positionLabel(int x, int y, int year, JLabel label) {
         label.setBounds(x + 5, y + 5, 50, 15);
         label.setText(String.valueOf(year));
     }
@@ -108,7 +109,7 @@ public class TimeLine extends JPanel {
      * @param y vertical coordinate.
      * @param ed the EntityDisplay.
      */
-    private void addDisplay(int x, int y, EntityDisplay ed) {
+    private void positionDisplay(int x, int y, EntityDisplay ed) {
         ed.setBounds(x, y, ed.getWidth(), ed.getHeight());
     }
     
