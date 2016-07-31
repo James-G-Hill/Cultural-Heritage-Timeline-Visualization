@@ -65,9 +65,13 @@ public final class CollectionDisplayUtilities {
      * @return the size of the interval.
      */
     public static int calculateInterval(Calendar earliest, Calendar latest) {
-        int difference = 
-               latest.get(Calendar.YEAR) - earliest.get(Calendar.YEAR);
-        return (int) Math.ceil(difference / NUMBER_INTERVALS);
+        int earlyYear = earliest.get(Calendar.YEAR);
+        int laterYear = latest.get(Calendar.YEAR);
+        int difference = laterYear - earlyYear;
+        int start = (int) ((int) earlyYear - (difference * 0.05));
+        int end = (int) ((int) laterYear + (difference * 0.1));
+        int finalDifference = end - start;
+        return (int) Math.ceil(finalDifference / NUMBER_INTERVALS);
     }
     
     /**
