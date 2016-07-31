@@ -22,12 +22,14 @@ public final class CollectionDisplayUtilities {
         Calendar earliest = null;
         Calendar temp;
         for(ManMadeObject e : collection) {
-            int year = e.getTimeBegin();
-            temp = new GregorianCalendar(year, 1, 1);
-            if (earliest == null) {
-                earliest = temp;
-            } else if (earliest.after(temp)) {
-                earliest = temp;
+            Integer year = e.getTimeBegin();
+            if (year != null) {
+                temp = new GregorianCalendar(year, 1, 1);
+                if (earliest == null) {
+                    earliest = temp;
+                } else if (earliest.after(temp)) {
+                    earliest = temp;
+                }
             }
         }
         return earliest;
@@ -42,12 +44,14 @@ public final class CollectionDisplayUtilities {
         Calendar latest = null;
         Calendar temp;
         for(ManMadeObject e : collection) {
-            int year = e.getTimeBegin();
-            temp = new GregorianCalendar(year, 1, 1);
-            if (latest == null) {
-                latest = temp;
-            } else if (latest.before(temp)) {
-                latest = temp;
+            Integer year = e.getTimeBegin();
+            if (year != null) {
+                temp = new GregorianCalendar(year, 1, 1);
+                if (latest == null) {
+                    latest = temp;
+                } else if (latest.before(temp)) {
+                    latest = temp;
+                }
             }
         }
         return latest;
