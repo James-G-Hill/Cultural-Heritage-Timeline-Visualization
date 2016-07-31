@@ -718,7 +718,6 @@ public final class CollectionTopComponent extends TopComponent {
         AcquisitionDateCheckBox.setSelected(false);
         ConsistsOfCheckBox.setSelected(false);
         CreationDateCheckBox.setSelected(false);
-        FoundLocationCheckBox.setSelected(false);
         HasImageCheckBox.setSelected(false);
         LengthBetweenCheckBox.setSelected(false);
         OriginLocationCheckBox.setSelected(false);
@@ -741,7 +740,6 @@ public final class CollectionTopComponent extends TopComponent {
         ConsistsOfTextField.setText("");
         LengthLowerTextField.setText("");
         LengthUpperTextField.setText("");
-        LocationFoundTextField.setText("");
         LocationOriginTextField.setText("");
         ThicknessLowerTextField.setText("");
         ThicknessUpperTextField.setText("");
@@ -772,7 +770,6 @@ public final class CollectionTopComponent extends TopComponent {
             AcquisitionDateCheckBox.isSelected(),
             ConsistsOfCheckBox.isSelected(),
             CreationDateCheckBox.isSelected(),
-            FoundLocationCheckBox.isSelected(),
             HasImageCheckBox.isSelected(),
             LengthBetweenCheckBox.isSelected(),
             OriginLocationCheckBox.isSelected(),
@@ -785,11 +782,10 @@ public final class CollectionTopComponent extends TopComponent {
             AcquisitionStartDatePicker.getDate(),
             CreationEndDatePicker.getDate(),
             CreationStartDatePicker.getDate(),
-            LengthUpperTextField.getText(),
-            LocationFoundTextField.getText(),
             ConsistsOfTextField.getText(),
-            LengthLowerTextField.getText(),
             LocationOriginTextField.getText(),
+            LengthLowerTextField.getText(),
+            LengthUpperTextField.getText(),
             ThicknessLowerTextField.getText(),
             ThicknessUpperTextField.getText(),
             WidthLowerTextField.getText(),
