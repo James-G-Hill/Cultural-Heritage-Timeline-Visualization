@@ -17,8 +17,8 @@ public class CollectionDisplayPanel extends JPanel {
     private Calendar earliest;
     private Calendar latest;
     
-    private int start;
-    private int end;
+    private Integer start;
+    private Integer end;
     
     private int interval;
     private int intervalsCount;
@@ -32,6 +32,28 @@ public class CollectionDisplayPanel extends JPanel {
         intervalsCount = countIntervals(earliest, latest);
         int[] dateArray = getArrayOfDates(start, interval, intervalsCount);
         tm.setArray(dateArray, collection);
+    }
+    
+    /**
+     * @return start.
+     */
+    public Integer returnStart() {
+        if (start != null) {
+            return start;
+        } else {
+            return null;
+        }
+    }
+    
+    /**
+     * @return end.
+     */
+    public Integer returnEnd() {
+        if (end != null) {
+            return end;
+        } else {
+            return null;
+        }
     }
     
 }
