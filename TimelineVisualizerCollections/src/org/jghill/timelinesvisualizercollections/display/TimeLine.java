@@ -2,6 +2,8 @@ package org.jghill.timelinesvisualizercollections.display;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Arrays;
+import java.util.Collections;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -55,6 +57,8 @@ public class TimeLine extends JPanel {
                 this.add(eDisplays[i]);
             }
         }
+        Arrays.sort(eDisplays, Collections.reverseOrder());
+        
     }
     
     @Override
@@ -64,7 +68,7 @@ public class TimeLine extends JPanel {
             paintTimeLine(g);
         }
     }
-    
+        
     /**
      * Paints the scale onto the TimeLine.
      * 
