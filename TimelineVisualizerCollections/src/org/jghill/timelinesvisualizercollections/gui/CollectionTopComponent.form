@@ -157,8 +157,6 @@
                           <Component id="QueriesScrollPane" min="-2" pref="300" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="DeleteButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="EditButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="RunButton" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -169,7 +167,6 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="FoundLocationCheckBox" min="-2" max="-2" attributes="0"/>
                                   <Component id="OriginLocationCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="HasLimitCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
@@ -189,7 +186,6 @@
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                                           <Component id="LocationOriginTextField" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="LocationFoundTextField" alignment="0" max="32767" attributes="0"/>
                                                           <Component id="ConsistsOfTextField" alignment="0" max="32767" attributes="0"/>
                                                           <Component id="ThicknessLowerTextField" alignment="0" max="32767" attributes="0"/>
                                                           <Component id="WidthLowerTextField" alignment="0" max="32767" attributes="0"/>
@@ -247,7 +243,7 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="24" max="32767" attributes="0"/>
                           </Group>
                           <Component id="VerticalSeparator" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
@@ -263,6 +259,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="CreateButton" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -277,12 +274,11 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="ExistingQueriesText" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="QueriesScrollPane" pref="0" max="32767" attributes="0"/>
+                              <Component id="QueriesScrollPane" pref="403" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="DeleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="RunButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="EditButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -347,11 +343,6 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="FoundLocationCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="LocationFoundTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="OriginLocationCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="LocationOriginTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -360,7 +351,9 @@
                                   <Component id="HasLimitCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="HasLimitTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="6" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="CreateButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="ResetButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -516,13 +509,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="FoundLocationCheckBox">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.FoundLocationCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
             <Component class="org.jdesktop.swingx.JXDatePicker" name="CreationStartDatePicker">
             </Component>
             <Component class="org.jdesktop.swingx.JXDatePicker" name="CreationEndDatePicker">
@@ -612,13 +598,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.ConsistsOfTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="LocationFoundTextField">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.LocationFoundTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
@@ -735,12 +714,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="EditButton">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.EditButton.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
+            <Component class="javax.swing.JSeparator" name="jSeparator1">
             </Component>
           </SubComponents>
         </Container>

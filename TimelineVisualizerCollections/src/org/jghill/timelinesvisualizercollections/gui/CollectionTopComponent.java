@@ -105,7 +105,6 @@ public final class CollectionTopComponent extends TopComponent {
         HasImageCheckBox = new javax.swing.JCheckBox();
         OriginLocationCheckBox = new javax.swing.JCheckBox();
         DeleteButton = new javax.swing.JButton();
-        FoundLocationCheckBox = new javax.swing.JCheckBox();
         CreationStartDatePicker = new org.jdesktop.swingx.JXDatePicker();
         CreationEndDatePicker = new org.jdesktop.swingx.JXDatePicker();
         AndText1 = new javax.swing.JLabel();
@@ -122,7 +121,6 @@ public final class CollectionTopComponent extends TopComponent {
         AndText5 = new javax.swing.JLabel();
         ThicknessUpperTextField = new javax.swing.JTextField();
         ConsistsOfTextField = new javax.swing.JTextField();
-        LocationFoundTextField = new javax.swing.JTextField();
         LocationOriginTextField = new javax.swing.JTextField();
         UnitLabel1 = new javax.swing.JLabel();
         UnitLabel2 = new javax.swing.JLabel();
@@ -135,7 +133,7 @@ public final class CollectionTopComponent extends TopComponent {
         HasLimitTextField = new javax.swing.JTextField();
         SourceNameTextLabel = new javax.swing.JLabel();
         QueryNameTextField = new javax.swing.JTextField();
-        EditButton = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         Entities = new javax.swing.JPanel();
         EntitiesScrollPane = new javax.swing.JScrollPane();
         EntitiesTable = new javax.swing.JTable();
@@ -237,8 +235,6 @@ public final class CollectionTopComponent extends TopComponent {
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(FoundLocationCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.FoundLocationCheckBox.text")); // NOI18N
-
         org.openide.awt.Mnemonics.setLocalizedText(AndText1, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.AndText1.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(AndText2, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.AndText2.text")); // NOI18N
@@ -262,8 +258,6 @@ public final class CollectionTopComponent extends TopComponent {
         ThicknessUpperTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ThicknessUpperTextField.text")); // NOI18N
 
         ConsistsOfTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ConsistsOfTextField.text")); // NOI18N
-
-        LocationFoundTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.LocationFoundTextField.text")); // NOI18N
 
         LocationOriginTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.LocationOriginTextField.text")); // NOI18N
 
@@ -296,8 +290,6 @@ public final class CollectionTopComponent extends TopComponent {
 
         QueryNameTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.QueryNameTextField.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(EditButton, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.EditButton.text")); // NOI18N
-
         javax.swing.GroupLayout QueriesLayout = new javax.swing.GroupLayout(Queries);
         Queries.setLayout(QueriesLayout);
         QueriesLayout.setHorizontalGroup(
@@ -309,8 +301,6 @@ public final class CollectionTopComponent extends TopComponent {
                     .addComponent(QueriesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(QueriesLayout.createSequentialGroup()
                         .addComponent(DeleteButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(EditButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(RunButton)))
                 .addGap(18, 18, 18)
@@ -319,7 +309,6 @@ public final class CollectionTopComponent extends TopComponent {
                 .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(QueriesLayout.createSequentialGroup()
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(FoundLocationCheckBox)
                             .addComponent(OriginLocationCheckBox)
                             .addComponent(HasLimitCheckBox)
                             .addGroup(QueriesLayout.createSequentialGroup()
@@ -337,7 +326,6 @@ public final class CollectionTopComponent extends TopComponent {
                                             .addGroup(QueriesLayout.createSequentialGroup()
                                                 .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                     .addComponent(LocationOriginTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(LocationFoundTextField, javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(ConsistsOfTextField, javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(ThicknessLowerTextField, javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(WidthLowerTextField, javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,7 +368,7 @@ public final class CollectionTopComponent extends TopComponent {
                                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(WidthUnitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(ThicknessUnitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(0, 16, Short.MAX_VALUE))
+                        .addGap(0, 24, Short.MAX_VALUE))
                     .addComponent(VerticalSeparator)
                     .addGroup(QueriesLayout.createSequentialGroup()
                         .addComponent(QueryBuilderText)
@@ -392,7 +380,8 @@ public final class CollectionTopComponent extends TopComponent {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(ResetButton)
                         .addGap(18, 18, 18)
-                        .addComponent(CreateButton)))
+                        .addComponent(CreateButton))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         QueriesLayout.setVerticalGroup(
@@ -404,12 +393,11 @@ public final class CollectionTopComponent extends TopComponent {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createSequentialGroup()
                         .addComponent(ExistingQueriesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(QueriesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(QueriesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(DeleteButton)
-                            .addComponent(RunButton)
-                            .addComponent(EditButton)))
+                            .addComponent(RunButton)))
                     .addGroup(QueriesLayout.createSequentialGroup()
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(QueryBuilderText)
@@ -464,17 +452,15 @@ public final class CollectionTopComponent extends TopComponent {
                             .addComponent(HasImageCheckBox))
                         .addGap(18, 18, 18)
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(FoundLocationCheckBox)
-                            .addComponent(LocationFoundTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(OriginLocationCheckBox)
                             .addComponent(LocationOriginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(HasLimitCheckBox)
                             .addComponent(HasLimitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(CreateButton)
                             .addComponent(ResetButton))))
@@ -633,12 +619,10 @@ public final class CollectionTopComponent extends TopComponent {
     private org.jdesktop.swingx.JXDatePicker CreationEndDatePicker;
     private org.jdesktop.swingx.JXDatePicker CreationStartDatePicker;
     private javax.swing.JButton DeleteButton;
-    private javax.swing.JButton EditButton;
     private javax.swing.JPanel Entities;
     private javax.swing.JScrollPane EntitiesScrollPane;
     private javax.swing.JTable EntitiesTable;
     private javax.swing.JLabel ExistingQueriesText;
-    private javax.swing.JCheckBox FoundLocationCheckBox;
     private javax.swing.JCheckBox HasImageCheckBox;
     private javax.swing.JCheckBox HasLimitCheckBox;
     private javax.swing.JTextField HasLimitTextField;
@@ -647,7 +631,6 @@ public final class CollectionTopComponent extends TopComponent {
     private javax.swing.JTextField LengthLowerTextField;
     private javax.swing.JComboBox<String> LengthUnitComboBox;
     private javax.swing.JTextField LengthUpperTextField;
-    private javax.swing.JTextField LocationFoundTextField;
     private javax.swing.JTextField LocationOriginTextField;
     private javax.swing.JLabel NotesText;
     private javax.swing.JTextArea NotesTextBox;
@@ -680,6 +663,7 @@ public final class CollectionTopComponent extends TopComponent {
     private javax.swing.JComboBox<String> WidthUnitComboBox;
     private javax.swing.JTextField WidthUpperTextField;
     private org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel collectionDisplayPanel;
+    private javax.swing.JSeparator jSeparator1;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private org.jghill.timelinesvisualizercollections.display.TimeLine timeLine;
     // End of variables declaration//GEN-END:variables
