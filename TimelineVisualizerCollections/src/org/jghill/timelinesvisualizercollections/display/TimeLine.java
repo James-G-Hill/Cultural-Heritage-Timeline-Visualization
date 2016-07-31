@@ -3,16 +3,15 @@ package org.jghill.timelinesvisualizercollections.display;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Arrays;
-import java.util.Collections;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JLayeredPane;
 
 /**
  * Displays the timeline relevant to the selection.
  * 
  * @author JGHill
  */
-public class TimeLine extends JPanel {
+public class TimeLine extends JLayeredPane {
     
     private final static int DIAMETER = 6;
     private final static int RADIUS = DIAMETER / 2;
@@ -40,6 +39,7 @@ public class TimeLine extends JPanel {
      */
     public void setArray(CollectionDisplayPanel cdp) {
         this.setLayout(null);
+        this.setOpaque(true);
         this.cdp = cdp;
         this.intervals = cdp.getDateArray();
         
@@ -53,11 +53,15 @@ public class TimeLine extends JPanel {
         for(int i = 0; i < cdp.getCollection().length; i++) {
             eDisplays[i] = new EntityDisplay();
             eDisplays[i].setEntity(cdp.getCollection()[i]);
+        }
+        
+        Arrays.sort(eDisplays);
+        for (int i = 0; i < eDisplays.length; i++) {
             if (eDisplays[i].getYear() != null) {
                 this.add(eDisplays[i]);
+                setComponentZOrder(eDisplays[i], i);
             }
         }
-        Arrays.sort(eDisplays, Collections.reverseOrder());
         
     }
     
