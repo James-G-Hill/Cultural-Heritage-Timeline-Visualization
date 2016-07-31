@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import org.jghill.timelinevisualizerentities.Entities;
 
 /**
  * Displays the timeline relevant to the selection.
@@ -13,7 +12,8 @@ import org.jghill.timelinevisualizerentities.Entities;
  */
 public class TimeLine extends JPanel {
     
-    private final static int CIRCLE_DIAM = 6;
+    private final static int DIAMETER = 6;
+    private final static int RADIUS = DIAMETER / 2;
     private final static int IMAGE_UPPER = 150;
     private final static int INDENT = 10;
     private final static int UPNOTCH = 5;
@@ -22,6 +22,8 @@ public class TimeLine extends JPanel {
     private int[] intervals;
     private JLabel[] labels;
     private EntityDisplay[] eDisplays;
+    
+    private CollectionDisplayPanel cdp;
     
     private int vertical;
     private int lineLength;
@@ -34,9 +36,10 @@ public class TimeLine extends JPanel {
      * @param intervals
      * @param entities 
      */
-    public void setArray(int[] intervals, Entities[] entities) {
+    public void setArray(CollectionDisplayPanel cdp) {
         this.setLayout(null);
-        this.intervals = intervals;
+        this.cdp = cdp;
+        this.intervals = cdp.getDateArray();
         
         labels = new JLabel[intervals.length];
         for(int i = 0; i < intervals.length; i++) {
@@ -44,10 +47,10 @@ public class TimeLine extends JPanel {
             this.add(labels[i]);
         }
         
-        eDisplays = new EntityDisplay[entities.length];
-        for(int i = 0; i < entities.length; i++) {
+        eDisplays = new EntityDisplay[cdp.getCollection().length];
+        for(int i = 0; i < cdp.getCollection().length; i++) {
             eDisplays[i] = new EntityDisplay();
-            eDisplays[i].setEntity(entities[i]);
+            eDisplays[i].setEntity(cdp.getCollection()[i]);
             if (eDisplays[i].getYear() != null) {
                 this.add(eDisplays[i]);
             }
@@ -127,25 +130,26 @@ public class TimeLine extends JPanel {
      * @param g the Graphics component.
      */
     private void paintEntities(Graphics g) {
+        
+        Integer firstYear = cdp.returnStart();
+        Integer lastYear = cdp.returnEnd();
+        Integer timeSpan = lastYear - firstYear;
+        double ratio = ((double) lineLength) / timeSpan;
+        
         for (EntityDisplay eDisplay : eDisplays) {
-            int x, y;
             Integer thisYear = eDisplay.getYear();
             if (thisYear != null) {
-                Integer firstYear = intervals[0];
-                Integer lastYear = intervals[intervals.length - 1];
-                Integer timeSpan = lastYear - firstYear;
                 Integer timePosition = thisYear - firstYear;
-                int ratio = lineLength / timeSpan;
-                if (ratio > 0) {
-                    x = INDENT + (timePosition * ratio);
-                    y = vertical - IMAGE_UPPER;
-                    positionDisplay(x, y, eDisplay);
-                    g.drawLine(x, y + eDisplay.getHeight(), x, vertical);
-                    int radius = CIRCLE_DIAM / 2;
-                    g.fillOval(x  - radius, vertical - radius, CIRCLE_DIAM, CIRCLE_DIAM);
-                }
+                int x, y;
+                x = INDENT + (int) (timePosition * ratio);
+                y = vertical - IMAGE_UPPER;
+                positionDisplay(x, y, eDisplay);
+                g.setColor(Color.BLACK);
+                g.drawLine(x, y + eDisplay.getHeight(), x, vertical);
+                g.fillOval(x  - RADIUS, vertical - RADIUS, DIAMETER, DIAMETER);
             }
         }
+        
     }
     
 }
