@@ -13,6 +13,8 @@ import org.jghill.timelinevisualizerentities.Entities;
  */
 public class TimeLine extends JPanel {
     
+    private final static int CIRCLE_DIAM = 6;
+    private final static int IMAGE_UPPER = 150;
     private final static int INDENT = 10;
     private final static int UPNOTCH = 5;
     private final static int DOWNNOTCH = 15;
@@ -23,6 +25,12 @@ public class TimeLine extends JPanel {
     
     public TimeLine() {}
     
+    /**
+     * Sets the arrays used to create this TimeLine.
+     * 
+     * @param intervals
+     * @param entities 
+     */
     public void setArray(int[] intervals, Entities[] entities) {
         this.setLayout(null);
         this.intervals = intervals;
@@ -82,8 +90,10 @@ public class TimeLine extends JPanel {
             int ratio = lineLength / timeSpan;
             if (ratio > 0) {
                 x = INDENT + (timePosition * ratio);
-                y = vertical - 110;
+                y = vertical - IMAGE_UPPER;
                 positionDisplay(x, y, eDisplay);
+                g.drawLine(x, y + eDisplay.getHeight(), x, vertical);
+                g.drawOval(x, vertical - (CIRCLE_DIAM / 2), CIRCLE_DIAM, CIRCLE_DIAM);
             }
         }
         g.drawLine(width - INDENT, vertical - UPNOTCH, width - INDENT, vertical + DOWNNOTCH);
