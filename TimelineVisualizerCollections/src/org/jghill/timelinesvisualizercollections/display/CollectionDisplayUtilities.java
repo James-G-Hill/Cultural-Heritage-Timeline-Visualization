@@ -120,9 +120,8 @@ public final class CollectionDisplayUtilities {
             dates[0] = 0;
             return dates;
         } else {
-            int startYear = (int) Math.floor(Math.abs(start/interval)) * interval;
             for(int i = 0; i < intervalsCount; i++) {
-                dates[i] = startYear + (i * interval);
+                dates[i] = start + (i * interval);
             }
             return dates;
         }
