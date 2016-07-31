@@ -48,7 +48,9 @@ public class TimeLine extends JPanel {
         for(int i = 0; i < entities.length; i++) {
             eDisplays[i] = new EntityDisplay();
             eDisplays[i].setEntity(entities[i]);
-            this.add(eDisplays[i]);
+            if (eDisplays[i].getYear() != null) {
+                this.add(eDisplays[i]);
+            }
         }
     }
     
@@ -108,7 +110,7 @@ public class TimeLine extends JPanel {
      */
     private void paintScale(Graphics g) {
         g.setColor(Color.BLACK);
-        g.drawLine(INDENT, vertical, lineLength, vertical);
+        g.drawLine(INDENT, vertical, INDENT + lineLength, vertical);
         int x, y;
         y = vertical;
         for(int i = 0; i < intervals.length; i++) {
@@ -127,18 +129,21 @@ public class TimeLine extends JPanel {
     private void paintEntities(Graphics g) {
         for (EntityDisplay eDisplay : eDisplays) {
             int x, y;
-            int thisYear = eDisplay.getYear();
-            int firstYear = intervals[0];
-            int lastYear = intervals[intervals.length - 1];
-            int timeSpan = lastYear - firstYear;
-            int timePosition = thisYear - firstYear;
-            int ratio = lineLength / timeSpan;
-            if (ratio > 0) {
-                x = INDENT + (timePosition * ratio);
-                y = vertical - IMAGE_UPPER;
-                positionDisplay(x, y, eDisplay);
-                g.drawLine(x, y + eDisplay.getHeight(), x, vertical);
-                g.fillOval(x, vertical - (CIRCLE_DIAM / 2), CIRCLE_DIAM, CIRCLE_DIAM);
+            Integer thisYear = eDisplay.getYear();
+            if (thisYear != null) {
+                Integer firstYear = intervals[0];
+                Integer lastYear = intervals[intervals.length - 1];
+                Integer timeSpan = lastYear - firstYear;
+                Integer timePosition = thisYear - firstYear;
+                int ratio = lineLength / timeSpan;
+                if (ratio > 0) {
+                    x = INDENT + (timePosition * ratio);
+                    y = vertical - IMAGE_UPPER;
+                    positionDisplay(x, y, eDisplay);
+                    g.drawLine(x, y + eDisplay.getHeight(), x, vertical);
+                    int radius = CIRCLE_DIAM / 2;
+                    g.fillOval(x  - radius, vertical - radius, CIRCLE_DIAM, CIRCLE_DIAM);
+                }
             }
         }
     }
