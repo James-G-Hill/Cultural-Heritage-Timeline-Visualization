@@ -1,6 +1,7 @@
 package org.jghill.timelinesvisualizercollections.gui;
 
 import java.time.LocalDateTime;
+import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import org.apache.jena.atlas.web.HttpException;
 import org.netbeans.api.settings.ConvertAsProperties;
@@ -766,9 +767,20 @@ public final class CollectionTopComponent extends TopComponent {
      * @return where it has been filled correctly.
      */
     private boolean querySettingsAreValid() {
+        
+        String startYear = CreationStartYearTextField.getText();
+        if(startYear.length() > 4) {return false;}
+        if(!Pattern.matches("[0-9]+", startYear)) {return false;}
+        
+        String endYear = CreationEndYearTextField.getText();
+        if(endYear.length() > 4) {return false;}
+        if(!Pattern.matches("[0-9]+", endYear)) {return false;}
+        
         if(QueryNameTextField.getText().equals("")) {return false;}
         if(SourceComboBox.getSelectedItem().toString() == null) {return false;}
+        
         return true;
+        
     }
     
     /**
