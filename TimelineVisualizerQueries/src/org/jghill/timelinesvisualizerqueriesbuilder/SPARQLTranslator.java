@@ -59,7 +59,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private String prefix() {
         return
                 PREFIX + BMO +
-                PREFIX + CRM + "< " + sparql.getCIDOCAddress() + " > " +
+                PREFIX + CRM + "<" + sparql.getCIDOCAddress() + "> " +
                 PREFIX + RDF +
                 PREFIX + XML;
     }
