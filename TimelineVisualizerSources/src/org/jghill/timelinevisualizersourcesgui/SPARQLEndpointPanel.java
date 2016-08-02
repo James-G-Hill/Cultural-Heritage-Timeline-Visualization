@@ -84,7 +84,7 @@ public class SPARQLEndpointPanel extends javax.swing.JPanel {
      * 
      * @return text entered into the text field or a null.
      */
-    public String getText() {
+    public String getAddressText() {
         String webAddress;
         try {
             webAddress = WebAddressTextField.getText();
@@ -99,8 +99,32 @@ public class SPARQLEndpointPanel extends javax.swing.JPanel {
      * 
      * @param webAddress a web address.
      */
-    public void setText(String webAddress) {
+    public void setAddressText(String webAddress) {
         WebAddressTextField.setText(webAddress);
+    }
+    
+    /**
+     * Returns the CIDOC CRM address entered into the text field.
+     * 
+     * @return the text or a null if there is no text.
+     */
+    public String getCIDOCText() {
+        String cidocText;
+        try {
+            cidocText = CIDOCTextField.getText();
+            return cidocText;
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
+    
+    /**
+     * Sets the CIDOC CRM text to the passed string.
+     * 
+     * @param cidocText a CIDOC CRM address.
+     */
+    public void setCIDOCText(String cidocText) {
+        CIDOCTextField.setText(cidocText);
     }
     
 }
