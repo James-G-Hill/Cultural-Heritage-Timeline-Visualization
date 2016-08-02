@@ -770,13 +770,13 @@ public final class CollectionTopComponent extends TopComponent {
         
         String startYear = CreationStartYearTextField.getText();
         if(startYear.length() > 4) {return false;}
-        if(!Pattern.matches("[0-9]+", startYear)) {return false;}
+        if(!Pattern.matches("[0-9]+", startYear) && !startYear.isEmpty()) {return false;}
         
         String endYear = CreationEndYearTextField.getText();
         if(endYear.length() > 4) {return false;}
-        if(!Pattern.matches("[0-9]+", endYear)) {return false;}
+        if(!Pattern.matches("[0-9]+", endYear) && !endYear.isEmpty()) {return false;}
         
-        if(QueryNameTextField.getText().equals("")) {return false;}
+        if(QueryNameTextField.getText().isEmpty()) {return false;}
         if(SourceComboBox.getSelectedItem().toString() == null) {return false;}
         
         return true;
