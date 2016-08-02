@@ -24,7 +24,9 @@ public class SPARQLEndpointPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         DescriptionText = new javax.swing.JLabel();
-        WebAddressText = new javax.swing.JTextField();
+        WebAddressTextField = new javax.swing.JTextField();
+        CIDOCText = new javax.swing.JLabel();
+        CIDOCTextField = new javax.swing.JTextField();
 
         setMaximumSize(new java.awt.Dimension(360, 120));
         setMinimumSize(new java.awt.Dimension(360, 120));
@@ -33,7 +35,12 @@ public class SPARQLEndpointPanel extends javax.swing.JPanel {
 
         org.openide.awt.Mnemonics.setLocalizedText(DescriptionText, org.openide.util.NbBundle.getMessage(SPARQLEndpointPanel.class, "SPARQLEndpointPanel.DescriptionText.text")); // NOI18N
 
-        WebAddressText.setText(org.openide.util.NbBundle.getMessage(SPARQLEndpointPanel.class, "SPARQLEndpointPanel.WebAddressText.text")); // NOI18N
+        WebAddressTextField.setText(org.openide.util.NbBundle.getMessage(SPARQLEndpointPanel.class, "SPARQLEndpointPanel.WebAddressTextField.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(CIDOCText, org.openide.util.NbBundle.getMessage(SPARQLEndpointPanel.class, "SPARQLEndpointPanel.CIDOCText.text")); // NOI18N
+
+        CIDOCTextField.setText(org.openide.util.NbBundle.getMessage(SPARQLEndpointPanel.class, "SPARQLEndpointPanel.CIDOCTextField.text")); // NOI18N
+        CIDOCTextField.setToolTipText(org.openide.util.NbBundle.getMessage(SPARQLEndpointPanel.class, "SPARQLEndpointPanel.CIDOCTextField.toolTipText")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -41,26 +48,34 @@ public class SPARQLEndpointPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(DescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WebAddressText, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(WebAddressTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                    .addComponent(CIDOCText)
+                    .addComponent(CIDOCTextField))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(DescriptionText)
-                .addGap(18, 18, 18)
-                .addComponent(WebAddressText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(WebAddressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CIDOCText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CIDOCTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel CIDOCText;
+    private javax.swing.JTextField CIDOCTextField;
     private javax.swing.JLabel DescriptionText;
-    private javax.swing.JTextField WebAddressText;
+    private javax.swing.JTextField WebAddressTextField;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -72,7 +87,7 @@ public class SPARQLEndpointPanel extends javax.swing.JPanel {
     public String getText() {
         String webAddress;
         try {
-            webAddress = WebAddressText.getText();
+            webAddress = WebAddressTextField.getText();
             return webAddress;
         } catch (NullPointerException e) {
             return null;
@@ -85,7 +100,7 @@ public class SPARQLEndpointPanel extends javax.swing.JPanel {
      * @param webAddress a web address.
      */
     public void setText(String webAddress) {
-        WebAddressText.setText(webAddress);
+        WebAddressTextField.setText(webAddress);
     }
     
 }
