@@ -23,6 +23,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String WHERE = "WHERE { ";
     private static final String END = "} ";
     private static final String LIMIT = "LIMIT ";
+    private static final String UNION = "UNION ";
     
     private static final String OBJECT = "?object ";
     private static final String IDENTIFIER = "?identifier ";
@@ -135,8 +136,11 @@ public class SPARQLTranslator implements QueryTranslator {
         String dates = "";
         
         dates += PRODUCTION + " a crm:E12_Production ";
-        dates += "; crm:P108_has_produced " + OBJECT + " ";
-        dates += "; crm:P4_has_time-span " + TIME + ". ";
+        dates += "; crm:P108_has_produced " + OBJECT + " . ";
+        
+        dates += "{ " + PRODUCTION + "crm:P9_consists_of [ crm:P4_has_time-span " + TIME + " ] } ";
+        dates += UNION;
+        dates += "{ " + PRODUCTION + " crm:P4_has_time-span " + TIME + " } ";
         
         dates += TIME + "crm:P79_beginning_is_qualified_by " + BEGIN + ". ";
         if (!settings.creationStartDate.equals("")) {
