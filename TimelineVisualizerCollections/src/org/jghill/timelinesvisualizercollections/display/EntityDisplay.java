@@ -94,7 +94,7 @@ public class EntityDisplay extends JPanel implements Comparable<EntityDisplay> {
      */
     public Integer getYear() {
         PhysicalThing pt = (PhysicalThing) entity;
-        return pt.getTimeBegin();
+        return pt.getTimeSpan();
     }
     
     @Override
