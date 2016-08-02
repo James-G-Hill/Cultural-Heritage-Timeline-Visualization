@@ -20,8 +20,7 @@ public abstract class PhysicalThing extends Entities {
     private static final int MAX_DIMENSION = 100;
     private static final int YEAR_LENGTH = 4;
     
-    private final Integer beginYear;
-    private final Integer finalYear;
+    private final Integer timeSpan;
     
     private String creationDate;
     private String acquisitionDate;
@@ -48,13 +47,11 @@ public abstract class PhysicalThing extends Entities {
             String name,
             String identifier,
             String imageString,
-            String beginYear,
-            String finalYear
+            String beginYear
     ) {
         super(name, identifier);
         this.imageURL = createURL(imageString);
-        this.beginYear = createYear(beginYear);
-        this.finalYear = createYear(finalYear);
+        this.timeSpan = createYear(beginYear);
     }
     
     /**
@@ -203,15 +200,8 @@ public abstract class PhysicalThing extends Entities {
     /**
      * @return the earliest time.
      */
-    public Integer getTimeBegin() {
-        return beginYear;
-    }
-    
-    /**
-     * @return the final time.
-     */
-    public Integer getTimeFinal() {
-        return finalYear;
+    public Integer getTimeSpan() {
+        return timeSpan;
     }
     
     /**
