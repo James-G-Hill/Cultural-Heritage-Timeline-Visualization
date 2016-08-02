@@ -32,8 +32,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String IMAGE = "?image ";
     private static final String KEEPER = "?keeper ";
     private static final String DESCRIPTION = "?description ";
-    private static final String BEGIN = "?begin ";
-    private static final String FINISH = "?finish ";
+    private static final String DATE = "?date ";
     private static final String PRODUCTION = "?production ";
     private static final String TIME = "?time ";
     
@@ -74,8 +73,7 @@ public class SPARQLTranslator implements QueryTranslator {
                 IDENTIFIER +
                 TITLE +
                 IMAGE +
-                BEGIN +
-                FINISH;
+                DATE;
     }
     
     /**
@@ -142,15 +140,13 @@ public class SPARQLTranslator implements QueryTranslator {
         dates += UNION;
         dates += "{ " + PRODUCTION + " crm:P4_has_time-span " + TIME + " } ";
         
-        dates += TIME + "crm:P79_beginning_is_qualified_by " + BEGIN + ". ";
+        dates += TIME + "a crm:E52_Time-Span ; rdfs:label " + DATE + " . ";
         if (!settings.creationStartDate.equals("")) {
-            dates += "FILTER (xsd:integer(" + BEGIN + ") >= " +
+            dates += "FILTER (xsd:integer(" + DATE + ") >= " +
                     settings.creationStartDate + ") . ";
         }
-        
-        dates += TIME + "crm:P80_end_is_qualified_by " + FINISH + ". ";
         if(!settings.creationEndDate.equals("")) {
-            dates += "FILTER (xsd:integer(" + FINISH + ") <= " +
+            dates += "FILTER (xsd:integer(" + DATE + ") <= " +
                     settings.creationEndDate + ") . ";
         }
         
