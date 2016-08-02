@@ -34,7 +34,7 @@ import org.openide.*;
         //iconBase="SET/PATH/TO/ICON/HERE", 
         persistenceType = TopComponent.PERSISTENCE_ALWAYS
 )
-@TopComponent.Registration(mode = "explorer", openAtStartup = false)
+@TopComponent.Registration(mode = "editor", openAtStartup = false)
 @ActionID(category = "Window", id = "org.jghill.timelinesvisualizercollectionsgui.CollectionTopComponent")
 @TopComponent.OpenActionRegistration(
         displayName = "#CTL_CollectionAction",
@@ -141,6 +141,8 @@ public final class CollectionTopComponent extends TopComponent {
         Visualizer = new javax.swing.JPanel();
         collectionDisplayPanel = new org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel();
         timeLine = new org.jghill.timelinesvisualizercollections.display.TimeLine();
+
+        setPreferredSize(new java.awt.Dimension(400, 300));
 
         Tab.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
