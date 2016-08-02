@@ -24,7 +24,7 @@ public final class CollectionDisplayUtilities {
         Calendar earliest = null;
         Calendar temp;
         for(ManMadeObject e : collection) {
-            Integer year = e.getTimeBegin();
+            Integer year = e.getTimeSpan();
             if (year != null) {
                 temp = new GregorianCalendar(year, 1, 1);
                 if (earliest == null) {
@@ -46,7 +46,7 @@ public final class CollectionDisplayUtilities {
         Calendar latest = null;
         Calendar temp;
         for(ManMadeObject e : collection) {
-            Integer year = e.getTimeBegin();
+            Integer year = e.getTimeSpan();
             if (year != null) {
                 temp = new GregorianCalendar(year, 1, 1);
                 if (latest == null) {
@@ -94,7 +94,11 @@ public final class CollectionDisplayUtilities {
      */
     public static int calculateInterval(int start, int end) {
         int difference = end - start;
-        return (int) Math.ceil(difference / NUMBER_INTERVALS);
+        if (difference < 10) {
+            return 1;
+        } else {
+            return (int) Math.ceil(difference / NUMBER_INTERVALS);
+        }
     }
     
     /**
