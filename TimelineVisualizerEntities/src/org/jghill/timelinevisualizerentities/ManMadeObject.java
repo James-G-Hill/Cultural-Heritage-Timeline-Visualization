@@ -13,10 +13,9 @@ public class ManMadeObject extends PhysicalThing {
             String name,
             String identifier,
             String image,
-            String timeBegin,
-            String timeFinal
+            String timeSpan
     ) {
-        super(name, identifier, image, timeBegin, timeFinal);
+        super(name, identifier, image, timeSpan);
     }
     
 }
