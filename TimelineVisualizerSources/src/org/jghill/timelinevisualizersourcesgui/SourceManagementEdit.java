@@ -61,11 +61,6 @@ public class SourceManagementEdit extends javax.swing.JDialog {
         SourceNameEntryBox.setEditable(false);
         SourceNameEntryBox.setText(org.openide.util.NbBundle.getMessage(SourceManagementEdit.class, "SourceManagementEdit.SourceNameEntryBox.text")); // NOI18N
         SourceNameEntryBox.setOpaque(false);
-        SourceNameEntryBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SourceNameEntryBoxActionPerformed(evt);
-            }
-        });
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceNameText, org.openide.util.NbBundle.getMessage(SourceManagementEdit.class, "SourceManagementEdit.SourceNameText.text")); // NOI18N
 
@@ -130,12 +125,8 @@ public class SourceManagementEdit extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SourceNameEntryBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SourceNameEntryBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SourceNameEntryBoxActionPerformed
-
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
-        if(!internalPanel.getText().isEmpty()) {
+        if(!internalPanel.getAddressText().isEmpty()) {
             editSPARQLEndpoint();
             this.dispose();
         }
@@ -158,11 +149,14 @@ public class SourceManagementEdit extends javax.swing.JDialog {
      * A method for creating a new SPARQLEndpoint.
      */
     private void editSPARQLEndpoint() {
-        String webText = internalPanel.getText();
-        SPARQLEndpoint sparql = (SPARQLEndpoint)src;
+        String webText = internalPanel.getAddressText();
+        SPARQLEndpoint sparql = (SPARQLEndpoint) src;
         sparql.setWebAddress(webText);
     }
     
+    /**
+     * Switches between different types of action.
+     */
     private void setInternalPanelAccordingToType() {
         switch(type) {
             case "SPARQL Endpoint":
@@ -181,7 +175,8 @@ public class SourceManagementEdit extends javax.swing.JDialog {
         internalPanel.setSize(360, 120);
         internalPanel.setLocation(10, 120);
         SPARQLEndpoint sparql = (SPARQLEndpoint)src;
-        internalPanel.setText(sparql.getWebAddress());
+        internalPanel.setAddressText(sparql.getWebAddress());
+        internalPanel.setCIDOCText(sparql.getCIDOCAddress());
         this.add(internalPanel);
         validate();
         repaint();
