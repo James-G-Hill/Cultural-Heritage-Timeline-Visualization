@@ -12,14 +12,15 @@ import org.jghill.timelinevisualizersources.SPARQLEndpoint;
 public class SPARQLTranslator implements QueryTranslator {
 
     private QuerySettings settings;
+    private SPARQLEndpoint sparql;
     
     private static final String BMO = "bmo: <http://collection.britishmuseum.org/id/ontology/> ";
-    private static final String CRM = "crm: <http://www.cidoc-crm.org/cidoc-crm/> ";
+    private static final String CRM = "crm: ";
     private static final String RDF = "rdfs: <http://www.w3.org/2000/01/rdf-schema#> ";
     private static final String XML = "xsd: <http://www.w3.org/2001/XMLSchema#> ";
     
     private static final String PREFIX = "PREFIX ";
-    private static final String SELECTDISTINCT = "SELECT DISTINCT ";
+    private static final String SELECT = "SELECT DISTINCT ";
     private static final String WHERE = "WHERE { ";
     private static final String END = "} ";
     private static final String LIMIT = "LIMIT ";
@@ -39,9 +40,8 @@ public class SPARQLTranslator implements QueryTranslator {
     @Override
     public QueryShell translate(QuerySettings settings) {
         this.settings = settings;
-        SPARQLEndpoint sparql = (SPARQLEndpoint) settings.theSource;
-        String service =  sparql.getWebAddress();
-        return new SPARQLQueryShell(build(), service, settings.name);
+        sparql = (SPARQLEndpoint) settings.theSource;
+        return new SPARQLQueryShell(build(), sparql.getWebAddress(), settings.name);
     }
     
     private String build() {
@@ -60,7 +60,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private String prefix() {
         return
                 PREFIX + BMO +
-                PREFIX + CRM +
+                PREFIX + CRM + "< " + sparql.getCIDOCAddress() + " > " +
                 PREFIX + RDF +
                 PREFIX + XML;
     }
@@ -70,7 +70,7 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String select() {
         return
-                SELECTDISTINCT +
+                SELECT +
                 IDENTIFIER +
                 TITLE +
                 IMAGE +
