@@ -9,16 +9,19 @@ public class SPARQLEndpoint extends Source {
     
     private static final String SOURCE_TYPE = "SPARQL Endpoint";
     private String webAddress;
+    private String cidocAddress;
     
     /**
      * Constructor for the SPARQL endpoint.
      * 
      * @param name A name for the source.
      * @param webAddress the web address.
+     * @param cidoc the CIDOC CRM address.
      */
-    public SPARQLEndpoint(String name, String webAddress) {
+    public SPARQLEndpoint(String name, String webAddress, String cidoc) {
         super.setSourceName(name);
         this.webAddress = webAddress;
+        this.cidocAddress = cidoc;
     }
     
     /**
@@ -32,8 +35,6 @@ public class SPARQLEndpoint extends Source {
     }
     
     /**
-     * A getter class for returning the web address.
-     * 
      * @return The web address of the SPARQL endpoint.
      */
     public String getWebAddress() {
@@ -41,12 +42,24 @@ public class SPARQLEndpoint extends Source {
     }
     
     /**
-     * A setter class for assigning a web address.
-     * 
      * @param address The web address.
      */
     public void setWebAddress(String address) {
         webAddress = address;
+    }
+    
+    /**
+     * @return the CIDOC CRM address.
+     */
+    public String getCIDOCAddress() {
+        return cidocAddress;
+    }
+    
+    /**
+     * @param address The CIDOC CRM address.
+     */
+    public void setCIDOCAddress(String address) {
+        cidocAddress = address;
     }
     
 }
