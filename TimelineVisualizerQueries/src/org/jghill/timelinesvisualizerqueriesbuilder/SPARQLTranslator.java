@@ -16,6 +16,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String BMO = "bmo: <http://collection.britishmuseum.org/id/ontology/> ";
     private static final String CRM = "crm: <http://www.cidoc-crm.org/cidoc-crm/> ";
     private static final String RDF = "rdfs: <http://www.w3.org/2000/01/rdf-schema#> ";
+    private static final String XML = "xsd: <http://www.w3.org/2001/XMLSchema#> ";
     
     private static final String PREFIX = "PREFIX ";
     private static final String SELECTDISTINCT = "SELECT DISTINCT ";
@@ -59,7 +60,8 @@ public class SPARQLTranslator implements QueryTranslator {
         return
                 PREFIX + BMO +
                 PREFIX + CRM +
-                PREFIX + RDF;
+                PREFIX + RDF +
+                PREFIX + XML;
     }
     
     /**
@@ -131,11 +133,23 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getDates() {
         String dates = "";
+        
         dates += PRODUCTION + " a crm:E12_Production ";
         dates += "; crm:P108_has_produced " + OBJECT + " ";
         dates += "; crm:P4_has_time-span " + TIME + ". ";
+        
         dates += TIME + "crm:P79_beginning_is_qualified_by " + BEGIN + ". ";
+        if (!settings.creationStartDate.equals("")) {
+            dates += "FILTER (xsd:integer(" + BEGIN + ") >= " +
+                    settings.creationStartDate + ") . ";
+        }
+        
         dates += TIME + "crm:P80_end_is_qualified_by " + FINISH + ". ";
+        if(!settings.creationEndDate.equals("")) {
+            dates += "FILTER (xsd:integer(" + FINISH + ") <= " +
+                    settings.creationEndDate + ") . ";
+        }
+        
         return dates;
     }
     
