@@ -135,16 +135,16 @@ public class SPARQLTranslator implements QueryTranslator {
         
         dates += PRODUCTION + " a crm:E12_Production ";
         dates += "; crm:P108_has_produced " + OBJECT + " . ";
-        
         dates += "{ " + PRODUCTION + "crm:P9_consists_of [ crm:P4_has_time-span " + TIME + " ] } ";
         dates += UNION;
         dates += "{ " + PRODUCTION + " crm:P4_has_time-span " + TIME + " } ";
-        
         dates += TIME + "a crm:E52_Time-Span ; rdfs:label " + DATE + " . ";
+        
         if (!settings.creationStartDate.equals("")) {
             dates += "FILTER (xsd:integer(" + DATE + ") >= " +
                     settings.creationStartDate + ") . ";
         }
+        
         if(!settings.creationEndDate.equals("")) {
             dates += "FILTER (xsd:integer(" + DATE + ") <= " +
                     settings.creationEndDate + ") . ";
