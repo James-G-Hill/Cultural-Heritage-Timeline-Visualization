@@ -19,7 +19,7 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl>, L
     private String notes;
     private final Lookup lu;
     private final InstanceContent instanceContent;
-    private final EntitiesCollection entities;
+    private EntitiesCollection entities;
     private final QueriesCollection queries;
     private CollectionTopComponent tc;
     
@@ -114,6 +114,11 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl>, L
     @Override
     public void setTopComponent(CollectionTopComponent tc) {
         this.tc = tc;
+    }
+
+    @Override
+    public void clearEntitiesCollection() {
+        entities = new EntitiesCollection("Collection");
     }
     
 }
