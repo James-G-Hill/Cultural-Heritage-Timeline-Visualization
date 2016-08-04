@@ -169,7 +169,7 @@ public final class CollectionTopComponent extends TopComponent {
                     .addComponent(NotesTextPanel)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, InformationLayout.createSequentialGroup()
                         .addComponent(NotesText, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 769, Short.MAX_VALUE)))
+                        .addGap(0, 767, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         InformationLayout.setVerticalGroup(
@@ -180,12 +180,13 @@ public final class CollectionTopComponent extends TopComponent {
                 .addGap(18, 18, 18)
                 .addComponent(NotesText)
                 .addGap(18, 18, 18)
-                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         Tab.addTab(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Information.TabConstraints.tabTitle"), Information); // NOI18N
 
+        QueriesTable.setAutoCreateRowSorter(true);
         QueriesTable.setModel(new QueryTableModel(coll));
         QueriesScrollPane.setViewportView(QueriesTable);
 
@@ -403,7 +404,7 @@ public final class CollectionTopComponent extends TopComponent {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createSequentialGroup()
                         .addComponent(ExistingQueriesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(QueriesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+                        .addComponent(QueriesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(DeleteButton)
@@ -486,6 +487,7 @@ public final class CollectionTopComponent extends TopComponent {
 
         EntitiesScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
+        EntitiesTable.setAutoCreateRowSorter(true);
         EntitiesTable.setModel(new EntityTableModel(coll));
         EntitiesScrollPane.setViewportView(EntitiesTable);
 
@@ -495,14 +497,14 @@ public final class CollectionTopComponent extends TopComponent {
             EntitiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EntitiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 961, Short.MAX_VALUE)
+                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
                 .addContainerGap())
         );
         EntitiesLayout.setVerticalGroup(
             EntitiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EntitiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -515,11 +517,11 @@ public final class CollectionTopComponent extends TopComponent {
         collectionDisplayPanel.setLayout(collectionDisplayPanelLayout);
         collectionDisplayPanelLayout.setHorizontalGroup(
             collectionDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 963, Short.MAX_VALUE)
+            .addGap(0, 965, Short.MAX_VALUE)
         );
         collectionDisplayPanelLayout.setVerticalGroup(
             collectionDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 469, Short.MAX_VALUE)
+            .addGap(0, 486, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout VisualizerLayout = new javax.swing.GroupLayout(Visualizer);
@@ -547,14 +549,14 @@ public final class CollectionTopComponent extends TopComponent {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tab, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE)
+                .addComponent(Tab)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tab, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                .addComponent(Tab)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -572,18 +574,15 @@ public final class CollectionTopComponent extends TopComponent {
     private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
         if (coll.getQueriesCollection().getCount() > 0) {
             try {
-                System.out.println("A");
                 etb.clearAll();
                 Dispatcher dispatcher = Dispatcher.getInstance();
                 EntitiesCollection entities = coll.getEntitiesCollection();
                 entities.addThing(dispatcher.runQueries(coll.getQueriesCollection()));
                 entityModelChange();
                 if (etb.getFlattenedCollection().length > 0) {
-                    System.out.println("B");
                     collectionDisplayPanel.setArray(etb.getFlattenedCollection());
                     Tab.setSelectedIndex(TAB_VISUAL);
                 } else {
-                    System.out.println("C");
                     NotifyDescriptor notice;
                     notice = new NotifyDescriptor.Message(
                             "No entities were returned."
@@ -593,7 +592,6 @@ public final class CollectionTopComponent extends TopComponent {
                 output("502 Proxy Error: endpoint not available.");
             }
         } else {
-            System.out.println("D");
             resetEntitiesAndDisplay();
             Tab.setSelectedIndex(TAB_VISUAL);
         }
