@@ -1,6 +1,7 @@
 package org.jghill.timelinesvisualizercollections.display;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.Calendar;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -61,7 +62,18 @@ public class CollectionDisplayPanel extends JPanel {
         timelines = new TimeLine[1];
         timelines[0] = tm;
         this.add(tm);
-        tm.setBounds(10, 10, this.getWidth() - 20, this.getHeight() - 20);
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        paintTimeLines();
+    }
+    
+    protected void paintTimeLines() {
+        for(TimeLine tm : timelines) {
+            tm.setBounds(10, 10, this.getWidth() - 20, this.getHeight() - 20);
+        }
     }
     
     private void setUp() {
