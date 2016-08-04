@@ -24,12 +24,18 @@ public class TimeLine extends JLayeredPane {
     private JLabel[] labels;
     private EntityDisplay[] eDisplays;
     
-    private CollectionDisplayPanel cdp;
+    private final CollectionDisplayPanel cdp;
     
     private int vertical;
     private int lineLength;
     
-    public TimeLine() {}
+    private final Color color;
+    
+    public TimeLine(CollectionDisplayPanel cdp, Color color) {
+        this.cdp = cdp;
+        this.color = color;
+        setUp();
+    }
     
     /**
      * Sets the arrays used to create this TimeLine.
@@ -37,10 +43,10 @@ public class TimeLine extends JLayeredPane {
      * @param intervals
      * @param entities 
      */
-    public void setArray(CollectionDisplayPanel cdp) {
+    private void setUp() {
         this.setLayout(null);
         this.setOpaque(true);
-        this.cdp = cdp;
+        this.setBackground(color);
         this.intervals = cdp.getDateArray();
         
         labels = new JLabel[intervals.length];
