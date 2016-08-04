@@ -27,4 +27,7 @@ public interface Collection {
     public Lookup getLookup();
     
     public void setTopComponent(CollectionTopComponent tc);
+    
+    public void clearEntitiesCollection();
+    
 }
