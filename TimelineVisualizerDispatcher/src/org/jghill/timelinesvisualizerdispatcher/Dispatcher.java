@@ -1,5 +1,6 @@
 package org.jghill.timelinesvisualizerdispatcher;
 
+import java.util.Date;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueries.QueryShell;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
@@ -44,6 +45,7 @@ public class Dispatcher {
             EntitiesCollection queryResults;
             queryResults = q.run();
             entities.addThing(queryResults);
+            q.setLastRunDate(new Date());
         }
         output("All campaigns run");
         
