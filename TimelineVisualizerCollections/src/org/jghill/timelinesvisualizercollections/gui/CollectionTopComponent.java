@@ -570,16 +570,20 @@ public final class CollectionTopComponent extends TopComponent {
     }//GEN-LAST:event_CreateButtonActionPerformed
 
     private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
-        EntitiesCollection entities = coll.getEntitiesCollection();
         if (coll.getQueriesCollection().getCount() > 0) {
             try {
-                Dispatcher dispatch = Dispatcher.getInstance();
-                entities.addThing(dispatch.runQueries(coll.getQueriesCollection()));
+                System.out.println("A");
+                etb.clearAll();
+                Dispatcher dispatcher = Dispatcher.getInstance();
+                EntitiesCollection entities = coll.getEntitiesCollection();
+                entities.addThing(dispatcher.runQueries(coll.getQueriesCollection()));
                 entityModelChange();
                 if (etb.getFlattenedCollection().length > 0) {
+                    System.out.println("B");
                     collectionDisplayPanel.setArray(etb.getFlattenedCollection());
                     Tab.setSelectedIndex(TAB_VISUAL);
                 } else {
+                    System.out.println("C");
                     NotifyDescriptor notice;
                     notice = new NotifyDescriptor.Message(
                             "No entities were returned."
@@ -589,9 +593,8 @@ public final class CollectionTopComponent extends TopComponent {
                 output("502 Proxy Error: endpoint not available.");
             }
         } else {
-            etb.clearAll();
-            entityModelChange();
-            collectionDisplayPanel.clear();
+            System.out.println("D");
+            resetEntitiesAndDisplay();
             Tab.setSelectedIndex(TAB_VISUAL);
         }
     }//GEN-LAST:event_RunButtonActionPerformed
@@ -831,6 +834,14 @@ public final class CollectionTopComponent extends TopComponent {
     private void output(String text) {
         InputOutput io = IOProvider.getDefault().getIO("Main", false);
         io.getOut().println(text);
+    }
+    
+    /**
+     * Resets the entities collection and the collection display.
+     */
+    private void resetEntitiesAndDisplay() {
+        etb.clearAll();
+        collectionDisplayPanel.clear();
     }
 
 }
