@@ -1,8 +1,8 @@
 package org.jghill.timelinesvisualizercollections.gui;
 
 import javax.swing.table.AbstractTableModel;
+import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinevisualizerqueries.QueryShell;
-import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
 
 /**
  * A model for assisting display of QueryShell in the Query Table.
@@ -11,17 +11,17 @@ import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
  */
 public class QueryTableModel extends AbstractTableModel {
 
-    private final QueriesCollection queries;
+    private final Collection collection;
     private QueryShell[] shells;
     
-    public QueryTableModel(QueriesCollection queries) {
-        this.queries = queries;
+    public QueryTableModel(Collection c) {
+        this.collection = c;
         updateDataTable();
     }
     
     @Override
     public int getRowCount() {
-        return queries.getCount();
+        return shells.length;
     }
 
     @Override
@@ -67,8 +67,8 @@ public class QueryTableModel extends AbstractTableModel {
      * Updates the array fed from the data table.
      */
     private void updateDataTable() {
-        shells = new QueryShell[queries.getCount()];
-        queries.getCollectionSet().toArray(shells);
+        shells = new QueryShell[collection.getQueriesCollection().getCount()];
+        collection.getQueriesCollection().getCollectionSet().toArray(shells);
     }
     
     /**
@@ -77,7 +77,7 @@ public class QueryTableModel extends AbstractTableModel {
      * @param index the row number of the source.
      */
     public void deleteSource(int index) {
-        queries.deleteQuery(shells[index]);
+        collection.getQueriesCollection().deleteQuery(shells[index]);
         fireTableDataChanged();
     }
     
