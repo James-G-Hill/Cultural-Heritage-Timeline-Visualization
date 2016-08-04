@@ -3,6 +3,7 @@ package org.jghill.timelinesvisualizercollections.gui;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinevisualizerentities.Entities;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
@@ -14,13 +15,13 @@ import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
  */
 public class EntityTableModel extends AbstractTableModel {
 
-    private final EntitiesCollection collection;
+    private final Collection collection;
     private ManMadeObject[] entities;
     
     private static final int COL_COUNT = 4;
     
-    public EntityTableModel(EntitiesCollection e) {
-        this.collection = e;
+    public EntityTableModel(Collection c) {
+        this.collection = c;
         updateDataTable();
     }
     
@@ -82,7 +83,7 @@ public class EntityTableModel extends AbstractTableModel {
      * Updates the array fed from the data table.
      */
     private void updateDataTable() {
-        List flat = entitiesFlatten(collection);
+        List flat = entitiesFlatten(collection.getEntitiesCollection());
         entities = new ManMadeObject[flat.size()];
         flat.toArray(entities);
     }
@@ -135,4 +136,13 @@ public class EntityTableModel extends AbstractTableModel {
             return String.valueOf(i);
         }
     }
+    
+    /**
+     * Clears all entities.
+     */
+    public void clearAll() {
+        collection.clearEntitiesCollection();
+        fireTableDataChanged();
+    }
+    
 }
