@@ -1,5 +1,6 @@
 package org.jghill.timelinesvisualizercollections.display;
 
+import java.awt.Color;
 import java.util.Calendar;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -12,10 +13,6 @@ import org.jghill.timelinevisualizerentities.ManMadeObject;
  * @author JGHill
  */
 public class CollectionDisplayPanel extends JPanel {
-    
-    public CollectionDisplayPanel() {
-        setUp();
-    }
     
     private ManMadeObject[] collection;
     private TimeLine[] timelines;
@@ -30,8 +27,23 @@ public class CollectionDisplayPanel extends JPanel {
     private int interval;
     private int intervalsCount;
     
+    public CollectionDisplayPanel() {
+        setUp();
+    }
+    
     public void setArray(ManMadeObject[] collection) {
+        clear();
         this.collection = collection;
+        calculateTimePeriod();
+        createTimeLines();
+        revalidate();
+        repaint();
+    }
+    
+    /**
+     * Calculates the time period for this collection display panel.
+     */
+    private void calculateTimePeriod() {
         earliest = calculateEarliest(collection);
         latest = calculateLatest(collection);
         start = getStart(earliest, latest);
@@ -39,13 +51,17 @@ public class CollectionDisplayPanel extends JPanel {
         interval = calculateInterval(start, end);
         intervalsCount = countIntervals(earliest, latest);
         dateArray = getArrayOfDates(start, interval, intervalsCount);
-        TimeLine tm = new TimeLine();
+    }
+    
+    /**
+     * Creates all timelines for this collection display panel.
+     */
+    private void createTimeLines() {
+        TimeLine tm = new TimeLine(this, Color.pink);
         timelines = new TimeLine[1];
         timelines[0] = tm;
         this.add(tm);
-        tm.setArray(this);
-        revalidate();
-        repaint();
+        tm.setBounds(10, 10, this.getWidth() - 20, this.getHeight() - 20);
     }
     
     private void setUp() {
@@ -89,11 +105,12 @@ public class CollectionDisplayPanel extends JPanel {
     }
     
     /**
-     * 
+     * Clears this panel.
      */
     public void clear() {
         this.collection = null;
         this.dateArray = null;
+        this.removeAll();
         timelines = null;
         revalidate();
         repaint();
