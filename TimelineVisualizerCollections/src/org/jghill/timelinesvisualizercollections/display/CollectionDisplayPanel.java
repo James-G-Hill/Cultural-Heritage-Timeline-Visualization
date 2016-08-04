@@ -1,6 +1,7 @@
 package org.jghill.timelinesvisualizercollections.display;
 
 import java.util.Calendar;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import static org.jghill.timelinesvisualizercollections.display.CollectionDisplayUtilities.*;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
@@ -12,9 +13,12 @@ import org.jghill.timelinevisualizerentities.ManMadeObject;
  */
 public class CollectionDisplayPanel extends JPanel {
     
-    public CollectionDisplayPanel() {}
+    public CollectionDisplayPanel() {
+        setUp();
+    }
     
     private ManMadeObject[] collection;
+    private TimeLine[] timelines;
     private int[] dateArray;
     
     private Calendar earliest;
@@ -26,7 +30,7 @@ public class CollectionDisplayPanel extends JPanel {
     private int interval;
     private int intervalsCount;
     
-    public void setArray(ManMadeObject[] collection, TimeLine tm) {
+    public void setArray(ManMadeObject[] collection) {
         this.collection = collection;
         earliest = calculateEarliest(collection);
         latest = calculateLatest(collection);
@@ -35,7 +39,17 @@ public class CollectionDisplayPanel extends JPanel {
         interval = calculateInterval(start, end);
         intervalsCount = countIntervals(earliest, latest);
         dateArray = getArrayOfDates(start, interval, intervalsCount);
+        TimeLine tm = new TimeLine();
+        timelines = new TimeLine[1];
+        timelines[0] = tm;
+        this.add(tm);
         tm.setArray(this);
+        revalidate();
+        repaint();
+    }
+    
+    private void setUp() {
+        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
     }
     
     /**
@@ -72,6 +86,17 @@ public class CollectionDisplayPanel extends JPanel {
         } else {
             return null;
         }
+    }
+    
+    /**
+     * 
+     */
+    public void clear() {
+        this.collection = null;
+        this.dateArray = null;
+        timelines = null;
+        revalidate();
+        repaint();
     }
     
 }
