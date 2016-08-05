@@ -40,9 +40,12 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
     private final ExplorerManager manager = new ExplorerManager();
     
     public ViewerTopComponent() {
+        
         initComponents();
         setName(Bundle.CTL_CollectionViewerTopComponent());
         setToolTipText(Bundle.HINT_CollectionViewerTopComponent());
+        
+        putClientProperty(TopComponent.PROP_CLOSING_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_DRAGGING_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
@@ -50,6 +53,7 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
         associateLookup(ExplorerUtils.createLookup(manager, getActionMap()));
         manager.setRootContext(new AbstractNode(CollectionContainer.getInstance().getChildren()));
         manager.getRootContext().setDisplayName("Collections");
+        
     }
 
     /**
@@ -83,6 +87,7 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane ViewerScrollPane;
     // End of variables declaration//GEN-END:variables
+    
     @Override
     public void componentOpened() {}
 
