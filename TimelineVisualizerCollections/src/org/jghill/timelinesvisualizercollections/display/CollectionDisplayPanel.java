@@ -10,7 +10,6 @@ import org.jghill.timelinevisualizerentities.ManMadeObject;
 
 /**
  * A Panel for displaying the results.
- * 
  * @author JGHill
  */
 public class CollectionDisplayPanel extends JPanel {
@@ -70,12 +69,20 @@ public class CollectionDisplayPanel extends JPanel {
         paintTimeLines();
     }
     
+    /**
+     * Places the TimeLines onto the panel.
+     */
     protected void paintTimeLines() {
-        for(TimeLine tm : timelines) {
-            tm.setBounds(10, 10, this.getWidth() - 20, this.getHeight() - 20);
+        if (timelines != null) {
+            for(TimeLine tm : timelines) {
+                tm.setBounds(10, 10, this.getWidth() - 20, this.getHeight() - 20);
+            }
         }
     }
     
+    /**
+     * Sets the layout.
+     */
     private void setUp() {
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
     }
