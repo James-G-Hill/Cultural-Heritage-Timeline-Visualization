@@ -1,5 +1,6 @@
 package org.jghill.timelinesvisualizercollections.gui;
 
+import java.awt.event.KeyEvent;
 import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import org.apache.jena.atlas.web.HttpException;
@@ -49,7 +50,7 @@ public final class CollectionTopComponent extends TopComponent {
     private final EntityTableModel etb;
     private final QueryTableModel qtb;
     
-    private Collection coll;
+    private final Collection coll;
     
     public CollectionTopComponent() {
         
@@ -140,7 +141,7 @@ public final class CollectionTopComponent extends TopComponent {
         Visualizer = new javax.swing.JPanel();
         collectionDisplayPanel = new org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel();
 
-        setPreferredSize(new java.awt.Dimension(400, 300));
+        setPreferredSize(new java.awt.Dimension(1000, 500));
 
         Tab.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -150,12 +151,19 @@ public final class CollectionTopComponent extends TopComponent {
 
         org.openide.awt.Mnemonics.setLocalizedText(NotesText, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.NotesText.text")); // NOI18N
 
+        TitleTextBox.setColumns(50);
         TitleTextBox.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         TitleTextBox.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         TitleTextBox.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.TitleTextBox.text")); // NOI18N
         TitleTextBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         TitleTextBox.setMargin(new java.awt.Insets(10, 10, 10, 10));
         TitleTextBox.setMinimumSize(new java.awt.Dimension(50, 50));
+        TitleTextBox.setPreferredSize(new java.awt.Dimension(1000, 50));
+        TitleTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TitleTextBoxKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout InformationLayout = new javax.swing.GroupLayout(Information);
         Information.setLayout(InformationLayout);
@@ -548,14 +556,14 @@ public final class CollectionTopComponent extends TopComponent {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tab)
+                .addComponent(Tab, javax.swing.GroupLayout.DEFAULT_SIZE, 970, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tab)
+                .addComponent(Tab, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -603,6 +611,14 @@ public final class CollectionTopComponent extends TopComponent {
             queryModelChange();
         }
     }//GEN-LAST:event_DeleteButtonActionPerformed
+
+    private void TitleTextBoxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TitleTextBoxKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            coll.setName(TitleTextBox.getText());
+            setName(coll.getName());
+            NotesTextBox.requestFocus();
+        }
+    }//GEN-LAST:event_TitleTextBoxKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox AcquisitionDateCheckBox;
