@@ -1,6 +1,5 @@
 package org.jghill.timelinesvisualizercollections.gui;
 
-import java.time.LocalDateTime;
 import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import org.apache.jena.atlas.web.HttpException;
@@ -9,14 +8,12 @@ import org.openide.awt.ActionID;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.Collection;
-import org.jghill.timelinesvisualizercollections.CollectionImpl;
 import org.jghill.timelinesvisualizercollections.container.CollectionContainer;
 import org.jghill.timelinesvisualizerdispatcher.Dispatcher;
 import org.jghill.timelinesvisualizerqueriesbuilder.QueryBuilder;
 import org.jghill.timelinesvisualizerqueriesbuilder.QuerySettings;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueries.QueryShell;
-import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
 import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
 import org.netbeans.api.io.IOProvider;
