@@ -2,11 +2,16 @@ package org.jghill.timelinesvisualizercollections.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import org.jghill.timelinesvisualizercollections.Collection;
+import org.jghill.timelinesvisualizercollections.CollectionImpl;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionRegistration;
 import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.container.CollectionContainer;
+import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
+import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
 import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
 
@@ -23,11 +28,15 @@ public final class CollectionNew implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Collection collection = new CollectionImpl(
+                    "New " + LocalDateTime.now(), 
+                    new EntitiesCollection("Collection"), 
+                    new QueriesCollection());
+        CollectionContainer.addCollection(collection);
+        CollectionContainer.addToLookup(collection);
         CollectionTopComponent collTC = new CollectionTopComponent();
         collTC.open();
         collTC.getCollection().setTopComponent(collTC);
-        CollectionContainer container = CollectionContainer.getInstance();
-        container.addCollection(collTC.getCollection());
         output(collTC.getCollection().getName());
     }
     
