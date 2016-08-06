@@ -6,7 +6,6 @@ import org.openide.nodes.Node;
 
 /**
  * An index system for managing the Collection nodes.
- * 
  * @author JGHill
  */
 public class CollectionChildren extends Children.Keys {
