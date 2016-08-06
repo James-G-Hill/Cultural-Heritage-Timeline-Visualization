@@ -10,6 +10,7 @@ import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinesvisualizercollections.CollectionImpl;
+import org.jghill.timelinesvisualizercollections.container.CollectionContainer;
 import org.jghill.timelinesvisualizerdispatcher.Dispatcher;
 import org.jghill.timelinesvisualizerqueriesbuilder.QueryBuilder;
 import org.jghill.timelinesvisualizerqueriesbuilder.QuerySettings;
@@ -21,6 +22,7 @@ import org.jghill.timelinevisualizersources.SourceCollection;
 import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
 import org.openide.*;
+import org.openide.util.Lookup;
 
 /**
  * A window for displaying a collection and it's internals.
@@ -30,9 +32,7 @@ import org.openide.*;
         autostore = false
 )
 @TopComponent.Description(
-        preferredID = "CollectionTopComponent",
-        //iconBase="SET/PATH/TO/ICON/HERE", 
-        persistenceType = TopComponent.PERSISTENCE_ALWAYS
+        preferredID = "CollectionTopComponent"
 )
 @TopComponent.Registration(mode = "editor", openAtStartup = false)
 @ActionID(category = "Window", id = "org.jghill.timelinesvisualizercollectionsgui.CollectionTopComponent")
@@ -52,13 +52,14 @@ public final class CollectionTopComponent extends TopComponent {
     private final EntityTableModel etb;
     private final QueryTableModel qtb;
     
-    private Collection coll = 
-            new CollectionImpl(
-                    "New " + LocalDateTime.now(), 
-                    new EntitiesCollection("Collection"), 
-                    new QueriesCollection());
+    private Collection coll;
     
     public CollectionTopComponent() {
+        
+        Lookup tcLookup = CollectionContainer.getLookup();
+        coll = tcLookup.lookup(Collection.class);
+        CollectionContainer.addCollection(coll);
+        
         initComponents();
         setToolTipText(Bundle.HINT_CollectionTopComponent());
         putClientProperty(TopComponent.PROP_CLOSING_DISABLED, Boolean.FALSE);
@@ -69,6 +70,7 @@ public final class CollectionTopComponent extends TopComponent {
         TitleTextBox.setText(coll.getName());
         qtb = (QueryTableModel) QueriesTable.getModel();
         etb = (EntityTableModel) EntitiesTable.getModel();
+        
     }
 
     /**
@@ -693,19 +695,7 @@ public final class CollectionTopComponent extends TopComponent {
     }
     
     /**
-     * A setter for a collection to be applied to this top component.
-     * 
-     * @param coll the collection to be passed to this top component.
-     */
-    public void setCollection(Collection coll) {
-        this.coll = coll;
-        TitleTextBox.setText(coll.getName());
-        coll.setTopComponent(this);
-    }
-    
-    /**
      * A getter for the collection to be returned from this top component.
-     * 
      * @return the collection.
      */
     public Collection getCollection() {
@@ -750,7 +740,6 @@ public final class CollectionTopComponent extends TopComponent {
     
     /**
      * Checks whether the query builder section has been filled correctly.
-     * 
      * @return where it has been filled correctly.
      */
     private boolean querySettingsAreValid() {
