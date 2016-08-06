@@ -36,7 +36,7 @@ import org.openide.util.NbBundle.Messages;
     "HINT_CollectionViewerTopComponent=This is a Viewer"
 })
 public final class ViewerTopComponent extends TopComponent implements ExplorerManager.Provider {
-
+    
     private final ExplorerManager manager = new ExplorerManager();
     
     public ViewerTopComponent() {
@@ -51,7 +51,7 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
         
         associateLookup(ExplorerUtils.createLookup(manager, getActionMap()));
-        manager.setRootContext(new AbstractNode(CollectionContainer.getInstance().getChildren()));
+        manager.setRootContext(new AbstractNode(CollectionContainer.getChildren()));
         manager.getRootContext().setDisplayName("Collections");
         
     }
