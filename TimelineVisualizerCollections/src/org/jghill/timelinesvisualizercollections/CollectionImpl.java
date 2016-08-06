@@ -25,7 +25,6 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl>, L
     
     /**
      * A constructor accepting containers.
-     * 
      * @param name a name for the project.
      * @param entities an entities container.
      * @param queries a queries container.
@@ -46,11 +45,10 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl>, L
                 @Override
                 public void open(Collection coll) {
                     if(!tc.isOpened() || tc == null) {
+                        CollectionContainer.addToLookup(coll);
                         CollectionTopComponent collTC = new CollectionTopComponent();
-                        collTC.setCollection(coll);
                         collTC.open();
                         collTC.requestActive();
-                        tc = collTC;
                     }
                 }
             }
@@ -60,9 +58,7 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl>, L
             new CanDelete() {
                 @Override
                 public void delete(Collection coll) {
-                    CollectionContainer container;
-                    container = CollectionContainer.getInstance();
-                    container.deleteCollection(coll);
+                    CollectionContainer.deleteCollection(coll);
                     tc.close();
                     tc = null;
                 }
