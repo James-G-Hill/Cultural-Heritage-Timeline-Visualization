@@ -19,7 +19,6 @@ import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
 import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
-import org.openide.*;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
