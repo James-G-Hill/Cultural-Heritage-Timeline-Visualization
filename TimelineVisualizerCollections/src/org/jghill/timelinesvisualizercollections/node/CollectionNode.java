@@ -53,7 +53,12 @@ public class CollectionNode extends AbstractNode implements PropertyChangeListen
             new ViewerDeleteAction(getLookup())
         };
     }
-
+    
+    @Override
+    public Action getPreferredAction() {
+        return new ViewerOpenAction(getLookup());
+    }
+    
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if ("name".equals(evt.getPropertyName())) {
