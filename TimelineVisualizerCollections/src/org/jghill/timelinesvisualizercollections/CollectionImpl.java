@@ -1,5 +1,7 @@
 package org.jghill.timelinesvisualizercollections;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import org.jghill.timelinesvisualizercollections.container.CollectionContainer;
 import org.jghill.timelinesvisualizercollections.gui.CollectionTopComponent;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
@@ -17,11 +19,13 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl>, L
 
     private String name;
     private String notes;
+    
     private final Lookup lu;
     private final InstanceContent instanceContent;
     private EntitiesCollection entities;
     private final QueriesCollection queries;
     private CollectionTopComponent tc;
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     
     /**
      * A constructor accepting containers.
@@ -74,7 +78,9 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl>, L
 
     @Override
     public void setName(String name) {
+        String oldName = this.name;
         this.name = name;
+        pcs.firePropertyChange("name", oldName, name);
     }
 
     @Override
@@ -115,6 +121,16 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl>, L
     @Override
     public void clearEntitiesCollection() {
         entities = new EntitiesCollection("Collection");
+    }
+    
+    @Override
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        pcs.addPropertyChangeListener("name", listener);
+    }
+    
+    @Override
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        pcs.removePropertyChangeListener("name", listener);
     }
     
 }
