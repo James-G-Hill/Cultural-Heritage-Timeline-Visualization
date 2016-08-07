@@ -152,6 +152,8 @@ public final class CollectionTopComponent extends TopComponent {
         EntitiesTable = new javax.swing.JTable();
         Visualizer = new javax.swing.JPanel();
         collectionDisplayPanel = new org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel();
+        FirstFilterLabel = new javax.swing.JLabel();
+        FirstFilterComboBox = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(1000, 500));
 
@@ -540,8 +542,12 @@ public final class CollectionTopComponent extends TopComponent {
         );
         collectionDisplayPanelLayout.setVerticalGroup(
             collectionDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 486, Short.MAX_VALUE)
+            .addGap(0, 381, Short.MAX_VALUE)
         );
+
+        org.openide.awt.Mnemonics.setLocalizedText(FirstFilterLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.FirstFilterLabel.text")); // NOI18N
+
+        FirstFilterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Source" }));
 
         javax.swing.GroupLayout VisualizerLayout = new javax.swing.GroupLayout(Visualizer);
         Visualizer.setLayout(VisualizerLayout);
@@ -549,7 +555,13 @@ public final class CollectionTopComponent extends TopComponent {
             VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VisualizerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(collectionDisplayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(collectionDisplayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(VisualizerLayout.createSequentialGroup()
+                        .addComponent(FirstFilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(FirstFilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         VisualizerLayout.setVerticalGroup(
@@ -557,6 +569,10 @@ public final class CollectionTopComponent extends TopComponent {
             .addGroup(VisualizerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(collectionDisplayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(FirstFilterLabel)
+                    .addComponent(FirstFilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -568,7 +584,7 @@ public final class CollectionTopComponent extends TopComponent {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tab, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+                .addComponent(Tab)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -644,6 +660,8 @@ public final class CollectionTopComponent extends TopComponent {
     private javax.swing.JScrollPane EntitiesScrollPane;
     private javax.swing.JTable EntitiesTable;
     private javax.swing.JLabel ExistingQueriesText;
+    private javax.swing.JComboBox<String> FirstFilterComboBox;
+    private javax.swing.JLabel FirstFilterLabel;
     private javax.swing.JCheckBox HasImageCheckBox;
     private javax.swing.JCheckBox HasLimitCheckBox;
     private javax.swing.JTextField HasLimitTextField;
