@@ -21,6 +21,8 @@ import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
 import org.openide.*;
 import org.openide.util.Lookup;
+import org.openide.util.LookupEvent;
+import org.openide.util.LookupListener;
 
 /**
  * A window for displaying a collection and it's internals.
@@ -52,6 +54,8 @@ public final class CollectionTopComponent extends TopComponent {
     
     private final Collection coll;
     
+    private final Lookup.Result <Source> sources;
+    
     public CollectionTopComponent() {
         
         Lookup tcLookup = CollectionContainer.getLookup();
@@ -68,6 +72,16 @@ public final class CollectionTopComponent extends TopComponent {
         TitleTextBox.setText(coll.getName());
         qtb = (QueryTableModel) QueriesTable.getModel();
         etb = (EntityTableModel) EntitiesTable.getModel();
+        
+        Lookup sLookup = SourceCollection.getInstance().getLookup();
+        sources = sLookup.lookupResult(Source.class);
+        sources.allInstances();
+        sources.addLookupListener(new LookupListener() {
+            @Override
+            public void resultChanged(LookupEvent e) {
+                SourceComboBox.setModel(new DefaultComboBoxModel(SourceCollection.collectionToArray()));
+            }}
+        );
         
     }
 
