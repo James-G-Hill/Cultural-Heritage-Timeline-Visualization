@@ -93,7 +93,6 @@ public final class CollectionTopComponent extends TopComponent {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
         Tab = new javax.swing.JTabbedPane();
         Information = new javax.swing.JPanel();
         NotesTextPanel = new javax.swing.JScrollPane();
@@ -186,11 +185,11 @@ public final class CollectionTopComponent extends TopComponent {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InformationLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(InformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(TitleTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TitleTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 947, Short.MAX_VALUE)
                     .addComponent(NotesTextPanel)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, InformationLayout.createSequentialGroup()
                         .addComponent(NotesText, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 767, Short.MAX_VALUE)))
+                        .addGap(0, 747, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         InformationLayout.setVerticalGroup(
@@ -518,7 +517,7 @@ public final class CollectionTopComponent extends TopComponent {
             EntitiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EntitiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 947, Short.MAX_VALUE)
                 .addContainerGap())
         );
         EntitiesLayout.setVerticalGroup(
@@ -538,7 +537,7 @@ public final class CollectionTopComponent extends TopComponent {
         collectionDisplayPanel.setLayout(collectionDisplayPanelLayout);
         collectionDisplayPanelLayout.setHorizontalGroup(
             collectionDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 965, Short.MAX_VALUE)
+            .addGap(0, 945, Short.MAX_VALUE)
         );
         collectionDisplayPanelLayout.setVerticalGroup(
             collectionDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -570,7 +569,7 @@ public final class CollectionTopComponent extends TopComponent {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tab, javax.swing.GroupLayout.DEFAULT_SIZE, 970, Short.MAX_VALUE)
+                .addComponent(Tab, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -600,15 +599,7 @@ public final class CollectionTopComponent extends TopComponent {
                 EntitiesCollection entities = coll.getEntitiesCollection();
                 entities.addThing(dispatcher.runQueries(coll.getQueriesCollection()));
                 entityModelChange();
-                if (etb.getFlattenedCollection().length > 0) {
-                    collectionDisplayPanel.setArray(etb.getFlattenedCollection());
-                    Tab.setSelectedIndex(TAB_VISUAL);
-                } else {
-                    NotifyDescriptor notice;
-                    notice = new NotifyDescriptor.Message(
-                            "No entities were returned."
-                    );
-                }
+                paintVisualDisplay();
             } catch (HttpException ex) {
                 output("502 Proxy Error: endpoint not available.");
             }
@@ -695,13 +686,13 @@ public final class CollectionTopComponent extends TopComponent {
     private javax.swing.JTextField WidthUpperTextField;
     private org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel collectionDisplayPanel;
     private javax.swing.JSeparator jSeparator1;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     // End of variables declaration//GEN-END:variables
     
     @Override
     public void componentOpened() {
         setName(coll.getName());
         queryModelChange();
+        paintVisualDisplay();
     }
 
     @Override
@@ -842,7 +833,6 @@ public final class CollectionTopComponent extends TopComponent {
     
     /**
      * Outputs an explanation of the action.
-     * 
      * @param text toString of the returned entity.
      */
     private void output(String text) {
@@ -856,6 +846,16 @@ public final class CollectionTopComponent extends TopComponent {
     private void resetEntitiesAndDisplay() {
         etb.clearAll();
         collectionDisplayPanel.clear();
+    }
+    
+    /**
+     * Paints the visual display.
+     */
+    private void paintVisualDisplay() {
+        if (etb.getFlattenedCollection().length > 0) {
+            collectionDisplayPanel.setArray(etb.getFlattenedCollection());
+            Tab.setSelectedIndex(TAB_VISUAL);
+        }
     }
 
 }
