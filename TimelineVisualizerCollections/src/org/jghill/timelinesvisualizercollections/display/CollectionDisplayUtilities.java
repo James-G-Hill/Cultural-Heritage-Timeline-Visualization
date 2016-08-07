@@ -11,13 +11,10 @@ import org.jghill.timelinevisualizerentities.ManMadeObject;
  */
 public final class CollectionDisplayUtilities {
     
-    private final static int NUMBER_INTERVALS = 10;
-    
     private CollectionDisplayUtilities() {}
     
     /**
      * Calculate the earliest and latest dates to display on the timeline.
-     * 
      * @param collection the collection of objects to calculate from.
      */
     public static Calendar calculateEarliest(ManMadeObject[] collection) {
@@ -39,7 +36,6 @@ public final class CollectionDisplayUtilities {
     
     /**
      * Calculate the earliest and latest dates to display on the timeline.
-     * 
      * @param collection the collection of objects to calculate from.
      */
     public static Calendar calculateLatest(ManMadeObject[] collection) {
@@ -61,71 +57,67 @@ public final class CollectionDisplayUtilities {
     
     /**
      * Returns the start date for the scale.
-     * 
-     * @param earliest the earliest date.
-     * @param latest the latest date.
+     * @param earliest date.
+     * @param interval the interval.
      * @return the first year date for the scale.
      */
-    public static Integer getStart(Calendar earliest, Calendar latest) {
-        int earlyYear = earliest.get(Calendar.YEAR);
-        int laterYear = latest.get(Calendar.YEAR);
-        int difference = laterYear - earlyYear;
-        return (int) ((int) earlyYear - (difference * 0.05));
+    public static Calendar getStart(Calendar earliest, int interval) {
+        int year = (int) (interval * (Math.floor(earliest.get(Calendar.YEAR)/interval)));
+        return new GregorianCalendar(year, 1, 1);
     }
     
     /**
      * Returns the end date for the scale.
-     * 
-     * @param earliest
-     * @param latest
+     * @param latest date.
+     * @param interval the interval.
      * @return the last year date for the scale.
      */
-    public static Integer getEnd(Calendar earliest, Calendar latest) {
-        int earlyYear = earliest.get(Calendar.YEAR);
-        int laterYear = latest.get(Calendar.YEAR);
-        int difference = laterYear - earlyYear;
-        return (int) ((int) laterYear + (difference * 0.1));
+    public static Calendar getEnd(Calendar latest, int interval) {
+        int year = (int) (interval * (Math.ceil(latest.get(Calendar.YEAR)/interval)));
+        return new GregorianCalendar(year, 1, 1);
     }
     
     /**
      * Calculates the intervals size.
-     * 
      * @return the size of the interval.
      */
-    public static int calculateInterval(int start, int end) {
-        int difference = end - start;
-        if (difference < 10) {
+    public static int calculateInterval(Calendar start, Calendar end) {
+        int difference = end.get(Calendar.YEAR) - start.get(Calendar.YEAR);
+        if (difference == 0) {
             return 1;
         } else {
-            return (int) Math.ceil(difference / NUMBER_INTERVALS);
+            return (int) Math.pow(10, Math.ceil(Math.log10(difference/10)));
         }
     }
     
     /**
      * Calculates the number of intervals to display on the timeline.
-     * 
      * @return the number of intervals.
      */
-    public static int countIntervals(Calendar earliest, Calendar latest) {
-        return NUMBER_INTERVALS;
+    public static int countIntervals(Calendar earliest, Calendar latest, int interval) {
+        int difference = latest.get(Calendar.YEAR) - earliest.get(Calendar.YEAR);
+        if (difference == 0) {
+            return 10;
+        } else {
+            return (interval + difference) / interval;
+        }
     }
     
     /**
      * Returns an array of dates from the start date.
-     * 
      * @param earliest the earliest Calendar date.
      * @param interval the size of the intervals.
      * @param intervalsCount the number of intervals.
      * @return an array of years.
      */
-    public static int[] getArrayOfDates(int start, int interval, int intervalsCount) {
+    public static int[] getArrayOfDates(Calendar start, int interval, int intervalsCount) {
         int[] dates = new int[intervalsCount];
         if (interval == 0) {
             dates[0] = 0;
             return dates;
         } else {
             for(int i = 0; i < intervalsCount; i++) {
-                dates[i] = start + (i * interval);
+                dates[i] = start.get(Calendar.YEAR) + (i * interval);
             }
             return dates;
         }
