@@ -21,8 +21,8 @@ public class CollectionDisplayPanel extends JPanel {
     private Calendar earliest;
     private Calendar latest;
     
-    private Integer start;
-    private Integer end;
+    private Calendar start;
+    private Calendar end;
     
     private int interval;
     private int intervalsCount;
@@ -46,10 +46,10 @@ public class CollectionDisplayPanel extends JPanel {
     private void calculateTimePeriod() {
         earliest = calculateEarliest(collection);
         latest = calculateLatest(collection);
-        start = getStart(earliest, latest);
-        end = getEnd(earliest, latest);
-        interval = calculateInterval(start, end);
-        intervalsCount = countIntervals(earliest, latest);
+        interval = calculateInterval(earliest, latest);
+        start = getStart(earliest, interval);
+        end = getEnd(latest, interval);
+        intervalsCount = countIntervals(start, end, interval);
         dateArray = getArrayOfDates(start, interval, intervalsCount);
     }
     
@@ -106,7 +106,7 @@ public class CollectionDisplayPanel extends JPanel {
      */
     public Integer returnStart() {
         if (start != null) {
-            return start;
+            return start.get(Calendar.YEAR);
         } else {
             return null;
         }
@@ -117,7 +117,7 @@ public class CollectionDisplayPanel extends JPanel {
      */
     public Integer returnEnd() {
         if (end != null) {
-            return end;
+            return end.get(Calendar.YEAR);
         } else {
             return null;
         }
