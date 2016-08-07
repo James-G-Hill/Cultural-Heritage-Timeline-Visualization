@@ -129,7 +129,7 @@ public class CollectionDisplayUtilitiesTest {
     public void testCalculateIntervalOverEra() {
         when(earliest.get(Calendar.YEAR)).thenReturn(-1000);
         when(latest.get(Calendar.YEAR)).thenReturn(1000);
-        int predicted = 200;
+        int predicted = 1000;
         int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
         assertEquals(predicted, result);
     }
@@ -165,7 +165,7 @@ public class CollectionDisplayUtilitiesTest {
     public void testCountIntervalsWithZero() {
         when(earliest.get(Calendar.YEAR)).thenReturn(1000);
         when(latest.get(Calendar.YEAR)).thenReturn(1000);
-        int predicted = 1;
+        int predicted = 10;
         int result = CollectionDisplayUtilities.countIntervals(earliest, latest);
         assertEquals(predicted, result);
     }
