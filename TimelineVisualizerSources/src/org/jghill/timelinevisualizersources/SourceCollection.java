@@ -2,23 +2,27 @@ package org.jghill.timelinevisualizersources;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
+import org.openide.util.Lookup;
+import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.InstanceContent;
 
 /**
  * A singleton pattern holding a collections of sources.
- * 
  * @author JGHill
  */
-public class SourceCollection {
+public class SourceCollection implements Lookup.Provider {
     
     private static final SortedSet<Source> SOURCES = new TreeSet<>();
     private static final SourceCollection COLLECTION = new SourceCollection();
+    
+    private static final InstanceContent IC = new InstanceContent();
+    private static final Lookup LOOKUP = new AbstractLookup(IC);
     
     private SourceCollection() {}
     
     /**
      * Returns the single instance of this singleton pattern.
-     * 
-     * @return 
+     * @return this SourceCollection.
      */
     public static SourceCollection getInstance() {
         return COLLECTION;
@@ -26,51 +30,51 @@ public class SourceCollection {
     
     /**
      * Return the entire collection.
-     * 
-     * @return The source collection.
+     * @return the source collection.
      */
-    public SortedSet<Source> getSourceCollectionSet() {
+    public static SortedSet<Source> getSourceCollectionSet() {
         return SOURCES;
     }
     
     /**
      * Add a source to the collection.
-     * 
-     * @param newSource The new source to be added.
-     * @return confirmation that a source has been added.
+     * @param source The new source to be added.
      */
-    public boolean addSource(Source newSource) {
-        return SOURCES.add(newSource);
+    public static void addSource(Source source) {
+        SOURCES.add(source);
+        IC.add(source);
     }
     
     /**
-     * Delete a source from the collection & return 'true' to confirm
-     * 
+     * Delete a source from the collection & return 'true' to confirm.
      * @param source The source to be deleted.
-     * @return confirmation that a source has been added.
      */
-    public boolean deleteSource(Source source) {
-        return SOURCES.remove(source);
+    public static void deleteSource(Source source) {
+        SOURCES.remove(source);
+        IC.remove(source);
     }
     
     /**
      * Returns the number of sources in the SourceCollection.
-     * 
      * @return the size of the collection.
      */
-    public int getSize() {
+    public static int getSize() {
         return SOURCES.size();
     }
     
     /**
      * Returns the collection as an array.
-     * 
      * @return the collection in array form.
      */
-    public Source[] collectionToArray() {
+    public static Source[] collectionToArray() {
         Source[] sources = new Source[SOURCES.size()];
         sources = SOURCES.toArray(sources);
         return sources;
+    }
+
+    @Override
+    public Lookup getLookup() {
+        return LOOKUP;
     }
     
 }
