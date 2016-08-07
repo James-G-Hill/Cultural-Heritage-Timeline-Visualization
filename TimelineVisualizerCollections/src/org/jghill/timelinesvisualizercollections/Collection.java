@@ -1,5 +1,6 @@
 package org.jghill.timelinesvisualizercollections;
 
+import java.beans.PropertyChangeListener;
 import org.jghill.timelinesvisualizercollections.gui.CollectionTopComponent;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
@@ -29,5 +30,9 @@ public interface Collection {
     public void setTopComponent(CollectionTopComponent tc);
     
     public void clearEntitiesCollection();
+    
+    public void addPropertyChangeListener(PropertyChangeListener listener);
+    
+    public void removePropertyChangeListener(PropertyChangeListener listener);
     
 }
