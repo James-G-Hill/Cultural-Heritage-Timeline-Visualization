@@ -146,9 +146,10 @@ public class CollectionDisplayUtilitiesTest {
     @Test
     public void testCountIntervals() {
         when(earliest.get(Calendar.YEAR)).thenReturn(1000);
-        when(latest.get(Calendar.YEAR)).thenReturn(1015);
-        int predicted = 10;
-        int result = CollectionDisplayUtilities.countIntervals(earliest, latest);
+        when(latest.get(Calendar.YEAR)).thenReturn(1020);
+        int interval = 10;
+        int predicted = 3;
+        int result = CollectionDisplayUtilities.countIntervals(earliest, latest, interval);
         assertEquals(predicted, result);
     }
     
@@ -156,8 +157,9 @@ public class CollectionDisplayUtilitiesTest {
     public void testCountIntervalsTwenty() {
         when(earliest.get(Calendar.YEAR)).thenReturn(1980);
         when(latest.get(Calendar.YEAR)).thenReturn(2000);
-        int predicted = 10;
-        int result = CollectionDisplayUtilities.countIntervals(earliest, latest);
+        int interval = 10;
+        int predicted = 3;
+        int result = CollectionDisplayUtilities.countIntervals(earliest, latest, interval);
         assertEquals(predicted, result);
     }
     
@@ -165,21 +167,22 @@ public class CollectionDisplayUtilitiesTest {
     public void testCountIntervalsWithZero() {
         when(earliest.get(Calendar.YEAR)).thenReturn(1000);
         when(latest.get(Calendar.YEAR)).thenReturn(1000);
+        int interval = 0;
         int predicted = 10;
-        int result = CollectionDisplayUtilities.countIntervals(earliest, latest);
+        int result = CollectionDisplayUtilities.countIntervals(earliest, latest, interval);
         assertEquals(predicted, result);
     }
     
-//    @Test
-//    public void testGetArrayOfDates() {
-//        when(earliest.get(Calendar.YEAR)).thenReturn(1995);
-//        int predicted1 = 1990;
-//        int predicted2 = 2000;
-//        int predicted3 = 2010;
-//        int[] result = CollectionDisplayUtilities.getArrayOfDates(earliest, 10, 3);
-//        assertEquals(predicted1, result[0]);
-//        assertEquals(predicted2, result[1]);
-//        assertEquals(predicted3, result[2]);
-//    }
+    @Test
+    public void testGetArrayOfDates() {
+        when(earliest.get(Calendar.YEAR)).thenReturn(1990);
+        int predicted1 = 1990;
+        int predicted2 = 2000;
+        int predicted3 = 2010;
+        int[] result = CollectionDisplayUtilities.getArrayOfDates(earliest, 10, 3);
+        assertEquals(predicted1, result[0]);
+        assertEquals(predicted2, result[1]);
+        assertEquals(predicted3, result[2]);
+    }
     
 }
