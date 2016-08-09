@@ -186,11 +186,11 @@ public final class CollectionTopComponent extends TopComponent {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InformationLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(InformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(TitleTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 947, Short.MAX_VALUE)
+                    .addComponent(TitleTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE)
                     .addComponent(NotesTextPanel)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, InformationLayout.createSequentialGroup()
                         .addComponent(NotesText, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 747, Short.MAX_VALUE)))
+                        .addGap(0, 839, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         InformationLayout.setVerticalGroup(
@@ -201,14 +201,17 @@ public final class CollectionTopComponent extends TopComponent {
                 .addGap(18, 18, 18)
                 .addComponent(NotesText)
                 .addGap(18, 18, 18)
-                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         Tab.addTab(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Information.TabConstraints.tabTitle"), Information); // NOI18N
 
+        QueriesScrollPane.setPreferredSize(new java.awt.Dimension(440, 400));
+
         QueriesTable.setAutoCreateRowSorter(true);
         QueriesTable.setModel(new QueryTableModel(coll));
+        QueriesTable.setRowHeight(20);
         QueriesScrollPane.setViewportView(QueriesTable);
 
         org.openide.awt.Mnemonics.setLocalizedText(ExistingQueriesText, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ExistingQueriesText.text")); // NOI18N
@@ -309,6 +312,7 @@ public final class CollectionTopComponent extends TopComponent {
         HasLimitTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasLimitTextField.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceNameTextLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.SourceNameTextLabel.text")); // NOI18N
+        SourceNameTextLabel.setOpaque(true);
 
         QueryNameTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.QueryNameTextField.text")); // NOI18N
 
@@ -327,12 +331,12 @@ public final class CollectionTopComponent extends TopComponent {
                 .addContainerGap()
                 .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ExistingQueriesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(QueriesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(QueriesLayout.createSequentialGroup()
                         .addComponent(DeleteButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(RunButton)))
-                .addGap(18, 18, 18)
+                        .addComponent(RunButton))
+                    .addComponent(QueriesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(QuerySeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -425,7 +429,7 @@ public final class CollectionTopComponent extends TopComponent {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createSequentialGroup()
                         .addComponent(ExistingQueriesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(QueriesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+                        .addComponent(QueriesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(DeleteButton)
@@ -518,14 +522,14 @@ public final class CollectionTopComponent extends TopComponent {
             EntitiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EntitiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 947, Short.MAX_VALUE)
+                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE)
                 .addContainerGap())
         );
         EntitiesLayout.setVerticalGroup(
             EntitiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EntitiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -538,7 +542,7 @@ public final class CollectionTopComponent extends TopComponent {
         collectionDisplayPanel.setLayout(collectionDisplayPanelLayout);
         collectionDisplayPanelLayout.setHorizontalGroup(
             collectionDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 945, Short.MAX_VALUE)
+            .addGap(0, 1037, Short.MAX_VALUE)
         );
         collectionDisplayPanelLayout.setVerticalGroup(
             collectionDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -546,8 +550,9 @@ public final class CollectionTopComponent extends TopComponent {
         );
 
         org.openide.awt.Mnemonics.setLocalizedText(FirstFilterLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.FirstFilterLabel.text")); // NOI18N
+        FirstFilterLabel.setOpaque(true);
 
-        FirstFilterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Source" }));
+        FirstFilterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Query", "Source" }));
 
         javax.swing.GroupLayout VisualizerLayout = new javax.swing.GroupLayout(Visualizer);
         Visualizer.setLayout(VisualizerLayout);
@@ -584,8 +589,7 @@ public final class CollectionTopComponent extends TopComponent {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tab)
-                .addContainerGap())
+                .addComponent(Tab))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
