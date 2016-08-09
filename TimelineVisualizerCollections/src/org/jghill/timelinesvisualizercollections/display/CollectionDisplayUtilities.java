@@ -62,8 +62,13 @@ public final class CollectionDisplayUtilities {
      * @return the first year date for the scale.
      */
     public static Calendar getStart(Calendar earliest, int interval) {
-        int year = (int) (interval * (Math.floor(earliest.get(Calendar.YEAR)/interval)));
-        return new GregorianCalendar(year, 1, 1);
+        int year = earliest.get(Calendar.YEAR);
+        if (interval == 0) {
+            return new GregorianCalendar(year - 1, 1, 1);
+        } else {
+            year = (int) (interval * (Math.floor((double) year / interval)));
+            return new GregorianCalendar(year, 1, 1);
+        }
     }
     
     /**
@@ -73,8 +78,13 @@ public final class CollectionDisplayUtilities {
      * @return the last year date for the scale.
      */
     public static Calendar getEnd(Calendar latest, int interval) {
-        int year = (int) (interval * (Math.ceil(latest.get(Calendar.YEAR)/interval)));
-        return new GregorianCalendar(year, 1, 1);
+        int year = latest.get(Calendar.YEAR);
+        if (interval == 0) {
+            return new GregorianCalendar(year + 1, 1, 1);
+        } else {
+            year = (int) (interval * (Math.ceil((double) year / interval)));
+            return new GregorianCalendar(year, 1, 1);
+        }
     }
     
     /**
@@ -96,7 +106,7 @@ public final class CollectionDisplayUtilities {
      */
     public static int countIntervals(Calendar earliest, Calendar latest, int interval) {
         int difference = latest.get(Calendar.YEAR) - earliest.get(Calendar.YEAR);
-        if (difference == 0) {
+        if (interval == 0) {
             return 10;
         } else {
             return (interval + difference) / interval;
