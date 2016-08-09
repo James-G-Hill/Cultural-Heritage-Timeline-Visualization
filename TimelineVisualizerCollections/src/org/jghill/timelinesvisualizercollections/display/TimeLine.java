@@ -16,7 +16,8 @@ public class TimeLine extends JLayeredPane {
     private final static int DIAMETER = 6;
     private final static int RADIUS = DIAMETER / 2;
     private final static int IMAGE_UPPER = 150;
-    private final static int INDENT = 10;
+    private final static int LINE_INDENT = 20;
+    private final static int SCALE_INDENT = 40;
     private final static int UPNOTCH = 5;
     private final static int DOWNNOTCH = 15;
     
@@ -28,6 +29,7 @@ public class TimeLine extends JLayeredPane {
     
     private int vertical;
     private int lineLength;
+    private int scaleLength;
     
     private final Color color;
     
@@ -81,7 +83,6 @@ public class TimeLine extends JLayeredPane {
         
     /**
      * Paints the scale onto the TimeLine.
-     * 
      * @param g the Graphics object.
      */
     private void paintTimeLine(Graphics g) {
@@ -90,7 +91,8 @@ public class TimeLine extends JLayeredPane {
         int width = getWidth();
         
         vertical = height - 25;
-        lineLength = width - (INDENT * 2);
+        lineLength = width - (LINE_INDENT * 2);
+        scaleLength = lineLength - (SCALE_INDENT * 2);
         
         paintScale(g);
         paintEntities(g);
@@ -99,7 +101,6 @@ public class TimeLine extends JLayeredPane {
     
     /**
      * Adds labels to the scale.
-     * 
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
      * @param year the label text.
@@ -111,36 +112,35 @@ public class TimeLine extends JLayeredPane {
     
     /**
      * Adds an EntityDisplay to the TimeLine.
-     * 
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
      * @param ed the EntityDisplay.
      */
     private void positionDisplay(int x, int y, EntityDisplay ed) {
-        ed.setBounds(x, y, ed.getWidth(), ed.getHeight());
+        int w = ed.getWidth();
+        int h = ed.getHeight();
+        ed.setBounds(x - (w / 2), y, w, h);
     }
     
     /**
      * Paints the scale onto the TimeLine.
-     * 
      * @param g the Graphics component.
      */
     private void paintScale(Graphics g) {
         g.setColor(Color.BLACK);
-        g.drawLine(INDENT, vertical, INDENT + lineLength, vertical);
+        g.drawLine(LINE_INDENT, vertical, LINE_INDENT + lineLength, vertical);
         int x, y;
         y = vertical;
         for(int i = 0; i < intervals.length; i++) {
-            x = INDENT + ((lineLength / intervals.length) * i);
+            x = LINE_INDENT + SCALE_INDENT + ((scaleLength / (intervals.length - 1)) * i);
             g.drawLine(x, y - UPNOTCH, x, y + DOWNNOTCH);
             positionLabel(x, y, intervals[i], labels[i]);
         }
-        g.drawLine(INDENT + lineLength, y - UPNOTCH, INDENT + lineLength, y + DOWNNOTCH);
+//        g.drawLine(SCALE_INDENT + scaleLength, y - UPNOTCH, SCALE_INDENT + scaleLength, y + DOWNNOTCH);
     }
     
     /**
      * Paints the entities onto the TimeLine.
-     * 
      * @param g the Graphics component.
      */
     private void paintEntities(Graphics g) {
@@ -148,14 +148,14 @@ public class TimeLine extends JLayeredPane {
         Integer firstYear = cdp.returnStart();
         Integer lastYear = cdp.returnEnd();
         Integer timeSpan = lastYear - firstYear;
-        double ratio = ((double) lineLength) / timeSpan;
+        int ratio = scaleLength / timeSpan;
         
         for (EntityDisplay eDisplay : eDisplays) {
             Integer thisYear = eDisplay.getYear();
             if (thisYear != null) {
                 Integer timePosition = thisYear - firstYear;
                 int x, y;
-                x = INDENT + (int) (timePosition * ratio);
+                x = LINE_INDENT + SCALE_INDENT + (int) (timePosition * ratio);
                 y = vertical - IMAGE_UPPER;
                 positionDisplay(x, y, eDisplay);
                 g.setColor(Color.BLACK);
