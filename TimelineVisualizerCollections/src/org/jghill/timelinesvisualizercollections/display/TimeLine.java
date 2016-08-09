@@ -132,11 +132,10 @@ public class TimeLine extends JLayeredPane {
         int x, y;
         y = vertical;
         for(int i = 0; i < intervals.length; i++) {
-            x = LINE_INDENT + SCALE_INDENT + ((scaleLength / (intervals.length - 1)) * i);
+            x = LINE_INDENT + SCALE_INDENT + (int) (((double) scaleLength / (intervals.length - 1)) * i);
             g.drawLine(x, y - UPNOTCH, x, y + DOWNNOTCH);
             positionLabel(x, y, intervals[i], labels[i]);
         }
-//        g.drawLine(SCALE_INDENT + scaleLength, y - UPNOTCH, SCALE_INDENT + scaleLength, y + DOWNNOTCH);
     }
     
     /**
@@ -147,13 +146,14 @@ public class TimeLine extends JLayeredPane {
         
         Integer firstYear = cdp.returnStart();
         Integer lastYear = cdp.returnEnd();
-        Integer timeSpan = lastYear - firstYear;
-        int ratio = scaleLength / timeSpan;
+        
+        int timeSpan = lastYear - firstYear;
+        double ratio = ((double) scaleLength / timeSpan);
         
         for (EntityDisplay eDisplay : eDisplays) {
             Integer thisYear = eDisplay.getYear();
             if (thisYear != null) {
-                Integer timePosition = thisYear - firstYear;
+                int timePosition = thisYear - firstYear;
                 int x, y;
                 x = LINE_INDENT + SCALE_INDENT + (int) (timePosition * ratio);
                 y = vertical - IMAGE_UPPER;
