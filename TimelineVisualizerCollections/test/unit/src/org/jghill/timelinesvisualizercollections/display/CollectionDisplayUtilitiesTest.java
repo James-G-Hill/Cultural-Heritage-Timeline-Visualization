@@ -59,6 +59,78 @@ public class CollectionDisplayUtilitiesTest {
     }
     
     @Test
+    public void testCalculateGetStartDateZero() {
+        when(earliest.get(Calendar.YEAR)).thenReturn(2000);
+        int interval = 0;
+        int predicted = 1999;
+        Calendar result = CollectionDisplayUtilities.getStart(earliest, interval);
+        assertEquals(predicted, result.get(Calendar.YEAR));
+    }
+    
+    @Test
+    public void testCalculateGetStartDateTen() {
+        when(earliest.get(Calendar.YEAR)).thenReturn(2000);
+        int interval = 10;
+        int predicted = 2000;
+        Calendar result = CollectionDisplayUtilities.getStart(earliest, interval);
+        assertEquals(predicted, result.get(Calendar.YEAR));
+    }
+    
+    @Test
+    public void testCalculateGetStartDateTenOdd() {
+        when(earliest.get(Calendar.YEAR)).thenReturn(1999);
+        int interval = 10;
+        int predicted = 1990;
+        Calendar result = CollectionDisplayUtilities.getStart(earliest, interval);
+        assertEquals(predicted, result.get(Calendar.YEAR));
+    }
+    
+    @Test
+    public void testCalculateGetStartDateHundredOdd() {
+        when(earliest.get(Calendar.YEAR)).thenReturn(1797);
+        int interval = 100;
+        int predicted = 1700;
+        Calendar result = CollectionDisplayUtilities.getStart(earliest, interval);
+        assertEquals(predicted, result.get(Calendar.YEAR));
+    }
+    
+    @Test
+    public void testCalculateGetEndDateZero() {
+        when(latest.get(Calendar.YEAR)).thenReturn(2000);
+        int interval = 0;
+        int predicted = 2001;
+        Calendar result = CollectionDisplayUtilities.getEnd(latest, interval);
+        assertEquals(predicted, result.get(Calendar.YEAR));
+    }
+    
+    @Test
+    public void testCalculateGetEndDateTen() {
+        when(latest.get(Calendar.YEAR)).thenReturn(2000);
+        int interval = 10;
+        int predicted = 2000;
+        Calendar result = CollectionDisplayUtilities.getEnd(latest, interval);
+        assertEquals(predicted, result.get(Calendar.YEAR));
+    }
+    
+    @Test
+    public void testCalculateGetEndDateTenOdd() {
+        when(latest.get(Calendar.YEAR)).thenReturn(1999);
+        int interval = 10;
+        int predicted = 2000;
+        Calendar result = CollectionDisplayUtilities.getEnd(latest, interval);
+        assertEquals(predicted, result.get(Calendar.YEAR));
+    }
+    
+    @Test
+    public void testCalculateGetEndDateHundredOdd() {
+        when(latest.get(Calendar.YEAR)).thenReturn(1797);
+        int interval = 100;
+        int predicted = 1800;
+        Calendar result = CollectionDisplayUtilities.getEnd(latest, interval);
+        assertEquals(predicted, result.get(Calendar.YEAR));
+    }
+    
+    @Test
     public void testCalculateEarliestWithNegative() {
         earliest = null;
         when(mmo[0].getTimeSpan()).thenReturn(-1);
