@@ -8,7 +8,6 @@ import javax.swing.JLayeredPane;
 
 /**
  * Displays the timeline relevant to the selection.
- * 
  * @author JGHill
  */
 public class TimeLine extends JLayeredPane {
@@ -41,7 +40,6 @@ public class TimeLine extends JLayeredPane {
     
     /**
      * Sets the arrays used to create this TimeLine.
-     * 
      * @param intervals
      * @param entities 
      */
