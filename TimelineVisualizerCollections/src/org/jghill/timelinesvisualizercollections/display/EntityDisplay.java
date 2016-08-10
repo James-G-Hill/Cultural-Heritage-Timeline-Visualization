@@ -3,6 +3,10 @@ package org.jghill.timelinesvisualizercollections.display;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.net.MalformedURLException;
 import javax.swing.BorderFactory;
@@ -13,18 +17,17 @@ import org.jghill.timelinevisualizerentities.Entities;
 import org.jghill.timelinevisualizerentities.PhysicalThing;
 import org.openide.util.Exceptions;
 import org.openide.util.Utilities;
+import org.openide.util.lookup.Lookups;
 
 /**
  * A component for displaying entities.
- * 
  * @author JGHill
  */
-public class EntityDisplay extends JPanel implements Comparable<EntityDisplay> {
+public class EntityDisplay extends JPanel implements Comparable<EntityDisplay>, MouseListener, FocusListener {
     
     private static final int BOUNDARY = 5;
     
     private Entities entity;
-    
     private BufferedImage thumb;
     
     private int w = 110;
@@ -34,12 +37,13 @@ public class EntityDisplay extends JPanel implements Comparable<EntityDisplay> {
     
     /**
      * Adds an Entities object to this display.
-     * 
      * @param entity the Entities object.
      */
     public void setEntity(Entities entity) {
         this.entity = entity;
         setUpDisplay();
+        addMouseListener(this);
+        addFocusListener(this);
     }
     
     /**
@@ -114,6 +118,34 @@ public class EntityDisplay extends JPanel implements Comparable<EntityDisplay> {
         } else {
             return Integer.compare(this.getYear(), o.getYear());
         }
+    }
+    
+    @Override
+    public void mouseClicked(MouseEvent e) {}
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        requestFocus();
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        this.setBackground(Color.YELLOW);
+        Lookups.singleton(this);
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        this.setBackground(Color.LIGHT_GRAY);
     }
     
 }
