@@ -32,7 +32,7 @@ import org.openide.util.Utilities;
 )
 @Messages({
     "CTL_PropertiesAction=Properties",
-    "CTL_PropertiesTopComponent=Properties Window",
+    "CTL_PropertiesTopComponent=Properties",
     "HINT_PropertiesTopComponent=This is a Properties window"
 })
 public final class PropertiesTopComponent extends TopComponent implements LookupListener {
