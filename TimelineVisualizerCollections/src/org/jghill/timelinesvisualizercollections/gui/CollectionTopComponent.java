@@ -5,6 +5,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import org.apache.jena.atlas.web.HttpException;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
@@ -78,6 +79,9 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 SourceComboBox.setModel(new DefaultComboBoxModel(SourceCollection.collectionToArray()));
             }}
         );
+        
+        FirstFilterComboBox.addItemListener(collectionDisplayPanel);
+        
     }
 
     /**
@@ -727,9 +731,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     }
 
     @Override
-    public void componentClosed() {
-        // TODO add custom code on component closing
-    }
+    public void componentClosed() {}
 
     void writeProperties(java.util.Properties p) {
         // better to version settings since initial version as advocated at
@@ -899,6 +901,14 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     public void focusLost(FocusEvent e) {
         EntityDisplay temp = (EntityDisplay) e.getSource();
         content.remove(temp.getLookup().lookupResult(Entities.class).allInstances().iterator().next());
+    }
+    
+    /**
+     * A getter for the First Filter combobox.
+     * @return the First Filter comboBox.
+     */
+    public JComboBox<String> getFirstFilter() {
+        return FirstFilterComboBox;
     }
 
 }
