@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.Arrays;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import org.jghill.timelinesvisualizercollections.gui.CollectionTopComponent;
 
 /**
  * Displays the timeline relevant to the selection.
@@ -59,6 +60,7 @@ public class TimeLine extends JLayeredPane {
         for(int i = 0; i < cdp.getCollection().length; i++) {
             eDisplays[i] = new EntityDisplay();
             eDisplays[i].setEntity(cdp.getCollection()[i]);
+            eDisplays[i].addFocusListener((CollectionTopComponent) cdp.getParent().getParent().getParent());
         }
         
         Arrays.sort(eDisplays);
