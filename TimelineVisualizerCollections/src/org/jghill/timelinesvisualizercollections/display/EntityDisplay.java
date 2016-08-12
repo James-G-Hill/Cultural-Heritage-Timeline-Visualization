@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import org.jghill.timelinevisualizerentities.Entities;
 import org.jghill.timelinevisualizerentities.PhysicalThing;
 import org.openide.util.Exceptions;
+import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.lookup.Lookups;
 
@@ -23,12 +24,13 @@ import org.openide.util.lookup.Lookups;
  * A component for displaying entities.
  * @author JGHill
  */
-public class EntityDisplay extends JPanel implements Comparable<EntityDisplay>, MouseListener, FocusListener {
+public class EntityDisplay extends JPanel implements Comparable<EntityDisplay>, MouseListener, FocusListener, Lookup.Provider {
     
     private static final int BOUNDARY = 5;
     
     private Entities entity;
     private BufferedImage thumb;
+    private Lookup lookup;
     
     private int w = 110;
     private int h = 110;
@@ -50,6 +52,7 @@ public class EntityDisplay extends JPanel implements Comparable<EntityDisplay>, 
      * Initial setup of the EntityDisplay.
      */
     private void setUpDisplay() {
+        lookup = Lookups.singleton(entity);
         this.setLayout(new FlowLayout());
         this.setOpaque(true);
         this.setBackground(Color.LIGHT_GRAY);
@@ -140,12 +143,16 @@ public class EntityDisplay extends JPanel implements Comparable<EntityDisplay>, 
     @Override
     public void focusGained(FocusEvent e) {
         this.setBackground(Color.YELLOW);
-        Lookups.singleton(this);
     }
 
     @Override
     public void focusLost(FocusEvent e) {
         this.setBackground(Color.LIGHT_GRAY);
+    }
+
+    @Override
+    public Lookup getLookup() {
+        return lookup;
     }
     
 }
