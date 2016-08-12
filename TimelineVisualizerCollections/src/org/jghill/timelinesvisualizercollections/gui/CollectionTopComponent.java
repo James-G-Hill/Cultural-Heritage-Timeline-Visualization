@@ -1,5 +1,7 @@
 package org.jghill.timelinesvisualizercollections.gui;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
@@ -10,9 +12,11 @@ import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinesvisualizercollections.container.CollectionContainer;
+import org.jghill.timelinesvisualizercollections.display.EntityDisplay;
 import org.jghill.timelinesvisualizerdispatcher.Dispatcher;
 import org.jghill.timelinesvisualizerqueriesbuilder.QueryBuilder;
 import org.jghill.timelinesvisualizerqueriesbuilder.QuerySettings;
+import org.jghill.timelinevisualizerentities.Entities;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueries.QueryShell;
 import org.jghill.timelinevisualizersources.Source;
@@ -22,6 +26,8 @@ import org.netbeans.api.io.InputOutput;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
+import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.InstanceContent;
 
 /**
  * A window for displaying a collection and it's internals.
@@ -44,16 +50,7 @@ import org.openide.util.LookupListener;
     "CTL_CollectionTopComponent=Collection Window",
     "HINT_CollectionTopComponent=This is a Collection window"
 })
-public final class CollectionTopComponent extends TopComponent {
-
-    private static final int TAB_VISUAL = 3;
-    
-    private final EntityTableModel etb;
-    private final QueryTableModel qtb;
-    
-    private final Collection coll;
-    
-    private final Lookup.Result <Source> sources;
+public final class CollectionTopComponent extends TopComponent implements FocusListener {
     
     public CollectionTopComponent() {
         
@@ -81,7 +78,6 @@ public final class CollectionTopComponent extends TopComponent {
                 SourceComboBox.setModel(new DefaultComboBoxModel(SourceCollection.collectionToArray()));
             }}
         );
-        
     }
 
     /**
@@ -151,9 +147,9 @@ public final class CollectionTopComponent extends TopComponent {
         EntitiesScrollPane = new javax.swing.JScrollPane();
         EntitiesTable = new javax.swing.JTable();
         Visualizer = new javax.swing.JPanel();
-        collectionDisplayPanel = new org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel();
         FirstFilterLabel = new javax.swing.JLabel();
         FirstFilterComboBox = new javax.swing.JComboBox<>();
+        collectionDisplayPanel = new org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel();
 
         setPreferredSize(new java.awt.Dimension(1000, 500));
 
@@ -535,6 +531,11 @@ public final class CollectionTopComponent extends TopComponent {
 
         Tab.addTab(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Entities.TabConstraints.tabTitle"), Entities); // NOI18N
 
+        org.openide.awt.Mnemonics.setLocalizedText(FirstFilterLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.FirstFilterLabel.text")); // NOI18N
+        FirstFilterLabel.setOpaque(true);
+
+        FirstFilterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Query", "Source" }));
+
         collectionDisplayPanel.setBackground(new java.awt.Color(255, 255, 255));
         collectionDisplayPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
@@ -546,13 +547,8 @@ public final class CollectionTopComponent extends TopComponent {
         );
         collectionDisplayPanelLayout.setVerticalGroup(
             collectionDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 381, Short.MAX_VALUE)
+            .addGap(0, 395, Short.MAX_VALUE)
         );
-
-        org.openide.awt.Mnemonics.setLocalizedText(FirstFilterLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.FirstFilterLabel.text")); // NOI18N
-        FirstFilterLabel.setOpaque(true);
-
-        FirstFilterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Query", "Source" }));
 
         javax.swing.GroupLayout VisualizerLayout = new javax.swing.GroupLayout(Visualizer);
         Visualizer.setLayout(VisualizerLayout);
@@ -595,9 +591,12 @@ public final class CollectionTopComponent extends TopComponent {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tab, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                .addComponent(Tab)
                 .addContainerGap())
         );
+
+        getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.AccessibleContext.accessibleName")); // NOI18N
+        getAccessibleContext().setAccessibleDescription(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.AccessibleContext.accessibleDescription")); // NOI18N
     }// </editor-fold>//GEN-END:initComponents
 
     private void ResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetButtonActionPerformed
@@ -709,9 +708,19 @@ public final class CollectionTopComponent extends TopComponent {
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
     
+    private static final int TAB_VISUAL = 3;
+    
+    private final EntityTableModel etb;
+    private final QueryTableModel qtb;
+    private final Collection coll;
+    private final InstanceContent content = new InstanceContent();
+    private final AbstractLookup abLookup = new AbstractLookup(content);
+    private final Lookup.Result <Source> sources;
+    
     @Override
     public void componentOpened() {
         setName(coll.getName());
+        associateLookup(abLookup);
         queryModelChange();
         paintVisualDisplay();
     }
@@ -877,6 +886,18 @@ public final class CollectionTopComponent extends TopComponent {
             collectionDisplayPanel.setArray(etb.getFlattenedCollection());
             Tab.setSelectedIndex(TAB_VISUAL);
         }
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        EntityDisplay temp = (EntityDisplay) e.getSource();
+        content.add(temp.getLookup().lookupResult(Entities.class).allInstances().iterator().next());
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        EntityDisplay temp = (EntityDisplay) e.getSource();
+        content.remove(temp.getLookup().lookupResult(Entities.class).allInstances().iterator().next());
     }
 
 }
