@@ -6,6 +6,7 @@ import java.util.Arrays;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import org.jghill.timelinesvisualizercollections.gui.CollectionTopComponent;
+import org.jghill.timelinevisualizerentities.ManMadeObject;
 
 /**
  * Displays the timeline relevant to the selection.
@@ -22,10 +23,11 @@ public class TimeLine extends JLayeredPane {
     private final static int DOWNNOTCH = 15;
     
     private int[] intervals;
+    private final ManMadeObject[] objects;
     private JLabel[] labels;
     private EntityDisplay[] eDisplays;
     
-    private final CollectionDisplayPanel cdp;
+    private final CollectionDisplayPanel cdp = (CollectionDisplayPanel) this.getParent();
     
     private int vertical;
     private int lineLength;
@@ -33,8 +35,8 @@ public class TimeLine extends JLayeredPane {
     
     private final Color color;
     
-    public TimeLine(CollectionDisplayPanel cdp, Color color) {
-        this.cdp = cdp;
+    public TimeLine(ManMadeObject[] objects, Color color) {
+        this.objects = objects;
         this.color = color;
         setUp();
     }
@@ -56,10 +58,10 @@ public class TimeLine extends JLayeredPane {
             this.add(labels[i]);
         }
         
-        eDisplays = new EntityDisplay[cdp.getCollection().length];
-        for(int i = 0; i < cdp.getCollection().length; i++) {
+        eDisplays = new EntityDisplay[objects.length];
+        for(int i = 0; i < eDisplays.length; i++) {
             eDisplays[i] = new EntityDisplay();
-            eDisplays[i].setEntity(cdp.getCollection()[i]);
+            eDisplays[i].setEntity(objects[i]);
             eDisplays[i].addFocusListener((CollectionTopComponent) cdp.getParent().getParent().getParent());
         }
         
