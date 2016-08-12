@@ -8,11 +8,12 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import javax.imageio.ImageIO;
+import javax.management.Query;
+import javax.xml.transform.Source;
 
 /**
  * An abstraction of a physical object for subclasses that represent real
  * objects.
- * 
  * @author JamesGHill
  */
 public abstract class PhysicalThing extends Entities {
@@ -46,17 +47,18 @@ public abstract class PhysicalThing extends Entities {
     public PhysicalThing(
             String name,
             String identifier,
+            Source source,
+            Query query,
             String imageString,
             String beginYear
     ) {
-        super(name, identifier);
+        super(name, identifier, source, query);
         this.imageURL = createURL(imageString);
         this.timeSpan = createYear(beginYear);
     }
     
     /**
      * Creates a URL from the returned String.
-     * 
      * @param text the URL text from the query results.
      * @return a URL object.
      */
@@ -74,7 +76,6 @@ public abstract class PhysicalThing extends Entities {
     
     /**
      * Creates a year as int from a 4 character String or returns a -1.
-     * 
      * @param yearText the String to be transformed.
      * @return the year or a -1.
      */
@@ -88,7 +89,6 @@ public abstract class PhysicalThing extends Entities {
     
     /**
      * Checks if a string is a year.
-     * 
      * @param yearText the string to check.
      * @return true if the text can convert to a year.
      */
@@ -108,7 +108,6 @@ public abstract class PhysicalThing extends Entities {
     /**
      * Attempts to extract a 4-digit year from a String; otherwise returns a
      * null.
-     * 
      * @param yearText the String to extract from.
      * @return an integer year.
      */
@@ -132,7 +131,6 @@ public abstract class PhysicalThing extends Entities {
      * Checks if the image has already been loaded.  If loaded return the image,
      * otherwise attempt to load the image then return it, otherwise return
      * null.
-     * 
      * @return the Image related to this Thing or a null.
      */
     private void getImage() {
@@ -151,7 +149,6 @@ public abstract class PhysicalThing extends Entities {
     
     /**
      * Creates a thumbnail image from an existing image.
-     * 
      * @return the thumbnail image.
      */
     public BufferedImage getThumb() {
