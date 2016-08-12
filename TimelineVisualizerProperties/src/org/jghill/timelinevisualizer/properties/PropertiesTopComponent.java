@@ -1,7 +1,7 @@
 package org.jghill.timelinevisualizer.properties;
 
 import java.util.Collection;
-import org.jghill.timelinevisualizerentities.Entities;
+import org.jghill.timelinevisualizerentities.ManMadeObject;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
@@ -25,7 +25,7 @@ import org.openide.util.Utilities;
 )
 @TopComponent.Registration(mode = "properties", openAtStartup = true)
 @ActionID(category = "Window", id = "org.jghill.timelinevisualizer.properties.PropertiesTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
+//@ActionReference(path = "Menu/Window" /*, position = 333 */)
 @TopComponent.OpenActionRegistration(
         displayName = "#CTL_PropertiesAction",
         preferredID = "PropertiesTopComponent"
@@ -41,9 +41,13 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
         initComponents();
         setName(Bundle.CTL_PropertiesTopComponent());
         setToolTipText(Bundle.HINT_PropertiesTopComponent());
+        
+        putClientProperty(TopComponent.PROP_CLOSING_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_DRAGGING_DISABLED, Boolean.TRUE);
+        putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
-
+        
+        setup();
     }
 
     /**
@@ -146,13 +150,15 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
     private javax.swing.JTextField SourceTextField;
     // End of variables declaration//GEN-END:variables
     
-    private Lookup.Result<Entities> result = null;
+    private Lookup.Result<ManMadeObject> result = null;
     
-    @Override
-    public void componentOpened() {
-        result = Utilities.actionsGlobalContext().lookupResult(Entities.class);
+    private void setup() {
+        result = Utilities.actionsGlobalContext().lookupResult(ManMadeObject.class);
         result.addLookupListener(this);
     }
+    
+    @Override
+    public void componentOpened() {}
 
     @Override
     public void componentClosed() {
@@ -161,9 +167,9 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
     
     @Override
     public void resultChanged(LookupEvent lookupEvent) {
-        Collection<? extends Entities> allEntities = result.allInstances();
+        Collection<? extends ManMadeObject> allEntities = result.allInstances();
         if (allEntities.size() == 1) {
-            Entities entity = allEntities.iterator().next();
+            ManMadeObject entity = allEntities.iterator().next();
             IdentifierTextField.setText(entity.getIdentifier());
             NameTextField.setText(entity.getName());
         }
