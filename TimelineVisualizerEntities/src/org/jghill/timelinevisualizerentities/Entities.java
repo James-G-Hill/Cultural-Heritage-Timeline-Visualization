@@ -1,8 +1,5 @@
 package org.jghill.timelinevisualizerentities;
 
-import javax.management.Query;
-import javax.xml.transform.Source;
-
 /**
  * A class for representing collections & physical things as components of a
  * composition.
@@ -12,14 +9,14 @@ abstract public class Entities implements Comparable {
     
     private final String name;
     private final String identifier;
-    private final Source source;
-    private final Query query;
+    private final String source;
+    private final String query;
     
     public Entities(
             String name,
             String identifier,
-            Source source,
-            Query query
+            String source,
+            String query
     ) {
         this.name = name;
         this.identifier = identifier;
@@ -44,18 +41,18 @@ abstract public class Entities implements Comparable {
     }
     
     /**
-     * Returns the Source from which the entity was obtained.
-     * @return the Source.
+     * Returns the Source name from which the entity was obtained.
+     * @return the Source name.
      */
-    public Source getSource() {
+    public String getSourceName() {
         return source;
     }
     
     /**
-     * Returns the Query which the entity was returned from.
-     * @return the Query.
+     * Returns the Query name which the entity was returned from.
+     * @return the Query name.
      */
-    public Query getQuery() {
+    public String getQueryName() {
         return query;
     }
     
