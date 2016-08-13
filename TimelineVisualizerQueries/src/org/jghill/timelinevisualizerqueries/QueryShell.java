@@ -37,7 +37,6 @@ public abstract class QueryShell implements Comparable {
     /**
      * An abstract query to be filled by the actual code for sending &
      * capturing the data.
-     * 
      * @return the collection of entities from a query.
      */
     abstract public EntitiesCollection run();
