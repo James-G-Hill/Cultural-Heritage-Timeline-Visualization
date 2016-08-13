@@ -16,18 +16,20 @@ public class TimeLine extends JLayeredPane {
     
     private final static int DIAMETER = 6;
     private final static int RADIUS = DIAMETER / 2;
-    private final static int IMAGE_UPPER = 150;
+    private final static int IMAGE_UPPER = 140;
     private final static int LINE_INDENT = 20;
     private final static int SCALE_INDENT = 40;
     private final static int UPNOTCH = 5;
     private final static int DOWNNOTCH = 15;
+    
+    private final String name;
     
     private int[] intervals;
     private final ManMadeObject[] objects;
     private JLabel[] labels;
     private EntityDisplay[] eDisplays;
     
-    private final CollectionDisplayPanel cdp = (CollectionDisplayPanel) this.getParent();
+    private final CollectionDisplayPanel cdp;
     
     private int vertical;
     private int lineLength;
@@ -35,9 +37,11 @@ public class TimeLine extends JLayeredPane {
     
     private final Color color;
     
-    public TimeLine(ManMadeObject[] objects, Color color) {
+    public TimeLine(String name, ManMadeObject[] objects, Color color, CollectionDisplayPanel cdp) {
+        this.name = name;
         this.objects = objects;
         this.color = color;
+        this.cdp = cdp;
         setUp();
     }
     
