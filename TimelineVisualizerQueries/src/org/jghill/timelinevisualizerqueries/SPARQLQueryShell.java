@@ -14,13 +14,13 @@ import org.netbeans.api.io.InputOutput;
 
 /**
  * A concrete implementation of the QueryShell class representing a SPARQL query.
- * 
  * @author JGHill
  */
 public class SPARQLQueryShell extends QueryShell {
     
     private final String queryString;
     private final String service;
+    
     private static final String QUERY_TYPE = "SPARQL Endpoint";
     
     public SPARQLQueryShell(String queryString, String service, String name) {
@@ -31,7 +31,6 @@ public class SPARQLQueryShell extends QueryShell {
     
     /**
      * Returns the type of the query.
-     * 
      * @return The query type.
      */
     @Override
@@ -48,7 +47,6 @@ public class SPARQLQueryShell extends QueryShell {
     
     /**
      * Executes the query and returns the results.
-     * 
      * @param query the QueryFactory.
      * @return the entities.
      */
@@ -65,7 +63,6 @@ public class SPARQLQueryShell extends QueryShell {
     
     /**
      * Builds the collection of entities.
-     * 
      * @param results the ResultSet
      * @return the entities.
      */
@@ -96,6 +93,8 @@ public class SPARQLQueryShell extends QueryShell {
             thing = new ManMadeObject(
                     title,
                     identity,
+                    entities.getSourceName(),
+                    super.getQueryName(),
                     image,
                     timeSpan
             );
@@ -106,7 +105,6 @@ public class SPARQLQueryShell extends QueryShell {
     
     /**
      * Outputs an explanation of the action.
-     * 
      * @param text toString of the returned entity.
      */
     private void output(String text) {
