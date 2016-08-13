@@ -585,7 +585,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tab, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
+                .addComponent(Tab)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -813,7 +813,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         QuerySettings settings;
         settings = new QuerySettings(
             (Source) SourceComboBox.getSelectedItem(),
-            QueryNameTextField.getText(),
+            QueryNameTextField.getText().trim(),
             AcquisitionDateCheckBox.isSelected(),
             ConsistsOfCheckBox.isSelected(),
             HasImageCheckBox.isSelected(),
@@ -826,17 +826,17 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             WidthUnitComboBox.getSelectedItem().toString(),
             AcquisitionEndDatePicker.getDate(),
             AcquisitionStartDatePicker.getDate(),
-            CreationEndYearTextField.getText(),
-            CreationStartYearTextField.getText(),
-            ConsistsOfTextField.getText(),
-            LocationOriginTextField.getText(),
-            LengthLowerTextField.getText(),
-            LengthUpperTextField.getText(),
-            ThicknessLowerTextField.getText(),
-            ThicknessUpperTextField.getText(),
-            WidthLowerTextField.getText(),
-            WidthUpperTextField.getText(),
-            HasLimitTextField.getText()
+            CreationEndYearTextField.getText().trim(),
+            CreationStartYearTextField.getText().trim(),
+            ConsistsOfTextField.getText().trim(),
+            LocationOriginTextField.getText().trim(),
+            LengthLowerTextField.getText().trim(),
+            LengthUpperTextField.getText().trim(),
+            ThicknessLowerTextField.getText().trim(),
+            ThicknessUpperTextField.getText().trim(),
+            WidthLowerTextField.getText().trim(),
+            WidthUpperTextField.getText().trim(),
+            HasLimitTextField.getText().trim()
         );
         QueryShell qry;
         QueryBuilder builder = QueryBuilder.getInstance();
