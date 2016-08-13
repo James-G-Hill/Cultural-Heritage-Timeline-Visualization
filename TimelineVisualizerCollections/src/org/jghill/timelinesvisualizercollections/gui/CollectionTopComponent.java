@@ -26,7 +26,6 @@ import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
-import org.openide.util.LookupListener;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
 
@@ -73,12 +72,9 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         Lookup sLookup = SourceCollection.getInstance().getLookup();
         sources = sLookup.lookupResult(Source.class);
         sources.allInstances();
-        sources.addLookupListener(new LookupListener() {
-            @Override
-            public void resultChanged(LookupEvent e) {
-                SourceComboBox.setModel(new DefaultComboBoxModel(SourceCollection.collectionToArray()));
-            }}
-        );
+        sources.addLookupListener((LookupEvent e) -> {
+            SourceComboBox.setModel(new DefaultComboBoxModel(SourceCollection.collectionToArray()));
+        });
         
         FirstFilterComboBox.addItemListener(collectionDisplayPanel);
         
