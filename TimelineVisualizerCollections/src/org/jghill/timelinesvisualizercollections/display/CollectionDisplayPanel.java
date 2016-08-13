@@ -2,21 +2,35 @@ package org.jghill.timelinesvisualizercollections.display;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.Calendar;
-import javax.swing.BoxLayout;
+import static java.util.Comparator.comparingInt;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import static org.jghill.timelinesvisualizercollections.display.CollectionDisplayUtilities.*;
+import org.jghill.timelinesvisualizercollections.gui.CollectionTopComponent;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
+import static java.util.Map.Entry.comparingByValue;
+import static java.util.stream.Collectors.toMap;
 
 /**
  * A Panel for displaying the results.
  * @author JGHill
  */
-public class CollectionDisplayPanel extends JPanel {
+public class CollectionDisplayPanel extends JPanel implements ItemListener {
     
     private ManMadeObject[] collection;
     private TimeLine[] timelines;
     private int[] dateArray;
+    
+    private CollectionTopComponent tc;
+    private JComboBox<String> firstFilter;
     
     private Calendar earliest;
     private Calendar latest;
@@ -27,11 +41,27 @@ public class CollectionDisplayPanel extends JPanel {
     private int interval;
     private int intervalsCount;
     
+    private final Color[] colors = {Color.magenta, Color.orange, Color.pink, Color.lightGray};
+    
     public CollectionDisplayPanel() {
         setUp();
     }
     
+    /**
+     * Sets the initial settings when constructed.
+     */
+    private void setUp() {
+        this.setLayout(null);
+//        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+    }
+    
+    /**
+     * Sets the Collection that this panel will display.
+     * @param collection that will be displayed.
+     */
     public void setArray(ManMadeObject[] collection) {
+        tc = (CollectionTopComponent) this.getParent().getParent().getParent();
+        firstFilter = tc.getFirstFilter();
         clear();
         this.collection = collection;
         calculateTimePeriod();
@@ -57,10 +87,124 @@ public class CollectionDisplayPanel extends JPanel {
      * Creates all timelines for this collection display panel.
      */
     private void createTimeLines() {
-        TimeLine tm = new TimeLine(this, Color.pink);
+        String choice = (String) firstFilter.getSelectedItem();
+        System.out.println("item " + choice);
+        if (choice.equalsIgnoreCase("None")) {
+            noFilter();
+        } else {
+            runFilter(choice);
+        }
+    }
+    
+    /**
+     * Creates timeline when there is no filter selected.
+     */
+    private void noFilter() {
+        TimeLine tm = new TimeLine("General", collection, Color.RED, this);
         timelines = new TimeLine[1];
         timelines[0] = tm;
-        this.add(tm);
+    }
+    
+    private void runFilter(String filter) {
+        
+        TreeMap<String, List<ManMadeObject>> categories = new TreeMap<>();
+        
+        for(ManMadeObject object: collection) {
+            String result;
+            switch(filter) {
+                case "Query" :
+                    result = object.getQueryName();
+                case "Source" :
+                    result = object.getSourceName();
+                default :
+                    result = "";
+            }
+            if (categories.containsKey(result)) {
+                List<ManMadeObject> set = categories.get(result);
+                set.add(object);
+            } else {
+                List<ManMadeObject> list = new ArrayList<>();
+                list.add(object);
+                categories.putIfAbsent(result, list);
+            }
+        }
+        
+        timelines = createTimeLineArray(categories);
+        categories = sortCategories(categories);
+        assignTimeLines(categories);
+        
+    }
+    
+    /**
+     * Creates a TimeLine array based on the number of categories, capping the
+     * number if it is over 4.
+     * @param categories
+     * @return an array of TimeLines.
+     */
+    private TimeLine[] createTimeLineArray(TreeMap<String, List<ManMadeObject>> categories) {
+        TimeLine[] timeline;
+        int categoriesCount = categories.size();
+        if (categoriesCount < 5) {
+            timeline = new TimeLine[categoriesCount];
+        } else {
+            timeline = new TimeLine[4];
+        }
+        return timeline;
+    }
+    
+    /**
+     * Sorts the TimeLines by their length.
+     * @param categories a list of categories.
+     * @return a sorted TreeMap of categories.
+     */
+    private TreeMap<String, List<ManMadeObject>> sortCategories(TreeMap<String, List<ManMadeObject>> categories) {
+        Map<String, List<ManMadeObject>> sorted;
+        sorted = categories.entrySet().stream()
+                .sorted(comparingByValue(comparingInt(List::size)))
+                .collect(toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (a, b) -> {throw new AssertionError();},
+                        LinkedHashMap::new
+                ));
+        TreeMap<String, List<ManMadeObject>> objectTree;
+        objectTree = new TreeMap<>(sorted);
+        return objectTree;
+    }
+    
+    /**
+     * Creates all TimeLines from the passed categories.
+     * @param categories that can be passed into TimeLines.
+     */
+    private void assignTimeLines(TreeMap<String, List<ManMadeObject>> categories) {
+        int count = 0;
+        ArrayList<ManMadeObject> other = new ArrayList<>();
+        for(Map.Entry<String, List<ManMadeObject>> entry: categories.entrySet()) {
+            if (count < 3) {
+                timelines[count] = new TimeLine(
+                        entry.getKey(),
+                        entry.getValue().toArray(new ManMadeObject[entry.getValue().size()]),
+                        colors[count],
+                        this
+                );
+            } else {
+                other.addAll(entry.getValue());
+            }
+            count++;
+        }
+        if (count > 2) {
+            timelines[3] = new TimeLine(
+                    "Other",
+                    (ManMadeObject[]) other.toArray(),
+                    colors[3],
+                    this
+            );
+        }
+        
+        for(TimeLine tm : timelines) {
+            this.add(tm);
+        }
+        
     }
     
     @Override
@@ -74,17 +218,13 @@ public class CollectionDisplayPanel extends JPanel {
      */
     protected void paintTimeLines() {
         if (timelines != null) {
+            int tlCount = 0;
             for(TimeLine tm : timelines) {
-                tm.setBounds(10, 10, this.getWidth() - 20, this.getHeight() - 20);
+                tm.setBounds(10, 10 + (200 * tlCount), this.getWidth() - 10, 200);
+                tlCount++;
+                System.out.println(tlCount + " saaar " + timelines.toString());
             }
         }
-    }
-    
-    /**
-     * Sets the layout.
-     */
-    private void setUp() {
-        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
     }
     
     /**
@@ -94,12 +234,12 @@ public class CollectionDisplayPanel extends JPanel {
         return dateArray;
     }
     
-    /**
-     * @return the collection.
-     */
-    public ManMadeObject[] getCollection() {
-        return collection;
-    }
+//    /**
+//     * @return the collection.
+//     */
+//    public ManMadeObject[] getCollection() {
+//        return collection;
+//    }
     
     /**
      * @return start.
@@ -131,8 +271,13 @@ public class CollectionDisplayPanel extends JPanel {
         this.dateArray = null;
         this.removeAll();
         timelines = null;
-        revalidate();
-        repaint();
+        this.revalidate();
+        this.repaint();
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        setArray(collection);
     }
     
 }
