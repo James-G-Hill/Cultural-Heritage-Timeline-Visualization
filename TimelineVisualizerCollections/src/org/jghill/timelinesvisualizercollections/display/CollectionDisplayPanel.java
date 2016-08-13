@@ -227,9 +227,8 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
         if (timelines != null) {
             int tlCount = 0;
             for(TimeLine tm : timelines) {
-                tm.setBounds(INDENT, INDENT + (200 * tlCount), this.getWidth() - (INDENT * 2), 200);
+                tm.setBounds(INDENT, INDENT + (INDENT * tlCount) + (200 * tlCount), this.getWidth() - (INDENT * 2), 200);
                 tlCount++;
-                System.out.println(tlCount + " saaar " + timelines.toString());
             }
         }
     }
@@ -240,13 +239,6 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
     public int[] getDateArray() {
         return dateArray;
     }
-    
-//    /**
-//     * @return the collection.
-//     */
-//    public ManMadeObject[] getCollection() {
-//        return collection;
-//    }
     
     /**
      * @return start.
@@ -285,6 +277,8 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.SELECTED) {
+            this.removeAll();
+            timelines = null;
             createTimeLines();
         }
     }
