@@ -6,7 +6,6 @@ import org.jghill.timelinevisualizersources.SourceTableModel;
 
 /**
  * A dialog for adding new sources to the SourceCollection.
- * 
  * @author JGHill
  */
 public class SourceManagementNew extends javax.swing.JDialog {
@@ -167,15 +166,14 @@ public class SourceManagementNew extends javax.swing.JDialog {
      * A method for creating a new SPARQLEndpoint.
      */
     private void createNewSPARQLEndpoint() {
-        String name = SourceNameEntryBox.getText();
-        String webText = internalPanel.getAddressText();
-        String cidocText = internalPanel.getCIDOCText();
+        String name = SourceNameEntryBox.getText().trim();
+        String webText = internalPanel.getAddressText().trim();
+        String cidocText = internalPanel.getCIDOCText().trim();
         if(NewSourceSelectionBox.getSelectedIndex() == 1 &&
                 !webText.isEmpty() &&
                 !cidocText.isEmpty()) {
             SPARQLEndpoint sparql = new SPARQLEndpoint(name, webText, cidocText);
-            SourceCollection collection = SourceCollection.getInstance();
-            collection.addSource(sparql);
+            SourceCollection.addSource(sparql);
         }
     }
     
@@ -203,11 +201,10 @@ public class SourceManagementNew extends javax.swing.JDialog {
     
     /**
      * A setter for a sourceTableModel to be updated by this class.
-     * 
-     * @param s the sourceTableModel to be added.
+     * @param source the sourceTableModel to be added.
      */
-    public void setSourceTableModel(SourceTableModel s) {
-        sourceTable = s;
+    public void setSourceTableModel(SourceTableModel source) {
+        sourceTable = source;
     }
 
 }
