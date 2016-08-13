@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import javax.imageio.ImageIO;
-import javax.management.Query;
-import javax.xml.transform.Source;
 
 /**
  * An abstraction of a physical object for subclasses that represent real
@@ -47,8 +45,8 @@ public abstract class PhysicalThing extends Entities {
     public PhysicalThing(
             String name,
             String identifier,
-            Source source,
-            Query query,
+            String source,
+            String query,
             String imageString,
             String beginYear
     ) {
