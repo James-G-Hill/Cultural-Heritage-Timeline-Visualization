@@ -25,6 +25,8 @@ import static java.util.stream.Collectors.toMap;
  */
 public class CollectionDisplayPanel extends JPanel implements ItemListener {
     
+    private final static int INDENT = 10;
+    
     private ManMadeObject[] collection;
     private TimeLine[] timelines;
     private int[] dateArray;
@@ -66,8 +68,7 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
         this.collection = collection;
         calculateTimePeriod();
         createTimeLines();
-        revalidate();
-        repaint();
+        
     }
     
     /**
@@ -88,12 +89,13 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
      */
     private void createTimeLines() {
         String choice = (String) firstFilter.getSelectedItem();
-        System.out.println("item " + choice);
         if (choice.equalsIgnoreCase("None")) {
             noFilter();
         } else {
             runFilter(choice);
         }
+        revalidate();
+        repaint();
     }
     
     /**
@@ -103,6 +105,7 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
         TimeLine tm = new TimeLine("General", collection, Color.RED, this);
         timelines = new TimeLine[1];
         timelines[0] = tm;
+        this.add(timelines[0]);
     }
     
     private void runFilter(String filter) {
@@ -114,10 +117,13 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
             switch(filter) {
                 case "Query" :
                     result = object.getQueryName();
+                    break;
                 case "Source" :
                     result = object.getSourceName();
+                    break;
                 default :
                     result = "";
+                    break;
             }
             if (categories.containsKey(result)) {
                 List<ManMadeObject> set = categories.get(result);
@@ -126,6 +132,7 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
                 List<ManMadeObject> list = new ArrayList<>();
                 list.add(object);
                 categories.putIfAbsent(result, list);
+                
             }
         }
         
@@ -220,7 +227,7 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
         if (timelines != null) {
             int tlCount = 0;
             for(TimeLine tm : timelines) {
-                tm.setBounds(10, 10 + (200 * tlCount), this.getWidth() - 10, 200);
+                tm.setBounds(INDENT, INDENT + (200 * tlCount), this.getWidth() - (INDENT * 2), 200);
                 tlCount++;
                 System.out.println(tlCount + " saaar " + timelines.toString());
             }
@@ -274,10 +281,12 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
         this.revalidate();
         this.repaint();
     }
-
+    
     @Override
     public void itemStateChanged(ItemEvent e) {
-        setArray(collection);
+        if (e.getStateChange() == ItemEvent.SELECTED) {
+            createTimeLines();
+        }
     }
     
 }
