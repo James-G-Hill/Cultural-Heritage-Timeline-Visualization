@@ -1,6 +1,7 @@
 package org.jghill.timelinesvisualizerdispatcher;
 
 import java.util.Date;
+import java.util.concurrent.Callable;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueries.QueryShell;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
@@ -10,31 +11,22 @@ import org.netbeans.api.io.InputOutput;
 /**
  * A dispatcher sends queries and collects the results to create a collection
  * of entities.
- * 
  * @author JGHill
  */
-public class Dispatcher {
+public class Dispatcher implements Callable {
     
-    private static final Dispatcher DISPATCHER = new Dispatcher();
+    QueriesCollection queries;
     
-    private Dispatcher() {}
-    
-    /**
-     * Returns an instance of this singleton.
-     * 
-     * @return the instance.
-     */
-    public static Dispatcher getInstance() {
-        return DISPATCHER;
+    public Dispatcher(QueriesCollection queries) {
+        this.queries = queries;
     }
     
     /**
      * Runs all queries in a collection.
-     * 
-     * @param queries the collection to run through.
      * @return a collection of entities built from the queries.
      */
-    public EntitiesCollection runQueries(QueriesCollection queries) {
+    @Override
+    public EntitiesCollection call() {
         
         EntitiesCollection entities;
         entities = new EntitiesCollection("Collection");
@@ -55,7 +47,6 @@ public class Dispatcher {
     
     /**
      * Outputs an explanation of the action.
-     * 
      * @param text toString of the returned entity.
      */
     private void output(String text) {
