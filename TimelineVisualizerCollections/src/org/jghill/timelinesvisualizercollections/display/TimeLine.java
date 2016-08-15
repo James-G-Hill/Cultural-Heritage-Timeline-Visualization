@@ -26,6 +26,7 @@ public class TimeLine extends JLayeredPane {
     
     private int[] intervals;
     private final ManMadeObject[] objects;
+    private final JLabel description = new JLabel();
     private JLabel[] labels;
     private EntityDisplay[] eDisplays;
     
@@ -51,10 +52,13 @@ public class TimeLine extends JLayeredPane {
      * @param entities 
      */
     private void setUp() {
+        
         this.setLayout(null);
         this.setOpaque(true);
         this.setBackground(color);
         this.intervals = cdp.getDateArray();
+        
+        setDescription();
         
         labels = new JLabel[intervals.length];
         for(int i = 0; i < intervals.length; i++) {
@@ -103,6 +107,16 @@ public class TimeLine extends JLayeredPane {
         paintScale(g);
         paintEntities(g);
         this.repaint();
+    }
+    
+    /**
+     * Places the description onto the TimeLine.
+     */
+    private void setDescription() {
+        this.add(description);
+        description.setVisible(true);
+        description.setBounds(5, 5, 100, 15);
+        description.setText(name);
     }
     
     /**
