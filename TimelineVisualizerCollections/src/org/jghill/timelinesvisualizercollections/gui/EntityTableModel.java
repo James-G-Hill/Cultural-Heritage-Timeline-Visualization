@@ -10,7 +10,6 @@ import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 
 /**
  * A model for assisting display of Entities in the Entity Table.
- * 
  * @author JGHill
  */
 public class EntityTableModel extends AbstractTableModel {
@@ -18,7 +17,7 @@ public class EntityTableModel extends AbstractTableModel {
     private final Collection collection;
     private ManMadeObject[] entities;
     
-    private static final int COL_COUNT = 4;
+    private static final int COL_COUNT = 5;
     
     public EntityTableModel(Collection c) {
         this.collection = c;
@@ -44,12 +43,16 @@ public class EntityTableModel extends AbstractTableModel {
             case 1:
                 return entities[rowIndex].getName();
             case 2:
+                return entities[rowIndex].getQueryName();
+            case 3:
+                return entities[rowIndex].getSourceName();
+            case 4:
                 String urlString = "";
                 if (entities[rowIndex].getImageURL() != null) {
                     urlString = entities[rowIndex].getImageURL().toString();
                 }
                 return urlString;
-            case 3:
+            case 5:
                 year = entities[rowIndex].getTimeSpan();
                 return formatYear(year);
             default:
@@ -67,6 +70,10 @@ public class EntityTableModel extends AbstractTableModel {
             case 2:
                 return "Image";
             case 3:
+                return "Query";
+            case 4:
+                return "Source";
+            case 5:
                 return "Time Span";
             default:
                 return null;
@@ -90,7 +97,6 @@ public class EntityTableModel extends AbstractTableModel {
     
     /**
      * Returns an entity from the underlying collection.
-     * 
      * @param index the row number identifying the Entities.
      * @return The entity at the row.
      */
@@ -100,7 +106,6 @@ public class EntityTableModel extends AbstractTableModel {
     
     /**
      * Flattens the entities collection into a single list.
-     * 
      * @param coll the EntitiesCollection.
      * @return a list containing all internal non-collections.
      */
@@ -125,7 +130,6 @@ public class EntityTableModel extends AbstractTableModel {
     
     /**
      * Formats the year.
-     * 
      * @param i the year as int.
      * @return text to represent the year.
      */
