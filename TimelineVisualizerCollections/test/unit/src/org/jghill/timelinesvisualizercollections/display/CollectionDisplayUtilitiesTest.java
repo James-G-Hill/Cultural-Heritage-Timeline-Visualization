@@ -10,7 +10,6 @@ import static org.mockito.Mockito.when;
 
 /**
  * A testing class for the CollectionDisplayUtilities class.
- * 
  * @author JGHill
  */
 public class CollectionDisplayUtilitiesTest {
