@@ -153,6 +153,15 @@ public class CollectionDisplayUtilitiesTest {
     }
     
     @Test
+    public void testCalculateIntervalLessThanTen() {
+        when(earliest.get(Calendar.YEAR)).thenReturn(1955);
+        when(latest.get(Calendar.YEAR)).thenReturn(1950);
+        int predicted = 1;
+        int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
+        assertEquals(predicted, result);
+    }
+    
+    @Test
     public void testCalculateIntervalTen() {
         when(earliest.get(Calendar.YEAR)).thenReturn(1000);
         when(latest.get(Calendar.YEAR)).thenReturn(1010);
