@@ -17,7 +17,7 @@ public class EntityTableModel extends AbstractTableModel {
     private final Collection collection;
     private ManMadeObject[] entities;
     
-    private static final int COL_COUNT = 5;
+    private static final int COL_COUNT = 6;
     
     public EntityTableModel(Collection c) {
         this.collection = c;
@@ -68,11 +68,11 @@ public class EntityTableModel extends AbstractTableModel {
             case 1:
                 return "Name";
             case 2:
-                return "Image";
-            case 3:
                 return "Query";
-            case 4:
+            case 3:
                 return "Source";
+            case 4:
+                return "Image";
             case 5:
                 return "Time Span";
             default:
