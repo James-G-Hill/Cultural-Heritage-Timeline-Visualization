@@ -6,6 +6,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import static java.util.Comparator.comparingInt;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -43,7 +44,14 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
     private int interval;
     private int intervalsCount;
     
-    private final Color[] colors = {Color.magenta, Color.orange, Color.pink, Color.lightGray};
+    private final Color pink = new Color(255, 220, 220);
+    private final Color green = new Color(220, 255, 220);
+    private final Color blue = new Color(220, 220, 255);
+    private final Color grey = new Color(232, 232, 232);
+    private final Color purple = new Color(255, 190, 255);
+    private final Color yellow = new Color(255, 255, 190);
+    
+    private final List<Color> colors = new ArrayList<>();
     
     public CollectionDisplayPanel() {
         setUp();
@@ -54,7 +62,12 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
      */
     private void setUp() {
         this.setLayout(null);
-//        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        colors.add(pink);
+        colors.add(green);
+        colors.add(blue);
+        colors.add(grey);
+        colors.add(purple);
+        colors.add(yellow);
     }
     
     /**
@@ -89,23 +102,9 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
      */
     private void createTimeLines() {
         String choice = (String) firstFilter.getSelectedItem();
-        if (choice.equalsIgnoreCase("None")) {
-            noFilter();
-        } else {
-            runFilter(choice);
-        }
+        runFilter(choice);
         revalidate();
         repaint();
-    }
-    
-    /**
-     * Creates timeline when there is no filter selected.
-     */
-    private void noFilter() {
-        TimeLine tm = new TimeLine("General", collection, Color.RED, this);
-        timelines = new TimeLine[1];
-        timelines[0] = tm;
-        this.add(timelines[0]);
     }
     
     private void runFilter(String filter) {
@@ -120,6 +119,9 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
                     break;
                 case "Source" :
                     result = object.getSourceName();
+                    break;
+                case "None" :
+                    result = "General";
                     break;
                 default :
                     result = "";
@@ -185,13 +187,14 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
      */
     private void assignTimeLines(TreeMap<String, List<ManMadeObject>> categories) {
         int count = 0;
+        Collections.shuffle(colors);
         ArrayList<ManMadeObject> other = new ArrayList<>();
         for(Map.Entry<String, List<ManMadeObject>> entry: categories.entrySet()) {
             if (count < 3) {
                 timelines[count] = new TimeLine(
                         entry.getKey(),
                         entry.getValue().toArray(new ManMadeObject[entry.getValue().size()]),
-                        colors[count],
+                        colors.get(count),
                         this
                 );
             } else {
@@ -203,7 +206,7 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
             timelines[3] = new TimeLine(
                     "Other",
                     (ManMadeObject[]) other.toArray(),
-                    colors[3],
+                    colors.get(3),
                     this
             );
         }
