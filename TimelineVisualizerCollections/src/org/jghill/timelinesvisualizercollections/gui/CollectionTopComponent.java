@@ -108,44 +108,30 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         VerticalSeparator = new javax.swing.JSeparator();
         SourceTextLabel = new javax.swing.JLabel();
         SourceComboBox = new javax.swing.JComboBox<>();
-        AcquisitionDateCheckBox = new javax.swing.JCheckBox();
-        LengthBetweenCheckBox = new javax.swing.JCheckBox();
-        WidthBetweenCheckBox = new javax.swing.JCheckBox();
-        ThicknessBetweenCheckBox = new javax.swing.JCheckBox();
-        ConsistsOfCheckBox = new javax.swing.JCheckBox();
+        HasNameCheckBox = new javax.swing.JCheckBox();
         HasImageCheckBox = new javax.swing.JCheckBox();
-        OriginLocationCheckBox = new javax.swing.JCheckBox();
+        HasIdentifierCheckBox = new javax.swing.JCheckBox();
         DeleteButton = new javax.swing.JButton();
         AndText1 = new javax.swing.JLabel();
-        AcquisitionStartDatePicker = new org.jdesktop.swingx.JXDatePicker();
-        AcquisitionEndDatePicker = new org.jdesktop.swingx.JXDatePicker();
-        AndText2 = new javax.swing.JLabel();
-        AndText3 = new javax.swing.JLabel();
-        LengthLowerTextField = new javax.swing.JTextField();
-        LengthUpperTextField = new javax.swing.JTextField();
-        WidthLowerTextField = new javax.swing.JTextField();
-        AndText4 = new javax.swing.JLabel();
-        WidthUpperTextField = new javax.swing.JTextField();
-        ThicknessLowerTextField = new javax.swing.JTextField();
-        AndText5 = new javax.swing.JLabel();
-        ThicknessUpperTextField = new javax.swing.JTextField();
-        ConsistsOfTextField = new javax.swing.JTextField();
-        LocationOriginTextField = new javax.swing.JTextField();
-        UnitLabel1 = new javax.swing.JLabel();
-        UnitLabel2 = new javax.swing.JLabel();
-        UnitLabel3 = new javax.swing.JLabel();
-        LengthUnitComboBox = new javax.swing.JComboBox<>();
-        WidthUnitComboBox = new javax.swing.JComboBox<>();
-        ThicknessUnitComboBox = new javax.swing.JComboBox<>();
+        NameTextField = new javax.swing.JTextField();
+        IdentifierTextField = new javax.swing.JTextField();
         RunButton = new javax.swing.JButton();
         HasLimitCheckBox = new javax.swing.JCheckBox();
-        HasLimitTextField = new javax.swing.JTextField();
+        LimitTextField = new javax.swing.JTextField();
         SourceNameTextLabel = new javax.swing.JLabel();
         QueryNameTextField = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         CreationYearLabel = new javax.swing.JLabel();
         CreationStartYearTextField = new javax.swing.JTextField();
         CreationEndYearTextField = new javax.swing.JTextField();
+        HasDepictionCheckBox = new javax.swing.JCheckBox();
+        DepictionTextField = new javax.swing.JTextField();
+        HasConsistsCheckBox = new javax.swing.JCheckBox();
+        MaterialTextField = new javax.swing.JTextField();
+        HasTypeCheckBox = new javax.swing.JCheckBox();
+        TypeTextField = new javax.swing.JTextField();
+        HasTechniqueCheckBox = new javax.swing.JCheckBox();
+        TechniqueTextField = new javax.swing.JTextField();
         Entities = new javax.swing.JPanel();
         EntitiesScrollPane = new javax.swing.JScrollPane();
         EntitiesTable = new javax.swing.JTable();
@@ -200,7 +186,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 .addGap(18, 18, 18)
                 .addComponent(NotesText)
                 .addGap(18, 18, 18)
-                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -238,19 +224,11 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
 
         SourceComboBox.setModel(new DefaultComboBoxModel(SourceCollection.getInstance().collectionToArray()));
 
-        org.openide.awt.Mnemonics.setLocalizedText(AcquisitionDateCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.AcquisitionDateCheckBox.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(LengthBetweenCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.LengthBetweenCheckBox.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(WidthBetweenCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.WidthBetweenCheckBox.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(ThicknessBetweenCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ThicknessBetweenCheckBox.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(ConsistsOfCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ConsistsOfCheckBox.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(HasNameCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasNameCheckBox.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(HasImageCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasImageCheckBox.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(OriginLocationCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.OriginLocationCheckBox.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(HasIdentifierCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasIdentifierCheckBox.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(DeleteButton, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.DeleteButton.text")); // NOI18N
         DeleteButton.addActionListener(new java.awt.event.ActionListener() {
@@ -261,41 +239,9 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
 
         org.openide.awt.Mnemonics.setLocalizedText(AndText1, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.AndText1.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(AndText2, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.AndText2.text")); // NOI18N
+        NameTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.NameTextField.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(AndText3, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.AndText3.text")); // NOI18N
-
-        LengthLowerTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.LengthLowerTextField.text")); // NOI18N
-
-        LengthUpperTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.LengthUpperTextField.text")); // NOI18N
-
-        WidthLowerTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.WidthLowerTextField.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(AndText4, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.AndText4.text")); // NOI18N
-
-        WidthUpperTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.WidthUpperTextField.text")); // NOI18N
-
-        ThicknessLowerTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ThicknessLowerTextField.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(AndText5, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.AndText5.text")); // NOI18N
-
-        ThicknessUpperTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ThicknessUpperTextField.text")); // NOI18N
-
-        ConsistsOfTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ConsistsOfTextField.text")); // NOI18N
-
-        LocationOriginTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.LocationOriginTextField.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(UnitLabel1, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.UnitLabel1.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(UnitLabel2, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.UnitLabel2.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(UnitLabel3, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.UnitLabel3.text")); // NOI18N
-
-        LengthUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mm", "cm", "m", "km" }));
-
-        WidthUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mm", "cm", "m", "km" }));
-
-        ThicknessUnitComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mm", "cm", "m", "km" }));
+        IdentifierTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.IdentifierTextField.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(RunButton, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.RunButton.text")); // NOI18N
         RunButton.addActionListener(new java.awt.event.ActionListener() {
@@ -307,8 +253,8 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         HasLimitCheckBox.setSelected(true);
         org.openide.awt.Mnemonics.setLocalizedText(HasLimitCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasLimitCheckBox.text")); // NOI18N
 
-        HasLimitTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        HasLimitTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasLimitTextField.text")); // NOI18N
+        LimitTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        LimitTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.LimitTextField.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceNameTextLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.SourceNameTextLabel.text")); // NOI18N
         SourceNameTextLabel.setOpaque(true);
@@ -321,6 +267,22 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         CreationStartYearTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.CreationStartYearTextField.text")); // NOI18N
 
         CreationEndYearTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.CreationEndYearTextField.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(HasDepictionCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasDepictionCheckBox.text")); // NOI18N
+
+        DepictionTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.DepictionTextField.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(HasConsistsCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasConsistsCheckBox.text")); // NOI18N
+
+        MaterialTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.MaterialTextField.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(HasTypeCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasTypeCheckBox.text")); // NOI18N
+
+        TypeTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.TypeTextField.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(HasTechniqueCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasTechniqueCheckBox.text")); // NOI18N
+
+        TechniqueTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.TechniqueTextField.text")); // NOI18N
 
         javax.swing.GroupLayout QueriesLayout = new javax.swing.GroupLayout(Queries);
         Queries.setLayout(QueriesLayout);
@@ -339,71 +301,6 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 .addComponent(QuerySeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(QueriesLayout.createSequentialGroup()
-                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(OriginLocationCheckBox)
-                            .addComponent(HasLimitCheckBox)
-                            .addGroup(QueriesLayout.createSequentialGroup()
-                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(QueriesLayout.createSequentialGroup()
-                                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(QueriesLayout.createSequentialGroup()
-                                                .addComponent(AcquisitionDateCheckBox)
-                                                .addGap(26, 26, 26))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createSequentialGroup()
-                                                .addComponent(CreationYearLabel)
-                                                .addGap(18, 18, 18)))
-                                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(QueriesLayout.createSequentialGroup()
-                                                .addComponent(CreationStartYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(AndText1))
-                                            .addGroup(QueriesLayout.createSequentialGroup()
-                                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(LocationOriginTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(ConsistsOfTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(ThicknessLowerTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(WidthLowerTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(AcquisitionStartDatePicker, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(LengthLowerTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(HasLimitTextField))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(AndText3)
-                                                    .addComponent(AndText2)
-                                                    .addComponent(AndText4)
-                                                    .addComponent(AndText5)))))
-                                    .addComponent(LengthBetweenCheckBox)
-                                    .addComponent(WidthBetweenCheckBox)
-                                    .addComponent(ThicknessBetweenCheckBox)
-                                    .addComponent(ConsistsOfCheckBox)
-                                    .addGroup(QueriesLayout.createSequentialGroup()
-                                        .addComponent(SourceTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(SourceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(AcquisitionEndDatePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(WidthUpperTextField)
-                                    .addComponent(ThicknessUpperTextField)
-                                    .addComponent(HasImageCheckBox)
-                                    .addComponent(LengthUpperTextField)
-                                    .addComponent(CreationEndYearTextField))
-                                .addGap(18, 18, 18)
-                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(QueriesLayout.createSequentialGroup()
-                                        .addComponent(UnitLabel1)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(LengthUnitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(QueriesLayout.createSequentialGroup()
-                                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(UnitLabel3)
-                                            .addComponent(UnitLabel2))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(WidthUnitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(ThicknessUnitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(VerticalSeparator)
                     .addGroup(QueriesLayout.createSequentialGroup()
                         .addComponent(QueryBuilderText)
@@ -411,12 +308,62 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                         .addComponent(SourceNameTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(QueryNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(ResetButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(CreateButton))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createSequentialGroup()
+                                .addComponent(ResetButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(CreateButton))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createSequentialGroup()
+                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(QueriesLayout.createSequentialGroup()
+                                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(HasIdentifierCheckBox)
+                                            .addComponent(HasNameCheckBox)
+                                            .addComponent(HasDepictionCheckBox))
+                                        .addGap(52, 52, 52))
+                                    .addGroup(QueriesLayout.createSequentialGroup()
+                                        .addComponent(CreationYearLabel)
+                                        .addGap(18, 18, 18)))
+                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(QueriesLayout.createSequentialGroup()
+                                        .addComponent(CreationStartYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(AndText1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(CreationEndYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(NameTextField)
+                                        .addComponent(IdentifierTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(MaterialTextField)
+                                        .addComponent(DepictionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(174, 174, 174))))
+                    .addGroup(QueriesLayout.createSequentialGroup()
+                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(QueriesLayout.createSequentialGroup()
+                                .addComponent(SourceTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(SourceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(QueriesLayout.createSequentialGroup()
+                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(HasLimitCheckBox)
+                                    .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(LimitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(QueriesLayout.createSequentialGroup()
+                                            .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(HasTypeCheckBox)
+                                                .addComponent(HasTechniqueCheckBox)
+                                                .addComponent(HasConsistsCheckBox))
+                                            .addGap(22, 22, 22)
+                                            .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(TypeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                                                .addComponent(TechniqueTextField)))))
+                                .addGap(18, 18, 18)
+                                .addComponent(HasImageCheckBox)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         QueriesLayout.setVerticalGroup(
@@ -428,7 +375,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createSequentialGroup()
                         .addComponent(ExistingQueriesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(QueriesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                        .addComponent(QueriesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(DeleteButton)
@@ -444,66 +391,50 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(SourceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(SourceTextLabel))
-                        .addGap(18, 18, 18)
+                        .addGap(26, 26, 26)
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(QueriesLayout.createSequentialGroup()
                                 .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(AndText1)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(CreationYearLabel)
-                                        .addComponent(CreationStartYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(CreationStartYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(CreationYearLabel)))
                                 .addGap(18, 18, 18)
                                 .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(AcquisitionDateCheckBox)
-                                    .addComponent(AcquisitionStartDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(AcquisitionEndDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(AndText2))
+                                    .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(HasNameCheckBox))
                                 .addGap(18, 18, 18)
                                 .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(LengthBetweenCheckBox)
-                                    .addComponent(AndText3)
-                                    .addComponent(LengthLowerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LengthUpperTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(UnitLabel1)
-                                    .addComponent(LengthUnitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(IdentifierTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(HasIdentifierCheckBox))
                                 .addGap(18, 18, 18)
                                 .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(WidthBetweenCheckBox)
-                                    .addComponent(WidthLowerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(AndText4)
-                                    .addComponent(WidthUpperTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(UnitLabel3)
-                                    .addComponent(WidthUnitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(ThicknessBetweenCheckBox)
-                                    .addComponent(ThicknessLowerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(AndText5)
-                                    .addComponent(ThicknessUpperTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(UnitLabel2)
-                                    .addComponent(ThicknessUnitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(ConsistsOfCheckBox)
-                                    .addComponent(ConsistsOfTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(HasImageCheckBox))
-                                .addGap(18, 18, 18)
-                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(OriginLocationCheckBox)
-                                    .addComponent(LocationOriginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(HasLimitCheckBox)
-                                    .addComponent(HasLimitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(CreateButton)
-                                    .addComponent(ResetButton)))
-                            .addGroup(QueriesLayout.createSequentialGroup()
-                                .addComponent(CreationEndYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addComponent(DepictionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(HasDepictionCheckBox)))
+                            .addComponent(CreationEndYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(MaterialTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HasConsistsCheckBox))
+                        .addGap(18, 18, 18)
+                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(HasTypeCheckBox)
+                            .addComponent(TypeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(HasTechniqueCheckBox)
+                            .addComponent(TechniqueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(HasLimitCheckBox)
+                            .addComponent(LimitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HasImageCheckBox))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CreateButton)
+                            .addComponent(ResetButton))))
                 .addContainerGap())
         );
 
@@ -528,7 +459,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             EntitiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EntitiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -669,40 +600,35 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     }//GEN-LAST:event_TitleTextBoxKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox AcquisitionDateCheckBox;
-    private org.jdesktop.swingx.JXDatePicker AcquisitionEndDatePicker;
-    private org.jdesktop.swingx.JXDatePicker AcquisitionStartDatePicker;
     private javax.swing.JLabel AndText1;
-    private javax.swing.JLabel AndText2;
-    private javax.swing.JLabel AndText3;
-    private javax.swing.JLabel AndText4;
-    private javax.swing.JLabel AndText5;
-    private javax.swing.JCheckBox ConsistsOfCheckBox;
-    private javax.swing.JTextField ConsistsOfTextField;
     private javax.swing.JButton CreateButton;
     private javax.swing.JTextField CreationEndYearTextField;
     private javax.swing.JTextField CreationStartYearTextField;
     private javax.swing.JLabel CreationYearLabel;
     private javax.swing.JButton DeleteButton;
+    private javax.swing.JTextField DepictionTextField;
     private javax.swing.JPanel Entities;
     private javax.swing.JScrollPane EntitiesScrollPane;
     private javax.swing.JTable EntitiesTable;
     private javax.swing.JLabel ExistingQueriesText;
     private javax.swing.JComboBox<String> FirstFilterComboBox;
     private javax.swing.JLabel FirstFilterLabel;
+    private javax.swing.JCheckBox HasConsistsCheckBox;
+    private javax.swing.JCheckBox HasDepictionCheckBox;
+    private javax.swing.JCheckBox HasIdentifierCheckBox;
     private javax.swing.JCheckBox HasImageCheckBox;
     private javax.swing.JCheckBox HasLimitCheckBox;
-    private javax.swing.JTextField HasLimitTextField;
+    private javax.swing.JCheckBox HasNameCheckBox;
+    private javax.swing.JCheckBox HasTechniqueCheckBox;
+    private javax.swing.JCheckBox HasTypeCheckBox;
+    private javax.swing.JTextField IdentifierTextField;
     private javax.swing.JPanel Information;
-    private javax.swing.JCheckBox LengthBetweenCheckBox;
-    private javax.swing.JTextField LengthLowerTextField;
-    private javax.swing.JComboBox<String> LengthUnitComboBox;
-    private javax.swing.JTextField LengthUpperTextField;
-    private javax.swing.JTextField LocationOriginTextField;
+    private javax.swing.JTextField LimitTextField;
+    private javax.swing.JTextField MaterialTextField;
+    private javax.swing.JTextField NameTextField;
     private javax.swing.JLabel NotesText;
     private javax.swing.JTextArea NotesTextBox;
     private javax.swing.JScrollPane NotesTextPanel;
-    private javax.swing.JCheckBox OriginLocationCheckBox;
     private javax.swing.JPanel Queries;
     private javax.swing.JScrollPane QueriesScrollPane;
     private javax.swing.JTable QueriesTable;
@@ -715,20 +641,11 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private javax.swing.JLabel SourceNameTextLabel;
     private javax.swing.JLabel SourceTextLabel;
     private javax.swing.JTabbedPane Tab;
-    private javax.swing.JCheckBox ThicknessBetweenCheckBox;
-    private javax.swing.JTextField ThicknessLowerTextField;
-    private javax.swing.JComboBox<String> ThicknessUnitComboBox;
-    private javax.swing.JTextField ThicknessUpperTextField;
+    private javax.swing.JTextField TechniqueTextField;
     private javax.swing.JTextField TitleTextBox;
-    private javax.swing.JLabel UnitLabel1;
-    private javax.swing.JLabel UnitLabel2;
-    private javax.swing.JLabel UnitLabel3;
+    private javax.swing.JTextField TypeTextField;
     private javax.swing.JSeparator VerticalSeparator;
     private javax.swing.JPanel Visualizer;
-    private javax.swing.JCheckBox WidthBetweenCheckBox;
-    private javax.swing.JTextField WidthLowerTextField;
-    private javax.swing.JComboBox<String> WidthUnitComboBox;
-    private javax.swing.JTextField WidthUpperTextField;
     private org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel collectionDisplayPanel;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
@@ -754,15 +671,11 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     public void componentClosed() {}
 
     void writeProperties(java.util.Properties p) {
-        // better to version settings since initial version as advocated at
-        // http://wiki.apidesign.org/wiki/PropertyFiles
         p.setProperty("version", "1.0");
-        // TODO store your settings
     }
 
     void readProperties(java.util.Properties p) {
         String version = p.getProperty("version");
-        // TODO read your settings according to their version
     }
     
     /**
@@ -777,36 +690,38 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
      * Resets the query building section of the GUI.
      */
     private void resetQueryBuilder() {
-        AcquisitionDateCheckBox.setSelected(false);
-        ConsistsOfCheckBox.setSelected(false);
-        HasImageCheckBox.setSelected(false);
-        LengthBetweenCheckBox.setSelected(false);
-        OriginLocationCheckBox.setSelected(false);
-        ThicknessBetweenCheckBox.setSelected(false);
-        WidthBetweenCheckBox.setSelected(false);
-        HasLimitCheckBox.setSelected(true);
+        
+        SourceNameTextLabel.setText("");
         
         SourceComboBox.setSelectedIndex(0);
-        LengthUnitComboBox.setSelectedIndex(0);
-        ThicknessUnitComboBox.setSelectedIndex(0);
-        WidthUnitComboBox.setSelectedIndex(0);
+        QueryNameTextField.setText("");
         
-        AcquisitionEndDatePicker.setDate(null);
-        AcquisitionStartDatePicker.setDate(null);
         CreationEndYearTextField.setText("");
         CreationStartYearTextField.setText("");
         
-        QueryNameTextField.setText("");
-        SourceNameTextLabel.setText("");
-        ConsistsOfTextField.setText("");
-        LengthLowerTextField.setText("");
-        LengthUpperTextField.setText("");
-        LocationOriginTextField.setText("");
-        ThicknessLowerTextField.setText("");
-        ThicknessUpperTextField.setText("");
-        WidthLowerTextField.setText("");
-        WidthUpperTextField.setText("");
-        HasLimitTextField.setText("10");
+        HasNameCheckBox.setSelected(false);
+        NameTextField.setText("");
+        
+        HasIdentifierCheckBox.setSelected(false);
+        IdentifierTextField.setText("");
+        
+        HasDepictionCheckBox.setSelected(false);
+        DepictionTextField.setText("");
+        
+        HasConsistsCheckBox.setSelected(false);
+        MaterialTextField.setText("");
+        
+        HasTypeCheckBox.setSelected(false);
+        TypeTextField.setText("");
+                
+        HasTechniqueCheckBox.setSelected(false);
+        TechniqueTextField.setText("");
+        
+        HasLimitCheckBox.setSelected(true);
+        LimitTextField.setText("10");
+        
+        HasImageCheckBox.setSelected(false);
+        
     }
     
     /**
@@ -836,31 +751,34 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private void createQuery() {
         QuerySettings settings;
         settings = new QuerySettings(
-            (Source) SourceComboBox.getSelectedItem(),
-            QueryNameTextField.getText().trim(),
-            AcquisitionDateCheckBox.isSelected(),
-            ConsistsOfCheckBox.isSelected(),
-            HasImageCheckBox.isSelected(),
-            LengthBetweenCheckBox.isSelected(),
-            OriginLocationCheckBox.isSelected(),
-            ThicknessBetweenCheckBox.isSelected(),
-            WidthBetweenCheckBox.isSelected(),
-            LengthUnitComboBox.getSelectedItem().toString(),
-            ThicknessUnitComboBox.getSelectedItem().toString(),
-            WidthUnitComboBox.getSelectedItem().toString(),
-            AcquisitionEndDatePicker.getDate(),
-            AcquisitionStartDatePicker.getDate(),
-            CreationEndYearTextField.getText().trim(),
-            CreationStartYearTextField.getText().trim(),
-            ConsistsOfTextField.getText().trim(),
-            LocationOriginTextField.getText().trim(),
-            LengthLowerTextField.getText().trim(),
-            LengthUpperTextField.getText().trim(),
-            ThicknessLowerTextField.getText().trim(),
-            ThicknessUpperTextField.getText().trim(),
-            WidthLowerTextField.getText().trim(),
-            WidthUpperTextField.getText().trim(),
-            HasLimitTextField.getText().trim()
+                (Source) SourceComboBox.getSelectedItem(),
+                QueryNameTextField.getText().trim(),
+                
+                CreationEndYearTextField.getText().trim(),
+                CreationStartYearTextField.getText().trim(),
+                
+                HasNameCheckBox.isSelected(),
+                NameTextField.getText().trim(),
+            
+                HasIdentifierCheckBox.isSelected(),
+                IdentifierTextField.getText().trim(),
+                
+                HasDepictionCheckBox.isSelected(),
+                DepictionTextField.getText().trim(),
+                
+                HasConsistsCheckBox.isSelected(),
+                MaterialTextField.getText().trim(),
+                
+                HasTypeCheckBox.isSelected(),
+                TypeTextField.getText().trim(),
+                
+                HasTechniqueCheckBox.isSelected(),
+                TechniqueTextField.getText().trim(),
+                
+                HasLimitCheckBox.isSelected(),
+                LimitTextField.getText().trim(),
+                
+                HasImageCheckBox.isSelected()
         );
         QueryShell qry;
         QueryBuilder builder = QueryBuilder.getInstance();

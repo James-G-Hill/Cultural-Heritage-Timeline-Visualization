@@ -92,7 +92,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="NotesText" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="NotesTextPanel" pref="314" max="32767" attributes="0"/>
+                      <Component id="NotesTextPanel" pref="328" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -181,91 +181,6 @@
                       <Component id="QuerySeparator" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="OriginLocationCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="HasLimitCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="AcquisitionDateCheckBox" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="CreationYearLabel" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="CreationStartYearTextField" min="-2" pref="112" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="AndText1" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" attributes="0">
-                                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                          <Component id="LocationOriginTextField" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="ConsistsOfTextField" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="ThicknessLowerTextField" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="WidthLowerTextField" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="AcquisitionStartDatePicker" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="LengthLowerTextField" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="HasLimitTextField" alignment="1" max="32767" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="AndText3" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="AndText2" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="AndText4" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="AndText5" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                          <Component id="LengthBetweenCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="WidthBetweenCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="ThicknessBetweenCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="ConsistsOfCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="SourceTextLabel" min="-2" pref="66" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="SourceComboBox" min="-2" pref="203" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="AcquisitionEndDatePicker" max="32767" attributes="0"/>
-                                          <Component id="WidthUpperTextField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="ThicknessUpperTextField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="HasImageCheckBox" min="-2" max="-2" attributes="0"/>
-                                          <Component id="LengthUpperTextField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="CreationEndYearTextField" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="UnitLabel1" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="LengthUnitComboBox" min="-2" pref="110" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="UnitLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="UnitLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="WidthUnitComboBox" min="-2" pref="110" max="-2" attributes="0"/>
-                                                  <Component id="ThicknessUnitComboBox" min="-2" pref="110" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                           <Component id="VerticalSeparator" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="QueryBuilderText" min="-2" max="-2" attributes="0"/>
@@ -274,13 +189,83 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="QueryNameTextField" min="-2" pref="186" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="ResetButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="CreateButton" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="ResetButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="CreateButton" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="HasIdentifierCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="HasNameCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="HasDepictionCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="CreationYearLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="CreationStartYearTextField" min="-2" pref="112" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="AndText1" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="CreationEndYearTextField" min="-2" pref="110" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="NameTextField" max="32767" attributes="0"/>
+                                              <Component id="IdentifierTextField" min="-2" pref="112" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="MaterialTextField" max="32767" attributes="0"/>
+                                              <Component id="DepictionTextField" min="-2" pref="112" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="SourceTextLabel" min="-2" pref="66" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="SourceComboBox" min="-2" pref="203" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="HasLimitCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                              <Component id="LimitTextField" alignment="1" min="-2" pref="112" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="HasTypeCheckBox" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="HasTechniqueCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="HasConsistsCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="TypeTextField" pref="112" max="32767" attributes="0"/>
+                                                      <Component id="TechniqueTextField" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="HasImageCheckBox" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -295,7 +280,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="ExistingQueriesText" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="QueriesScrollPane" pref="367" max="32767" attributes="0"/>
+                              <Component id="QueriesScrollPane" pref="379" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="DeleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -315,78 +300,61 @@
                                   <Component id="SourceComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="SourceTextLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="AndText1" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                              <Component id="CreationYearLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="CreationStartYearTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="CreationYearLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="AcquisitionDateCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="AcquisitionStartDatePicker" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="AcquisitionEndDatePicker" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="AndText2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="NameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="HasNameCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="LengthBetweenCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="AndText3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="LengthLowerTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="LengthUpperTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="UnitLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="LengthUnitComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="IdentifierTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="HasIdentifierCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="WidthBetweenCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="WidthLowerTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="AndText4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="WidthUpperTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="UnitLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="WidthUnitComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="ThicknessBetweenCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="ThicknessLowerTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="AndText5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="ThicknessUpperTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="UnitLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="ThicknessUnitComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="ConsistsOfCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="ConsistsOfTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="HasImageCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="OriginLocationCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="LocationOriginTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="HasLimitCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="HasLimitTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="CreateButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="ResetButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="DepictionTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="HasDepictionCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="CreationEndYearTextField" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="CreationEndYearTextField" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="MaterialTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="HasConsistsCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="HasTypeCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TypeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="HasTechniqueCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TechniqueTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="HasLimitCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LimitTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="HasImageCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="CreateButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ResetButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -480,38 +448,10 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="AcquisitionDateCheckBox">
+            <Component class="javax.swing.JCheckBox" name="HasNameCheckBox">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.AcquisitionDateCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="LengthBetweenCheckBox">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.LengthBetweenCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="WidthBetweenCheckBox">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.WidthBetweenCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="ThicknessBetweenCheckBox">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.ThicknessBetweenCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="ConsistsOfCheckBox">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.ConsistsOfCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.HasNameCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
@@ -522,10 +462,10 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="OriginLocationCheckBox">
+            <Component class="javax.swing.JCheckBox" name="HasIdentifierCheckBox">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.OriginLocationCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.HasIdentifierCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
@@ -546,159 +486,19 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="org.jdesktop.swingx.JXDatePicker" name="AcquisitionStartDatePicker">
-            </Component>
-            <Component class="org.jdesktop.swingx.JXDatePicker" name="AcquisitionEndDatePicker">
-            </Component>
-            <Component class="javax.swing.JLabel" name="AndText2">
+            <Component class="javax.swing.JTextField" name="NameTextField">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.AndText2.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.NameTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="AndText3">
+            <Component class="javax.swing.JTextField" name="IdentifierTextField">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.AndText3.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.IdentifierTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="LengthLowerTextField">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.LengthLowerTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="LengthUpperTextField">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.LengthUpperTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="WidthLowerTextField">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.WidthLowerTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="AndText4">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.AndText4.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="WidthUpperTextField">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.WidthUpperTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="ThicknessLowerTextField">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.ThicknessLowerTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="AndText5">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.AndText5.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="ThicknessUpperTextField">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.ThicknessUpperTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="ConsistsOfTextField">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.ConsistsOfTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="LocationOriginTextField">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.LocationOriginTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="UnitLabel1">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.UnitLabel1.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="UnitLabel2">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.UnitLabel2.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="UnitLabel3">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.UnitLabel3.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="LengthUnitComboBox">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="mm"/>
-                    <StringItem index="1" value="cm"/>
-                    <StringItem index="2" value="m"/>
-                    <StringItem index="3" value="km"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="WidthUnitComboBox">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="mm"/>
-                    <StringItem index="1" value="cm"/>
-                    <StringItem index="2" value="m"/>
-                    <StringItem index="3" value="km"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="ThicknessUnitComboBox">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="mm"/>
-                    <StringItem index="1" value="cm"/>
-                    <StringItem index="2" value="m"/>
-                    <StringItem index="3" value="km"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="RunButton">
               <Properties>
@@ -718,11 +518,11 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="HasLimitTextField">
+            <Component class="javax.swing.JTextField" name="LimitTextField">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.HasLimitTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.LimitTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
@@ -767,6 +567,62 @@
                 </Property>
               </Properties>
             </Component>
+            <Component class="javax.swing.JCheckBox" name="HasDepictionCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.HasDepictionCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="DepictionTextField">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.DepictionTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="HasConsistsCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.HasConsistsCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="MaterialTextField">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.MaterialTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="HasTypeCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.HasTypeCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="TypeTextField">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.TypeTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="HasTechniqueCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.HasTechniqueCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="TechniqueTextField">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="org/jghill/timelinesvisualizercollections/gui/Bundle.properties" key="CollectionTopComponent.TechniqueTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="Entities">
@@ -794,7 +650,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="EntitiesScrollPane" pref="414" max="32767" attributes="0"/>
+                      <Component id="EntitiesScrollPane" pref="428" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
