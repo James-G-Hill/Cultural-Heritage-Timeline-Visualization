@@ -15,6 +15,7 @@ public final class CollectionDisplayUtilities {
     
     /**
      * Calculate the earliest and latest dates to display on the timeline.
+     * 
      * @param collection the collection of objects to calculate from.
      */
     public static Calendar calculateEarliest(ManMadeObject[] collection) {
@@ -36,6 +37,7 @@ public final class CollectionDisplayUtilities {
     
     /**
      * Calculate the earliest and latest dates to display on the timeline.
+     * 
      * @param collection the collection of objects to calculate from.
      */
     public static Calendar calculateLatest(ManMadeObject[] collection) {
@@ -57,6 +59,7 @@ public final class CollectionDisplayUtilities {
     
     /**
      * Returns the start date for the scale.
+     * 
      * @param earliest date.
      * @param interval the interval.
      * @return the first year date for the scale.
@@ -89,11 +92,12 @@ public final class CollectionDisplayUtilities {
     
     /**
      * Calculates the intervals size.
+     * 
      * @return the size of the interval.
      */
     public static int calculateInterval(Calendar start, Calendar end) {
         int difference = end.get(Calendar.YEAR) - start.get(Calendar.YEAR);
-        if (difference == 0) {
+        if (difference < 10) {
             return 1;
         } else {
             return (int) Math.pow(10, Math.ceil(Math.log10(difference/10)));
@@ -102,6 +106,7 @@ public final class CollectionDisplayUtilities {
     
     /**
      * Calculates the number of intervals to display on the timeline.
+     * 
      * @return the number of intervals.
      */
     public static int countIntervals(Calendar earliest, Calendar latest, int interval) {
@@ -115,6 +120,7 @@ public final class CollectionDisplayUtilities {
     
     /**
      * Returns an array of dates from the start date.
+     * 
      * @param earliest the earliest Calendar date.
      * @param interval the size of the intervals.
      * @param intervalsCount the number of intervals.
