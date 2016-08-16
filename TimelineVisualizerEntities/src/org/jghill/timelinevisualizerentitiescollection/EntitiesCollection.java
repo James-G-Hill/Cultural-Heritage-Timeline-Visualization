@@ -10,6 +10,7 @@ import org.jghill.timelinevisualizerentities.Entities;
 /**
  * Holds collections of other Entities, whether PhysicalThings or other
  * EntitiesCollections.
+ * 
  * @author JGHill
  */
 public class EntitiesCollection extends Entities {
@@ -23,6 +24,7 @@ public class EntitiesCollection extends Entities {
     
     /**
      * Allows other entities to be added to this entity.
+     * 
      * @param e another entity to be added.
      */
     public void addThing(Entities e) {
@@ -32,6 +34,7 @@ public class EntitiesCollection extends Entities {
     
     /**
      * Allows a count of the entities to be returned.
+     * 
      * @return a count of the entities within the list.
      */
     public int count() {
@@ -40,12 +43,34 @@ public class EntitiesCollection extends Entities {
     
     /**
      * Return the entire list.
+     * 
      * @return the entity list.
      */
     public SortedSet<Entities> getCollectionSet() {
         SortedSet<Entities> sorted = new TreeSet<>();
         sorted.addAll(list);
         return sorted;
+    }
+    
+    /**
+     * Remove all Entities which match the passed Query name.
+     * 
+     * @param queryName 
+     */
+    public void removeQuery(String queryName) {
+        List removable = new ArrayList<>();
+        list.stream().forEach((entity) -> {
+            if (entity instanceof EntitiesCollection) {
+                ((EntitiesCollection) entity).removeQuery(queryName);
+            } else {
+                if (entity != null) {
+                    if (entity.getQueryName().equals(queryName)) {
+                        removable.add(entity);
+                    }
+                }
+            }
+        });
+        list.removeAll(removable);
     }
     
 }
