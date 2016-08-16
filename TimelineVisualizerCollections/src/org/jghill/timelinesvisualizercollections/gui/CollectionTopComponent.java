@@ -3,6 +3,8 @@ package org.jghill.timelinesvisualizercollections.gui;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -26,6 +28,7 @@ import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
+import org.openide.util.RequestProcessor;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
 
@@ -612,15 +615,31 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
 
     private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
         if (coll.getQueriesCollection().getCount() > 0) {
+            RequestProcessor executor = new RequestProcessor(coll.getName());
             try {
                 etb.clearAll();
-                Dispatcher dispatcher = Dispatcher.getInstance();
                 EntitiesCollection entities = coll.getEntitiesCollection();
-                entities.addThing(dispatcher.runQueries(coll.getQueriesCollection()));
+                
+                Future<EntitiesCollection> result;
+                
+                Dispatcher dispatcher = new Dispatcher(coll.getQueriesCollection());
+                result = executor.submit(dispatcher);
+                
+                EntitiesCollection newEntities;
+                try
+                {
+                    newEntities = result.get();
+                    entities.addThing(newEntities);
+                }
+                catch(InterruptedException | ExecutionException e){}
+                
                 entityModelChange();
                 paintVisualDisplay();
+                
             } catch (HttpException ex) {
                 output("502 Proxy Error: endpoint not available.");
+            } finally {
+                executor.shutdown();
             }
         } else {
             resetEntitiesAndDisplay();
@@ -631,8 +650,13 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
         int row = QueriesTable.getSelectedRow();
         if(row != -1) {
+            String queryName;
+            queryName = (String) qtb.getValueAt(row, qtb.findColumn("Name"));
+            coll.getEntitiesCollection().removeQuery(queryName);
             qtb.deleteSource(row);
+            entityModelChange();
             queryModelChange();
+            paintVisualDisplay();   
         }
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
@@ -883,7 +907,8 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private void paintVisualDisplay() {
         if (etb.getFlattenedCollection().length > 0) {
             collectionDisplayPanel.setArray(etb.getFlattenedCollection());
-            Tab.setSelectedIndex(TAB_VISUAL);
+            Tab.
+                    setSelectedIndex(TAB_VISUAL);
         }
     }
 
