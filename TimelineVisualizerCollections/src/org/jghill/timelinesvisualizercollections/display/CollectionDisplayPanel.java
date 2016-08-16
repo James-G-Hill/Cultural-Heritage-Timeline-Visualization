@@ -22,6 +22,7 @@ import static java.util.stream.Collectors.toMap;
 
 /**
  * A Panel for displaying the results.
+ * 
  * @author JGHill
  */
 public class CollectionDisplayPanel extends JPanel implements ItemListener {
@@ -72,6 +73,7 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
     
     /**
      * Sets the Collection that this panel will display.
+     * 
      * @param collection that will be displayed.
      */
     public void setArray(ManMadeObject[] collection) {
@@ -147,6 +149,7 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
     /**
      * Creates a TimeLine array based on the number of categories, capping the
      * number if it is over 4.
+     * 
      * @param categories
      * @return an array of TimeLines.
      */
@@ -163,6 +166,7 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
     
     /**
      * Sorts the TimeLines by their length.
+     * 
      * @param categories a list of categories.
      * @return a sorted TreeMap of categories.
      */
@@ -183,12 +187,15 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
     
     /**
      * Creates all TimeLines from the passed categories.
+     * 
      * @param categories that can be passed into TimeLines.
      */
     private void assignTimeLines(TreeMap<String, List<ManMadeObject>> categories) {
+        
         int count = 0;
         Collections.shuffle(colors);
         ArrayList<ManMadeObject> other = new ArrayList<>();
+        
         for(Map.Entry<String, List<ManMadeObject>> entry: categories.entrySet()) {
             if (count < 3) {
                 timelines[count] = new TimeLine(
@@ -202,11 +209,12 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
             }
             count++;
         }
-        if (count > 2) {
+        
+        if (count >= 3 && !other.isEmpty()) {
             timelines[3] = new TimeLine(
                     "Other",
-                    (ManMadeObject[]) other.toArray(),
-                    colors.get(3),
+                    other.toArray(new ManMadeObject[other.size()]),
+                    colors.get(count),
                     this
             );
         }
