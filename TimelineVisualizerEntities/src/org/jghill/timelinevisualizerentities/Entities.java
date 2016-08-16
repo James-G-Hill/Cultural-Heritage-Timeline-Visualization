@@ -1,5 +1,7 @@
 package org.jghill.timelinevisualizerentities;
 
+import java.util.Objects;
+
 /**
  * A class for representing collections & physical things as components of a
  * composition.
@@ -54,6 +56,23 @@ abstract public class Entities implements Comparable {
      */
     public String getQueryName() {
         return query;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if(o.getClass() == this.getClass()) {
+            Entities e = (Entities) o;
+            return identifier.equals(e.identifier);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.identifier);
+        return hash;
     }
     
     @Override
