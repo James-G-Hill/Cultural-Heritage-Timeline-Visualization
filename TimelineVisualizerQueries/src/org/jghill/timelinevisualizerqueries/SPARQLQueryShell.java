@@ -77,20 +77,55 @@ public class SPARQLQueryShell extends QueryShell {
             
             output("Solution: " + soln.toString());
             
-            String identity = soln.get("identifier").toString();
-            String title = soln.get("title").toString();
-            
-            String image = "";
-            if(soln.get("image") != null) {
-                image = soln.get("image").toString();
+            String identity = "";
+            if (soln.get("identifier") != null) {
+                identity = soln.get("identifier").toString();
+                output("Identifier  : " + identity);
             }
             
-            String timeSpan = soln.get("date").toString();
+            String title = "";
+            if (soln.get("nameSample") != null) {
+                title = soln.get("nameSample").toString();
+                output("Title       : " + title);
+            } else {
+                title = identity;
+            }
             
-            output("Identifier  : " + identity);
-            output("Title       : " + title);
-            output("Image       : " + image);
-            output("Date        : " + timeSpan);
+            String depicts = "";
+            if (soln.get("depictsSample") != null) {
+                depicts = soln.get("depictsSample").toString();
+                output("Depicts     : " + depicts);
+            }
+            
+            String consists = "";
+            if (soln.get("consistsSample") != null) {
+                consists = soln.get("consistsSample").toString();
+                output("Consists    : " + consists);
+            }
+            
+            String type = "";
+            if (soln.get("typeSample") != null) {
+                type = soln.get("typeSample").toString();
+                output("Type        : " + type);
+            }
+            
+            String technique = "";
+            if (soln.get("techniqueSample") != null) {
+                technique = soln.get("techniqueSample").toString();
+                output("Technique   : " + technique);
+            }
+            
+            String image = "";
+            if (soln.get("imageSample") != null) {
+                image = soln.get("imageSample").toString();
+                output("Image       : " + image);
+            }
+            
+            String year = "";
+            if (soln.get("dateSample") != null) {
+                year = soln.get("dateSample").toString();
+                output("Date        : " + year);
+            }
             
             ManMadeObject thing;
             thing = new ManMadeObject(
@@ -98,8 +133,12 @@ public class SPARQLQueryShell extends QueryShell {
                     identity,
                     entities.getSourceName(),
                     super.getQueryName(),
+                    depicts,
+                    consists,
+                    type,
+                    technique,
                     image,
-                    timeSpan
+                    year
             );
             entities.addThing(thing);
         }
