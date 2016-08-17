@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 /**
  * An abstraction of a physical object for subclasses that represent real
  * objects.
+ * 
  * @author JamesGHill
  */
 public abstract class PhysicalThing extends Entities {
@@ -21,42 +22,45 @@ public abstract class PhysicalThing extends Entities {
     
     private final Integer timeSpan;
     
-    private String creationDate;
-    private String acquisitionDate;
-    
-    private String length;
-    private String width;
-    private String height;
-    private String lengthUnit;
-    private String widthUnit;
-    private String heightUnit;
-    
-    private String consistsOf;
-    private String physicalDescription;
+    private final String depicts;
+    private final String consists;
+    private final String type;
+    private final String technique;
     
     protected URL imageURL;
     protected File imageFile;
     protected BufferedImage image;
     protected BufferedImage thumb;
-    
-    private String label;
-    private String commentary;
 
     public PhysicalThing(
             String name,
             String identifier,
             String source,
             String query,
-            String imageString,
+            String depicts,
+            String consists,
+            String type,
+            String technique,
+            String image,
             String beginYear
     ) {
-        super(name, identifier, source, query);
-        this.imageURL = createURL(imageString);
+        super(
+                name,
+                identifier,
+                source,
+                query
+        );
+        this.depicts = depicts;
+        this.consists = consists;
+        this.type = type;
+        this.technique = technique;
+        this.imageURL = createURL(image);
         this.timeSpan = createYear(beginYear);
     }
     
     /**
      * Creates a URL from the returned String.
+     * 
      * @param text the URL text from the query results.
      * @return a URL object.
      */
@@ -74,6 +78,7 @@ public abstract class PhysicalThing extends Entities {
     
     /**
      * Creates a year as int from a 4 character String or returns a -1.
+     * 
      * @param yearText the String to be transformed.
      * @return the year or a -1.
      */
@@ -87,6 +92,7 @@ public abstract class PhysicalThing extends Entities {
     
     /**
      * Checks if a string is a year.
+     * 
      * @param yearText the string to check.
      * @return true if the text can convert to a year.
      */
@@ -106,6 +112,7 @@ public abstract class PhysicalThing extends Entities {
     /**
      * Attempts to extract a 4-digit year from a String; otherwise returns a
      * null.
+     * 
      * @param yearText the String to extract from.
      * @return an integer year.
      */
@@ -129,6 +136,7 @@ public abstract class PhysicalThing extends Entities {
      * Checks if the image has already been loaded.  If loaded return the image,
      * otherwise attempt to load the image then return it, otherwise return
      * null.
+     * 
      * @return the Image related to this Thing or a null.
      */
     private void getImage() {
@@ -147,6 +155,7 @@ public abstract class PhysicalThing extends Entities {
     
     /**
      * Creates a thumbnail image from an existing image.
+     * 
      * @return the thumbnail image.
      */
     public BufferedImage getThumb() {
@@ -183,6 +192,34 @@ public abstract class PhysicalThing extends Entities {
         } else {
             return thumb;
         }
+    }
+    
+    /**
+     * @return the depiction.
+     */
+    public String getDepicts() {
+        return depicts;
+    }
+    
+     /**
+     * @return the material.
+     */
+    public String getConsists() {
+        return consists;
+    }
+    
+    /**
+     * @return the type.
+     */
+    public String getType() {
+        return type;
+    }
+    
+    /**
+     * @return the technique.
+     */
+    public String getTechnique() {
+        return technique;
     }
     
     /**
