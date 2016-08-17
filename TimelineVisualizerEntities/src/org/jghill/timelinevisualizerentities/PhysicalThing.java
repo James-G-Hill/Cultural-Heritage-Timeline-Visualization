@@ -27,6 +27,9 @@ public abstract class PhysicalThing extends Entities {
     private final String type;
     private final String technique;
     
+    private final String description;
+    private final String curatorial;
+    
     protected URL imageURL;
     protected File imageFile;
     protected BufferedImage image;
@@ -42,7 +45,9 @@ public abstract class PhysicalThing extends Entities {
             String type,
             String technique,
             String image,
-            String beginYear
+            String beginYear,
+            String description,
+            String curatorial
     ) {
         super(
                 name,
@@ -54,6 +59,8 @@ public abstract class PhysicalThing extends Entities {
         this.consists = consists;
         this.type = type;
         this.technique = technique;
+        this.description = description;
+        this.curatorial = curatorial;
         this.imageURL = createURL(image);
         this.timeSpan = createYear(beginYear);
     }
@@ -220,6 +227,20 @@ public abstract class PhysicalThing extends Entities {
      */
     public String getTechnique() {
         return technique;
+    }
+    
+    /**
+     * @return the description.
+     */
+    public String getDescription() {
+        return description;
+    }
+    
+    /**
+     * @return the curatorial commentary.
+     */
+    public String getCuratorial() {
+        return curatorial;
     }
     
     /**
