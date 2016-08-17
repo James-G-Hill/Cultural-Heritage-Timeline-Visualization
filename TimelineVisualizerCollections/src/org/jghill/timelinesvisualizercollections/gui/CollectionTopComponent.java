@@ -264,6 +264,11 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
 
         HasLimitCheckBox.setSelected(true);
         org.openide.awt.Mnemonics.setLocalizedText(HasLimitCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasLimitCheckBox.text")); // NOI18N
+        HasLimitCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HasLimitCheckBoxActionPerformed(evt);
+            }
+        });
 
         LimitTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         LimitTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.LimitTextField.text")); // NOI18N
@@ -682,6 +687,14 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             TechniqueTextField.setEnabled(false);
         }
     }//GEN-LAST:event_HasTechniqueCheckBoxActionPerformed
+
+    private void HasLimitCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HasLimitCheckBoxActionPerformed
+        if (HasLimitCheckBox.isSelected()) {
+            LimitTextField.setEnabled(true);
+        } else {
+            LimitTextField.setEnabled(false);
+        }
+    }//GEN-LAST:event_HasLimitCheckBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AndText1;
