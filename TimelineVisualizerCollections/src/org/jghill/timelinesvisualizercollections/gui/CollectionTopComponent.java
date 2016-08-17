@@ -351,36 +351,20 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                         .addComponent(QueryNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 54, Short.MAX_VALUE)
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createSequentialGroup()
                                 .addComponent(ResetButton)
                                 .addGap(18, 18, 18)
                                 .addComponent(CreateButton))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createSequentialGroup()
-                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(QueriesLayout.createSequentialGroup()
-                                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(HasIdentifierCheckBox)
-                                            .addComponent(HasNameCheckBox)
-                                            .addComponent(HasDepictionCheckBox))
-                                        .addGap(52, 52, 52))
-                                    .addGroup(QueriesLayout.createSequentialGroup()
-                                        .addComponent(CreationYearLabel)
-                                        .addGap(18, 18, 18)))
-                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(QueriesLayout.createSequentialGroup()
-                                        .addComponent(CreationStartYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(AndText1)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(CreationEndYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(NameTextField)
-                                        .addComponent(IdentifierTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(MaterialTextField)
-                                        .addComponent(DepictionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(CreationYearLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(CreationStartYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(AndText1)
+                                .addGap(18, 18, 18)
+                                .addComponent(CreationEndYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(174, 174, 174))))
                     .addGroup(QueriesLayout.createSequentialGroup()
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,15 +377,28 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                                     .addComponent(HasLimitCheckBox)
                                     .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(LimitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(QueriesLayout.createSequentialGroup()
-                                            .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(HasTypeCheckBox)
-                                                .addComponent(HasTechniqueCheckBox)
-                                                .addComponent(HasConsistsCheckBox))
-                                            .addGap(22, 22, 22)
-                                            .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(TypeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                                                .addComponent(TechniqueTextField)))))
+                                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(QueriesLayout.createSequentialGroup()
+                                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(HasIdentifierCheckBox)
+                                                    .addComponent(HasNameCheckBox)
+                                                    .addComponent(HasDepictionCheckBox))
+                                                .addGap(52, 52, 52)
+                                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(NameTextField)
+                                                        .addComponent(IdentifierTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(DepictionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(QueriesLayout.createSequentialGroup()
+                                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(HasTypeCheckBox)
+                                                    .addComponent(HasTechniqueCheckBox)
+                                                    .addComponent(HasConsistsCheckBox))
+                                                .addGap(22, 22, 22)
+                                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(TypeTextField)
+                                                    .addComponent(TechniqueTextField)
+                                                    .addComponent(MaterialTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                                 .addGap(18, 18, 18)
                                 .addComponent(HasImageCheckBox)))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -433,26 +430,23 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                             .addComponent(SourceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(SourceTextLabel))
                         .addGap(26, 26, 26)
-                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(QueriesLayout.createSequentialGroup()
-                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(AndText1)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(CreationStartYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(CreationYearLabel)))
-                                .addGap(18, 18, 18)
-                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(HasNameCheckBox))
-                                .addGap(18, 18, 18)
-                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(IdentifierTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(HasIdentifierCheckBox))
-                                .addGap(18, 18, 18)
-                                .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(DepictionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(HasDepictionCheckBox)))
-                            .addComponent(CreationEndYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CreationEndYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AndText1)
+                            .addComponent(CreationStartYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CreationYearLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HasNameCheckBox))
+                        .addGap(18, 18, 18)
+                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(IdentifierTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HasIdentifierCheckBox))
+                        .addGap(18, 18, 18)
+                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DepictionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HasDepictionCheckBox))
                         .addGap(18, 18, 18)
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(MaterialTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -777,6 +771,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     
     /**
      * A getter for the collection to be returned from this top component.
+     * 
      * @return the collection.
      */
     public Collection getCollection() {
@@ -798,24 +793,31 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         
         HasNameCheckBox.setSelected(false);
         NameTextField.setText("");
+        NameTextField.setEnabled(false);
         
         HasIdentifierCheckBox.setSelected(false);
         IdentifierTextField.setText("");
+        IdentifierTextField.setEnabled(false);
         
         HasDepictionCheckBox.setSelected(false);
         DepictionTextField.setText("");
+        DepictionTextField.setEnabled(false);
         
         HasConsistsCheckBox.setSelected(false);
         MaterialTextField.setText("");
+        MaterialTextField.setEnabled(false);
         
         HasTypeCheckBox.setSelected(false);
         TypeTextField.setText("");
-                
+        TypeTextField.setEnabled(false);
+        
         HasTechniqueCheckBox.setSelected(false);
         TechniqueTextField.setText("");
+        TechniqueTextField.setEnabled(false);
         
         HasLimitCheckBox.setSelected(true);
         LimitTextField.setText("10");
+        LimitTextField.setEnabled(true);
         
         HasImageCheckBox.setSelected(false);
         
@@ -823,6 +825,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     
     /**
      * Checks whether the query builder section has been filled correctly.
+     * 
      * @return where it has been filled correctly.
      */
     private boolean querySettingsAreValid() {
@@ -852,29 +855,29 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 (Source) SourceComboBox.getSelectedItem(),
                 QueryNameTextField.getText().trim(),
                 
-                CreationStartYearTextField.getText().trim(),
-                CreationEndYearTextField.getText().trim(),
+                CreationStartYearTextField.getText().trim().toLowerCase(),
+                CreationEndYearTextField.getText().trim().toLowerCase(),
                 
                 HasNameCheckBox.isSelected(),
-                NameTextField.getText().trim(),
+                NameTextField.getText().trim().toLowerCase(),
             
                 HasIdentifierCheckBox.isSelected(),
-                IdentifierTextField.getText().trim(),
+                IdentifierTextField.getText().trim().toLowerCase(),
                 
                 HasDepictionCheckBox.isSelected(),
-                DepictionTextField.getText().trim(),
+                DepictionTextField.getText().trim().toLowerCase(),
                 
                 HasConsistsCheckBox.isSelected(),
-                MaterialTextField.getText().trim(),
+                MaterialTextField.getText().trim().toLowerCase(),
                 
                 HasTypeCheckBox.isSelected(),
-                TypeTextField.getText().trim(),
+                TypeTextField.getText().trim().toLowerCase(),
                 
                 HasTechniqueCheckBox.isSelected(),
-                TechniqueTextField.getText().trim(),
+                TechniqueTextField.getText().trim().toLowerCase(),
                 
                 HasLimitCheckBox.isSelected(),
-                LimitTextField.getText().trim(),
+                LimitTextField.getText().trim().toLowerCase(),
                 
                 HasImageCheckBox.isSelected()
                 
@@ -903,6 +906,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     
     /**
      * Outputs an explanation of the action.
+     * 
      * @param text toString of the returned entity.
      */
     private void output(String text) {
@@ -943,6 +947,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     
     /**
      * A getter for the First Filter combobox.
+     * 
      * @return the First Filter comboBox.
      */
     public JComboBox<String> getFirstFilter() {
