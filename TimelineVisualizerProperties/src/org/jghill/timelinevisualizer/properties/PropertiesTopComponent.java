@@ -67,6 +67,14 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
         QueryTextField = new javax.swing.JTextField();
         CreationYearTextField = new javax.swing.JTextField();
         CreationYearLabel = new javax.swing.JLabel();
+        DepictsLabel = new javax.swing.JLabel();
+        DepictsTextField = new javax.swing.JTextField();
+        ConsistsTextField = new javax.swing.JTextField();
+        ConsistsLabel = new javax.swing.JLabel();
+        TypeLabel = new javax.swing.JLabel();
+        TypeTextField = new javax.swing.JTextField();
+        TechniqueLabel = new javax.swing.JLabel();
+        TechniqueTextField = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(300, 600));
 
@@ -100,6 +108,30 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
 
         org.openide.awt.Mnemonics.setLocalizedText(CreationYearLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.CreationYearLabel.text")); // NOI18N
 
+        org.openide.awt.Mnemonics.setLocalizedText(DepictsLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.DepictsLabel.text")); // NOI18N
+
+        DepictsTextField.setEditable(false);
+        DepictsTextField.setBackground(new java.awt.Color(255, 255, 255));
+        DepictsTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.DepictsTextField.text")); // NOI18N
+
+        ConsistsTextField.setEditable(false);
+        ConsistsTextField.setBackground(new java.awt.Color(255, 255, 255));
+        ConsistsTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.ConsistsTextField.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(ConsistsLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.ConsistsLabel.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(TypeLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.TypeLabel.text")); // NOI18N
+
+        TypeTextField.setEditable(false);
+        TypeTextField.setBackground(new java.awt.Color(255, 255, 255));
+        TypeTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.TypeTextField.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(TechniqueLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.TechniqueLabel.text")); // NOI18N
+
+        TechniqueTextField.setEditable(false);
+        TechniqueTextField.setBackground(new java.awt.Color(255, 255, 255));
+        TechniqueTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.TechniqueTextField.text")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,7 +143,11 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
                     .addComponent(NameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SourceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(QueryLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CreationYearLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(CreationYearLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DepictsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ConsistsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TypeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TechniqueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(IdentifierTextField)
@@ -120,13 +156,21 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
                     .addComponent(QueryTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(CreationYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(DepictsTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                    .addComponent(ConsistsTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                    .addComponent(TypeTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                    .addComponent(TechniqueTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CreationYearLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CreationYearTextField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(IdentifierLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(IdentifierTextField))
@@ -144,15 +188,31 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
                     .addComponent(QueryTextField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CreationYearLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CreationYearTextField))
-                .addContainerGap(450, Short.MAX_VALUE))
+                    .addComponent(DepictsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DepictsTextField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ConsistsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ConsistsTextField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TypeTextField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TechniqueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TechniqueTextField))
+                .addGap(334, 334, 334))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ConsistsLabel;
+    private javax.swing.JTextField ConsistsTextField;
     private javax.swing.JLabel CreationYearLabel;
     private javax.swing.JTextField CreationYearTextField;
+    private javax.swing.JLabel DepictsLabel;
+    private javax.swing.JTextField DepictsTextField;
     private javax.swing.JLabel IdentifierLabel;
     private javax.swing.JTextField IdentifierTextField;
     private javax.swing.JLabel NameLabel;
@@ -161,6 +221,10 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
     private javax.swing.JTextField QueryTextField;
     private javax.swing.JLabel SourceLabel;
     private javax.swing.JTextField SourceTextField;
+    private javax.swing.JLabel TechniqueLabel;
+    private javax.swing.JTextField TechniqueTextField;
+    private javax.swing.JLabel TypeLabel;
+    private javax.swing.JTextField TypeTextField;
     // End of variables declaration//GEN-END:variables
     
     private Lookup.Result<ManMadeObject> result = null;
@@ -183,15 +247,18 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
         Collection<? extends ManMadeObject> allEntities = result.allInstances();
         if (allEntities.size() == 1) {
             ManMadeObject entity = allEntities.iterator().next();
+            CreationYearTextField.setText(entity.getTimeSpan().toString());
             IdentifierTextField.setText(entity.getIdentifier());
             NameTextField.setText(entity.getName());
-            QueryTextField.setText(entity.getQueryName());
             SourceTextField.setText(entity.getSourceName());
-            CreationYearTextField.setText(entity.getTimeSpan().toString());
+            QueryTextField.setText(entity.getQueryName());
+            DepictsTextField.setText(entity.getDepicts());
+            ConsistsTextField.setText(entity.getConsists());
+            TypeTextField.setText(entity.getType());
+            TechniqueTextField.setText(entity.getTechnique());
         }
     }
     
-
     void writeProperties(java.util.Properties p) {
         p.setProperty("version", "1.0");
     }

@@ -29,6 +29,10 @@
                   <Component id="SourceLabel" max="32767" attributes="0"/>
                   <Component id="QueryLabel" max="32767" attributes="0"/>
                   <Component id="CreationYearLabel" max="32767" attributes="0"/>
+                  <Component id="DepictsLabel" max="32767" attributes="0"/>
+                  <Component id="ConsistsLabel" max="32767" attributes="0"/>
+                  <Component id="TypeLabel" max="32767" attributes="0"/>
+                  <Component id="TechniqueLabel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -40,6 +44,10 @@
                       <Component id="CreationYearTextField" min="-2" pref="60" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="DepictsTextField" alignment="1" pref="196" max="32767" attributes="0"/>
+                  <Component id="ConsistsTextField" alignment="1" pref="196" max="32767" attributes="0"/>
+                  <Component id="TypeTextField" alignment="1" pref="196" max="32767" attributes="0"/>
+                  <Component id="TechniqueTextField" alignment="1" pref="196" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -48,6 +56,11 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="CreationYearLabel" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="CreationYearTextField" alignment="3" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="IdentifierLabel" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
@@ -70,10 +83,25 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="CreationYearLabel" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                  <Component id="CreationYearTextField" alignment="3" max="32767" attributes="0"/>
+                  <Component id="DepictsLabel" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="DepictsTextField" alignment="3" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="450" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="ConsistsLabel" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="ConsistsTextField" alignment="3" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="TypeLabel" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="TypeTextField" alignment="3" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="TechniqueLabel" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="TechniqueTextField" alignment="3" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="334" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -166,6 +194,78 @@
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
           <ResourceString bundle="org/jghill/timelinevisualizer/properties/Bundle.properties" key="PropertiesTopComponent.CreationYearLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="DepictsLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="org/jghill/timelinevisualizer/properties/Bundle.properties" key="PropertiesTopComponent.DepictsLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="DepictsTextField">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="org/jghill/timelinevisualizer/properties/Bundle.properties" key="PropertiesTopComponent.DepictsTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="ConsistsTextField">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="org/jghill/timelinevisualizer/properties/Bundle.properties" key="PropertiesTopComponent.ConsistsTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ConsistsLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="org/jghill/timelinevisualizer/properties/Bundle.properties" key="PropertiesTopComponent.ConsistsLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="TypeLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="org/jghill/timelinevisualizer/properties/Bundle.properties" key="PropertiesTopComponent.TypeLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TypeTextField">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="org/jghill/timelinevisualizer/properties/Bundle.properties" key="PropertiesTopComponent.TypeTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="TechniqueLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="org/jghill/timelinevisualizer/properties/Bundle.properties" key="PropertiesTopComponent.TechniqueLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TechniqueTextField">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="org/jghill/timelinevisualizer/properties/Bundle.properties" key="PropertiesTopComponent.TechniqueTextField.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
