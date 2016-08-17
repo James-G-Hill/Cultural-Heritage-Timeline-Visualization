@@ -191,7 +191,7 @@
                           </Group>
                           <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="54" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="317" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="ResetButton" min="-2" max="-2" attributes="0"/>
@@ -199,10 +199,6 @@
                                       <Component id="CreateButton" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="CreationYearLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="CreationStartYearTextField" min="-2" pref="112" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="AndText1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Component id="CreationEndYearTextField" min="-2" pref="110" max="-2" attributes="0"/>
@@ -240,15 +236,17 @@
                                                   </Group>
                                                   <Group type="102" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="HasTypeCheckBox" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="HasTypeCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
                                                           <Component id="HasTechniqueCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
                                                           <Component id="HasConsistsCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="CreationYearLabel" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                           <Component id="TypeTextField" max="32767" attributes="0"/>
                                                           <Component id="TechniqueTextField" max="32767" attributes="0"/>
-                                                          <Component id="MaterialTextField" min="-2" pref="112" max="-2" attributes="0"/>
+                                                          <Component id="MaterialTextField" pref="112" max="32767" attributes="0"/>
+                                                          <Component id="CreationStartYearTextField" alignment="0" max="32767" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                               </Group>
