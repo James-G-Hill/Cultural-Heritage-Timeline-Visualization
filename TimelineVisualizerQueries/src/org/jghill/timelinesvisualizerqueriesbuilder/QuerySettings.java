@@ -1,6 +1,5 @@
 package org.jghill.timelinesvisualizerqueriesbuilder;
 
-import java.util.Date;
 import org.jghill.timelinevisualizersources.Source;
 
 /**
@@ -11,91 +10,95 @@ import org.jghill.timelinevisualizersources.Source;
  */
 public class QuerySettings {
     
-    public final Source theSource;
+    public final Source source;
+    public final String queryName;
+    
+    public final String creationStartDate;
+    public final String creationEndDate;
+    
+    public final boolean hasNameCheck;
     public final String name;
     
-    public final boolean acquisitionDateCheck;
-    public final boolean consistsOfCheck;
-    public final boolean hasImageCheck;
-    public final boolean lengthCheck;
-    public final boolean originCheck;
-    public final boolean thicknessCheck;
-    public final boolean widthCheck;
-        
-    public final String lengthUnit;
-    public final String thicknessUnit;
-    public final String widthUnit;
-        
-    public final Date acquisitionEndDate;
-    public final Date acquisitionStartDate;
+    public final boolean hasIdentifierCheck;
+    public final String identifier;
     
-    public final String creationEndDate;
-    public final String creationStartDate;
-        
-    public final String consistsOf;
-    public final String locationOrigin;
+    public final boolean hasDepictionCheck;
+    public final String depiction;
     
-    public final String lengthLower;
-    public final String lengthUpper;
-    public final String thicknessLower;
-    public final String thicknessUpper;
-    public final String widthLower;
-    public final String widthUpper;
+    public final boolean hasConsistsCheck;
+    public final String consists;
     
+    public final boolean hasTypeCheck;
+    public final String type;
+    
+    public final boolean hasTechniqueCheck;
+    public final String technique;
+    
+    public final boolean hasLimitCheck;
     public final String limit;
     
+    public final boolean hasImageCheck;
+    
     public QuerySettings(
-            Source theSource,
-            String name,
-            boolean acquisitionDateCheck,
-            boolean consistsOfCheck,
-            boolean hasImageCheck,
-            boolean lengthCheck,
-            boolean originCheck,
-            boolean thicknessCheck,
-            boolean widthCheck,
-            String lengthUnit,
-            String thicknessUnit,
-            String widthUnit,
-            Date acquisitionEndDate,
-            Date acquisitionStartDate,
-            String creationEndDate,
+            
+            Source source,
+            String queryName,
+            
             String creationStartDate,
-            String consistsOf,
-            String locationOrigin,
-            String lengthLower,
-            String lengthUpper,
-            String thicknessLower,
-            String thicknessUpper,
-            String widthLower,
-            String widthUpper,
-            String limit) {
+            String creationEndDate,
+            
+            boolean hasNameCheck,
+            String name,
+            
+            boolean hasIdentifierCheck,
+            String identifier,
+            
+            boolean hasDepictionCheck,
+            String depiction,
+            
+            boolean hasConsistsCheck,
+            String consists,
+            
+            boolean hasTypeCheck,
+            String type,
+            
+            boolean hasTechniqueCheck,
+            String technique,
+            
+            boolean hasLimitCheck,
+            String limit,
+            
+            boolean hasImageCheck
+            
+    ) {
+        this.source = source;
+        this.queryName = queryName;
         
-        this.theSource = theSource;
-        this.name = name;
-        this.acquisitionDateCheck = acquisitionDateCheck;
-        this.consistsOfCheck = consistsOfCheck;
-        this.hasImageCheck = hasImageCheck;
-        this.lengthCheck = lengthCheck;
-        this.originCheck = originCheck;
-        this.thicknessCheck = thicknessCheck;
-        this.widthCheck = widthCheck;
-        this.lengthUnit = lengthUnit;
-        this.thicknessUnit = thicknessUnit;
-        this.widthUnit = widthUnit;
-        this.acquisitionEndDate = acquisitionEndDate;
-        this.acquisitionStartDate = acquisitionStartDate;
-        this.creationEndDate = creationEndDate;
         this.creationStartDate = creationStartDate;
-        this.consistsOf = consistsOf;
-        this.locationOrigin = locationOrigin;
-        this.lengthLower = lengthLower;
-        this.lengthUpper = lengthUpper;
-        this.thicknessLower = thicknessLower;
-        this.thicknessUpper = thicknessUpper;
-        this.widthLower = widthLower;
-        this.widthUpper = widthUpper;
+        this.creationEndDate = creationEndDate;
+        
+        this.hasNameCheck = hasNameCheck;
+        this.name = name;
+        
+        this.hasIdentifierCheck = hasIdentifierCheck;
+        this.identifier = identifier;
+        
+        this.hasDepictionCheck = hasDepictionCheck;
+        this.depiction = depiction;
+        
+        this.hasConsistsCheck = hasConsistsCheck;
+        this.consists = consists;
+        
+        this.hasTypeCheck = hasTypeCheck;
+        this.type = type;
+        
+        this.hasTechniqueCheck = hasTechniqueCheck;
+        this.technique = technique;
+        
+        this.hasLimitCheck = hasLimitCheck;
         this.limit = limit;
+        
+        this.hasImageCheck = hasImageCheck;
     }
     
 }
