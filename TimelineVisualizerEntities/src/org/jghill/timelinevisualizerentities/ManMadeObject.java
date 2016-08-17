@@ -17,7 +17,9 @@ public class ManMadeObject extends PhysicalThing {
             String type,
             String technique,
             String image,
-            String timeSpan
+            String timeSpan,
+            String description,
+            String curatorial
     ) {
         super(
                 name,
@@ -29,7 +31,9 @@ public class ManMadeObject extends PhysicalThing {
                 type,
                 technique,
                 image,
-                timeSpan
+                timeSpan,
+                description,
+                curatorial
         );
     }
     
