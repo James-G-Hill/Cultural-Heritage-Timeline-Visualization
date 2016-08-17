@@ -26,7 +26,7 @@ public class QueryBuilder {
      */
     public QueryShell buildQuery(QuerySettings settings) {
         
-        Source src = settings.theSource;
+        Source src = settings.source;
         QueryTranslator trans;
         
         switch(src.getSourceType()){
