@@ -225,10 +225,20 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         SourceComboBox.setModel(new DefaultComboBoxModel(SourceCollection.getInstance().collectionToArray()));
 
         org.openide.awt.Mnemonics.setLocalizedText(HasNameCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasNameCheckBox.text")); // NOI18N
+        HasNameCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HasNameCheckBoxActionPerformed(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(HasImageCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasImageCheckBox.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(HasIdentifierCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasIdentifierCheckBox.text")); // NOI18N
+        HasIdentifierCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HasIdentifierCheckBoxActionPerformed(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(DeleteButton, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.DeleteButton.text")); // NOI18N
         DeleteButton.addActionListener(new java.awt.event.ActionListener() {
@@ -240,8 +250,10 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         org.openide.awt.Mnemonics.setLocalizedText(AndText1, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.AndText1.text")); // NOI18N
 
         NameTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.NameTextField.text")); // NOI18N
+        NameTextField.setEnabled(false);
 
         IdentifierTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.IdentifierTextField.text")); // NOI18N
+        IdentifierTextField.setEnabled(false);
 
         org.openide.awt.Mnemonics.setLocalizedText(RunButton, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.RunButton.text")); // NOI18N
         RunButton.addActionListener(new java.awt.event.ActionListener() {
@@ -269,20 +281,44 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         CreationEndYearTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.CreationEndYearTextField.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(HasDepictionCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasDepictionCheckBox.text")); // NOI18N
+        HasDepictionCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HasDepictionCheckBoxActionPerformed(evt);
+            }
+        });
 
         DepictionTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.DepictionTextField.text")); // NOI18N
+        DepictionTextField.setEnabled(false);
 
         org.openide.awt.Mnemonics.setLocalizedText(HasConsistsCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasConsistsCheckBox.text")); // NOI18N
+        HasConsistsCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HasConsistsCheckBoxActionPerformed(evt);
+            }
+        });
 
         MaterialTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.MaterialTextField.text")); // NOI18N
+        MaterialTextField.setEnabled(false);
 
         org.openide.awt.Mnemonics.setLocalizedText(HasTypeCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasTypeCheckBox.text")); // NOI18N
+        HasTypeCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HasTypeCheckBoxActionPerformed(evt);
+            }
+        });
 
         TypeTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.TypeTextField.text")); // NOI18N
+        TypeTextField.setEnabled(false);
 
         org.openide.awt.Mnemonics.setLocalizedText(HasTechniqueCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasTechniqueCheckBox.text")); // NOI18N
+        HasTechniqueCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HasTechniqueCheckBoxActionPerformed(evt);
+            }
+        });
 
         TechniqueTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.TechniqueTextField.text")); // NOI18N
+        TechniqueTextField.setEnabled(false);
 
         javax.swing.GroupLayout QueriesLayout = new javax.swing.GroupLayout(Queries);
         Queries.setLayout(QueriesLayout);
@@ -598,6 +634,54 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             NotesTextBox.requestFocus();
         }
     }//GEN-LAST:event_TitleTextBoxKeyReleased
+
+    private void HasNameCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HasNameCheckBoxActionPerformed
+        if (HasNameCheckBox.isSelected()) {
+            NameTextField.setEnabled(true);
+        } else {
+            NameTextField.setEnabled(false);
+        }
+    }//GEN-LAST:event_HasNameCheckBoxActionPerformed
+
+    private void HasIdentifierCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HasIdentifierCheckBoxActionPerformed
+        if (HasIdentifierCheckBox.isSelected()) {
+            IdentifierTextField.setEnabled(true);
+        } else {
+            IdentifierTextField.setEnabled(false);
+        }
+    }//GEN-LAST:event_HasIdentifierCheckBoxActionPerformed
+
+    private void HasDepictionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HasDepictionCheckBoxActionPerformed
+        if (HasDepictionCheckBox.isSelected()) {
+            DepictionTextField.setEnabled(true);
+        } else {
+            DepictionTextField.setEnabled(false);
+        }
+    }//GEN-LAST:event_HasDepictionCheckBoxActionPerformed
+
+    private void HasConsistsCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HasConsistsCheckBoxActionPerformed
+        if (HasConsistsCheckBox.isSelected()) {
+            MaterialTextField.setEnabled(true);
+        } else {
+            MaterialTextField.setEnabled(false);
+        }
+    }//GEN-LAST:event_HasConsistsCheckBoxActionPerformed
+
+    private void HasTypeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HasTypeCheckBoxActionPerformed
+        if (HasTypeCheckBox.isSelected()) {
+            TypeTextField.setEnabled(true);
+        } else {
+            TypeTextField.setEnabled(false);
+        }
+    }//GEN-LAST:event_HasTypeCheckBoxActionPerformed
+
+    private void HasTechniqueCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HasTechniqueCheckBoxActionPerformed
+        if (HasTechniqueCheckBox.isSelected()) {
+            TechniqueTextField.setEnabled(true);
+        } else {
+            TechniqueTextField.setEnabled(false);
+        }
+    }//GEN-LAST:event_HasTechniqueCheckBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AndText1;
