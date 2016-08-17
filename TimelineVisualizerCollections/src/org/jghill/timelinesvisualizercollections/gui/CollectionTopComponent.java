@@ -751,11 +751,12 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private void createQuery() {
         QuerySettings settings;
         settings = new QuerySettings(
+                
                 (Source) SourceComboBox.getSelectedItem(),
                 QueryNameTextField.getText().trim(),
                 
-                CreationEndYearTextField.getText().trim(),
                 CreationStartYearTextField.getText().trim(),
+                CreationEndYearTextField.getText().trim(),
                 
                 HasNameCheckBox.isSelected(),
                 NameTextField.getText().trim(),
@@ -779,6 +780,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 LimitTextField.getText().trim(),
                 
                 HasImageCheckBox.isSelected()
+                
         );
         QueryShell qry;
         QueryBuilder builder = QueryBuilder.getInstance();
