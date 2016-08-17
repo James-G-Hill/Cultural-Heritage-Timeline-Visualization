@@ -11,10 +11,25 @@ public class ManMadeObject extends PhysicalThing {
             String identifier,
             String source,
             String query,
+            String depicts,
+            String consists,
+            String type,
+            String technique,
             String image,
             String timeSpan
     ) {
-        super(name, identifier, source, query, image, timeSpan);
+        super(
+                name,
+                identifier,
+                source,
+                query,
+                depicts,
+                consists,
+                type,
+                technique,
+                image,
+                timeSpan
+        );
     }
     
 }
