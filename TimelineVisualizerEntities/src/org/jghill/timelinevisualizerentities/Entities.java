@@ -5,6 +5,7 @@ import java.util.Objects;
 /**
  * A class for representing collections & physical things as components of a
  * composition.
+ * 
  * @author JGHill
  */
 abstract public class Entities implements Comparable {
@@ -28,6 +29,7 @@ abstract public class Entities implements Comparable {
     
     /**
      * Returns the name of the entity.
+     * 
      * @return the name.
      */
     public String getName() {
@@ -36,6 +38,7 @@ abstract public class Entities implements Comparable {
     
     /**
      * Returns the identifier that the institution applied to the entity.
+     * 
      * @return the identifier.
      */
     public String getIdentifier() {
@@ -44,6 +47,7 @@ abstract public class Entities implements Comparable {
     
     /**
      * Returns the Source name from which the entity was obtained.
+     * 
      * @return the Source name.
      */
     public String getSourceName() {
@@ -52,6 +56,7 @@ abstract public class Entities implements Comparable {
     
     /**
      * Returns the Query name which the entity was returned from.
+     * 
      * @return the Query name.
      */
     public String getQueryName() {
