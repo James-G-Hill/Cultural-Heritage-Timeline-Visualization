@@ -9,6 +9,7 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
+import org.jghill.timelinevisualizersources.SPARQLEndpoint;
 import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
 
@@ -20,11 +21,11 @@ import org.netbeans.api.io.InputOutput;
 public class SPARQLQueryShell extends QueryShell {
     
     private final String queryString;
-    private final String service;
+    private final SPARQLEndpoint service;
     
     private static final String QUERY_TYPE = "SPARQL Endpoint";
     
-    public SPARQLQueryShell(String queryString, String service, String name) {
+    public SPARQLQueryShell(String queryString, SPARQLEndpoint service, String name) {
         this.queryString = queryString;
         this.service = service;
         super.setQueryName(name);
@@ -55,7 +56,7 @@ public class SPARQLQueryShell extends QueryShell {
     private EntitiesCollection getResults(Query query) throws HttpException {
         output("getting results");
         ResultSet results;
-        try(QueryExecution qexec = QueryExecutionFactory.sparqlService(service, query)) {
+        try(QueryExecution qexec = QueryExecutionFactory.sparqlService(service.getWebAddress(), query)) {
             results = qexec.execSelect();
             return buildEntities(results);
         } catch (HttpException ex) {
@@ -127,18 +128,32 @@ public class SPARQLQueryShell extends QueryShell {
                 output("Date        : " + year);
             }
             
+            String description = "";
+            if (soln.get("descriptionSample") != null) {
+                description = soln.get("descriptionSample").toString();
+                output("Description : " + description);
+            }
+            
+            String curatorial = "";
+            if (soln.get("curatorialSample") != null) {
+                curatorial = soln.get("curatorialSample").toString();
+                output("Curatorial  : " + curatorial);
+            }
+            
             ManMadeObject thing;
             thing = new ManMadeObject(
                     title,
                     identity,
-                    entities.getSourceName(),
+                    service.getSourceName(),
                     super.getQueryName(),
                     depicts,
                     consists,
                     type,
                     technique,
                     image,
-                    year
+                    year,
+                    description,
+                    curatorial
             );
             entities.addThing(thing);
         }
