@@ -50,6 +50,10 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String DATE_SAMPLE = "?dateSample ";
     
     private static final String DESCRIPTION = "?description ";
+    private static final String DESCRIPTION_SAMPLE = "?descriptionSample ";
+    private static final String CURATORIAL = "?curatorial ";
+    private static final String CURATORIAL_SAMPLE = "?curatorialSample ";
+    
     private static final String PRODUCTION = "?production ";
     private static final String TIME = "?time ";
     
@@ -57,7 +61,7 @@ public class SPARQLTranslator implements QueryTranslator {
     public QueryShell translate(QuerySettings settings) {
         this.settings = settings;
         sparql = (SPARQLEndpoint) settings.source;
-        return new SPARQLQueryShell(build(), sparql.getWebAddress(), settings.queryName);
+        return new SPARQLQueryShell(build(), sparql, settings.queryName);
     }
     
     private String build() {
@@ -97,7 +101,9 @@ public class SPARQLTranslator implements QueryTranslator {
                 "(SAMPLE(" + TYPE + ") AS " + TYPE_SAMPLE + ") " +
                 "(SAMPLE(" + TECHNIQUE + ") AS " + TECHNIQUE_SAMPLE + ") " +
                 "(SAMPLE(" + IMAGE + ") AS " + IMAGE_SAMPLE + ") " +
-                "(SAMPLE(" + DATE + ") AS " + DATE_SAMPLE + ")";
+                "(SAMPLE(" + DATE + ") AS " + DATE_SAMPLE + ") " +
+                "(SAMPLE(" + DESCRIPTION + ") AS " + DESCRIPTION_SAMPLE + ") " +
+                "(SAMPLE(" + CURATORIAL + ") AS " + CURATORIAL_SAMPLE + ") ";
     }
     
     /**
@@ -105,15 +111,16 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String whereClause() {
         String where = "";
-        where += getName();
+        where += getDates();
         where += getIdentifier();
+        where += getName();
         where += getDepiction();
         where += getConsists();
         where += getType();
         where += getTechnique();
         where += getDescription();
+        where += getCuration();
         where += getImage();
-        where += getDates();
         return where;
     }
     
@@ -194,7 +201,7 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getType() {
         String query = "";
-        String triple = OBJECT + "bmo:P32_used_general_technique/skos:prefLabel " + TYPE;
+        String triple = OBJECT + "bmo:PX_object_type/skos:prefLabel " + TYPE;
         if (settings.hasTypeCheck) {
             query += triple;
             query += ". \n";
@@ -212,7 +219,7 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getTechnique() {
         String query = "";
-        String triple = OBJECT + "crm:P32_used_general_technique/skos:prefLabel " + TECHNIQUE;
+        String triple = "{ " + PRODUCTION + "crm:P9_consists_of [ crm:P32_used_general_technique/skos:prefLabel " + TECHNIQUE + " ] } \n";
         if (settings.hasTechniqueCheck) {
             query += triple;
             query += ". \n";
@@ -223,13 +230,6 @@ public class SPARQLTranslator implements QueryTranslator {
             query += " }. \n";
         }
         return query;
-    }
-    
-    /**
-     * Line for obtaining an object description.
-     */
-    private String getDescription() {
-        return "OPTIONAL { " + OBJECT + "bmo:PX_physical_description " + DESCRIPTION + "}. \n";
     }
     
     /**
@@ -265,6 +265,20 @@ public class SPARQLTranslator implements QueryTranslator {
         }
         
         return dates;
+    }
+    
+    /**
+     * Line for obtaining an object description.
+     */
+    private String getDescription() {
+        return "OPTIONAL { " + OBJECT + "bmo:PX_physical_description " + DESCRIPTION + "}. \n";
+    }
+    
+    /**
+     * Line for obtaining a curators comments.
+     */
+    private String getCuration() {
+        return "OPTIONAL { " + OBJECT + "bmo:PX_curatorial_comment " + CURATORIAL + "}. \n";
     }
     
     /**
