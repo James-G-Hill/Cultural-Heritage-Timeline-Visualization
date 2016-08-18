@@ -1,5 +1,6 @@
 package org.jghill.timelinevisualizer.properties;
 
+import java.awt.BorderLayout;
 import java.util.Collection;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -166,6 +167,9 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
         CommentaryScrollPane.setViewportView(CommentaryTextArea);
 
         ImagePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        ImagePanel.setMaximumSize(new java.awt.Dimension(1000, 280));
+        ImagePanel.setMinimumSize(new java.awt.Dimension(280, 280));
+        ImagePanel.setPreferredSize(new java.awt.Dimension(280, 280));
 
         javax.swing.GroupLayout ImagePanelLayout = new javax.swing.GroupLayout(ImagePanel);
         ImagePanel.setLayout(ImagePanelLayout);
@@ -305,6 +309,7 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
     private void setup() {
         result = Utilities.actionsGlobalContext().lookupResult(ManMadeObject.class);
         result.addLookupListener(this);
+        ImagePanel.setLayout(new BorderLayout());
     }
     
     @Override
@@ -337,7 +342,9 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
             CommentaryTextArea.setText(entity.getCuratorial());
             CommentaryTextArea.setCaretPosition(0);
             
-            ImagePanel.add(new JLabel(new ImageIcon(entity.getThumb())));
+            ImagePanel.removeAll();
+            JLabel image = new JLabel(new ImageIcon(entity.getThumb()));
+            ImagePanel.add(image, BorderLayout.CENTER);
             ImagePanel.revalidate();
             ImagePanel.repaint();
         }
