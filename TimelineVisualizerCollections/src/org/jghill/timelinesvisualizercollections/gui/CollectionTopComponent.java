@@ -499,7 +499,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         org.openide.awt.Mnemonics.setLocalizedText(FirstFilterLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.FirstFilterLabel.text")); // NOI18N
         FirstFilterLabel.setOpaque(true);
 
-        FirstFilterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Query", "Source" }));
+        FirstFilterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Query", "Source", "Material", "Type", "Technique" }));
 
         collectionDisplayPanel.setBackground(new java.awt.Color(255, 255, 255));
         collectionDisplayPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
