@@ -122,6 +122,15 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
                 case "Source" :
                     result = object.getSourceName();
                     break;
+                case "Material" :
+                    result = object.getConsists();
+                    break;
+                case "Type" :
+                    result = object.getType();
+                    break;
+                case "Technique" :
+                    result = object.getTechnique();
+                    break;
                 case "None" :
                     result = "General";
                     break;
