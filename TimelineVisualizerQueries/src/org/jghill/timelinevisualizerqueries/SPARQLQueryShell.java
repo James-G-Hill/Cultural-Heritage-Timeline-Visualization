@@ -25,7 +25,18 @@ public class SPARQLQueryShell extends QueryShell {
     
     private static final String QUERY_TYPE = "SPARQL Endpoint";
     
-    public SPARQLQueryShell(String queryString, SPARQLEndpoint service, String name) {
+    /**
+     * The constructor.
+     * 
+     * @param queryString holding the SPARQL query.
+     * @param service with the URI for the service address.
+     * @param name of the Source.
+     */
+    public SPARQLQueryShell(
+            String queryString,
+            SPARQLEndpoint service,
+            String name
+    ) {
         this.queryString = queryString;
         this.service = service;
         super.setQueryName(name);
