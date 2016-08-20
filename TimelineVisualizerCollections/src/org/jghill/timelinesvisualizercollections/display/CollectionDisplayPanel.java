@@ -162,7 +162,9 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
      * @param categories
      * @return an array of TimeLines.
      */
-    private TimeLine[] createTimeLineArray(TreeMap<String, List<ManMadeObject>> categories) {
+    private TimeLine[] createTimeLineArray(
+            TreeMap<String, List<ManMadeObject>> categories
+    ) {
         TimeLine[] timeline;
         int categoriesCount = categories.size();
         if (categoriesCount < 5) {
@@ -179,7 +181,9 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
      * @param categories a list of categories.
      * @return a sorted TreeMap of categories.
      */
-    private TreeMap<String, List<ManMadeObject>> sortCategories(TreeMap<String, List<ManMadeObject>> categories) {
+    private TreeMap<String, List<ManMadeObject>> sortCategories(
+            TreeMap<String, List<ManMadeObject>> categories
+    ) {
         Map<String, List<ManMadeObject>> sorted;
         sorted = categories.entrySet().stream()
                 .sorted(comparingByValue(comparingInt(List::size)))
@@ -199,8 +203,9 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
      * 
      * @param categories that can be passed into TimeLines.
      */
-    private void assignTimeLines(TreeMap<String, List<ManMadeObject>> categories) {
-        
+    private void assignTimeLines(
+            TreeMap<String, List<ManMadeObject>> categories
+    ) {    
         int count = 0;
         Collections.shuffle(colors);
         ArrayList<ManMadeObject> other = new ArrayList<>();
