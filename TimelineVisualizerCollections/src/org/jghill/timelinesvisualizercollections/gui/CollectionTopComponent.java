@@ -139,6 +139,14 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         FirstFilterLabel = new javax.swing.JLabel();
         FirstFilterComboBox = new javax.swing.JComboBox<>();
         collectionDisplayPanel = new org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel();
+        Group1Label = new javax.swing.JLabel();
+        Group1ComboBox = new javax.swing.JComboBox<>();
+        Group1FilterLabel = new javax.swing.JLabel();
+        Group1FilterComboBox = new javax.swing.JComboBox<>();
+        Group2Label = new javax.swing.JLabel();
+        Group2ComboBox = new javax.swing.JComboBox<>();
+        Group2FilterLabel = new javax.swing.JLabel();
+        Group2FilterComboBox = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(1100, 500));
 
@@ -502,7 +510,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         FirstFilterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Query", "Source", "Material", "Type", "Technique" }));
 
         collectionDisplayPanel.setBackground(new java.awt.Color(255, 255, 255));
-        collectionDisplayPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        collectionDisplayPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout collectionDisplayPanelLayout = new javax.swing.GroupLayout(collectionDisplayPanel);
         collectionDisplayPanel.setLayout(collectionDisplayPanelLayout);
@@ -515,6 +523,18 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             .addGap(0, 395, Short.MAX_VALUE)
         );
 
+        org.openide.awt.Mnemonics.setLocalizedText(Group1Label, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Group1Label.text")); // NOI18N
+        Group1Label.setOpaque(true);
+
+        org.openide.awt.Mnemonics.setLocalizedText(Group1FilterLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Group1FilterLabel.text")); // NOI18N
+        Group1FilterLabel.setOpaque(true);
+
+        org.openide.awt.Mnemonics.setLocalizedText(Group2Label, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Group2Label.text")); // NOI18N
+        Group2Label.setOpaque(true);
+
+        org.openide.awt.Mnemonics.setLocalizedText(Group2FilterLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Group2FilterLabel.text")); // NOI18N
+        Group2FilterLabel.setOpaque(true);
+
         javax.swing.GroupLayout VisualizerLayout = new javax.swing.GroupLayout(Visualizer);
         Visualizer.setLayout(VisualizerLayout);
         VisualizerLayout.setHorizontalGroup(
@@ -524,9 +544,26 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(collectionDisplayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(VisualizerLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addComponent(FirstFilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(FirstFilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Group1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Group1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Group1FilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Group1FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Group2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Group2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Group2FilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Group2FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -538,7 +575,16 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(FirstFilterLabel)
-                    .addComponent(FirstFilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FirstFilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Group1Label)
+                    .addComponent(Group1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Group1FilterLabel)
+                    .addComponent(Group1FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Group2Label)
+                        .addComponent(Group2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Group2FilterLabel)
+                        .addComponent(Group2FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -700,6 +746,14 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private javax.swing.JLabel ExistingQueriesText;
     private javax.swing.JComboBox<String> FirstFilterComboBox;
     private javax.swing.JLabel FirstFilterLabel;
+    private javax.swing.JComboBox<String> Group1ComboBox;
+    private javax.swing.JComboBox<String> Group1FilterComboBox;
+    private javax.swing.JLabel Group1FilterLabel;
+    private javax.swing.JLabel Group1Label;
+    private javax.swing.JComboBox<String> Group2ComboBox;
+    private javax.swing.JComboBox<String> Group2FilterComboBox;
+    private javax.swing.JLabel Group2FilterLabel;
+    private javax.swing.JLabel Group2Label;
     private javax.swing.JCheckBox HasConsistsCheckBox;
     private javax.swing.JCheckBox HasDepictionCheckBox;
     private javax.swing.JCheckBox HasIdentifierCheckBox;
