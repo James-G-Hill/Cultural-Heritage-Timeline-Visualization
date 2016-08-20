@@ -10,6 +10,7 @@ import org.jghill.timelinevisualizerentities.ManMadeObject;
 
 /**
  * Displays the timeline relevant to the selection.
+ * 
  * @author JGHill
  */
 public class TimeLine extends JLayeredPane {
@@ -38,7 +39,20 @@ public class TimeLine extends JLayeredPane {
     
     private final Color color;
     
-    public TimeLine(String name, ManMadeObject[] objects, Color color, CollectionDisplayPanel cdp) {
+    /**
+     * Constructor for the TimeLine.
+     * 
+     * @param name to appear on the TimeLine.
+     * @param objects to represent on the TimeLine.
+     * @param color of the TimeLine background.
+     * @param cdp the parent object.
+     */
+    public TimeLine(
+            String name,
+            ManMadeObject[] objects,
+            Color color,
+            CollectionDisplayPanel cdp
+    ) {
         this.name = name;
         this.objects = objects;
         this.color = color;
@@ -48,8 +62,6 @@ public class TimeLine extends JLayeredPane {
     
     /**
      * Sets the arrays used to create this TimeLine.
-     * @param intervals
-     * @param entities 
      */
     private void setUp() {
         
@@ -93,6 +105,7 @@ public class TimeLine extends JLayeredPane {
         
     /**
      * Paints the scale onto the TimeLine.
+     * 
      * @param g the Graphics object.
      */
     private void paintTimeLine(Graphics g) {
@@ -121,22 +134,34 @@ public class TimeLine extends JLayeredPane {
     
     /**
      * Adds labels to the scale.
+     * 
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
      * @param year the label text.
+     * @param label the label to position.
      */
-    private void positionLabel(int x, int y, int year, JLabel label) {
+    private void positionLabel(
+            int x,
+            int y,
+            int year,
+            JLabel label
+    ) {
         label.setBounds(x + 5, y + 5, 50, 15);
         label.setText(String.valueOf(year));
     }
     
     /**
      * Adds an EntityDisplay to the TimeLine.
+     * 
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
      * @param ed the EntityDisplay.
      */
-    private void positionDisplay(int x, int y, EntityDisplay ed) {
+    private void positionDisplay(
+            int x,
+            int y,
+            EntityDisplay ed
+    ) {
         int w = ed.getWidth();
         int h = ed.getHeight();
         ed.setBounds(x - (w / 2), y, w, h);
@@ -144,6 +169,7 @@ public class TimeLine extends JLayeredPane {
     
     /**
      * Paints the scale onto the TimeLine.
+     * 
      * @param g the Graphics component.
      */
     private void paintScale(Graphics g) {
@@ -160,6 +186,7 @@ public class TimeLine extends JLayeredPane {
     
     /**
      * Paints the entities onto the TimeLine.
+     * 
      * @param g the Graphics component.
      */
     private void paintEntities(Graphics g) {
