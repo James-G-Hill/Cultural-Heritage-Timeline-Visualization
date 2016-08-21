@@ -22,6 +22,7 @@ import org.openide.util.lookup.Lookups;
 
 /**
  * A component for displaying entities.
+ * 
  * @author JGHill
  */
 public class EntityDisplay extends JPanel implements Comparable<EntityDisplay>, MouseListener, FocusListener, Lookup.Provider {
@@ -39,6 +40,7 @@ public class EntityDisplay extends JPanel implements Comparable<EntityDisplay>, 
     
     /**
      * Adds an Entities object to this display.
+     * 
      * @param entity the Entities object.
      */
     public void setEntity(Entities entity) {
@@ -53,11 +55,14 @@ public class EntityDisplay extends JPanel implements Comparable<EntityDisplay>, 
      */
     private void setUpDisplay() {
         lookup = Lookups.singleton(entity);
+        
         this.setLayout(new FlowLayout());
         this.setOpaque(true);
         this.setBackground(Color.LIGHT_GRAY);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        
         getImage();
+        
         if (thumb != null) {
             w = thumb.getWidth() + (BOUNDARY * 2);
             h = thumb.getHeight() + (BOUNDARY * 2);
