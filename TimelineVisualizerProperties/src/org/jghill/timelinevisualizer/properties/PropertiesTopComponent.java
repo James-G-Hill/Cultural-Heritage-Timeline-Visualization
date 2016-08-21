@@ -1,6 +1,7 @@
 package org.jghill.timelinevisualizer.properties;
 
 import java.awt.BorderLayout;
+import java.awt.image.BufferedImage;
 import java.util.Collection;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -98,22 +99,27 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
 
         IdentifierTextField.setEditable(false);
         IdentifierTextField.setBackground(new java.awt.Color(255, 255, 255));
+        IdentifierTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         IdentifierTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.IdentifierTextField.text")); // NOI18N
 
         NameTextField.setEditable(false);
         NameTextField.setBackground(new java.awt.Color(255, 255, 255));
+        NameTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         NameTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.NameTextField.text")); // NOI18N
 
         SourceTextField.setEditable(false);
         SourceTextField.setBackground(new java.awt.Color(255, 255, 255));
+        SourceTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         SourceTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.SourceTextField.text")); // NOI18N
 
         QueryTextField.setEditable(false);
         QueryTextField.setBackground(new java.awt.Color(255, 255, 255));
+        QueryTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         QueryTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.QueryTextField.text")); // NOI18N
 
         CreationYearTextField.setEditable(false);
         CreationYearTextField.setBackground(new java.awt.Color(255, 255, 255));
+        CreationYearTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         CreationYearTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.CreationYearTextField.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(CreationYearLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.CreationYearLabel.text")); // NOI18N
@@ -122,10 +128,12 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
 
         DepictsTextField.setEditable(false);
         DepictsTextField.setBackground(new java.awt.Color(255, 255, 255));
+        DepictsTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         DepictsTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.DepictsTextField.text")); // NOI18N
 
         ConsistsTextField.setEditable(false);
         ConsistsTextField.setBackground(new java.awt.Color(255, 255, 255));
+        ConsistsTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         ConsistsTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.ConsistsTextField.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(ConsistsLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.ConsistsLabel.text")); // NOI18N
@@ -134,12 +142,14 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
 
         TypeTextField.setEditable(false);
         TypeTextField.setBackground(new java.awt.Color(255, 255, 255));
+        TypeTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         TypeTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.TypeTextField.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(TechniqueLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.TechniqueLabel.text")); // NOI18N
 
         TechniqueTextField.setEditable(false);
         TechniqueTextField.setBackground(new java.awt.Color(255, 255, 255));
+        TechniqueTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         TechniqueTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.TechniqueTextField.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(DescriptionLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.DescriptionLabel.text")); // NOI18N
@@ -224,6 +234,8 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(ImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CreationYearLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CreationYearTextField))
@@ -270,8 +282,6 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CommentaryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CommentaryScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(ImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -304,11 +314,13 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
     private javax.swing.JTextField TypeTextField;
     // End of variables declaration//GEN-END:variables
     
-    private Lookup.Result<ManMadeObject> result = null;
+    private static final int IMAGE_SIZE = 280;
+    
+    private Lookup.Result<ManMadeObject> objectResult = null;
     
     private void setup() {
-        result = Utilities.actionsGlobalContext().lookupResult(ManMadeObject.class);
-        result.addLookupListener(this);
+        objectResult = Utilities.actionsGlobalContext().lookupResult(ManMadeObject.class);
+        objectResult.addLookupListener(this);
         ImagePanel.setLayout(new BorderLayout());
     }
     
@@ -317,13 +329,14 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
 
     @Override
     public void componentClosed() {
-        result.removeLookupListener(this);
+        objectResult.removeLookupListener(this);
     }
     
     @Override
     public void resultChanged(LookupEvent lookupEvent) {
-        Collection<? extends ManMadeObject> allEntities = result.allInstances();
+        Collection<? extends ManMadeObject> allEntities = objectResult.allInstances();
         if (allEntities.size() == 1) {
+            
             ManMadeObject entity = allEntities.iterator().next();
             
             CreationYearTextField.setText(entity.getTimeSpan().toString());
@@ -343,10 +356,14 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
             CommentaryTextArea.setCaretPosition(0);
             
             ImagePanel.removeAll();
-            JLabel image = new JLabel(new ImageIcon(entity.getThumb()));
-            ImagePanel.add(image, BorderLayout.CENTER);
+            BufferedImage thumb = entity.getThumb(IMAGE_SIZE);
+            if (thumb != null) {
+                JLabel image = new JLabel(new ImageIcon(thumb));
+                ImagePanel.add(image, BorderLayout.CENTER);
+            }
             ImagePanel.revalidate();
             ImagePanel.repaint();
+            
         }
     }
     
