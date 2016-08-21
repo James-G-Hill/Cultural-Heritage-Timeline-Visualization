@@ -125,24 +125,6 @@ public class SPARQLTranslator implements QueryTranslator {
     }
     
     /**
-     * The name of the object.
-     */
-    private String getName() {
-        String query = "";
-        String triple = OBJECT + "rdfs:label " + NAME;
-        if (settings.hasNameCheck) {
-            query += triple;
-            query += ". \n";
-            query += "FILTER (CONTAINS(LCASE(?name), \"" + settings.name + "\")). \n"; 
-        } else {
-            query += "OPTIONAL { ";
-            query += triple;
-            query += " }. \n";
-        }
-        return query;
-    }
-    
-    /**
      * The identifier of the object.
      */
     private String getIdentifier() {
@@ -152,6 +134,24 @@ public class SPARQLTranslator implements QueryTranslator {
             query += triple;
             query += ". \n";
             query += "FILTER (CONTAINS(LCASE(" + IDENTIFIER + "), \"" + settings.identifier + "\")). \n";
+        } else {
+            query += "OPTIONAL { ";
+            query += triple;
+            query += " }. \n";
+        }
+        return query;
+    }
+    
+    /**
+     * The name of the object.
+     */
+    private String getName() {
+        String query = "";
+        String triple = OBJECT + "rdfs:label " + NAME;
+        if (settings.hasNameCheck) {
+            query += triple;
+            query += ". \n";
+            query += "FILTER (CONTAINS(LCASE(?name), \"" + settings.name + "\")). \n"; 
         } else {
             query += "OPTIONAL { ";
             query += triple;
