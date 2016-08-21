@@ -17,7 +17,6 @@ import javax.imageio.ImageIO;
  */
 public abstract class PhysicalThing extends Entities {
     
-    private static final int MAX_DIMENSION = 100;
     private static final int YEAR_LENGTH = 4;
     
     private final Integer timeSpan;
@@ -33,7 +32,6 @@ public abstract class PhysicalThing extends Entities {
     protected URL imageURL;
     protected File imageFile;
     protected BufferedImage image;
-    protected BufferedImage thumb;
 
     public PhysicalThing(
             String name,
@@ -163,41 +161,37 @@ public abstract class PhysicalThing extends Entities {
     /**
      * Creates a thumbnail image from an existing image.
      * 
+     * @param dimension the dimension the image must fit within.
      * @return the thumbnail image.
      */
-    public BufferedImage getThumb() {
+    public BufferedImage getThumb(int dimension) {
         getImage();
-        if (thumb == null) {
-            if (image != null) {
-            
-                int x = image.getWidth();
-                int y = image.getHeight();
-                double ratio = ((double) x) / y;
-                
-                int w = MAX_DIMENSION;
-                int h = MAX_DIMENSION;
-                
-                if(x > MAX_DIMENSION || y > MAX_DIMENSION) {
-                    w = (int) Math.min(MAX_DIMENSION, ratio * MAX_DIMENSION);
-                    h = (int) Math.min(MAX_DIMENSION, MAX_DIMENSION / ratio);
-                }
-                
-                BufferedImage reSize;
-                reSize = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-                Graphics2D g2 = reSize.createGraphics();
+        if (image != null) {
 
-                g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-                g2.drawImage(image, 0, 0, w, h, null);
-                g2.dispose();
+            int x = image.getWidth();
+            int y = image.getHeight();
+            double ratio = ((double) x) / y;
 
-                thumb = reSize;
-                
-                return thumb;
-            } else {
-                return null;
+            int w = dimension;
+            int h = dimension;
+
+            if(x > dimension || y > dimension) {
+                w = (int) Math.min(dimension, ratio * dimension);
+                h = (int) Math.min(dimension, dimension / ratio);
             }
+
+            BufferedImage reSize;
+            reSize = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2 = reSize.createGraphics();
+
+            g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            g2.drawImage(image, 0, 0, w, h, null);
+            g2.dispose();
+            
+            return reSize;
+            
         } else {
-            return thumb;
+            return null;
         }
     }
     
