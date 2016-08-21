@@ -27,6 +27,7 @@ import org.openide.util.lookup.Lookups;
  */
 public class EntityDisplay extends JPanel implements Comparable<EntityDisplay>, MouseListener, FocusListener, Lookup.Provider {
     
+    private static final int THUMB_SIZE = 100;
     private static final int BOUNDARY = 5;
     
     private Entities entity;
@@ -98,7 +99,7 @@ public class EntityDisplay extends JPanel implements Comparable<EntityDisplay>, 
      */
     private void getImage() {
         PhysicalThing pt = (PhysicalThing) entity;
-        thumb = pt.getThumb();
+        thumb = pt.getThumb(THUMB_SIZE);
     }
     
     /**
