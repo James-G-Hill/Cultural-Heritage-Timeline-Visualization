@@ -16,6 +16,7 @@ public class SPARQLTranslator implements QueryTranslator {
     
     private static final String BMO = "bmo: <http://collection.britishmuseum.org/id/ontology/> \n";
     private static final String CRM = "crm: ";
+    private static final String EDAN = "edan: <http://edan.si.edu/saam/id/ontologies/> \n";
     private static final String RDF = "rdfs: <http://www.w3.org/2000/01/rdf-schema#> \n";
     private static final String SKOS = "skos: <http://www.w3.org/2004/02/skos/core#> \n";
     private static final String THES = "thes: <http://collection.britishmuseum.org/id/thesauri/> \n";
@@ -82,6 +83,7 @@ public class SPARQLTranslator implements QueryTranslator {
         return
                 PREFIX + BMO +
                 PREFIX + CRM + "<" + sparql.getCIDOCAddress() + "> \n" +
+                PREFIX + EDAN +
                 PREFIX + RDF +
                 PREFIX + SKOS +
                 PREFIX + THES +
@@ -147,11 +149,14 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getName() {
         String query = "";
-        String triple = OBJECT + "rdfs:label " + NAME;
+        String triple = "";
+        triple += "{ " + OBJECT + "rdfs:label " + NAME + " } \n";
+        triple += UNION;
+        triple += "{ " + OBJECT + "crm:P102_has_title/rdfs:label " + NAME + " } \n";
         if (settings.hasNameCheck) {
             query += triple;
             query += ". \n";
-            query += "FILTER (CONTAINS(LCASE(?name), \"" + settings.name + "\")). \n"; 
+            query += "FILTER (CONTAINS(LCASE(" + NAME + "), \"" + settings.name + "\")). \n"; 
         } else {
             query += "OPTIONAL { ";
             query += triple;
@@ -183,7 +188,10 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getConsists() {
         String query = "";
-        String triple = OBJECT + "crm:P45_consists_of/skos:prefLabel " + CONSISTS;
+        String triple = "";
+        triple += "{ " + OBJECT + "crm:P45_consists_of/skos:prefLabel " + CONSISTS + "} \n";
+        triple += UNION;
+        triple += "{ " + OBJECT + "edan:PE_medium_description " + CONSISTS + "} \n";
         if (settings.hasConsistsCheck) {
             query += triple;
             query += ". \n";
@@ -201,7 +209,10 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getType() {
         String query = "";
-        String triple = OBJECT + "bmo:PX_object_type/skos:prefLabel " + TYPE;
+        String triple = "";
+        triple += "{ " + OBJECT + "bmo:PX_object_type/skos:prefLabel " + TYPE + "} \n";
+        triple += UNION;
+        triple += "{ " + OBJECT + "edan:PE_object_mainclass/skos:prefLabel " + TYPE + "} \n";
         if (settings.hasTypeCheck) {
             query += triple;
             query += ". \n";
