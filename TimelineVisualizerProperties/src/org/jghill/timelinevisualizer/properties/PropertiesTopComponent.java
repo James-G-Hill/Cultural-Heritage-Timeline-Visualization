@@ -88,18 +88,18 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
         DescriptionTextArea = new javax.swing.JTextArea();
         NameTextField = new javax.swing.JTextField();
 
-        setMaximumSize(new java.awt.Dimension(320, 32767));
-        setMinimumSize(new java.awt.Dimension(320, 0));
-        setPreferredSize(new java.awt.Dimension(320, 765));
+        setMaximumSize(new java.awt.Dimension(300, 800));
+        setMinimumSize(new java.awt.Dimension(300, 800));
+        setPreferredSize(new java.awt.Dimension(300, 800));
 
         PropertiesScrollPane.setHorizontalScrollBar(null);
-        PropertiesScrollPane.setMaximumSize(new java.awt.Dimension(320, 32767));
-        PropertiesScrollPane.setMinimumSize(new java.awt.Dimension(320, 23));
-        PropertiesScrollPane.setPreferredSize(new java.awt.Dimension(320, 767));
+        PropertiesScrollPane.setMaximumSize(new java.awt.Dimension(320, 800));
+        PropertiesScrollPane.setMinimumSize(new java.awt.Dimension(320, 800));
+        PropertiesScrollPane.setPreferredSize(new java.awt.Dimension(300, 800));
 
-        PropertiesPanel.setMaximumSize(new java.awt.Dimension(196, 20));
-        PropertiesPanel.setMinimumSize(new java.awt.Dimension(196, 20));
-        PropertiesPanel.setPreferredSize(new java.awt.Dimension(196, 20));
+        PropertiesPanel.setMaximumSize(new java.awt.Dimension(300, 800));
+        PropertiesPanel.setMinimumSize(new java.awt.Dimension(300, 800));
+        PropertiesPanel.setPreferredSize(new java.awt.Dimension(300, 800));
 
         org.openide.awt.Mnemonics.setLocalizedText(CommentaryLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.CommentaryLabel.text")); // NOI18N
 
@@ -263,7 +263,7 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
                                 .addComponent(IdentifierTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(ImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PropertiesPanelLayout.setVerticalGroup(
             PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,7 +330,7 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PropertiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
+            .addComponent(PropertiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
