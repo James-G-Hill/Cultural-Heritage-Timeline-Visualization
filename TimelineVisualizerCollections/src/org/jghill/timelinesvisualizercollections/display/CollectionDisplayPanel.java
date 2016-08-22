@@ -2,8 +2,6 @@ package org.jghill.timelinesvisualizercollections.display;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -12,10 +10,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import static org.jghill.timelinesvisualizercollections.display.CollectionDisplayUtilities.*;
-import org.jghill.timelinesvisualizercollections.gui.CollectionTopComponent;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
 import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toMap;
@@ -25,7 +21,7 @@ import static java.util.stream.Collectors.toMap;
  * 
  * @author JGHill
  */
-public class CollectionDisplayPanel extends JPanel implements ItemListener {
+public class CollectionDisplayPanel extends JPanel {
     
     private final static int INDENT = 10;
     
@@ -33,8 +29,7 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
     private TimeLine[] timelines;
     private int[] dateArray;
     
-    private CollectionTopComponent tc;
-    private JComboBox<String> firstFilter;
+    private String filter;
     
     private Calendar earliest;
     private Calendar latest;
@@ -48,12 +43,15 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
     private final Color pink = new Color(255, 220, 220);
     private final Color green = new Color(220, 255, 220);
     private final Color blue = new Color(220, 220, 255);
-    private final Color grey = new Color(232, 232, 232);
+    private final Color orange = new Color(255, 230, 210);
     private final Color purple = new Color(255, 190, 255);
     private final Color yellow = new Color(255, 255, 190);
     
     private final List<Color> colors = new ArrayList<>();
     
+    /**
+     * The constructor.
+     */
     public CollectionDisplayPanel() {
         setUp();
     }
@@ -66,7 +64,7 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
         colors.add(pink);
         colors.add(green);
         colors.add(blue);
-        colors.add(grey);
+        colors.add(orange);
         colors.add(purple);
         colors.add(yellow);
     }
@@ -75,15 +73,15 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
      * Sets the Collection that this panel will display.
      * 
      * @param collection that will be displayed.
+     * @return the TimeLine array produced by this method.
      */
-    public void setArray(ManMadeObject[] collection) {
-        tc = (CollectionTopComponent) this.getParent().getParent().getParent();
-        firstFilter = tc.getFirstFilter();
+    public TimeLine[] setArray(ManMadeObject[] collection, String filter) {
+        this.filter = filter;
         clear();
         this.collection = collection;
         calculateTimePeriod();
         createTimeLines();
-        
+        return timelines;
     }
     
     /**
@@ -103,13 +101,15 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
      * Creates all timelines for this collection display panel.
      */
     private void createTimeLines() {
-        String choice = (String) firstFilter.getSelectedItem();
-        runFilter(choice);
+        runFilter();
         revalidate();
         repaint();
     }
     
-    private void runFilter(String filter) {
+    /**
+     * Filters the results.
+     */
+    private void runFilter() {
         
         TreeMap<String, List<ManMadeObject>> categories = new TreeMap<>();
         
@@ -145,7 +145,6 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
                 List<ManMadeObject> list = new ArrayList<>();
                 list.add(object);
                 categories.putIfAbsent(result, list);
-                
             }
         }
         
@@ -228,7 +227,7 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
             timelines[3] = new TimeLine(
                     "Other",
                     other.toArray(new ManMadeObject[other.size()]),
-                    colors.get(count),
+                    colors.get(3),
                     this
             );
         }
@@ -252,7 +251,13 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
         if (timelines != null) {
             int tlCount = 0;
             for(TimeLine tm : timelines) {
-                tm.setBounds(INDENT, INDENT + (INDENT * tlCount) + (200 * tlCount), this.getWidth() - (INDENT * 2), 200);
+                System.out.println(tm.getName());
+                tm.setBounds(
+                        INDENT,
+                        INDENT + (INDENT * tlCount) + (200 * tlCount),
+                        this.getWidth() - (INDENT * 2),
+                        200
+                );
                 tlCount++;
             }
         }
@@ -299,13 +304,20 @@ public class CollectionDisplayPanel extends JPanel implements ItemListener {
         this.repaint();
     }
     
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        if (e.getStateChange() == ItemEvent.SELECTED) {
-            this.removeAll();
-            timelines = null;
-            createTimeLines();
+    /**
+     * Returns the man made objects associated with the given name.
+     * 
+     * @param timelineName the name of the TimeLine to return objects from.
+     * @return the objects associated with the TimeLine.
+     */
+    public ManMadeObject[] getTimeLine(String timelineName) {
+        ManMadeObject[] objects = null;
+        for (TimeLine timeline : timelines) {
+            if (timeline.getName().equalsIgnoreCase(timelineName)) {
+                objects = timeline.getEntities();
+            }
         }
+        return objects;
     }
     
 }
