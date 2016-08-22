@@ -134,12 +134,12 @@ public class SPARQLTranslator implements QueryTranslator {
         String triple = OBJECT + "crm:P48_has_preferred_identifier/rdfs:label " + IDENTIFIER;
         if (settings.hasIdentifierCheck) {
             query += triple;
-            query += ". \n";
+            query += " . \n";
             query += "FILTER (CONTAINS(LCASE(" + IDENTIFIER + "), \"" + settings.identifier + "\")). \n";
         } else {
             query += "OPTIONAL { ";
             query += triple;
-            query += " }. \n";
+            query += " } . \n";
         }
         return query;
     }
@@ -160,7 +160,7 @@ public class SPARQLTranslator implements QueryTranslator {
         } else {
             query += "OPTIONAL { ";
             query += triple;
-            query += " }. \n";
+            query += " } . \n";
         }
         return query;
     }
@@ -176,12 +176,12 @@ public class SPARQLTranslator implements QueryTranslator {
         triple += "{ " + OBJECT + "crm:P129_is_about/edan:/skos:prefLabel " + DEPICTION + " } \n";
         if (settings.hasDepictionCheck) {
             query += triple;
-            query += ". \n";
+            query += " . \n";
             query += "FILTER (CONTAINS(LCASE(" + DEPICTION + "), \"" + settings.depiction + "\")). \n";
         } else {
             query += "OPTIONAL { ";
             query += triple;
-            query += " }. \n";
+            query += " } . \n";
         }
         return query;
     }
@@ -197,12 +197,12 @@ public class SPARQLTranslator implements QueryTranslator {
         triple += "{ " + OBJECT + "edan:PE_medium_description " + CONSISTS + " } \n";
         if (settings.hasConsistsCheck) {
             query += triple;
-            query += ". \n";
+            query += " . \n";
             query += "FILTER (CONTAINS(LCASE(" + CONSISTS + "), \"" + settings.consists + "\")). \n";
         } else {
             query += "OPTIONAL { ";
             query += triple;
-            query += " }. \n";
+            query += " } . \n";
         }
         return query;
     }
@@ -218,12 +218,12 @@ public class SPARQLTranslator implements QueryTranslator {
         triple += "{ " + OBJECT + "edan:PE_object_mainclass/skos:prefLabel " + TYPE + " } \n";
         if (settings.hasTypeCheck) {
             query += triple;
-            query += ". \n";
+            query += " . \n";
             query += "FILTER (CONTAINS(LCASE(" + TYPE + "), \"" + settings.type + "\")). \n";
         } else {
             query += "OPTIONAL { ";
             query += triple;
-            query += " }. \n";
+            query += " } . \n";
         }
         return query;
     }
@@ -233,15 +233,14 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getTechnique() {
         String query = "";
-        String triple = "{ " + PRODUCTION + "crm:P9_consists_of [ crm:P32_used_general_technique/skos:prefLabel " + TECHNIQUE + " ] } \n";
+        String triple = PRODUCTION + "crm:P9_consists_of [ crm:P32_used_general_technique/skos:prefLabel " + TECHNIQUE + " ] ";
         if (settings.hasTechniqueCheck) {
-            query += triple;
-            query += ". \n";
+            query += "{ " + triple  + " } . \n";
             query += "FILTER (CONTAINS(LCASE(" + TECHNIQUE + "), \"" + settings.technique + "\")). \n";
         } else {
             query += "OPTIONAL { ";
             query += triple;
-            query += " }. \n";
+            query += " } . \n";
         }
         return query;
     }
@@ -251,11 +250,15 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getImage() {
         String query = "";
-        String triple = "{ " + OBJECT + "crm:P138i_has_representation " + IMAGE + " } \n";
+        String triple = OBJECT + "crm:P138i_has_representation " + IMAGE;
         if (settings.hasImageCheck) {
+            query += "{ ";
             query += triple;
+            query += " } . \n";
         } else {
-            query += "OPTIONAL { " + triple + " } . \n";
+            query += "OPTIONAL { ";
+            query += triple;
+            query += " } . \n";
         }
         return query;
     }
