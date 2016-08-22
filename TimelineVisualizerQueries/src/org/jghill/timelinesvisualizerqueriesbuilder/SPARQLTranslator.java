@@ -96,16 +96,16 @@ public class SPARQLTranslator implements QueryTranslator {
     private String select() {
         return
                 SELECT +
-                IDENTIFIER +
-                "(SAMPLE(" + NAME + ") AS " + NAME_SAMPLE + ") " +
-                "(SAMPLE(" + DEPICTION + ") AS " + DEPICTION_SAMPLE + ") " +
-                "(SAMPLE(" + CONSISTS + ") AS " + CONSISTS_SAMPLE + ") " +
-                "(SAMPLE(" + TYPE + ") AS " + TYPE_SAMPLE + ") " +
-                "(SAMPLE(" + TECHNIQUE + ") AS " + TECHNIQUE_SAMPLE + ") " +
-                "(SAMPLE(" + IMAGE + ") AS " + IMAGE_SAMPLE + ") " +
-                "(SAMPLE(" + DATE + ") AS " + DATE_SAMPLE + ") " +
-                "(SAMPLE(" + DESCRIPTION + ") AS " + DESCRIPTION_SAMPLE + ") " +
-                "(SAMPLE(" + CURATORIAL + ") AS " + CURATORIAL_SAMPLE + ") ";
+                IDENTIFIER + "\n" +
+                "(SAMPLE(" + NAME + ") AS " + NAME_SAMPLE + ") " + "\n" +
+                "(SAMPLE(" + DEPICTION + ") AS " + DEPICTION_SAMPLE + ") " + "\n" +
+                "(SAMPLE(" + CONSISTS + ") AS " + CONSISTS_SAMPLE + ") " + "\n" +
+                "(SAMPLE(" + TYPE + ") AS " + TYPE_SAMPLE + ") " + "\n" +
+                "(SAMPLE(" + TECHNIQUE + ") AS " + TECHNIQUE_SAMPLE + ") " + "\n" +
+                "(SAMPLE(" + IMAGE + ") AS " + IMAGE_SAMPLE + ") " + "\n" +
+                "(SAMPLE(" + DATE + ") AS " + DATE_SAMPLE + ") " + "\n" +
+                "(SAMPLE(" + DESCRIPTION + ") AS " + DESCRIPTION_SAMPLE + ") " + "\n" +
+                "(SAMPLE(" + CURATORIAL + ") AS " + CURATORIAL_SAMPLE + ") " + "\n";
     }
     
     /**
@@ -113,15 +113,15 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String whereClause() {
         String where = "";
-        where += getDates();
-        where += getIdentifier();
-        where += getName();
-        where += getDepiction();
-        where += getConsists();
-        where += getType();
-        where += getTechnique();
-        where += getDescription();
-        where += getCuration();
+        where += getDates() + "\n";
+        where += getIdentifier() + "\n";
+        where += getName() + "\n";
+        where += getDepiction() + "\n";
+        where += getConsists() + "\n";
+        where += getType() + "\n";
+        where += getTechnique() + "\n";
+        where += getDescription() + "\n";
+        where += getCuration() + "\n";
         where += getImage();
         return where;
     }
@@ -170,7 +170,10 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getDepiction() {
         String query = "";
-        String triple = OBJECT + "crm:P62_depicts/skos:prefLabel " + DEPICTION;
+        String triple = "";
+        triple += "{ " + OBJECT + "crm:P62_depicts/skos:prefLabel " + DEPICTION + " } \n";
+        triple += UNION;
+        triple += "{ " + OBJECT + "crm:P129_is_about/edan:/skos:prefLabel " + DEPICTION + " } \n";
         if (settings.hasDepictionCheck) {
             query += triple;
             query += ". \n";
@@ -189,9 +192,9 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getConsists() {
         String query = "";
         String triple = "";
-        triple += "{ " + OBJECT + "crm:P45_consists_of/skos:prefLabel " + CONSISTS + "} \n";
+        triple += "{ " + OBJECT + "crm:P45_consists_of/skos:prefLabel " + CONSISTS + " } \n";
         triple += UNION;
-        triple += "{ " + OBJECT + "edan:PE_medium_description " + CONSISTS + "} \n";
+        triple += "{ " + OBJECT + "edan:PE_medium_description " + CONSISTS + " } \n";
         if (settings.hasConsistsCheck) {
             query += triple;
             query += ". \n";
@@ -210,9 +213,9 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getType() {
         String query = "";
         String triple = "";
-        triple += "{ " + OBJECT + "bmo:PX_object_type/skos:prefLabel " + TYPE + "} \n";
+        triple += "{ " + OBJECT + "bmo:PX_object_type/skos:prefLabel " + TYPE + " } \n";
         triple += UNION;
-        triple += "{ " + OBJECT + "edan:PE_object_mainclass/skos:prefLabel " + TYPE + "} \n";
+        triple += "{ " + OBJECT + "edan:PE_object_mainclass/skos:prefLabel " + TYPE + " } \n";
         if (settings.hasTypeCheck) {
             query += triple;
             query += ". \n";
@@ -244,12 +247,17 @@ public class SPARQLTranslator implements QueryTranslator {
     }
     
     /**
-     * Returns the image address and note.
+     * Returns the query address and note.
      */
     private String getImage() {
-        String image = "";
-        image += "OPTIONAL { " + OBJECT + "crm:P138i_has_representation " + IMAGE + " } . \n";
-        return image;
+        String query = "";
+        String triple = "{ " + OBJECT + "crm:P138i_has_representation " + IMAGE + " } \n";
+        if (settings.hasImageCheck) {
+            query += triple;
+        } else {
+            query += "OPTIONAL { " + triple + " } . \n";
+        }
+        return query;
     }
     
     /**
