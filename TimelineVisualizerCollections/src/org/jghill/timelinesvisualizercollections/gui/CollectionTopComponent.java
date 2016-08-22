@@ -3,9 +3,12 @@ package org.jghill.timelinesvisualizercollections.gui;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.regex.Pattern;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import org.apache.jena.atlas.web.HttpException;
@@ -16,10 +19,12 @@ import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinesvisualizercollections.container.CollectionContainer;
 import org.jghill.timelinesvisualizercollections.display.EntityDisplay;
+import org.jghill.timelinesvisualizercollections.display.TimeLine;
 import org.jghill.timelinesvisualizerdispatcher.Dispatcher;
 import org.jghill.timelinesvisualizerqueriesbuilder.QueryBuilder;
 import org.jghill.timelinesvisualizerqueriesbuilder.QuerySettings;
 import org.jghill.timelinevisualizerentities.Entities;
+import org.jghill.timelinevisualizerentities.ManMadeObject;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueries.QueryShell;
 import org.jghill.timelinevisualizersources.Source;
@@ -55,6 +60,9 @@ import org.openide.util.lookup.InstanceContent;
 })
 public final class CollectionTopComponent extends TopComponent implements FocusListener {
     
+    /**
+     * Constructor.
+     */
     public CollectionTopComponent() {
         
         Lookup tcLookup = CollectionContainer.getLookup();
@@ -76,11 +84,21 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         sources = sLookup.lookupResult(Source.class);
         sources.allInstances();
         sources.addLookupListener((LookupEvent e) -> {
-            SourceComboBox.setModel(new DefaultComboBoxModel(SourceCollection.collectionToArray()));
+            SourceComboBox.setModel(
+                    new DefaultComboBoxModel(
+                            SourceCollection.collectionToArray()));
         });
         
-        FirstFilterComboBox.addItemListener(collectionDisplayPanel);
-        
+        categories.add(none);
+        categories.add(query);
+        categories.add(source);
+        categories.add(depicts);
+        categories.add(material);
+        categories.add(type);
+        categories.add(technique);
+        ComboBoxModel comboModel = new DefaultComboBoxModel(categories.toArray());
+        FirstFilterComboBox.setModel(comboModel);
+        FirstFilterComboBox.setSelectedIndex(0);
     }
 
     /**
@@ -138,7 +156,6 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         Visualizer = new javax.swing.JPanel();
         FirstFilterLabel = new javax.swing.JLabel();
         FirstFilterComboBox = new javax.swing.JComboBox<>();
-        collectionDisplayPanel = new org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel();
         Group1Label = new javax.swing.JLabel();
         Group1ComboBox = new javax.swing.JComboBox<>();
         Group1FilterLabel = new javax.swing.JLabel();
@@ -147,6 +164,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         Group2ComboBox = new javax.swing.JComboBox<>();
         Group2FilterLabel = new javax.swing.JLabel();
         Group2FilterComboBox = new javax.swing.JComboBox<>();
+        collectionDisplayPanel = new org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel();
 
         setPreferredSize(new java.awt.Dimension(1100, 500));
 
@@ -507,84 +525,106 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         org.openide.awt.Mnemonics.setLocalizedText(FirstFilterLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.FirstFilterLabel.text")); // NOI18N
         FirstFilterLabel.setOpaque(true);
 
-        FirstFilterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Query", "Source", "Material", "Type", "Technique" }));
-
-        collectionDisplayPanel.setBackground(new java.awt.Color(255, 255, 255));
-        collectionDisplayPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout collectionDisplayPanelLayout = new javax.swing.GroupLayout(collectionDisplayPanel);
-        collectionDisplayPanel.setLayout(collectionDisplayPanelLayout);
-        collectionDisplayPanelLayout.setHorizontalGroup(
-            collectionDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1053, Short.MAX_VALUE)
-        );
-        collectionDisplayPanelLayout.setVerticalGroup(
-            collectionDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
-        );
+        FirstFilterComboBox.setModel(new DefaultComboBoxModel(categories.toArray()));
+        FirstFilterComboBox.setToolTipText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.FirstFilterComboBox.toolTipText")); // NOI18N
+        FirstFilterComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FirstFilterComboBoxActionPerformed(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(Group1Label, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Group1Label.text")); // NOI18N
         Group1Label.setOpaque(true);
 
+        Group1ComboBox.setEnabled(false);
+        Group1ComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Group1ComboBoxActionPerformed(evt);
+            }
+        });
+
         org.openide.awt.Mnemonics.setLocalizedText(Group1FilterLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Group1FilterLabel.text")); // NOI18N
         Group1FilterLabel.setOpaque(true);
+
+        Group1FilterComboBox.setEnabled(false);
+        Group1FilterComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Group1FilterComboBoxActionPerformed(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(Group2Label, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Group2Label.text")); // NOI18N
         Group2Label.setOpaque(true);
 
+        Group2ComboBox.setEnabled(false);
+        Group2ComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Group2ComboBoxActionPerformed(evt);
+            }
+        });
+
         org.openide.awt.Mnemonics.setLocalizedText(Group2FilterLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Group2FilterLabel.text")); // NOI18N
         Group2FilterLabel.setOpaque(true);
+
+        Group2FilterComboBox.setEnabled(false);
+        Group2FilterComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Group2FilterComboBoxActionPerformed(evt);
+            }
+        });
+
+        collectionDisplayPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout VisualizerLayout = new javax.swing.GroupLayout(Visualizer);
         Visualizer.setLayout(VisualizerLayout);
         VisualizerLayout.setHorizontalGroup(
             VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VisualizerLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(FirstFilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(FirstFilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Group1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Group1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Group1FilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Group1FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Group2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Group2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Group2FilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Group2FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
+            .addGroup(VisualizerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(collectionDisplayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(VisualizerLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(FirstFilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(FirstFilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Group1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Group1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Group1FilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Group1FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Group2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Group2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Group2FilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Group2FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(collectionDisplayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         VisualizerLayout.setVerticalGroup(
             VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VisualizerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(collectionDisplayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FirstFilterLabel)
-                    .addComponent(FirstFilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Group1Label)
-                    .addComponent(Group1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Group1FilterLabel)
-                    .addComponent(Group1FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(collectionDisplayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Group2Label)
                         .addComponent(Group2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Group2FilterLabel)
-                        .addComponent(Group2FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Group2FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(FirstFilterLabel)
+                        .addComponent(FirstFilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Group1Label)
+                        .addComponent(Group1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Group1FilterLabel)
+                        .addComponent(Group1FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -642,7 +682,10 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 catch(InterruptedException | ExecutionException e){}
                 
                 entityModelChange();
-                paintVisualDisplay();
+                paintVisualDisplay(
+                    etb.getFlattenedCollection(),
+                    (String) FirstFilterComboBox.getSelectedItem()
+                );
                 
             } catch (HttpException ex) {
                 output("502 Proxy Error: endpoint not available.");
@@ -664,7 +707,10 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             qtb.deleteSource(row);
             entityModelChange();
             queryModelChange();
-            paintVisualDisplay();   
+            paintVisualDisplay(
+                etb.getFlattenedCollection(),
+                (String) FirstFilterComboBox.getSelectedItem()
+            );
         }
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
@@ -732,6 +778,134 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         }
     }//GEN-LAST:event_HasLimitCheckBoxActionPerformed
 
+    private void Group1ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Group1ComboBoxActionPerformed
+        String selectedItem = (String) Group1ComboBox.getSelectedItem();
+        filterDisplay(
+            true,
+            true,
+            false,
+            (String) FirstFilterComboBox.getSelectedItem(),
+            "",
+            ""
+        );
+        if (selectedItem.equalsIgnoreCase("None")) {
+            setComboBoxes(
+                    true,
+                    false,
+                    false,
+                    false
+            );
+        } else {
+            setComboBoxes(
+                    true,
+                    true,
+                    false,
+                    false
+            );
+            ComboBoxModel comboModel = new DefaultComboBoxModel(categories.toArray());
+            Group1FilterComboBox.setModel(comboModel);
+        }
+    }//GEN-LAST:event_Group1ComboBoxActionPerformed
+
+    private void FirstFilterComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstFilterComboBoxActionPerformed
+        String selectedItem = (String) FirstFilterComboBox.getSelectedItem();
+        String[] timelines = filterDisplay(
+            true,
+            false,
+            false,
+            selectedItem,
+            "",
+            ""
+        );
+        if (selectedItem.equalsIgnoreCase("None")) {
+            setComboBoxes(
+                    false,
+                    false,
+                    false,
+                    false
+            );
+        } else {
+            setComboBoxes(
+                    true,
+                    false,
+                    false,
+                    false
+            );
+            ComboBoxModel comboModel = new DefaultComboBoxModel(timelines);
+            Group1ComboBox.setModel(comboModel);
+        }
+    }//GEN-LAST:event_FirstFilterComboBoxActionPerformed
+
+    private void Group1FilterComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Group1FilterComboBoxActionPerformed
+        String selectedItem = (String) Group1FilterComboBox.getSelectedItem();
+        String[] timelines = filterDisplay(
+            true,
+            true,
+            false,
+            (String) FirstFilterComboBox.getSelectedItem(),
+            selectedItem,
+            ""
+        );
+        if (selectedItem.equalsIgnoreCase("None")) {
+            setComboBoxes(
+                    true,
+                    true,
+                    false,
+                    false
+            );
+        } else {
+            setComboBoxes(
+                    true,
+                    true,
+                    true,
+                    false
+            );
+            ComboBoxModel comboModel = new DefaultComboBoxModel(timelines);
+            Group2ComboBox.setModel(comboModel);
+        }
+    }//GEN-LAST:event_Group1FilterComboBoxActionPerformed
+
+    private void Group2FilterComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Group2FilterComboBoxActionPerformed
+        String selectedItem = (String) Group2FilterComboBox.getSelectedItem();
+        filterDisplay(
+            true,
+            true,
+            true,
+            (String) FirstFilterComboBox.getSelectedItem(),
+            (String) Group1FilterComboBox.getSelectedItem(),
+            selectedItem
+        );
+    }//GEN-LAST:event_Group2FilterComboBoxActionPerformed
+
+    private void Group2ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Group2ComboBoxActionPerformed
+        String selectedItem = (String) Group2ComboBox.getSelectedItem();
+        filterDisplay(
+            true,
+            true,
+            true,
+            (String) FirstFilterComboBox.getSelectedItem(),
+            (String) Group1FilterComboBox.getSelectedItem(),
+            ""
+        );
+        if (selectedItem.equalsIgnoreCase("None")) {
+            setComboBoxes(
+                    true,
+                    true,
+                    true,
+                    false
+            );
+        } else {
+            setComboBoxes(
+                    true,
+                    true,
+                    true,
+                    true
+            );
+            ComboBoxModel comboModel = new DefaultComboBoxModel(categories.toArray());
+            Group2FilterComboBox.setModel(comboModel);
+        }
+    }//GEN-LAST:event_Group2ComboBoxActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AndText1;
     private javax.swing.JButton CreateButton;
@@ -791,6 +965,16 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
     
+    private final String none = "None";
+    private final String query = "Query";
+    private final String source = "Source";
+    private final String depicts = "Depicts";
+    private final String material = "Material";
+    private final String type = "Type";
+    private final String technique = "Technique";
+    
+    private final List<String> categories = new ArrayList<>();
+    
     private static final int TAB_VISUAL = 3;
     
     private final EntityTableModel etb;
@@ -805,7 +989,10 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         setName(coll.getName());
         associateLookup(abLookup);
         queryModelChange();
-        paintVisualDisplay();
+        paintVisualDisplay(
+                etb.getFlattenedCollection(),
+                (String) FirstFilterComboBox.getSelectedItem()
+        );
     }
 
     @Override
@@ -889,7 +1076,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         if(!Pattern.matches("[0-9]+", endYear) && !endYear.isEmpty()) {return false;}
         
         if(QueryNameTextField.getText().isEmpty()) {return false;}
-        if(SourceComboBox.getSelectedItem().toString() == null) {return false;}
+        if(SourceComboBox.getSelectedItem() == null) {return false;}
         
         return true;
         
@@ -975,12 +1162,21 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     /**
      * Paints the visual display.
      */
-    private void paintVisualDisplay() {
-        if (etb.getFlattenedCollection().length > 0) {
-            collectionDisplayPanel.setArray(etb.getFlattenedCollection());
-            Tab.
-                    setSelectedIndex(TAB_VISUAL);
+    private String[] paintVisualDisplay(ManMadeObject[] collection, String filter) {
+        TimeLine[] timelines;
+        if (collection.length > 0) {
+            timelines = collectionDisplayPanel.setArray(collection, filter);
+            Tab.setSelectedIndex(TAB_VISUAL);
+        } else {
+            collectionDisplayPanel.clear();
+            timelines = new TimeLine[0];
         }
+        String[] timelineNames = new String[timelines.length + 1];
+        timelineNames[0] = "None";
+        for (int i = 1; i < timelineNames.length; i++) {
+            timelineNames[i] = timelines[i-1].getName();
+        }
+        return timelineNames;
     }
 
     @Override
@@ -1003,5 +1199,65 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     public JComboBox<String> getFirstFilter() {
         return FirstFilterComboBox;
     }
-
+    
+    /**
+     * Sets the status of the combo boxes.
+     * 
+     * @param combo1
+     * @param filter1
+     * @param combo2
+     * @param filter2 
+     */
+    private void setComboBoxes(
+            boolean combo1,
+            boolean filter1,
+            boolean combo2,
+            boolean filter2
+    ) {
+        Group1ComboBox.setEnabled(combo1);
+        Group1FilterComboBox.setEnabled(filter1);
+        Group2ComboBox.setEnabled(combo2);
+        Group2FilterComboBox.setEnabled(filter2);
+    }
+    
+    /**
+     * Filters the display to the correct level.
+     * 
+     * @param first level.
+     * @param second level.
+     * @param third level.
+     * @param filter1 the term to filter with.
+     * @param filter2 the term to filter with.
+     * @param filter3 the term to filter with.
+     */
+    private String[] filterDisplay(
+            boolean first,
+            boolean second,
+            boolean third,
+            String filter1,
+            String filter2,
+            String filter3
+    ) {
+        String[] timelines = null;
+        if (first) {
+            timelines = paintVisualDisplay(
+                etb.getFlattenedCollection(),
+                filter1
+            );
+        }
+        if (second) {
+            timelines = paintVisualDisplay(
+                collectionDisplayPanel.getTimeLine((String) Group1ComboBox.getSelectedItem()),
+                filter2
+            );
+        }
+        if (third) {
+            timelines = paintVisualDisplay(
+                collectionDisplayPanel.getTimeLine((String) Group2ComboBox.getSelectedItem()),
+                filter3
+            );
+        }
+        return timelines;
+    }
+    
 }
