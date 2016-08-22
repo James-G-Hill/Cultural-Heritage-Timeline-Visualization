@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.Arrays;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import org.apache.commons.lang3.text.WordUtils;
 import org.jghill.timelinesvisualizercollections.gui.CollectionTopComponent;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
 
@@ -128,8 +129,8 @@ public class TimeLine extends JLayeredPane {
     private void setDescription() {
         this.add(description);
         description.setVisible(true);
-        description.setBounds(5, 5, 100, 15);
-        description.setText(name);
+        description.setBounds(5, 5, 300, 15);
+        description.setText(WordUtils.capitalize(name));
     }
     
     /**
@@ -211,6 +212,20 @@ public class TimeLine extends JLayeredPane {
             }
         }
         
+    }
+    
+    @Override
+    public String getName() {
+        return name;
+    }
+    
+    /**
+     * Returns the Entities displayed by this TimeLine.
+     * 
+     * @return the Entities.
+     */
+    public ManMadeObject[] getEntities() {
+        return objects;
     }
     
 }
