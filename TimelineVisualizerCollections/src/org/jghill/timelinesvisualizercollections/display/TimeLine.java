@@ -83,7 +83,8 @@ public class TimeLine extends JLayeredPane {
         for(int i = 0; i < eDisplays.length; i++) {
             eDisplays[i] = new EntityDisplay();
             eDisplays[i].setEntity(objects[i]);
-            eDisplays[i].addFocusListener((CollectionTopComponent) cdp.getParent().getParent().getParent());
+            eDisplays[i].addFocusListener(
+                    (CollectionTopComponent) cdp.getParent().getParent().getParent().getParent().getParent());
         }
         
         Arrays.sort(eDisplays);
@@ -129,7 +130,12 @@ public class TimeLine extends JLayeredPane {
     private void setDescription() {
         this.add(description);
         description.setVisible(true);
-        description.setBounds(5, 5, 300, 15);
+        description.setBounds(
+                5,
+                5,
+                400,
+                15
+        );
         description.setText(WordUtils.capitalize(name));
     }
     
@@ -147,7 +153,12 @@ public class TimeLine extends JLayeredPane {
             int year,
             JLabel label
     ) {
-        label.setBounds(x + 5, y + 5, 50, 15);
+        label.setBounds(
+                x + 5,
+                y + 5,
+                50,
+                15
+        );
         label.setText(String.valueOf(year));
     }
     
@@ -165,7 +176,12 @@ public class TimeLine extends JLayeredPane {
     ) {
         int w = ed.getWidth();
         int h = ed.getHeight();
-        ed.setBounds(x - (w / 2), y, w, h);
+        ed.setBounds(
+                x - (w / 2),
+                y,
+                w,
+                h
+        );
     }
     
     /**
