@@ -28,7 +28,6 @@ import org.openide.util.Utilities;
 )
 @TopComponent.Registration(mode = "properties", openAtStartup = true)
 @ActionID(category = "Window", id = "org.jghill.timelinevisualizer.properties.PropertiesTopComponent")
-//@ActionReference(path = "Menu/Window" /*, position = 333 */)
 @TopComponent.OpenActionRegistration(
         displayName = "#CTL_PropertiesAction",
         preferredID = "PropertiesTopComponent"
@@ -61,14 +60,12 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        IdentifierLabel = new javax.swing.JLabel();
-        NameLabel = new javax.swing.JLabel();
-        SourceLabel = new javax.swing.JLabel();
-        QueryLabel = new javax.swing.JLabel();
-        IdentifierTextField = new javax.swing.JTextField();
-        NameTextField = new javax.swing.JTextField();
-        SourceTextField = new javax.swing.JTextField();
-        QueryTextField = new javax.swing.JTextField();
+        PropertiesScrollPane = new javax.swing.JScrollPane();
+        PropertiesPanel = new javax.swing.JPanel();
+        CommentaryLabel = new javax.swing.JLabel();
+        CommentaryScrollPane = new javax.swing.JScrollPane();
+        CommentaryTextArea = new javax.swing.JTextArea();
+        ImagePanel = new javax.swing.JPanel();
         CreationYearTextField = new javax.swing.JTextField();
         CreationYearLabel = new javax.swing.JLabel();
         DepictsLabel = new javax.swing.JLabel();
@@ -79,90 +76,30 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
         TypeTextField = new javax.swing.JTextField();
         TechniqueLabel = new javax.swing.JLabel();
         TechniqueTextField = new javax.swing.JTextField();
+        IdentifierLabel = new javax.swing.JLabel();
+        NameLabel = new javax.swing.JLabel();
+        SourceLabel = new javax.swing.JLabel();
+        QueryLabel = new javax.swing.JLabel();
+        IdentifierTextField = new javax.swing.JTextField();
+        SourceTextField = new javax.swing.JTextField();
+        QueryTextField = new javax.swing.JTextField();
         DescriptionLabel = new javax.swing.JLabel();
         DescriptionScrollPane = new javax.swing.JScrollPane();
         DescriptionTextArea = new javax.swing.JTextArea();
-        CommentaryLabel = new javax.swing.JLabel();
-        CommentaryScrollPane = new javax.swing.JScrollPane();
-        CommentaryTextArea = new javax.swing.JTextArea();
-        ImagePanel = new javax.swing.JPanel();
+        NameTextField = new javax.swing.JTextField();
 
-        setPreferredSize(new java.awt.Dimension(300, 600));
+        setMaximumSize(new java.awt.Dimension(320, 32767));
+        setMinimumSize(new java.awt.Dimension(320, 0));
+        setPreferredSize(new java.awt.Dimension(320, 765));
 
-        org.openide.awt.Mnemonics.setLocalizedText(IdentifierLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.IdentifierLabel.text")); // NOI18N
+        PropertiesScrollPane.setHorizontalScrollBar(null);
+        PropertiesScrollPane.setMaximumSize(new java.awt.Dimension(320, 32767));
+        PropertiesScrollPane.setMinimumSize(new java.awt.Dimension(320, 23));
+        PropertiesScrollPane.setPreferredSize(new java.awt.Dimension(320, 767));
 
-        org.openide.awt.Mnemonics.setLocalizedText(NameLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.NameLabel.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(SourceLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.SourceLabel.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(QueryLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.QueryLabel.text")); // NOI18N
-
-        IdentifierTextField.setEditable(false);
-        IdentifierTextField.setBackground(new java.awt.Color(255, 255, 255));
-        IdentifierTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        IdentifierTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.IdentifierTextField.text")); // NOI18N
-
-        NameTextField.setEditable(false);
-        NameTextField.setBackground(new java.awt.Color(255, 255, 255));
-        NameTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        NameTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.NameTextField.text")); // NOI18N
-
-        SourceTextField.setEditable(false);
-        SourceTextField.setBackground(new java.awt.Color(255, 255, 255));
-        SourceTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        SourceTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.SourceTextField.text")); // NOI18N
-
-        QueryTextField.setEditable(false);
-        QueryTextField.setBackground(new java.awt.Color(255, 255, 255));
-        QueryTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        QueryTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.QueryTextField.text")); // NOI18N
-
-        CreationYearTextField.setEditable(false);
-        CreationYearTextField.setBackground(new java.awt.Color(255, 255, 255));
-        CreationYearTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        CreationYearTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.CreationYearTextField.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(CreationYearLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.CreationYearLabel.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(DepictsLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.DepictsLabel.text")); // NOI18N
-
-        DepictsTextField.setEditable(false);
-        DepictsTextField.setBackground(new java.awt.Color(255, 255, 255));
-        DepictsTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        DepictsTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.DepictsTextField.text")); // NOI18N
-
-        ConsistsTextField.setEditable(false);
-        ConsistsTextField.setBackground(new java.awt.Color(255, 255, 255));
-        ConsistsTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        ConsistsTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.ConsistsTextField.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(ConsistsLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.ConsistsLabel.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(TypeLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.TypeLabel.text")); // NOI18N
-
-        TypeTextField.setEditable(false);
-        TypeTextField.setBackground(new java.awt.Color(255, 255, 255));
-        TypeTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        TypeTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.TypeTextField.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(TechniqueLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.TechniqueLabel.text")); // NOI18N
-
-        TechniqueTextField.setEditable(false);
-        TechniqueTextField.setBackground(new java.awt.Color(255, 255, 255));
-        TechniqueTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        TechniqueTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.TechniqueTextField.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(DescriptionLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.DescriptionLabel.text")); // NOI18N
-
-        DescriptionScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        DescriptionTextArea.setEditable(false);
-        DescriptionTextArea.setColumns(20);
-        DescriptionTextArea.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        DescriptionTextArea.setLineWrap(true);
-        DescriptionTextArea.setRows(6);
-        DescriptionTextArea.setWrapStyleWord(true);
-        DescriptionScrollPane.setViewportView(DescriptionTextArea);
+        PropertiesPanel.setMaximumSize(new java.awt.Dimension(196, 20));
+        PropertiesPanel.setMinimumSize(new java.awt.Dimension(196, 20));
+        PropertiesPanel.setPreferredSize(new java.awt.Dimension(196, 20));
 
         org.openide.awt.Mnemonics.setLocalizedText(CommentaryLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.CommentaryLabel.text")); // NOI18N
 
@@ -185,24 +122,122 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
         ImagePanel.setLayout(ImagePanelLayout);
         ImagePanelLayout.setHorizontalGroup(
             ImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 276, Short.MAX_VALUE)
         );
         ImagePanelLayout.setVerticalGroup(
             ImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 276, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        CreationYearTextField.setEditable(false);
+        CreationYearTextField.setBackground(new java.awt.Color(255, 255, 255));
+        CreationYearTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        CreationYearTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.CreationYearTextField.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(CreationYearLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.CreationYearLabel.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(DepictsLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.DepictsLabel.text")); // NOI18N
+
+        DepictsTextField.setEditable(false);
+        DepictsTextField.setBackground(new java.awt.Color(255, 255, 255));
+        DepictsTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        DepictsTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.DepictsTextField.text")); // NOI18N
+        DepictsTextField.setMaximumSize(new java.awt.Dimension(196, 20));
+        DepictsTextField.setMinimumSize(new java.awt.Dimension(196, 20));
+        DepictsTextField.setPreferredSize(new java.awt.Dimension(196, 20));
+
+        ConsistsTextField.setEditable(false);
+        ConsistsTextField.setBackground(new java.awt.Color(255, 255, 255));
+        ConsistsTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        ConsistsTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.ConsistsTextField.text")); // NOI18N
+        ConsistsTextField.setMaximumSize(new java.awt.Dimension(196, 20));
+        ConsistsTextField.setMinimumSize(new java.awt.Dimension(196, 20));
+        ConsistsTextField.setPreferredSize(new java.awt.Dimension(196, 20));
+
+        org.openide.awt.Mnemonics.setLocalizedText(ConsistsLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.ConsistsLabel.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(TypeLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.TypeLabel.text")); // NOI18N
+
+        TypeTextField.setEditable(false);
+        TypeTextField.setBackground(new java.awt.Color(255, 255, 255));
+        TypeTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        TypeTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.TypeTextField.text")); // NOI18N
+        TypeTextField.setMaximumSize(new java.awt.Dimension(196, 20));
+        TypeTextField.setMinimumSize(new java.awt.Dimension(196, 20));
+        TypeTextField.setPreferredSize(new java.awt.Dimension(196, 20));
+
+        org.openide.awt.Mnemonics.setLocalizedText(TechniqueLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.TechniqueLabel.text")); // NOI18N
+
+        TechniqueTextField.setEditable(false);
+        TechniqueTextField.setBackground(new java.awt.Color(255, 255, 255));
+        TechniqueTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        TechniqueTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.TechniqueTextField.text")); // NOI18N
+        TechniqueTextField.setMaximumSize(new java.awt.Dimension(196, 20));
+        TechniqueTextField.setMinimumSize(new java.awt.Dimension(196, 20));
+        TechniqueTextField.setPreferredSize(new java.awt.Dimension(196, 20));
+
+        org.openide.awt.Mnemonics.setLocalizedText(IdentifierLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.IdentifierLabel.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(NameLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.NameLabel.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(SourceLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.SourceLabel.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(QueryLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.QueryLabel.text")); // NOI18N
+
+        IdentifierTextField.setEditable(false);
+        IdentifierTextField.setBackground(new java.awt.Color(255, 255, 255));
+        IdentifierTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        IdentifierTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.IdentifierTextField.text")); // NOI18N
+        IdentifierTextField.setMaximumSize(new java.awt.Dimension(196, 20));
+        IdentifierTextField.setMinimumSize(new java.awt.Dimension(196, 20));
+        IdentifierTextField.setPreferredSize(new java.awt.Dimension(196, 20));
+
+        SourceTextField.setEditable(false);
+        SourceTextField.setBackground(new java.awt.Color(255, 255, 255));
+        SourceTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        SourceTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.SourceTextField.text")); // NOI18N
+        SourceTextField.setMaximumSize(new java.awt.Dimension(196, 20));
+        SourceTextField.setMinimumSize(new java.awt.Dimension(196, 20));
+        SourceTextField.setPreferredSize(new java.awt.Dimension(196, 20));
+
+        QueryTextField.setEditable(false);
+        QueryTextField.setBackground(new java.awt.Color(255, 255, 255));
+        QueryTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        QueryTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.QueryTextField.text")); // NOI18N
+        QueryTextField.setMaximumSize(new java.awt.Dimension(196, 20));
+        QueryTextField.setMinimumSize(new java.awt.Dimension(196, 20));
+        QueryTextField.setPreferredSize(new java.awt.Dimension(196, 20));
+
+        org.openide.awt.Mnemonics.setLocalizedText(DescriptionLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.DescriptionLabel.text")); // NOI18N
+
+        DescriptionScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        DescriptionTextArea.setEditable(false);
+        DescriptionTextArea.setColumns(20);
+        DescriptionTextArea.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        DescriptionTextArea.setLineWrap(true);
+        DescriptionTextArea.setRows(6);
+        DescriptionTextArea.setWrapStyleWord(true);
+        DescriptionScrollPane.setViewportView(DescriptionTextArea);
+
+        NameTextField.setEditable(false);
+        NameTextField.setBackground(new java.awt.Color(255, 255, 255));
+        NameTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        NameTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.NameTextField.text")); // NOI18N
+        NameTextField.setMaximumSize(new java.awt.Dimension(196, 20));
+        NameTextField.setMinimumSize(new java.awt.Dimension(196, 20));
+        NameTextField.setPreferredSize(new java.awt.Dimension(196, 20));
+
+        javax.swing.GroupLayout PropertiesPanelLayout = new javax.swing.GroupLayout(PropertiesPanel);
+        PropertiesPanel.setLayout(PropertiesPanelLayout);
+        PropertiesPanelLayout.setHorizontalGroup(
+            PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PropertiesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ImagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(IdentifierLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PropertiesPanelLayout.createSequentialGroup()
+                        .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(IdentifierLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(NameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(SourceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(QueryLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -212,77 +247,90 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
                             .addComponent(TypeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(TechniqueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(DescriptionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CommentaryLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(CommentaryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IdentifierTextField)
-                            .addComponent(NameTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                            .addComponent(SourceTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                            .addComponent(QueryTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                            .addComponent(DepictsTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                            .addComponent(ConsistsTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                            .addComponent(TypeTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                            .addComponent(TechniqueTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(CreationYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(DescriptionScrollPane)
-                            .addComponent(CommentaryScrollPane))))
-                .addContainerGap())
+                        .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(DescriptionScrollPane, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(TypeTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ConsistsTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(DepictsTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(QueryTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(SourceTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CreationYearTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TechniqueTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CommentaryScrollPane)
+                                .addComponent(IdentifierTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(ImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        PropertiesPanelLayout.setVerticalGroup(
+            PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PropertiesPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CreationYearLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CreationYearTextField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(IdentifierLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(IdentifierTextField))
+                    .addComponent(IdentifierTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NameTextField))
+                    .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SourceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SourceTextField))
+                    .addComponent(SourceTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(QueryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(QueryTextField))
+                    .addComponent(QueryTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DepictsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DepictsTextField))
+                    .addComponent(DepictsTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ConsistsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ConsistsTextField))
+                    .addComponent(ConsistsTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TypeTextField))
+                    .addComponent(TypeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TechniqueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TechniqueTextField))
+                    .addComponent(TechniqueTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PropertiesPanelLayout.createSequentialGroup()
                         .addComponent(DescriptionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(PropertiesPanelLayout.createSequentialGroup()
                         .addComponent(DescriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CommentaryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CommentaryScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+        );
+
+        PropertiesScrollPane.setViewportView(PropertiesPanel);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PropertiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PropertiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -304,6 +352,8 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
     private javax.swing.JPanel ImagePanel;
     private javax.swing.JLabel NameLabel;
     private javax.swing.JTextField NameTextField;
+    private javax.swing.JPanel PropertiesPanel;
+    private javax.swing.JScrollPane PropertiesScrollPane;
     private javax.swing.JLabel QueryLabel;
     private javax.swing.JTextField QueryTextField;
     private javax.swing.JLabel SourceLabel;
