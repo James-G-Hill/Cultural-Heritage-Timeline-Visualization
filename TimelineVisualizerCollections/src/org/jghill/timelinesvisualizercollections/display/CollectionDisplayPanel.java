@@ -23,7 +23,7 @@ import static java.util.stream.Collectors.toMap;
  */
 public class CollectionDisplayPanel extends JPanel {
     
-    private final static int INDENT = 10;
+    private final static int INDENT = 0;
     
     private ManMadeObject[] collection;
     private TimeLine[] timelines;
