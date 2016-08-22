@@ -780,15 +780,15 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
 
     private void Group1ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Group1ComboBoxActionPerformed
         String selectedItem = (String) Group1ComboBox.getSelectedItem();
-        filterDisplay(
-            true,
-            true,
-            false,
-            (String) FirstFilterComboBox.getSelectedItem(),
-            "",
-            ""
-        );
         if (selectedItem.equalsIgnoreCase("None")) {
+            filterDisplay(
+                true,
+                false,
+                false,
+                (String) FirstFilterComboBox.getSelectedItem(),
+                "",
+                ""
+            );
             setComboBoxes(
                     true,
                     false,
@@ -796,6 +796,14 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                     false
             );
         } else {
+            filterDisplay(
+                true,
+                true,
+                false,
+                (String) FirstFilterComboBox.getSelectedItem(),
+                "",
+                ""
+            );
             setComboBoxes(
                     true,
                     true,
@@ -879,15 +887,15 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
 
     private void Group2ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Group2ComboBoxActionPerformed
         String selectedItem = (String) Group2ComboBox.getSelectedItem();
-        filterDisplay(
-            true,
-            true,
-            true,
-            (String) FirstFilterComboBox.getSelectedItem(),
-            (String) Group1FilterComboBox.getSelectedItem(),
-            ""
-        );
         if (selectedItem.equalsIgnoreCase("None")) {
+            filterDisplay(
+                true,
+                true,
+                false,
+                (String) FirstFilterComboBox.getSelectedItem(),
+                (String) Group1FilterComboBox.getSelectedItem(),
+                ""
+            );
             setComboBoxes(
                     true,
                     true,
@@ -895,6 +903,14 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                     false
             );
         } else {
+            filterDisplay(
+                true,
+                true,
+                true,
+                (String) FirstFilterComboBox.getSelectedItem(),
+                (String) Group1FilterComboBox.getSelectedItem(),
+                ""
+            );
             setComboBoxes(
                     true,
                     true,
