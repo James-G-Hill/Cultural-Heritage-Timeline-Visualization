@@ -256,7 +256,9 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         paintTimeLines();
-        this.setPreferredSize(new Dimension(SIZE, timelines.length * 200));
+        if (timelines != null) {
+            this.setPreferredSize(new Dimension(SIZE, timelines.length * 200));
+        }
         revalidate();
     }
     
