@@ -3,6 +3,7 @@ package org.jghill.timelinesvisualizercollections.display;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -16,7 +17,9 @@ import static org.jghill.timelinesvisualizercollections.display.CollectionDispla
 import org.jghill.timelinevisualizerentities.ManMadeObject;
 import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toMap;
+import javax.swing.JScrollPane;
 import javax.swing.JSlider;
+import javax.swing.JViewport;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -288,6 +291,8 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     }
     
     /**
+     * Returns the start date.
+     * 
      * @return start.
      */
     public Integer returnStart() {
@@ -299,6 +304,8 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     }
     
     /**
+     * Returns the end date.
+     * 
      * @return end.
      */
     public Integer returnEnd() {
@@ -313,12 +320,12 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
      * Clears this panel.
      */
     public void clear() {
-        this.collection = null;
-        this.dateArray = null;
-        this.removeAll();
+        collection = null;
+        dateArray = null;
+        removeAll();
         timelines = null;
-        this.revalidate();
-        this.repaint();
+        revalidate();
+        repaint();
     }
     
     /**
@@ -341,9 +348,17 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     public void stateChanged(ChangeEvent e) {
         JSlider source = (JSlider) e.getSource();
         if (source.getValueIsAdjusting()) {
-            int val = source.getValue() * 10;
+            int val = source.getValue();
             if (val >= MIN_SIZE && val <= MAX_SIZE) {
+                int oldSize = SIZE;
                 SIZE = val;
+                JViewport viewer = (JViewport) this.getParent();
+                Point position = viewer.getViewPosition();
+                viewer.setViewPosition(
+                        new Point(
+                                position.x + (SIZE - oldSize) / 2,
+                                0
+                        ));
                 calculateTimePeriod();
                 repaint();
             }
