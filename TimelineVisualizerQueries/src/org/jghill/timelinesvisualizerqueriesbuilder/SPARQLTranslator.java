@@ -132,14 +132,11 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getIdentifier() {
         String query = "";
         String triple = OBJECT + "crm:P48_has_preferred_identifier/rdfs:label " + IDENTIFIER;
+        query += "{ ";
+        query += triple;
+        query += " } . \n";
         if (settings.hasIdentifierCheck) {
-            query += triple;
-            query += " . \n";
             query += "FILTER (CONTAINS(LCASE(" + IDENTIFIER + "), \"" + settings.identifier + "\")). \n";
-        } else {
-            query += "OPTIONAL { ";
-            query += triple;
-            query += " } . \n";
         }
         return query;
     }
@@ -233,9 +230,11 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getTechnique() {
         String query = "";
-        String triple = PRODUCTION + "crm:P9_consists_of [ crm:P32_used_general_technique/skos:prefLabel " + TECHNIQUE + " ] ";
+        String triple = PRODUCTION + "crm:P9_consists_of [ crm:P32_used_general_technique [ skos:prefLabel " + TECHNIQUE + " ] ] ";
         if (settings.hasTechniqueCheck) {
-            query += "{ " + triple  + " } . \n";
+            query += "{ ";
+            query += triple;
+            query += " } . \n";
             query += "FILTER (CONTAINS(LCASE(" + TECHNIQUE + "), \"" + settings.technique + "\")). \n";
         } else {
             query += "OPTIONAL { ";
