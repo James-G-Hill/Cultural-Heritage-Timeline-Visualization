@@ -1,6 +1,7 @@
 package org.jghill.timelinesvisualizercollections.display;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,15 +16,24 @@ import static org.jghill.timelinesvisualizercollections.display.CollectionDispla
 import org.jghill.timelinevisualizerentities.ManMadeObject;
 import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toMap;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  * A Panel for displaying the results.
  * 
  * @author JGHill
  */
-public class CollectionDisplayPanel extends JPanel {
+public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     
     private final static int INDENT = 0;
+    
+    private int SIZE;
+    private final static int MIN_SIZE = 1000;
+    private final static int MAX_SIZE = 10000;
+    
+    private JSlider zoom;
     
     private ManMadeObject[] collection;
     private TimeLine[] timelines;
@@ -60,6 +70,7 @@ public class CollectionDisplayPanel extends JPanel {
      * Sets the initial settings when constructed.
      */
     private void setUp() {
+        SIZE = MIN_SIZE;
         this.setLayout(null);
         colors.add(pink);
         colors.add(green);
@@ -67,6 +78,16 @@ public class CollectionDisplayPanel extends JPanel {
         colors.add(orange);
         colors.add(purple);
         colors.add(yellow);
+    }
+    
+    /**
+     * Sets the slider for this object.
+     * 
+     * @param zoom the slider.
+     */
+    public void setSlider(JSlider zoom) {
+        this.zoom = zoom;
+        this.zoom.addChangeListener(this);
     }
     
     /**
@@ -80,7 +101,9 @@ public class CollectionDisplayPanel extends JPanel {
         clear();
         this.collection = collection;
         calculateTimePeriod();
-        createTimeLines();
+        runFilter();
+        revalidate();
+        repaint();
         return timelines;
     }
     
@@ -95,15 +118,6 @@ public class CollectionDisplayPanel extends JPanel {
         end = getEnd(latest, interval);
         intervalsCount = countIntervals(start, end, interval);
         dateArray = getArrayOfDates(start, interval, intervalsCount);
-    }
-    
-    /**
-     * Creates all timelines for this collection display panel.
-     */
-    private void createTimeLines() {
-        runFilter();
-        revalidate();
-        repaint();
     }
     
     /**
@@ -242,6 +256,8 @@ public class CollectionDisplayPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         paintTimeLines();
+        this.setPreferredSize(new Dimension(SIZE, timelines.length * 200));
+        revalidate();
     }
     
     /**
@@ -251,7 +267,6 @@ public class CollectionDisplayPanel extends JPanel {
         if (timelines != null) {
             int tlCount = 0;
             for(TimeLine tm : timelines) {
-                System.out.println(tm.getName());
                 tm.setBounds(
                         INDENT,
                         INDENT + (INDENT * tlCount) + (200 * tlCount),
@@ -318,6 +333,19 @@ public class CollectionDisplayPanel extends JPanel {
             }
         }
         return objects;
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        JSlider source = (JSlider) e.getSource();
+        if (source.getValueIsAdjusting()) {
+            int val = source.getValue() * 10;
+            if (val >= MIN_SIZE && val <= MAX_SIZE) {
+                SIZE = val;
+                calculateTimePeriod();
+                repaint();
+            }
+        }
     }
     
 }
