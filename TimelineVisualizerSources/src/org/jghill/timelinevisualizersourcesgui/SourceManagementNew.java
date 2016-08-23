@@ -50,7 +50,9 @@ public class SourceManagementNew extends javax.swing.JDialog {
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceTypeText, org.openide.util.NbBundle.getMessage(SourceManagementNew.class, "SourceManagementNew.SourceTypeText.text")); // NOI18N
 
-        NewSourceSelectionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select....", "SPARQL Endpoint", "Text File" }));
+        NewSourceSelectionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SPARQL Endpoint" }));
+        NewSourceSelectionBox.setToolTipText(org.openide.util.NbBundle.getMessage(SourceManagementNew.class, "SourceManagementNew.NewSourceSelectionBox.toolTipText")); // NOI18N
+        NewSourceSelectionBox.setEnabled(false);
         NewSourceSelectionBox.setMaximumSize(new java.awt.Dimension(150, 20));
         NewSourceSelectionBox.setMinimumSize(new java.awt.Dimension(150, 20));
         NewSourceSelectionBox.setPreferredSize(new java.awt.Dimension(150, 20));
