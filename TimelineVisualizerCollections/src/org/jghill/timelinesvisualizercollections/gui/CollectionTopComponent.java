@@ -99,6 +99,9 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         ComboBoxModel comboModel = new DefaultComboBoxModel(categories.toArray());
         FirstFilterComboBox.setModel(comboModel);
         FirstFilterComboBox.setSelectedIndex(0);
+        
+        collectionDisplayPanel.setSlider(ZoomSlider);
+        
     }
 
     /**
@@ -164,7 +167,11 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         Group2ComboBox = new javax.swing.JComboBox<>();
         Group2FilterLabel = new javax.swing.JLabel();
         Group2FilterComboBox = new javax.swing.JComboBox<>();
+        CollectionDisplayScrollPane = new javax.swing.JScrollPane();
         collectionDisplayPanel = new org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel();
+        ZoomSlider = new javax.swing.JSlider();
+        ZoomOutLabel = new javax.swing.JLabel();
+        ZoomInLabel = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1100, 500));
 
@@ -197,11 +204,11 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InformationLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(InformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(TitleTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 1055, Short.MAX_VALUE)
+                    .addComponent(TitleTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
                     .addComponent(NotesTextPanel)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, InformationLayout.createSequentialGroup()
                         .addComponent(NotesText, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 855, Short.MAX_VALUE)))
+                        .addGap(0, 875, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         InformationLayout.setVerticalGroup(
@@ -212,7 +219,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 .addGap(18, 18, 18)
                 .addComponent(NotesText)
                 .addGap(18, 18, 18)
-                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -377,7 +384,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                         .addComponent(QueryNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createSequentialGroup()
-                        .addGap(0, 493, Short.MAX_VALUE)
+                        .addGap(0, 513, Short.MAX_VALUE)
                         .addComponent(ResetButton)
                         .addGap(18, 18, 18)
                         .addComponent(CreateButton))
@@ -423,7 +430,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                                         .addComponent(AndText1)
                                         .addGap(18, 18, 18)
                                         .addComponent(CreationEndYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 174, Short.MAX_VALUE)))
+                        .addGap(0, 194, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         QueriesLayout.setVerticalGroup(
@@ -435,7 +442,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createSequentialGroup()
                         .addComponent(ExistingQueriesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(QueriesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                        .addComponent(QueriesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(DeleteButton)
@@ -509,14 +516,14 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             EntitiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EntitiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1055, Short.MAX_VALUE)
+                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
                 .addContainerGap())
         );
         EntitiesLayout.setVerticalGroup(
             EntitiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EntitiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
+                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -573,45 +580,72 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             }
         });
 
-        collectionDisplayPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CollectionDisplayScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        CollectionDisplayScrollPane.setViewportView(collectionDisplayPanel);
+
+        ZoomSlider.setMajorTickSpacing(100);
+        ZoomSlider.setMaximum(1000);
+        ZoomSlider.setPaintTicks(true);
+        ZoomSlider.setValue(0);
+
+        org.openide.awt.Mnemonics.setLocalizedText(ZoomOutLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ZoomOutLabel.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(ZoomInLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ZoomInLabel.text")); // NOI18N
 
         javax.swing.GroupLayout VisualizerLayout = new javax.swing.GroupLayout(Visualizer);
         Visualizer.setLayout(VisualizerLayout);
         VisualizerLayout.setHorizontalGroup(
             VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VisualizerLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(FirstFilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(FirstFilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Group1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Group1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Group1FilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Group1FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Group2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Group2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Group2FilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Group2FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
-            .addGroup(VisualizerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(collectionDisplayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(VisualizerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(CollectionDisplayScrollPane))
+                    .addGroup(VisualizerLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(FirstFilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(FirstFilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Group1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ZoomOutLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(VisualizerLayout.createSequentialGroup()
+                                .addComponent(Group1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Group1FilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Group1FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Group2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Group2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ZoomSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(VisualizerLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(Group2FilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Group2FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(VisualizerLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(ZoomInLabel)))
+                        .addGap(0, 98, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         VisualizerLayout.setVerticalGroup(
             VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VisualizerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(collectionDisplayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                .addComponent(CollectionDisplayScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ZoomSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ZoomOutLabel)
+                    .addComponent(ZoomInLabel))
+                .addGap(18, 18, 18)
                 .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Group2Label)
@@ -625,7 +659,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                         .addComponent(Group1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Group1FilterLabel)
                         .addComponent(Group1FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         Tab.addTab(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.Visualizer.TabConstraints.tabTitle"), Visualizer); // NOI18N
@@ -636,14 +670,14 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tab)
+                .addComponent(Tab, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tab)
+                .addComponent(Tab, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -924,6 +958,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AndText1;
+    private javax.swing.JScrollPane CollectionDisplayScrollPane;
     private javax.swing.JButton CreateButton;
     private javax.swing.JTextField CreationEndYearTextField;
     private javax.swing.JTextField CreationStartYearTextField;
@@ -977,6 +1012,9 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private javax.swing.JTextField TypeTextField;
     private javax.swing.JSeparator VerticalSeparator;
     private javax.swing.JPanel Visualizer;
+    private javax.swing.JLabel ZoomInLabel;
+    private javax.swing.JLabel ZoomOutLabel;
+    private javax.swing.JSlider ZoomSlider;
     private org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel collectionDisplayPanel;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
