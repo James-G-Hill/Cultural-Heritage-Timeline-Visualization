@@ -41,7 +41,7 @@ public abstract class QueryShell implements Comparable {
      * @return the collection of entities from a query.
      */
     abstract public EntitiesCollection run();
-
+    
     @Override
     public int compareTo(Object o) {
         QueryShell query = (QueryShell) o;
