@@ -40,11 +40,11 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String IMAGE = "?image ";
     private static final String DATE = "?date ";
     
-    private static final String DEPICTION_SAMPLE = "?depictsSample ";
-    private static final String CONSISTS_SAMPLE = "?consistsSample ";
-    private static final String TYPE_SAMPLE = "?typeSample ";
-    private static final String TECHNIQUE_SAMPLE = "?techniqueSample ";
-    private static final String DATE_SAMPLE = "?dateSample ";
+//    private static final String DEPICTION_SAMPLE = "?depictsSample ";
+//    private static final String CONSISTS_SAMPLE = "?consistsSample ";
+//    private static final String TYPE_SAMPLE = "?typeSample ";
+//    private static final String TECHNIQUE_SAMPLE = "?techniqueSample ";
+//    private static final String DATE_SAMPLE = "?dateSample ";
     
     private static final String DESCRIPTION = "?description ";
     private static final String CURATORIAL = "?curatorial ";
@@ -66,7 +66,7 @@ public class SPARQLTranslator implements QueryTranslator {
                 WHERE + "\n\n" +
                 whereClause() + "\n\n" +
                 END + "\n\n" +
-                groupby() + "\n\n" +
+//                groupby() + "\n\n" +
                 limit();
     }
     
@@ -89,17 +89,17 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String select() {
         return
-                SELECT +
-                IDENTIFIER + "\n" +
-                NAME + "\n" +
-                "(SAMPLE(" + DEPICTION + ") AS " + DEPICTION_SAMPLE + ") " + "\n" +
-                "(SAMPLE(" + CONSISTS + ") AS " + CONSISTS_SAMPLE + ") " + "\n" +
-                "(SAMPLE(" + TYPE + ") AS " + TYPE_SAMPLE + ") " + "\n" +
-                "(SAMPLE(" + TECHNIQUE + ") AS " + TECHNIQUE_SAMPLE + ") " + "\n" +
-                IMAGE +
-                "(SAMPLE(" + DATE + ") AS " + DATE_SAMPLE + ") " + "\n" +
-                DESCRIPTION + "\n" +
-                CURATORIAL + "\n";
+                SELECT + " \n" +
+                IDENTIFIER + " \n" +
+                NAME + " \n" +
+                DEPICTION + " \n" +
+                CONSISTS + " \n" +
+                TYPE + " \n" +
+                TECHNIQUE + " \n" +
+                IMAGE + " \n" +
+                DATE + " \n" +
+                DESCRIPTION + " \n" +
+                CURATORIAL + " \n";
     }
     
     /**
@@ -306,19 +306,19 @@ public class SPARQLTranslator implements QueryTranslator {
         return "OPTIONAL { " + OBJECT + "bmo:PX_curatorial_comment " + CURATORIAL + "}. \n";
     }
     
-    /**
-     * Groups the results by the identifier.
-     * 
-     * @return the groupby function.
-     */
-    private String groupby() {
-        return GROUP_BY + " \n" +
-                IDENTIFIER + " \n" +
-                NAME  + " \n" +
-                IMAGE + " \n" +
-                DESCRIPTION  + " \n" +
-                CURATORIAL;
-    }
+//    /**
+//     * Groups the results by the identifier.
+//     * 
+//     * @return the groupby function.
+//     */
+//    private String groupby() {
+//        return GROUP_BY + " \n" +
+//                IDENTIFIER + " \n" +
+//                NAME  + " \n" +
+//                IMAGE + " \n" +
+//                DESCRIPTION  + " \n" +
+//                CURATORIAL;
+//    }
     
     /**
      * Builds the LIMIT part of expression.
