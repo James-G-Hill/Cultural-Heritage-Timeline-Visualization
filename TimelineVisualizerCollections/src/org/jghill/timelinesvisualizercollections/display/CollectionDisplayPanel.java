@@ -15,13 +15,12 @@ import java.util.TreeMap;
 import javax.swing.JPanel;
 import static org.jghill.timelinesvisualizercollections.display.CollectionDisplayUtilities.*;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
-import static java.util.Map.Entry.comparingByValue;
-import static java.util.stream.Collectors.toMap;
-import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JViewport;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import static java.util.Map.Entry.comparingByValue;
+import static java.util.stream.Collectors.toMap;
 
 /**
  * A Panel for displaying the results.
@@ -30,11 +29,10 @@ import javax.swing.event.ChangeListener;
  */
 public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     
-    private final static int INDENT = 0;
-    
-    private int SIZE;
+    private int SIZE = 1000;
     private final static int MIN_SIZE = 1000;
     private final static int MAX_SIZE = 10000;
+    private final static int TIMELINE_SIZE = 200;
     
     private JSlider zoom;
     
@@ -73,8 +71,7 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
      * Sets the initial settings when constructed.
      */
     private void setUp() {
-        SIZE = MIN_SIZE;
-        this.setLayout(null);
+        setLayout(null);
         colors.add(pink);
         colors.add(green);
         colors.add(blue);
@@ -99,7 +96,10 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
      * @param collection that will be displayed.
      * @return the TimeLine array produced by this method.
      */
-    public TimeLine[] setArray(ManMadeObject[] collection, String filter) {
+    public TimeLine[] setArray(
+            ManMadeObject[] collection,
+            String filter
+    ) {
         this.filter = filter;
         clear();
         this.collection = collection;
@@ -131,37 +131,39 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
         TreeMap<String, List<ManMadeObject>> categories = new TreeMap<>();
         
         for(ManMadeObject object: collection) {
-            String result;
-            switch(filter) {
-                case "Query" :
-                    result = object.getQueryName();
-                    break;
-                case "Source" :
-                    result = object.getSourceName();
-                    break;
-                case "Material" :
-                    result = object.getConsists();
-                    break;
-                case "Type" :
-                    result = object.getType();
-                    break;
-                case "Technique" :
-                    result = object.getTechnique();
-                    break;
-                case "None" :
-                    result = "General";
-                    break;
-                default :
-                    result = "";
-                    break;
-            }
-            if (categories.containsKey(result)) {
-                List<ManMadeObject> set = categories.get(result);
-                set.add(object);
-            } else {
-                List<ManMadeObject> list = new ArrayList<>();
-                list.add(object);
-                categories.putIfAbsent(result, list);
+            if (object.getTimeSpan() != null) {
+                String result;
+                switch(filter) {
+                    case "Query" :
+                        result = object.getQueryName();
+                        break;
+                    case "Source" :
+                        result = object.getSourceName();
+                        break;
+                    case "Material" :
+                        result = object.getConsists();
+                        break;
+                    case "Type" :
+                        result = object.getType();
+                        break;
+                    case "Technique" :
+                        result = object.getTechnique();
+                        break;
+                    case "None" :
+                        result = "General";
+                        break;
+                    default :
+                        result = "";
+                        break;
+                }
+                if (categories.containsKey(result)) {
+                    List<ManMadeObject> set = categories.get(result);
+                    set.add(object);
+                } else {
+                    List<ManMadeObject> list = new ArrayList<>();
+                    list.add(object);
+                    categories.putIfAbsent(result, list);
+                }
             }
         }
         
@@ -273,10 +275,10 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
             int tlCount = 0;
             for(TimeLine tm : timelines) {
                 tm.setBounds(
-                        INDENT,
-                        INDENT + (INDENT * tlCount) + (200 * tlCount),
-                        this.getWidth() - (INDENT * 2),
-                        200
+                        0,
+                        tlCount + (TIMELINE_SIZE * tlCount),
+                        this.getWidth(),
+                        TIMELINE_SIZE
                 );
                 tlCount++;
             }
@@ -284,6 +286,8 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     }
     
     /**
+     * Returns the array of dates associated with this display.
+     * 
      * @return the dateArray.
      */
     public int[] getDateArray() {
@@ -343,26 +347,44 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
         }
         return objects;
     }
-
+    
+    /**
+     * Update the zoom level when reacting to the slider changing.
+     * 
+     * @param e the event that's changed.
+     */
     @Override
     public void stateChanged(ChangeEvent e) {
+        
         JSlider source = (JSlider) e.getSource();
+        
         if (source.getValueIsAdjusting()) {
-            int val = source.getValue();
-            if (val >= MIN_SIZE && val <= MAX_SIZE) {
-                int oldSize = SIZE;
-                SIZE = val;
+            
+            int maxSize = source.getValue();
+            
+            if (maxSize >= MIN_SIZE && maxSize <= MAX_SIZE) {
+                
                 JViewport viewer = (JViewport) this.getParent();
-                Point position = viewer.getViewPosition();
-                viewer.setViewPosition(
-                        new Point(
-                                position.x + (SIZE - oldSize) / 2,
-                                0
+                
+                int position = viewer.getViewPosition().x;
+                int halfWidth = viewer.getSize().width / 2;
+                int oldCentre = position + halfWidth;
+                double ratio = (double) maxSize / SIZE;
+                
+                SIZE = maxSize;
+                
+                viewer.setViewPosition(new Point(
+                                (int) ((oldCentre * ratio) - halfWidth),
+                                viewer.getViewPosition().y
                         ));
+                
                 calculateTimePeriod();
                 repaint();
+                
             }
+            
         }
+        
     }
     
 }
