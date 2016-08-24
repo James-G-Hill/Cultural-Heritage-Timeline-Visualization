@@ -6,12 +6,16 @@ import org.jghill.timelinevisualizersources.SourceTableModel;
 
 /**
  * A dialog for adding new sources to the SourceCollection.
+ * 
  * @author JGHill
  */
 public class SourceManagementNew extends javax.swing.JDialog {
 
     /**
-     * Creates new form SourceManagementNew
+     * Constructor.
+     * 
+     * @param parent
+     * @parem modal property of this object.
      */
     public SourceManagementNew(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -39,7 +43,6 @@ public class SourceManagementNew extends javax.swing.JDialog {
         setTitle(org.openide.util.NbBundle.getMessage(SourceManagementNew.class, "SourceManagementNew.title")); // NOI18N
         setAlwaysOnTop(true);
         setIconImages(null);
-        setMaximumSize(new java.awt.Dimension(400, 300));
         setMinimumSize(new java.awt.Dimension(400, 300));
         setName("New Source Tool"); // NOI18N
         setResizable(false);
@@ -50,9 +53,7 @@ public class SourceManagementNew extends javax.swing.JDialog {
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceTypeText, org.openide.util.NbBundle.getMessage(SourceManagementNew.class, "SourceManagementNew.SourceTypeText.text")); // NOI18N
 
-        NewSourceSelectionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SPARQL Endpoint" }));
-        NewSourceSelectionBox.setToolTipText(org.openide.util.NbBundle.getMessage(SourceManagementNew.class, "SourceManagementNew.NewSourceSelectionBox.toolTipText")); // NOI18N
-        NewSourceSelectionBox.setEnabled(false);
+        NewSourceSelectionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select....", "SPARQL Endpoint" }));
         NewSourceSelectionBox.setMaximumSize(new java.awt.Dimension(150, 20));
         NewSourceSelectionBox.setMinimumSize(new java.awt.Dimension(150, 20));
         NewSourceSelectionBox.setPreferredSize(new java.awt.Dimension(150, 20));
@@ -203,6 +204,7 @@ public class SourceManagementNew extends javax.swing.JDialog {
     
     /**
      * A setter for a sourceTableModel to be updated by this class.
+     * 
      * @param source the sourceTableModel to be added.
      */
     public void setSourceTableModel(SourceTableModel source) {
