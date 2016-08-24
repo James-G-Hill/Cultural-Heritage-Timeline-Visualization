@@ -17,7 +17,7 @@ public class EntityTableModel extends AbstractTableModel {
     private final Collection collection;
     private ManMadeObject[] entities;
     
-    private static final int COL_COUNT = 6;
+    private static final int COL_COUNT = 9;
     
     public EntityTableModel(Collection c) {
         this.collection = c;
@@ -55,6 +55,12 @@ public class EntityTableModel extends AbstractTableModel {
             case 5:
                 year = entities[rowIndex].getTimeSpan();
                 return formatYear(year);
+            case 6:
+                return entities[rowIndex].getConsists();
+            case 7:
+                return entities[rowIndex].getType();
+            case 8:
+                return  entities[rowIndex].getTechnique();
             default:
                 return null;
         }
@@ -74,7 +80,13 @@ public class EntityTableModel extends AbstractTableModel {
             case 4:
                 return "Image";
             case 5:
-                return "Time Span";
+                return "Year";
+            case 6:
+                return "Material";
+            case 7:
+                return "Type";
+            case 8:
+                return "Technique";
             default:
                 return null;
         }
