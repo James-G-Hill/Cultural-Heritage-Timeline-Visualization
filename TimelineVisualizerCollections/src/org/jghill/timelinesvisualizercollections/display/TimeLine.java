@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.Arrays;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JViewport;
 import org.apache.commons.lang3.text.WordUtils;
 import org.jghill.timelinesvisualizercollections.gui.CollectionTopComponent;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
@@ -23,6 +24,10 @@ public class TimeLine extends JLayeredPane {
     private final static int SCALE_INDENT = 40;
     private final static int UPNOTCH = 5;
     private final static int DOWNNOTCH = 15;
+    
+    private final static int DESCRIPTION_INDENT = 5;
+    private final static int DESCRIPTION_LENGTH = 400;
+    private final static int DESCRIPTION_HEIGHT = 15;
     
     private final String name;
     
@@ -46,7 +51,6 @@ public class TimeLine extends JLayeredPane {
      * @param name to appear on the TimeLine.
      * @param objects to represent on the TimeLine.
      * @param color of the TimeLine background.
-     * @param cdp the parent object.
      */
     public TimeLine(
             String name,
@@ -128,13 +132,14 @@ public class TimeLine extends JLayeredPane {
      * Places the description onto the TimeLine.
      */
     private void setDescription() {
+        JViewport viewPort  = (JViewport) cdp.getParent();
         this.add(description);
         description.setVisible(true);
         description.setBounds(
-                5,
-                5,
-                400,
-                15
+                viewPort.getViewPosition().x + DESCRIPTION_INDENT,
+                DESCRIPTION_INDENT,
+                DESCRIPTION_LENGTH,
+                DESCRIPTION_HEIGHT
         );
         description.setText(WordUtils.capitalize(name));
     }
@@ -230,6 +235,11 @@ public class TimeLine extends JLayeredPane {
         
     }
     
+    /**
+     * Return the name of this TimeLine.
+     * 
+     * @return the name.
+     */
     @Override
     public String getName() {
         return name;
