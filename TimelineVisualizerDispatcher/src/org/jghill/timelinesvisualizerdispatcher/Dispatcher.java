@@ -18,6 +18,11 @@ public class Dispatcher implements Callable {
     
     QueriesCollection queries;
     
+    /**
+     * The Constructor.
+     * 
+     * @param queries to be dispatched to endpoints.
+     */
     public Dispatcher(QueriesCollection queries) {
         this.queries = queries;
     }
