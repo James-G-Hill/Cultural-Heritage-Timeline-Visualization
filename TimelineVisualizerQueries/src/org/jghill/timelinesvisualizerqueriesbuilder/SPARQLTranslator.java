@@ -31,9 +31,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String GROUP_BY = "GROUP BY ";
     
     private static final String OBJECT = "?object ";
-    
     private static final String IDENTIFIER = "?identifier ";
-    
     private static final String NAME = "?name ";
     private static final String DEPICTION = "?depicts ";
     private static final String CONSISTS = "?consists ";
@@ -42,18 +40,14 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String IMAGE = "?image ";
     private static final String DATE = "?date ";
     
-    private static final String NAME_SAMPLE = "?nameSample ";
     private static final String DEPICTION_SAMPLE = "?depictsSample ";
     private static final String CONSISTS_SAMPLE = "?consistsSample ";
     private static final String TYPE_SAMPLE = "?typeSample ";
     private static final String TECHNIQUE_SAMPLE = "?techniqueSample ";
-    private static final String IMAGE_SAMPLE = "?imageSample ";
     private static final String DATE_SAMPLE = "?dateSample ";
     
     private static final String DESCRIPTION = "?description ";
-    private static final String DESCRIPTION_SAMPLE = "?descriptionSample ";
     private static final String CURATORIAL = "?curatorial ";
-    private static final String CURATORIAL_SAMPLE = "?curatorialSample ";
     
     private static final String PRODUCTION = "?production ";
     private static final String TIME = "?time ";
@@ -97,15 +91,15 @@ public class SPARQLTranslator implements QueryTranslator {
         return
                 SELECT +
                 IDENTIFIER + "\n" +
-                "(SAMPLE(" + NAME + ") AS " + NAME_SAMPLE + ") " + "\n" +
+                NAME + "\n" +
                 "(SAMPLE(" + DEPICTION + ") AS " + DEPICTION_SAMPLE + ") " + "\n" +
                 "(SAMPLE(" + CONSISTS + ") AS " + CONSISTS_SAMPLE + ") " + "\n" +
                 "(SAMPLE(" + TYPE + ") AS " + TYPE_SAMPLE + ") " + "\n" +
                 "(SAMPLE(" + TECHNIQUE + ") AS " + TECHNIQUE_SAMPLE + ") " + "\n" +
-                "(SAMPLE(" + IMAGE + ") AS " + IMAGE_SAMPLE + ") " + "\n" +
+                IMAGE +
                 "(SAMPLE(" + DATE + ") AS " + DATE_SAMPLE + ") " + "\n" +
-                "(SAMPLE(" + DESCRIPTION + ") AS " + DESCRIPTION_SAMPLE + ") " + "\n" +
-                "(SAMPLE(" + CURATORIAL + ") AS " + CURATORIAL_SAMPLE + ") " + "\n";
+                DESCRIPTION + "\n" +
+                CURATORIAL + "\n";
     }
     
     /**
@@ -227,6 +221,8 @@ public class SPARQLTranslator implements QueryTranslator {
     
     /**
      * The technique that created the object.
+     * 
+     * @return the technique query part.
      */
     private String getTechnique() {
         String query = "";
@@ -245,7 +241,9 @@ public class SPARQLTranslator implements QueryTranslator {
     }
     
     /**
-     * Returns the query address and note.
+     * Returns the image that represents this object.
+     * 
+     * @return the image url.
      */
     private String getImage() {
         String query = "";
@@ -264,6 +262,8 @@ public class SPARQLTranslator implements QueryTranslator {
     
     /**
      * Returns the dates.
+     * 
+     * @return the function for returning dates.
      */
     private String getDates() {
         String dates = "";
@@ -290,6 +290,8 @@ public class SPARQLTranslator implements QueryTranslator {
     
     /**
      * Line for obtaining an object description.
+     * 
+     * @return the object description request.
      */
     private String getDescription() {
         return "OPTIONAL { " + OBJECT + "bmo:PX_physical_description " + DESCRIPTION + "}. \n";
@@ -297,6 +299,8 @@ public class SPARQLTranslator implements QueryTranslator {
     
     /**
      * Line for obtaining a curators comments.
+     * 
+     * @return the curatorial comment request.
      */
     private String getCuration() {
         return "OPTIONAL { " + OBJECT + "bmo:PX_curatorial_comment " + CURATORIAL + "}. \n";
@@ -305,17 +309,24 @@ public class SPARQLTranslator implements QueryTranslator {
     /**
      * Groups the results by the identifier.
      * 
-     * @return a string for the group by function.
+     * @return the groupby function.
      */
     private String groupby() {
-        return GROUP_BY + IDENTIFIER;
+        return GROUP_BY + " \n" +
+                IDENTIFIER + " \n" +
+                NAME  + " \n" +
+                IMAGE + " \n" +
+                DESCRIPTION  + " \n" +
+                CURATORIAL;
     }
     
     /**
      * Builds the LIMIT part of expression.
+     * 
+     * @return the limit command.
      */
     private String limit() {
-        return LIMIT + settings.limit + "\n";
+        return LIMIT + settings.limit;
     }
     
 }
