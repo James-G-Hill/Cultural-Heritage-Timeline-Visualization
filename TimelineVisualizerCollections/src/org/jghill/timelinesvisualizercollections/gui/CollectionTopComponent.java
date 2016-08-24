@@ -1,5 +1,6 @@
 package org.jghill.timelinesvisualizercollections.gui;
 
+import java.awt.Cursor;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
@@ -583,10 +584,10 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         CollectionDisplayScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         CollectionDisplayScrollPane.setViewportView(collectionDisplayPanel);
 
-        ZoomSlider.setMajorTickSpacing(100);
-        ZoomSlider.setMaximum(1000);
+        ZoomSlider.setMajorTickSpacing(1000);
+        ZoomSlider.setMaximum(10000);
+        ZoomSlider.setMinimum(1000);
         ZoomSlider.setPaintTicks(true);
-        ZoomSlider.setValue(0);
 
         org.openide.awt.Mnemonics.setLocalizedText(ZoomOutLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ZoomOutLabel.text")); // NOI18N
 
@@ -632,14 +633,14 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                             .addGroup(VisualizerLayout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addComponent(ZoomInLabel)))
-                        .addGap(0, 98, Short.MAX_VALUE)))
+                        .addGap(0, 78, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         VisualizerLayout.setVerticalGroup(
             VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VisualizerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(CollectionDisplayScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addComponent(CollectionDisplayScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ZoomSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -698,7 +699,9 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
         if (coll.getQueriesCollection().getCount() > 0) {
             RequestProcessor executor = new RequestProcessor(coll.getName());
-            try {
+            try
+            {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 etb.clearAll();
                 EntitiesCollection entities = coll.getEntitiesCollection();
                 
@@ -725,6 +728,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 output("502 Proxy Error: endpoint not available.");
             } finally {
                 executor.shutdown();
+                this.setCursor(Cursor.getDefaultCursor());
             }
         } else {
             resetEntitiesAndDisplay();
