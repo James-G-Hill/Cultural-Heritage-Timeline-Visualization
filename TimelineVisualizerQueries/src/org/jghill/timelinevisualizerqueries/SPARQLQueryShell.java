@@ -65,14 +65,17 @@ public class SPARQLQueryShell extends QueryShell {
      * @return the entities.
      */
     private EntitiesCollection getResults(Query query) throws HttpException {
+        
         output("getting results");
         ResultSet results;
+        
         try(QueryExecution qexec = QueryExecutionFactory.sparqlService(service.getWebAddress(), query)) {
             results = qexec.execSelect();
             return buildEntities(results);
         } catch (HttpException ex) {
             throw new HttpException("502 Proxy Error: " + ex.getMessage());
         }
+        
     }
     
     /**
