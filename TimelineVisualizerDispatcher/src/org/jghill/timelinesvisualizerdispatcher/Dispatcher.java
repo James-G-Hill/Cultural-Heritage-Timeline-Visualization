@@ -11,6 +11,7 @@ import org.netbeans.api.io.InputOutput;
 /**
  * A dispatcher sends queries and collects the results to create a collection
  * of entities.
+ * 
  * @author JGHill
  */
 public class Dispatcher implements Callable {
@@ -23,6 +24,7 @@ public class Dispatcher implements Callable {
     
     /**
      * Runs all queries in a collection.
+     * 
      * @return a collection of entities built from the queries.
      */
     @Override
@@ -47,6 +49,7 @@ public class Dispatcher implements Callable {
     
     /**
      * Outputs an explanation of the action.
+     * 
      * @param text toString of the returned entity.
      */
     private void output(String text) {
