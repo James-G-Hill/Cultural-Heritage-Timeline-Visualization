@@ -64,7 +64,10 @@ public final class CollectionDisplayUtilities {
      * @param interval the interval.
      * @return the first year date for the scale.
      */
-    public static Calendar getStart(Calendar earliest, int interval) {
+    public static Calendar getStart(
+            Calendar earliest,
+            int interval
+    ) {
         int year = earliest.get(Calendar.YEAR);
         if (interval == 0) {
             return new GregorianCalendar(year - 1, 1, 1);
@@ -76,11 +79,15 @@ public final class CollectionDisplayUtilities {
     
     /**
      * Returns the end date for the scale.
+     * 
      * @param latest date.
      * @param interval the interval.
      * @return the last year date for the scale.
      */
-    public static Calendar getEnd(Calendar latest, int interval) {
+    public static Calendar getEnd(
+            Calendar latest,
+            int interval
+    ) {
         int year = latest.get(Calendar.YEAR);
         if (interval == 0) {
             return new GregorianCalendar(year + 1, 1, 1);
@@ -95,7 +102,10 @@ public final class CollectionDisplayUtilities {
      * 
      * @return the size of the interval.
      */
-    public static int calculateInterval(Calendar start, Calendar end) {
+    public static int calculateInterval(
+            Calendar start,
+            Calendar end
+    ) {
         int difference = end.get(Calendar.YEAR) - start.get(Calendar.YEAR);
         if (difference < 10) {
             return 1;
@@ -109,7 +119,11 @@ public final class CollectionDisplayUtilities {
      * 
      * @return the number of intervals.
      */
-    public static int countIntervals(Calendar earliest, Calendar latest, int interval) {
+    public static int countIntervals(
+            Calendar earliest,
+            Calendar latest,
+            int interval
+    ) {
         int difference = latest.get(Calendar.YEAR) - earliest.get(Calendar.YEAR);
         if (interval == 0) {
             return 10;
@@ -126,7 +140,11 @@ public final class CollectionDisplayUtilities {
      * @param intervalsCount the number of intervals.
      * @return an array of years.
      */
-    public static int[] getArrayOfDates(Calendar start, int interval, int intervalsCount) {
+    public static int[] getArrayOfDates(
+            Calendar start,
+            int interval,
+            int intervalsCount
+    ) {
         int[] dates = new int[intervalsCount];
         if (interval == 0) {
             dates[0] = 0;
