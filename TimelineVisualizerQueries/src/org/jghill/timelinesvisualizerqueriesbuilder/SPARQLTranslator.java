@@ -23,12 +23,11 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String XML = "xsd: <http://www.w3.org/2001/XMLSchema#> \n";
     
     private static final String PREFIX = "PREFIX ";
-    private static final String SELECT = "SELECT ";
+    private static final String SELECT = "SELECT DISTINCT ";
     private static final String WHERE = "WHERE { ";
     private static final String END = "} ";
     private static final String LIMIT = "LIMIT ";
     private static final String UNION = "UNION ";
-    private static final String GROUP_BY = "GROUP BY ";
     
     private static final String OBJECT = "?object ";
     private static final String IDENTIFIER = "?identifier ";
@@ -39,12 +38,6 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String TECHNIQUE = "?technique ";
     private static final String IMAGE = "?image ";
     private static final String DATE = "?date ";
-    
-//    private static final String DEPICTION_SAMPLE = "?depictsSample ";
-//    private static final String CONSISTS_SAMPLE = "?consistsSample ";
-//    private static final String TYPE_SAMPLE = "?typeSample ";
-//    private static final String TECHNIQUE_SAMPLE = "?techniqueSample ";
-//    private static final String DATE_SAMPLE = "?dateSample ";
     
     private static final String DESCRIPTION = "?description ";
     private static final String CURATORIAL = "?curatorial ";
@@ -66,7 +59,6 @@ public class SPARQLTranslator implements QueryTranslator {
                 WHERE + "\n\n" +
                 whereClause() + "\n\n" +
                 END + "\n\n" +
-//                groupby() + "\n\n" +
                 limit();
     }
     
@@ -305,20 +297,6 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getCuration() {
         return "OPTIONAL { " + OBJECT + "bmo:PX_curatorial_comment " + CURATORIAL + "}. \n";
     }
-    
-//    /**
-//     * Groups the results by the identifier.
-//     * 
-//     * @return the groupby function.
-//     */
-//    private String groupby() {
-//        return GROUP_BY + " \n" +
-//                IDENTIFIER + " \n" +
-//                NAME  + " \n" +
-//                IMAGE + " \n" +
-//                DESCRIPTION  + " \n" +
-//                CURATORIAL;
-//    }
     
     /**
      * Builds the LIMIT part of expression.
