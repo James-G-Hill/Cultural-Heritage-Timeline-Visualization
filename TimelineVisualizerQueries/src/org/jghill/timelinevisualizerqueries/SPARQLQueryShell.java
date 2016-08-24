@@ -71,7 +71,7 @@ public class SPARQLQueryShell extends QueryShell {
             results = qexec.execSelect();
             return buildEntities(results);
         } catch (HttpException ex) {
-            throw new HttpException("502 Proxy Error: ");
+            throw new HttpException("502 Proxy Error: " + ex.getMessage());
         }
     }
     
@@ -82,9 +82,12 @@ public class SPARQLQueryShell extends QueryShell {
      * @return the entities.
      */
     private EntitiesCollection buildEntities(ResultSet results) {
+        
         EntitiesCollection entities;
         entities = new EntitiesCollection(this.getQueryName());
+        
         for(; results.hasNext();) {
+            
             QuerySolution soln = results.next();
             
             output("Solution: " + soln.toString());
@@ -96,8 +99,8 @@ public class SPARQLQueryShell extends QueryShell {
             }
             
             String title = "";
-            if (soln.get("nameSample") != null) {
-                title = soln.get("nameSample").toString();
+            if (soln.get("name") != null) {
+                title = soln.get("name").toString();
                 output("Title       : " + title);
             } else {
                 title = identity;
@@ -128,8 +131,8 @@ public class SPARQLQueryShell extends QueryShell {
             }
             
             String image = "";
-            if (soln.get("imageSample") != null) {
-                image = soln.get("imageSample").toString();
+            if (soln.get("image") != null) {
+                image = soln.get("image").toString();
                 output("Image       : " + image);
             }
             
@@ -140,14 +143,14 @@ public class SPARQLQueryShell extends QueryShell {
             }
             
             String description = "";
-            if (soln.get("descriptionSample") != null) {
-                description = soln.get("descriptionSample").toString();
+            if (soln.get("description") != null) {
+                description = soln.get("description").toString();
                 output("Description : " + description);
             }
             
             String curatorial = "";
-            if (soln.get("curatorialSample") != null) {
-                curatorial = soln.get("curatorialSample").toString();
+            if (soln.get("curatorial") != null) {
+                curatorial = soln.get("curatorial").toString();
                 output("Curatorial  : " + curatorial);
             }
             
@@ -166,9 +169,13 @@ public class SPARQLQueryShell extends QueryShell {
                     description,
                     curatorial
             );
+            
             entities.addThing(thing);
+            
         }
+        
         return entities;
+        
     }
     
     /**
