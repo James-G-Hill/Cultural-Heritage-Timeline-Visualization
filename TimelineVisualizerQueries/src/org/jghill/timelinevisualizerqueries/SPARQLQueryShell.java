@@ -110,26 +110,26 @@ public class SPARQLQueryShell extends QueryShell {
             }
             
             String depicts = "";
-            if (soln.get("depictsSample") != null) {
-                depicts = soln.get("depictsSample").toString();
+            if (soln.get("depicts") != null) {
+                depicts = soln.get("depicts").toString();
                 output("Depicts     : " + depicts);
             }
             
             String consists = "";
-            if (soln.get("consistsSample") != null) {
-                consists = soln.get("consistsSample").toString();
+            if (soln.get("consists") != null) {
+                consists = soln.get("consists").toString();
                 output("Consists    : " + consists);
             }
             
             String type = "";
-            if (soln.get("typeSample") != null) {
-                type = soln.get("typeSample").toString();
+            if (soln.get("type") != null) {
+                type = soln.get("type").toString();
                 output("Type        : " + type);
             }
             
             String technique = "";
-            if (soln.get("techniqueSample") != null) {
-                technique = soln.get("techniqueSample").toString();
+            if (soln.get("technique") != null) {
+                technique = soln.get("technique").toString();
                 output("Technique   : " + technique);
             }
             
@@ -140,8 +140,8 @@ public class SPARQLQueryShell extends QueryShell {
             }
             
             String year = "";
-            if (soln.get("dateSample") != null) {
-                year = soln.get("dateSample").toString();
+            if (soln.get("date") != null) {
+                year = soln.get("date").toString();
                 output("Date        : " + year);
             }
             
