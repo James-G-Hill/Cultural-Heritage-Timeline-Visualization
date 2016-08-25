@@ -75,7 +75,9 @@ public class TimeLine extends JLayeredPane {
         this.setBackground(color);
         this.intervals = cdp.getDateArray();
         
-        setDescription();
+        this.add(description);
+        description.setVisible(true);
+        description.setText(WordUtils.capitalize(name));
         
         labels = new JLabel[intervals.length];
         for(int i = 0; i < intervals.length; i++) {
@@ -123,6 +125,7 @@ public class TimeLine extends JLayeredPane {
         lineLength = width - (LINE_INDENT * 2);
         scaleLength = lineLength - (SCALE_INDENT * 2);
         
+        paintDescription();
         paintScale(g);
         paintEntities(g);
         this.repaint();
@@ -131,17 +134,14 @@ public class TimeLine extends JLayeredPane {
     /**
      * Places the description onto the TimeLine.
      */
-    private void setDescription() {
+    private void paintDescription() {
         JViewport viewPort  = (JViewport) cdp.getParent();
-        this.add(description);
-        description.setVisible(true);
         description.setBounds(
                 viewPort.getViewPosition().x + DESCRIPTION_INDENT,
                 DESCRIPTION_INDENT,
                 DESCRIPTION_LENGTH,
                 DESCRIPTION_HEIGHT
         );
-        description.setText(WordUtils.capitalize(name));
     }
     
     /**
