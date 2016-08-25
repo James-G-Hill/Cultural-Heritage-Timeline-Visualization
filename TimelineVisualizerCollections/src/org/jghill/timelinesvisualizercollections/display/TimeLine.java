@@ -11,7 +11,7 @@ import org.jghill.timelinesvisualizercollections.gui.CollectionTopComponent;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
 
 /**
- * Displays the timeline relevant to the selection.
+ * Displays the TimeLine relevant to the selection.
  * 
  * @author JGHill
  */
@@ -73,17 +73,10 @@ public class TimeLine extends JLayeredPane {
         this.setLayout(null);
         this.setOpaque(true);
         this.setBackground(color);
-        this.intervals = cdp.getDateArray();
         
         this.add(description);
         description.setVisible(true);
         description.setText(WordUtils.capitalize(name));
-        
-        labels = new JLabel[intervals.length];
-        for(int i = 0; i < intervals.length; i++) {
-            labels[i] = new JLabel();
-            this.add(labels[i]);
-        }
         
         eDisplays = new EntityDisplay[objects.length];
         for(int i = 0; i < eDisplays.length; i++) {
@@ -106,8 +99,23 @@ public class TimeLine extends JLayeredPane {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (intervals != null && intervals.length > 1) {
+        if (objects.length > 0) {
+            if (intervals == null) {
+                setLabels();
+            }
             paintTimeLine(g);
+        }
+    }
+    
+    /**
+     * Creates the list of labels to place onto the TimeLine.
+     */
+    private void setLabels() {
+        intervals = cdp.getDateArray();
+        labels = new JLabel[intervals.length];
+        for(int i = 0; i < intervals.length; i++) {
+            labels[i] = new JLabel();
+            this.add(labels[i]);
         }
     }
         
@@ -128,7 +136,8 @@ public class TimeLine extends JLayeredPane {
         paintDescription();
         paintScale(g);
         paintEntities(g);
-        this.repaint();
+        repaint();
+        
     }
     
     /**
@@ -196,13 +205,27 @@ public class TimeLine extends JLayeredPane {
      */
     private void paintScale(Graphics g) {
         g.setColor(Color.BLACK);
-        g.drawLine(LINE_INDENT, vertical, LINE_INDENT + lineLength, vertical);
+        g.drawLine(
+                LINE_INDENT,
+                vertical,
+                LINE_INDENT + lineLength,
+                vertical);
         int x, y;
         y = vertical;
         for(int i = 0; i < intervals.length; i++) {
             x = LINE_INDENT + SCALE_INDENT + (int) (((double) scaleLength / (intervals.length - 1)) * i);
-            g.drawLine(x, y - UPNOTCH, x, y + DOWNNOTCH);
-            positionLabel(x, y, intervals[i], labels[i]);
+            g.drawLine(
+                    x,
+                    y - UPNOTCH,
+                    x,
+                    y + DOWNNOTCH
+            );
+            positionLabel(
+                    x,
+                    y,
+                    intervals[i],
+                    labels[i]
+            );
         }
     }
     
@@ -213,8 +236,8 @@ public class TimeLine extends JLayeredPane {
      */
     private void paintEntities(Graphics g) {
         
-        Integer firstYear = cdp.returnStart();
-        Integer lastYear = cdp.returnEnd();
+        Integer firstYear = intervals[0];
+        Integer lastYear = intervals[intervals.length - 1];
         
         int timeSpan = lastYear - firstYear;
         double ratio = ((double) scaleLength / timeSpan);
