@@ -443,6 +443,7 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
             TypeTextField.setText(entity.getType());
             TechniqueTextField.setText(entity.getTechnique());
             CreatorTextField.setText(entity.getCreator());
+            DetailsTextField.setText(entity.getObject());
             
             DescriptionTextArea.setText(entity.getDescription());
             DescriptionTextArea.setCaretPosition(0);
