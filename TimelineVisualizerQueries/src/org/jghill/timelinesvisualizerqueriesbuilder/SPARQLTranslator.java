@@ -113,6 +113,34 @@ public class SPARQLTranslator implements QueryTranslator {
     }
     
     /**
+     * Returns the dates.
+     * 
+     * @return the function for returning dates.
+     */
+    private String getDates() {
+        String dates = "";
+        
+        dates += PRODUCTION + " a crm:E12_Production ";
+        dates += "; crm:P108_has_produced " + OBJECT + " . \n";
+        dates += "{ " + PRODUCTION + "crm:P9_consists_of [ crm:P4_has_time-span " + TIME + " ] } \n";
+        dates += UNION;
+        dates += "{ " + PRODUCTION + " crm:P4_has_time-span " + TIME + " } \n";
+        dates += TIME + "a crm:E52_Time-Span ; rdfs:label " + DATE + " . \n";
+        
+        if (!settings.creationStartDate.equals("")) {
+            dates += "FILTER (xsd:integer(" + DATE + ") >= " +
+                    settings.creationStartDate + ") . \n";
+        }
+        
+        if(!settings.creationEndDate.equals("")) {
+            dates += "FILTER (xsd:integer(" + DATE + ") <= " +
+                    settings.creationEndDate + ") . \n";
+        }
+        
+        return dates;
+    }
+    
+    /**
      * The identifier of the object.
      */
     private String getIdentifier() {
@@ -250,34 +278,6 @@ public class SPARQLTranslator implements QueryTranslator {
             query += " } . \n";
         }
         return query;
-    }
-    
-    /**
-     * Returns the dates.
-     * 
-     * @return the function for returning dates.
-     */
-    private String getDates() {
-        String dates = "";
-        
-        dates += PRODUCTION + " a crm:E12_Production ";
-        dates += "; crm:P108_has_produced " + OBJECT + " . \n";
-        dates += "{ " + PRODUCTION + "crm:P9_consists_of [ crm:P4_has_time-span " + TIME + " ] } \n";
-        dates += UNION;
-        dates += "{ " + PRODUCTION + " crm:P4_has_time-span " + TIME + " } \n";
-        dates += TIME + "a crm:E52_Time-Span ; rdfs:label " + DATE + " . \n";
-        
-        if (!settings.creationStartDate.equals("")) {
-            dates += "FILTER (xsd:integer(" + DATE + ") >= " +
-                    settings.creationStartDate + ") . \n";
-        }
-        
-        if(!settings.creationEndDate.equals("")) {
-            dates += "FILTER (xsd:integer(" + DATE + ") <= " +
-                    settings.creationEndDate + ") . \n";
-        }
-        
-        return dates;
     }
     
     /**
