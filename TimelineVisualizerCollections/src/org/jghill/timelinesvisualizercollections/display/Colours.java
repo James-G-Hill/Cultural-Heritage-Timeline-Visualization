@@ -9,36 +9,30 @@ import java.util.List;
  * 
  * @author JGHill
  */
-public class Colours {
+public final class Colours {
     
-    private final List<Color> colors = new ArrayList<>();
+    private static final List<Color> COLORS = new ArrayList<>();
     
-    private final Color pink = new Color(255, 220, 220);
-    private final Color green = new Color(220, 255, 220);
-    private final Color blue = new Color(220, 220, 255);
-    private final Color orange = new Color(255, 230, 210);
-    private final Color purple = new Color(255, 190, 255);
-    private final Color yellow = new Color(255, 255, 190);
-    
-    /**
-     * Constructor.
-     */
-    public void Colours() {
-        colors.add(pink);
-        colors.add(green);
-        colors.add(blue);
-        colors.add(orange);
-        colors.add(purple);
-        colors.add(yellow);
-    }
+    private static final Color PINK = new Color(255, 220, 220);
+    private static final Color GREEN = new Color(220, 255, 220);
+    private static final Color BLUE = new Color(220, 220, 255);
+    private static final Color ORANGE = new Color(255, 230, 210);
+    private static final Color PURPLE = new Color(255, 190, 255);
+    private static final Color YELLOW = new Color(255, 255, 190);
     
     /**
      * A getter for the list of colours.
      * 
      * @return the list of colours.
      */
-    public List<Color> getColours() {
-        return colors;
+    public static List<Color> getColours() {
+        COLORS.add(PINK);
+        COLORS.add(GREEN);
+        COLORS.add(BLUE);
+        COLORS.add(ORANGE);
+        COLORS.add(PURPLE);
+        COLORS.add(YELLOW);
+        return COLORS;
     }
     
 }
