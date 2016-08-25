@@ -1258,7 +1258,10 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     /**
      * Paints the visual display.
      */
-    private String[] paintVisualDisplay(ManMadeObject[] collection, String filter) {
+    private String[] paintVisualDisplay(
+            ManMadeObject[] collection,
+            String filter
+    ) {
         TimeLine[] timelines;
         if (collection.length > 0) {
             timelines = collectionDisplayPanel.setArray(collection, filter);
