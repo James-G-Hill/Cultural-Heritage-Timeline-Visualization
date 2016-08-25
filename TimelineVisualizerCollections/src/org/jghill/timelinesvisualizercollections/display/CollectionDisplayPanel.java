@@ -27,8 +27,7 @@ import static java.util.stream.Collectors.toMap;
  */
 public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     
-    private int SIZE = 1000;
-    private final static int MIN_SIZE = 1000;
+    private int size;
     private final static int MAX_SIZE = 10000;
     private final static int TIMELINE_HEIGHT = 200;
     
@@ -42,6 +41,8 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     
     private final List<Color> colors = Colours.getColours();
     private ScaleBuilder timeLineBuilder;
+    
+    private JViewport viewer;
     
     /**
      * The constructor.
@@ -79,6 +80,7 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
             ManMadeObject[] collection,
             String filter
     ) {
+        viewer = (JViewport) this.getParent();
         clear();
         this.filter = filter;
         this.collection = collection;
@@ -225,13 +227,16 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        paintTimeLines();
         if (timelines != null) {
+            if (size < viewer.getSize().width) {
+                size = viewer.getSize().width;
+            }
+            paintTimeLines();
             dateArray = timeLineBuilder.createScaleInfo(collection);
             this.setPreferredSize(
                     new Dimension(
-                            SIZE,
-                            timelines.length * 200
+                            size,
+                            timelines.length * TIMELINE_HEIGHT
                     )
             );
         }
@@ -242,17 +247,15 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
      * Places the TimeLines onto the panel.
      */
     protected void paintTimeLines() {
-        if (timelines != null) {
-            int tlCount = 0;
-            for(TimeLine tm : timelines) {
-                tm.setBounds(
-                        0,
-                        tlCount + (TIMELINE_HEIGHT * tlCount),
-                        this.getWidth(),
-                        TIMELINE_HEIGHT
-                );
-                tlCount++;
-            }
+        int tlCount = 0;
+        for(TimeLine tm : timelines) {
+            tm.setBounds(
+                    0,
+                    tlCount + (TIMELINE_HEIGHT * tlCount),
+                    size,
+                    TIMELINE_HEIGHT
+            );
+            tlCount++;
         }
     }
     
@@ -305,18 +308,17 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
         
         if (source.getValueIsAdjusting()) {
             
-            int maxSize = source.getValue();
+            int viewerWidth = viewer.getSize().width;
+            int maxSize = source.getValue() + viewerWidth;
             
-            if (maxSize >= MIN_SIZE && maxSize <= MAX_SIZE) {
-                
-                JViewport viewer = (JViewport) this.getParent();
+            if (maxSize >= viewerWidth && maxSize <= MAX_SIZE + viewerWidth) {
                 
                 int position = viewer.getViewPosition().x;
-                int halfWidth = viewer.getSize().width / 2;
+                int halfWidth = viewerWidth / 2;
                 int oldCentre = position + halfWidth;
-                double ratio = (double) maxSize / SIZE;
+                double ratio = (double) maxSize / size;
                 
-                SIZE = maxSize;
+                size = maxSize;
                 
                 viewer.setViewPosition(
                         new Point(
