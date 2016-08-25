@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import static java.util.Comparator.comparingInt;
 import java.util.LinkedHashMap;
@@ -13,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import javax.swing.JPanel;
-import static org.jghill.timelinesvisualizercollections.display.CollectionDisplayUtilities.*;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
 import javax.swing.JSlider;
 import javax.swing.JViewport;
@@ -32,7 +30,7 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     private int SIZE = 1000;
     private final static int MIN_SIZE = 1000;
     private final static int MAX_SIZE = 10000;
-    private final static int TIMELINE_SIZE = 200;
+    private final static int TIMELINE_HEIGHT = 200;
     
     private JSlider zoom;
     
@@ -42,23 +40,8 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     
     private String filter;
     
-    private Calendar earliest;
-    private Calendar latest;
-    
-    private Calendar start;
-    private Calendar end;
-    
-    private int interval;
-    private int intervalsCount;
-    
-    private final Color pink = new Color(255, 220, 220);
-    private final Color green = new Color(220, 255, 220);
-    private final Color blue = new Color(220, 220, 255);
-    private final Color orange = new Color(255, 230, 210);
-    private final Color purple = new Color(255, 190, 255);
-    private final Color yellow = new Color(255, 255, 190);
-    
-    private final List<Color> colors = new ArrayList<>();
+    private final List<Color> colors = Colours.getColours();
+    private ScaleBuilder timeLineBuilder;
     
     /**
      * The constructor.
@@ -72,12 +55,7 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
      */
     private void setUp() {
         setLayout(null);
-        colors.add(pink);
-        colors.add(green);
-        colors.add(blue);
-        colors.add(orange);
-        colors.add(purple);
-        colors.add(yellow);
+        timeLineBuilder = new ScaleBuilder();
     }
     
     /**
@@ -94,33 +72,20 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
      * Sets the Collection that this panel will display.
      * 
      * @param collection that will be displayed.
+     * @param filter the string to filter by.
      * @return the TimeLine array produced by this method.
      */
     public TimeLine[] setArray(
             ManMadeObject[] collection,
             String filter
     ) {
-        this.filter = filter;
         clear();
+        this.filter = filter;
         this.collection = collection;
-        calculateTimePeriod();
         runFilter();
         revalidate();
         repaint();
         return timelines;
-    }
-    
-    /**
-     * Calculates the time period for this collection display panel.
-     */
-    private void calculateTimePeriod() {
-        earliest = calculateEarliest(collection);
-        latest = calculateLatest(collection);
-        interval = calculateInterval(earliest, latest);
-        start = getStart(earliest, interval);
-        end = getEnd(latest, interval);
-        intervalsCount = countIntervals(start, end, interval);
-        dateArray = getArrayOfDates(start, interval, intervalsCount);
     }
     
     /**
@@ -262,7 +227,13 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
         super.paintComponent(g);
         paintTimeLines();
         if (timelines != null) {
-            this.setPreferredSize(new Dimension(SIZE, timelines.length * 200));
+            dateArray = timeLineBuilder.createScaleInfo(collection);
+            this.setPreferredSize(
+                    new Dimension(
+                            SIZE,
+                            timelines.length * 200
+                    )
+            );
         }
         revalidate();
     }
@@ -276,9 +247,9 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
             for(TimeLine tm : timelines) {
                 tm.setBounds(
                         0,
-                        tlCount + (TIMELINE_SIZE * tlCount),
+                        tlCount + (TIMELINE_HEIGHT * tlCount),
                         this.getWidth(),
-                        TIMELINE_SIZE
+                        TIMELINE_HEIGHT
                 );
                 tlCount++;
             }
@@ -292,32 +263,6 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
      */
     public int[] getDateArray() {
         return dateArray;
-    }
-    
-    /**
-     * Returns the start date.
-     * 
-     * @return start.
-     */
-    public Integer returnStart() {
-        if (start != null) {
-            return start.get(Calendar.YEAR);
-        } else {
-            return null;
-        }
-    }
-    
-    /**
-     * Returns the end date.
-     * 
-     * @return end.
-     */
-    public Integer returnEnd() {
-        if (end != null) {
-            return end.get(Calendar.YEAR);
-        } else {
-            return null;
-        }
     }
     
     /**
@@ -373,12 +318,13 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
                 
                 SIZE = maxSize;
                 
-                viewer.setViewPosition(new Point(
+                viewer.setViewPosition(
+                        new Point(
                                 (int) ((oldCentre * ratio) - halfWidth),
                                 viewer.getViewPosition().y
-                        ));
+                        )
+                );
                 
-                calculateTimePeriod();
                 repaint();
                 
             }
