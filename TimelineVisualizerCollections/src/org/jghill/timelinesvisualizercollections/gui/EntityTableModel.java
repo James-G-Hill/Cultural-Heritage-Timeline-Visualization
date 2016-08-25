@@ -10,6 +10,7 @@ import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 
 /**
  * A model for assisting display of Entities in the Entity Table.
+ * 
  * @author JGHill
  */
 public class EntityTableModel extends AbstractTableModel {
@@ -17,8 +18,13 @@ public class EntityTableModel extends AbstractTableModel {
     private final Collection collection;
     private ManMadeObject[] entities;
     
-    private static final int COL_COUNT = 9;
+    private static final int COL_COUNT = 10;
     
+    /**
+     * Constructor.
+     * 
+     * @param c the collection to be represented.
+     */
     public EntityTableModel(Collection c) {
         this.collection = c;
         updateDataTable();
@@ -60,7 +66,9 @@ public class EntityTableModel extends AbstractTableModel {
             case 7:
                 return entities[rowIndex].getType();
             case 8:
-                return  entities[rowIndex].getTechnique();
+                return entities[rowIndex].getTechnique();
+            case 9:
+                return entities[rowIndex].getCreator();
             default:
                 return null;
         }
@@ -87,6 +95,8 @@ public class EntityTableModel extends AbstractTableModel {
                 return "Type";
             case 8:
                 return "Technique";
+            case 9:
+                return "Creator";
             default:
                 return null;
         }
@@ -109,6 +119,7 @@ public class EntityTableModel extends AbstractTableModel {
     
     /**
      * Returns an entity from the underlying collection.
+     * 
      * @param index the row number identifying the Entities.
      * @return The entity at the row.
      */
@@ -118,6 +129,7 @@ public class EntityTableModel extends AbstractTableModel {
     
     /**
      * Flattens the entities collection into a single list.
+     * 
      * @param coll the EntitiesCollection.
      * @return a list containing all internal non-collections.
      */
@@ -142,6 +154,7 @@ public class EntityTableModel extends AbstractTableModel {
     
     /**
      * Formats the year.
+     * 
      * @param i the year as int.
      * @return text to represent the year.
      */
