@@ -92,6 +92,7 @@ public class SPARQLTranslator implements QueryTranslator {
                 IMAGE + " \n" +
                 DATE + " \n" +
                 CREATOR + " \n" +
+                OBJECT + " \n" +
                 DESCRIPTION + " \n" +
                 CURATORIAL + " \n";
     }
@@ -228,9 +229,9 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getType() {
         String query = "";
         String triple = "";
-        triple += "{ " + OBJECT + "bmo:PX_object_type/skos:prefLabel " + TYPE + " } \n";
+        triple += "{ { " + OBJECT + "bmo:PX_object_type/skos:prefLabel " + TYPE + " } \n";
         triple += UNION;
-        triple += "{ " + OBJECT + "edan:PE_object_mainclass/skos:prefLabel " + TYPE + " } \n";
+        triple += "{ " + OBJECT + "edan:PE_object_mainclass/skos:prefLabel " + TYPE + " } } \n";
         if (settings.hasTypeCheck) {
             query += triple;
             query += " . \n";
@@ -291,7 +292,10 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getCreator() {
         String query = "";
-        String triple = PRODUCTION + "crm:P14_carried_out_by [ crm:P1_is_identified_by ] " + CREATOR;
+        String triple = "";
+        triple += "{ { " + PRODUCTION + "crm:P14_carried_out_by [ crm:P1_is_identified_by [ rdfs:label " + CREATOR + " ] ] } ";
+        triple += UNION;
+        triple += " { " + PRODUCTION + "crm:P9_consists_of [ crm:P14_carried_out_by [ skos:prefLabel " + CREATOR + " ] ] } } ";
         if (settings.hasCreatorCheck) {
             query += "{ ";
             query += triple;
@@ -310,7 +314,7 @@ public class SPARQLTranslator implements QueryTranslator {
      * @return the object description request.
      */
     private String getDescription() {
-        return "OPTIONAL { " + OBJECT + "bmo:PX_physical_description " + DESCRIPTION + "}. \n";
+        return "OPTIONAL { " + OBJECT + "bmo:PX_physical_description " + DESCRIPTION + " }. \n";
     }
     
     /**
@@ -319,7 +323,7 @@ public class SPARQLTranslator implements QueryTranslator {
      * @return the curatorial comment request.
      */
     private String getCuration() {
-        return "OPTIONAL { " + OBJECT + "bmo:PX_curatorial_comment " + CURATORIAL + "}. \n";
+        return "OPTIONAL { " + OBJECT + "bmo:PX_curatorial_comment " + CURATORIAL + " }. \n";
     }
     
     /**
