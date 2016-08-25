@@ -1206,11 +1206,11 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 HasTechniqueCheckBox.isSelected(),
                 TechniqueTextField.getText().trim().toLowerCase(),
                 
-                HasLimitCheckBox.isSelected(),
-                LimitTextField.getText().trim().toLowerCase(),
-                
                 CreatedByCheckBox.isSelected(),
                 CreatedByTextField.getText().trim().toLowerCase(),
+                
+                HasLimitCheckBox.isSelected(),
+                LimitTextField.getText().trim().toLowerCase(),
                 
                 HasImageCheckBox.isSelected()
                 
