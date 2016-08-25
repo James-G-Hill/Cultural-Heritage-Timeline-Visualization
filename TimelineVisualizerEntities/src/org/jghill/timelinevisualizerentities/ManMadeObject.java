@@ -18,6 +18,7 @@ public class ManMadeObject extends PhysicalThing {
             String technique,
             String image,
             String timeSpan,
+            String creator,
             String description,
             String curatorial
     ) {
@@ -32,6 +33,7 @@ public class ManMadeObject extends PhysicalThing {
                 technique,
                 image,
                 timeSpan,
+                creator,
                 description,
                 curatorial
         );
