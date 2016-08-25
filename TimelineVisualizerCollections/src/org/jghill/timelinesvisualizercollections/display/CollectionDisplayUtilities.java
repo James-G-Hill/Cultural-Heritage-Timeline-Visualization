@@ -14,7 +14,7 @@ public final class CollectionDisplayUtilities {
     private CollectionDisplayUtilities() {}
     
     /**
-     * Calculate the earliest and latest dates to display on the timeline.
+     * Calculate the earliest date to display on the timeline.
      * 
      * @param collection the collection of objects to calculate from.
      */
@@ -36,7 +36,7 @@ public final class CollectionDisplayUtilities {
     }
     
     /**
-     * Calculate the earliest and latest dates to display on the timeline.
+     * Calculate the latest date to display on the timeline.
      * 
      * @param collection the collection of objects to calculate from.
      */
@@ -69,7 +69,7 @@ public final class CollectionDisplayUtilities {
             int interval
     ) {
         int year = earliest.get(Calendar.YEAR);
-        if (interval == 0) {
+        if (interval == 1) {
             return new GregorianCalendar(year - 1, 1, 1);
         } else {
             year = (int) (interval * (Math.floor((double) year / interval)));
@@ -89,7 +89,7 @@ public final class CollectionDisplayUtilities {
             int interval
     ) {
         int year = latest.get(Calendar.YEAR);
-        if (interval == 0) {
+        if (interval == 1) {
             return new GregorianCalendar(year + 1, 1, 1);
         } else {
             year = (int) (interval * (Math.ceil((double) year / interval)));
