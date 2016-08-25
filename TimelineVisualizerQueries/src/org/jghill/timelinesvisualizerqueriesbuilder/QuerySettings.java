@@ -3,8 +3,7 @@ package org.jghill.timelinesvisualizerqueriesbuilder;
 import org.jghill.timelinevisualizersources.Source;
 
 /**
- * An object for holding settings for queries that can be passed from the
- * CollectionTopComponent to the QueryBuilder.
+ * An object for holding settings for queries.
  * 
  * @author JGHill
  */
@@ -33,6 +32,9 @@ public class QuerySettings {
     
     public final boolean hasTechniqueCheck;
     public final String technique;
+    
+    public final boolean hasCreatorCheck;
+    public final String creator;
     
     public final boolean hasLimitCheck;
     public final String limit;
@@ -65,6 +67,9 @@ public class QuerySettings {
             boolean hasTechniqueCheck,
             String technique,
             
+            boolean hasCreatorCheck,
+            String creator,
+            
             boolean hasLimitCheck,
             String limit,
             
@@ -94,6 +99,9 @@ public class QuerySettings {
         
         this.hasTechniqueCheck = hasTechniqueCheck;
         this.technique = technique;
+        
+        this.hasCreatorCheck = hasCreatorCheck;
+        this.creator = creator;
         
         this.hasLimitCheck = hasLimitCheck;
         this.limit = limit;
