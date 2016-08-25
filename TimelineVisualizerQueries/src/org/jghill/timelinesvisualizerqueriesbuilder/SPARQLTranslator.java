@@ -38,6 +38,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String TECHNIQUE = "?technique ";
     private static final String IMAGE = "?image ";
     private static final String DATE = "?date ";
+    private static final String CREATOR = "?creator ";
     
     private static final String DESCRIPTION = "?description ";
     private static final String CURATORIAL = "?curatorial ";
@@ -90,6 +91,7 @@ public class SPARQLTranslator implements QueryTranslator {
                 TECHNIQUE + " \n" +
                 IMAGE + " \n" +
                 DATE + " \n" +
+                CREATOR + " \n" +
                 DESCRIPTION + " \n" +
                 CURATORIAL + " \n";
     }
@@ -106,6 +108,7 @@ public class SPARQLTranslator implements QueryTranslator {
         where += getConsists() + "\n";
         where += getType() + "\n";
         where += getTechnique() + "\n";
+        where += getCreator() + "\n";
         where += getDescription() + "\n";
         where += getCuration() + "\n";
         where += getImage();
@@ -122,8 +125,9 @@ public class SPARQLTranslator implements QueryTranslator {
         
         dates += PRODUCTION + " a crm:E12_Production ";
         dates += "; crm:P108_has_produced " + OBJECT + " . \n";
+        dates += "\n";
         dates += "{ " + PRODUCTION + "crm:P9_consists_of [ crm:P4_has_time-span " + TIME + " ] } \n";
-        dates += UNION;
+        dates += UNION + "\n";
         dates += "{ " + PRODUCTION + " crm:P4_has_time-span " + TIME + " } \n";
         dates += TIME + "a crm:E52_Time-Span ; rdfs:label " + DATE + " . \n";
         
@@ -269,6 +273,26 @@ public class SPARQLTranslator implements QueryTranslator {
         String query = "";
         String triple = OBJECT + "crm:P138i_has_representation " + IMAGE;
         if (settings.hasImageCheck) {
+            query += "{ ";
+            query += triple;
+            query += " } . \n";
+        } else {
+            query += "OPTIONAL { ";
+            query += triple;
+            query += " } . \n";
+        }
+        return query;
+    }
+    
+    /**
+     * Returns the creator of this object.
+     * 
+     * @return the creator name.
+     */
+    private String getCreator() {
+        String query = "";
+        String triple = PRODUCTION + "crm:P14_carried_out_by [ crm:P1_is_identified_by ] " + CREATOR;
+        if (settings.hasCreatorCheck) {
             query += "{ ";
             query += triple;
             query += " } . \n";
