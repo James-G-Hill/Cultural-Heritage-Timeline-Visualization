@@ -151,6 +151,12 @@ public class SPARQLQueryShell extends QueryShell {
                 output("Creator     : " + creator);
             }
             
+            String object = "";
+            if (soln.get("object") != null) {
+                object = soln.get("object").toString();
+                output("Object      : " + object);
+            }
+            
             String description = "";
             if (soln.get("description") != null) {
                 description = soln.get("description").toString();
@@ -176,6 +182,7 @@ public class SPARQLQueryShell extends QueryShell {
                     image,
                     year,
                     creator,
+                    object,
                     description,
                     curatorial
             );
