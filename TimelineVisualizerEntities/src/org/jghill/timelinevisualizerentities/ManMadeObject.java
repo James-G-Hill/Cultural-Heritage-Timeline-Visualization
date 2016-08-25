@@ -19,6 +19,7 @@ public class ManMadeObject extends PhysicalThing {
             String image,
             String timeSpan,
             String creator,
+            String object,
             String description,
             String curatorial
     ) {
@@ -34,6 +35,7 @@ public class ManMadeObject extends PhysicalThing {
                 image,
                 timeSpan,
                 creator,
+                object,
                 description,
                 curatorial
         );
