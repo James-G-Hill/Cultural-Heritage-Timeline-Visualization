@@ -87,8 +87,8 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
         DescriptionScrollPane = new javax.swing.JScrollPane();
         DescriptionTextArea = new javax.swing.JTextArea();
         NameTextField = new javax.swing.JTextField();
-        ArtistLabel = new javax.swing.JLabel();
-        ArtistTextField = new javax.swing.JTextField();
+        CreatorLabel = new javax.swing.JLabel();
+        CreatorTextField = new javax.swing.JTextField();
         DetailsLabel = new javax.swing.JLabel();
         DetailsTextField = new javax.swing.JTextField();
 
@@ -232,15 +232,15 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
         NameTextField.setMinimumSize(new java.awt.Dimension(196, 20));
         NameTextField.setPreferredSize(new java.awt.Dimension(196, 20));
 
-        org.openide.awt.Mnemonics.setLocalizedText(ArtistLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.ArtistLabel.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(CreatorLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.CreatorLabel.text")); // NOI18N
 
-        ArtistTextField.setEditable(false);
-        ArtistTextField.setBackground(new java.awt.Color(255, 255, 255));
-        ArtistTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        ArtistTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.ArtistTextField.text_1")); // NOI18N
-        ArtistTextField.setMaximumSize(new java.awt.Dimension(196, 20));
-        ArtistTextField.setMinimumSize(new java.awt.Dimension(196, 20));
-        ArtistTextField.setPreferredSize(new java.awt.Dimension(196, 20));
+        CreatorTextField.setEditable(false);
+        CreatorTextField.setBackground(new java.awt.Color(255, 255, 255));
+        CreatorTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        CreatorTextField.setText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.CreatorTextField.text_1")); // NOI18N
+        CreatorTextField.setMaximumSize(new java.awt.Dimension(196, 20));
+        CreatorTextField.setMinimumSize(new java.awt.Dimension(196, 20));
+        CreatorTextField.setPreferredSize(new java.awt.Dimension(196, 20));
 
         org.openide.awt.Mnemonics.setLocalizedText(DetailsLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.DetailsLabel.text")); // NOI18N
 
@@ -273,7 +273,7 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
                             .addComponent(TechniqueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(DescriptionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(CommentaryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ArtistLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CreatorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(DetailsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -288,7 +288,7 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
                             .addComponent(CommentaryScrollPane)
                             .addComponent(IdentifierTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(NameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ArtistTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CreatorTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(DetailsTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -335,8 +335,8 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
                     .addComponent(TechniqueTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ArtistLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ArtistTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CreatorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CreatorTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PropertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DetailsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -372,8 +372,6 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ArtistLabel;
-    private javax.swing.JTextField ArtistTextField;
     private javax.swing.JLabel CommentaryLabel;
     private javax.swing.JScrollPane CommentaryScrollPane;
     private javax.swing.JTextArea CommentaryTextArea;
@@ -381,6 +379,8 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
     private javax.swing.JTextField ConsistsTextField;
     private javax.swing.JLabel CreationYearLabel;
     private javax.swing.JTextField CreationYearTextField;
+    private javax.swing.JLabel CreatorLabel;
+    private javax.swing.JTextField CreatorTextField;
     private javax.swing.JLabel DepictsLabel;
     private javax.swing.JTextField DepictsTextField;
     private javax.swing.JLabel DescriptionLabel;
@@ -409,6 +409,9 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
     
     private Lookup.Result<ManMadeObject> objectResult = null;
     
+    /**
+     * Called by the constructor.
+     */
     private void setup() {
         objectResult = Utilities.actionsGlobalContext().lookupResult(ManMadeObject.class);
         objectResult.addLookupListener(this);
@@ -439,6 +442,7 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
             ConsistsTextField.setText(entity.getConsists());
             TypeTextField.setText(entity.getType());
             TechniqueTextField.setText(entity.getTechnique());
+            CreatorTextField.setText(entity.getCreator());
             
             DescriptionTextArea.setText(entity.getDescription());
             DescriptionTextArea.setCaretPosition(0);
