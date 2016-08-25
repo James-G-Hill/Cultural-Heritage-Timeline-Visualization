@@ -25,6 +25,7 @@ public abstract class PhysicalThing extends Entities {
     private final String consists;
     private final String type;
     private final String technique;
+    private final String creator;
     
     private final String description;
     private final String curatorial;
@@ -44,6 +45,7 @@ public abstract class PhysicalThing extends Entities {
             String technique,
             String image,
             String beginYear,
+            String creator,
             String description,
             String curatorial
     ) {
@@ -57,6 +59,7 @@ public abstract class PhysicalThing extends Entities {
         this.consists = consists;
         this.type = type;
         this.technique = technique;
+        this.creator = creator;
         this.description = description;
         this.curatorial = curatorial;
         this.imageURL = createURL(image);
@@ -221,6 +224,13 @@ public abstract class PhysicalThing extends Entities {
      */
     public String getTechnique() {
         return technique;
+    }
+    
+    /**
+     * @return the creator.
+     */
+    public String getCreator() {
+        return creator;
     }
     
     /**
