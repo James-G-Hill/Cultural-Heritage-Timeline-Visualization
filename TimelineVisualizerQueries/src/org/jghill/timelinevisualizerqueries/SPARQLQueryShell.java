@@ -93,8 +93,6 @@ public class SPARQLQueryShell extends QueryShell {
             
             QuerySolution soln = results.next();
             
-            output("Solution: " + soln.toString());
-            
             String identity = "";
             if (soln.get("identifier") != null) {
                 identity = soln.get("identifier").toString();
