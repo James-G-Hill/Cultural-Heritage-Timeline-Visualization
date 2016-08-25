@@ -7,9 +7,12 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mock;
 
 /**
- * A testing class for the CollectionDisplayUtilities class.
+ * A testing class for the ScaleBuilder class.
  * @author JGHill
  */
 public class CollectionDisplayUtilitiesTest {
@@ -42,7 +45,7 @@ public class CollectionDisplayUtilitiesTest {
         when(mmo[1].getTimeSpan()).thenReturn(1973);
         when(mmo[2].getTimeSpan()).thenReturn(1978);
         int predicted = 1973;
-        Calendar result = CollectionDisplayUtilities.calculateEarliest(mmo);
+        Calendar result = ScaleBuilder.calculateEarliest(mmo);
         assertEquals(predicted, result.get(Calendar.YEAR));
     }
     
@@ -53,7 +56,7 @@ public class CollectionDisplayUtilitiesTest {
         when(mmo[1].getTimeSpan()).thenReturn(1973);
         when(mmo[2].getTimeSpan()).thenReturn(1978);
         int predicted = 1985;
-        Calendar result = CollectionDisplayUtilities.calculateLatest(mmo);
+        Calendar result = ScaleBuilder.calculateLatest(mmo);
         assertEquals(predicted, result.get(Calendar.YEAR));
     }
     
@@ -62,7 +65,7 @@ public class CollectionDisplayUtilitiesTest {
         when(earliest.get(Calendar.YEAR)).thenReturn(2000);
         int interval = 0;
         int predicted = 1999;
-        Calendar result = CollectionDisplayUtilities.getStart(earliest, interval);
+        Calendar result = ScaleBuilder.getStart(earliest, interval);
         assertEquals(predicted, result.get(Calendar.YEAR));
     }
     
@@ -71,7 +74,7 @@ public class CollectionDisplayUtilitiesTest {
         when(earliest.get(Calendar.YEAR)).thenReturn(2000);
         int interval = 10;
         int predicted = 2000;
-        Calendar result = CollectionDisplayUtilities.getStart(earliest, interval);
+        Calendar result = ScaleBuilder.getStart(earliest, interval);
         assertEquals(predicted, result.get(Calendar.YEAR));
     }
     
@@ -80,7 +83,7 @@ public class CollectionDisplayUtilitiesTest {
         when(earliest.get(Calendar.YEAR)).thenReturn(1999);
         int interval = 10;
         int predicted = 1990;
-        Calendar result = CollectionDisplayUtilities.getStart(earliest, interval);
+        Calendar result = ScaleBuilder.getStart(earliest, interval);
         assertEquals(predicted, result.get(Calendar.YEAR));
     }
     
@@ -89,7 +92,7 @@ public class CollectionDisplayUtilitiesTest {
         when(earliest.get(Calendar.YEAR)).thenReturn(1797);
         int interval = 100;
         int predicted = 1700;
-        Calendar result = CollectionDisplayUtilities.getStart(earliest, interval);
+        Calendar result = ScaleBuilder.getStart(earliest, interval);
         assertEquals(predicted, result.get(Calendar.YEAR));
     }
     
@@ -98,7 +101,7 @@ public class CollectionDisplayUtilitiesTest {
         when(latest.get(Calendar.YEAR)).thenReturn(2000);
         int interval = 0;
         int predicted = 2001;
-        Calendar result = CollectionDisplayUtilities.getEnd(latest, interval);
+        Calendar result = ScaleBuilder.getEnd(latest, interval);
         assertEquals(predicted, result.get(Calendar.YEAR));
     }
     
@@ -107,7 +110,7 @@ public class CollectionDisplayUtilitiesTest {
         when(latest.get(Calendar.YEAR)).thenReturn(2000);
         int interval = 10;
         int predicted = 2000;
-        Calendar result = CollectionDisplayUtilities.getEnd(latest, interval);
+        Calendar result = ScaleBuilder.getEnd(latest, interval);
         assertEquals(predicted, result.get(Calendar.YEAR));
     }
     
@@ -116,7 +119,7 @@ public class CollectionDisplayUtilitiesTest {
         when(latest.get(Calendar.YEAR)).thenReturn(1999);
         int interval = 10;
         int predicted = 2000;
-        Calendar result = CollectionDisplayUtilities.getEnd(latest, interval);
+        Calendar result = ScaleBuilder.getEnd(latest, interval);
         assertEquals(predicted, result.get(Calendar.YEAR));
     }
     
@@ -125,7 +128,7 @@ public class CollectionDisplayUtilitiesTest {
         when(latest.get(Calendar.YEAR)).thenReturn(1797);
         int interval = 100;
         int predicted = 1800;
-        Calendar result = CollectionDisplayUtilities.getEnd(latest, interval);
+        Calendar result = ScaleBuilder.getEnd(latest, interval);
         assertEquals(predicted, result.get(Calendar.YEAR));
     }
     
@@ -136,7 +139,7 @@ public class CollectionDisplayUtilitiesTest {
         when(mmo[1].getTimeSpan()).thenReturn(1973);
         when(mmo[2].getTimeSpan()).thenReturn(1978);
         int predicted = 1973;
-        Calendar result = CollectionDisplayUtilities.calculateEarliest(mmo);
+        Calendar result = ScaleBuilder.calculateEarliest(mmo);
         assertEquals(predicted, result.get(Calendar.YEAR));
     }
     
@@ -147,7 +150,7 @@ public class CollectionDisplayUtilitiesTest {
         when(mmo[1].getTimeSpan()).thenReturn(-1);
         when(mmo[2].getTimeSpan()).thenReturn(1978);
         int predicted = 1985;
-        Calendar result = CollectionDisplayUtilities.calculateLatest(mmo);
+        Calendar result = ScaleBuilder.calculateLatest(mmo);
         assertEquals(predicted, result.get(Calendar.YEAR));
     }
     
@@ -156,7 +159,7 @@ public class CollectionDisplayUtilitiesTest {
         when(earliest.get(Calendar.YEAR)).thenReturn(1955);
         when(latest.get(Calendar.YEAR)).thenReturn(1950);
         int predicted = 1;
-        int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
+        int result = ScaleBuilder.calculateInterval(earliest, latest);
         assertEquals(predicted, result);
     }
     
@@ -165,7 +168,7 @@ public class CollectionDisplayUtilitiesTest {
         when(earliest.get(Calendar.YEAR)).thenReturn(1000);
         when(latest.get(Calendar.YEAR)).thenReturn(1010);
         int predicted = 1;
-        int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
+        int result = ScaleBuilder.calculateInterval(earliest, latest);
         assertEquals(predicted, result);
     }
     
@@ -174,7 +177,7 @@ public class CollectionDisplayUtilitiesTest {
         when(earliest.get(Calendar.YEAR)).thenReturn(2000);
         when(latest.get(Calendar.YEAR)).thenReturn(2100);
         int predicted = 10;
-        int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
+        int result = ScaleBuilder.calculateInterval(earliest, latest);
         assertEquals(predicted, result);
     }
     
@@ -183,7 +186,7 @@ public class CollectionDisplayUtilitiesTest {
         when(earliest.get(Calendar.YEAR)).thenReturn(1000);
         when(latest.get(Calendar.YEAR)).thenReturn(2000);
         int predicted = 100;
-        int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
+        int result = ScaleBuilder.calculateInterval(earliest, latest);
         assertEquals(predicted, result);
     }
     
@@ -192,7 +195,7 @@ public class CollectionDisplayUtilitiesTest {
         when(earliest.get(Calendar.YEAR)).thenReturn(1897);
         when(latest.get(Calendar.YEAR)).thenReturn(1995);
         int predicted = 10;
-        int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
+        int result = ScaleBuilder.calculateInterval(earliest, latest);
         assertEquals(predicted, result);
     }
     
@@ -201,7 +204,7 @@ public class CollectionDisplayUtilitiesTest {
         when(earliest.get(Calendar.YEAR)).thenReturn(1850);
         when(latest.get(Calendar.YEAR)).thenReturn(1995);
         int predicted = 100;
-        int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
+        int result = ScaleBuilder.calculateInterval(earliest, latest);
         assertEquals(predicted, result);
     }
     
@@ -210,7 +213,7 @@ public class CollectionDisplayUtilitiesTest {
         when(earliest.get(Calendar.YEAR)).thenReturn(-1000);
         when(latest.get(Calendar.YEAR)).thenReturn(1000);
         int predicted = 1000;
-        int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
+        int result = ScaleBuilder.calculateInterval(earliest, latest);
         assertEquals(predicted, result);
     }
     
@@ -219,7 +222,7 @@ public class CollectionDisplayUtilitiesTest {
         when(earliest.get(Calendar.YEAR)).thenReturn(1000);
         when(latest.get(Calendar.YEAR)).thenReturn(1015);
         int predicted = 1;
-        int result = CollectionDisplayUtilities.calculateInterval(earliest, latest);
+        int result = ScaleBuilder.calculateInterval(earliest, latest);
         assertEquals(predicted, result);
     }
     
@@ -229,7 +232,7 @@ public class CollectionDisplayUtilitiesTest {
         when(latest.get(Calendar.YEAR)).thenReturn(1020);
         int interval = 10;
         int predicted = 3;
-        int result = CollectionDisplayUtilities.countIntervals(earliest, latest, interval);
+        int result = ScaleBuilder.countIntervals(earliest, latest, interval);
         assertEquals(predicted, result);
     }
     
@@ -239,7 +242,7 @@ public class CollectionDisplayUtilitiesTest {
         when(latest.get(Calendar.YEAR)).thenReturn(2000);
         int interval = 10;
         int predicted = 3;
-        int result = CollectionDisplayUtilities.countIntervals(earliest, latest, interval);
+        int result = ScaleBuilder.countIntervals(earliest, latest, interval);
         assertEquals(predicted, result);
     }
     
@@ -249,7 +252,7 @@ public class CollectionDisplayUtilitiesTest {
         when(latest.get(Calendar.YEAR)).thenReturn(1000);
         int interval = 0;
         int predicted = 10;
-        int result = CollectionDisplayUtilities.countIntervals(earliest, latest, interval);
+        int result = ScaleBuilder.countIntervals(earliest, latest, interval);
         assertEquals(predicted, result);
     }
     
@@ -259,7 +262,7 @@ public class CollectionDisplayUtilitiesTest {
         int predicted1 = 1990;
         int predicted2 = 2000;
         int predicted3 = 2010;
-        int[] result = CollectionDisplayUtilities.getArrayOfDates(earliest, 10, 3);
+        int[] result = ScaleBuilder.getArrayOfDates(earliest, 10, 3);
         assertEquals(predicted1, result[0]);
         assertEquals(predicted2, result[1]);
         assertEquals(predicted3, result[2]);
