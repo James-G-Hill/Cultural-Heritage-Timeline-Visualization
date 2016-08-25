@@ -97,7 +97,9 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         categories.add(material);
         categories.add(type);
         categories.add(technique);
+        categories.add(creator);
         ComboBoxModel comboModel = new DefaultComboBoxModel(categories.toArray());
+        
         FirstFilterComboBox.setModel(comboModel);
         FirstFilterComboBox.setSelectedIndex(0);
         
@@ -154,6 +156,8 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         TypeTextField = new javax.swing.JTextField();
         HasTechniqueCheckBox = new javax.swing.JCheckBox();
         TechniqueTextField = new javax.swing.JTextField();
+        CreatedByCheckBox = new javax.swing.JCheckBox();
+        CreatedByTextField = new javax.swing.JTextField();
         Entities = new javax.swing.JPanel();
         EntitiesScrollPane = new javax.swing.JScrollPane();
         EntitiesTable = new javax.swing.JTable();
@@ -220,7 +224,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 .addGap(18, 18, 18)
                 .addComponent(NotesText)
                 .addGap(18, 18, 18)
-                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -359,6 +363,16 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         TechniqueTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.TechniqueTextField.text")); // NOI18N
         TechniqueTextField.setEnabled(false);
 
+        org.openide.awt.Mnemonics.setLocalizedText(CreatedByCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.CreatedByCheckBox.text")); // NOI18N
+        CreatedByCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreatedByCheckBoxActionPerformed(evt);
+            }
+        });
+
+        CreatedByTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.CreatedByTextField.text")); // NOI18N
+        CreatedByTextField.setEnabled(false);
+
         javax.swing.GroupLayout QueriesLayout = new javax.swing.GroupLayout(Queries);
         Queries.setLayout(QueriesLayout);
         QueriesLayout.setHorizontalGroup(
@@ -417,13 +431,15 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                                                     .addComponent(HasTypeCheckBox)
                                                     .addComponent(HasTechniqueCheckBox)
                                                     .addComponent(HasConsistsCheckBox)
-                                                    .addComponent(CreationYearLabel))
+                                                    .addComponent(CreationYearLabel)
+                                                    .addComponent(CreatedByCheckBox))
                                                 .addGap(22, 22, 22)
                                                 .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(TypeTextField)
                                                     .addComponent(TechniqueTextField)
                                                     .addComponent(MaterialTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                                                    .addComponent(CreationStartYearTextField))))))
+                                                    .addComponent(CreationStartYearTextField)
+                                                    .addComponent(CreatedByTextField))))))
                                 .addGap(18, 18, 18)
                                 .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(HasImageCheckBox)
@@ -443,7 +459,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QueriesLayout.createSequentialGroup()
                         .addComponent(ExistingQueriesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(QueriesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+                        .addComponent(QueriesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(DeleteButton)
@@ -491,6 +507,10 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                             .addComponent(TechniqueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CreatedByCheckBox)
+                            .addComponent(CreatedByTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(HasLimitCheckBox)
                             .addComponent(LimitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(HasImageCheckBox))
@@ -524,7 +544,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             EntitiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EntitiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -640,7 +660,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VisualizerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(CollectionDisplayScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addComponent(CollectionDisplayScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ZoomSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -678,7 +698,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tab, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addComponent(Tab, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -960,10 +980,20 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         }
     }//GEN-LAST:event_Group2ComboBoxActionPerformed
 
+    private void CreatedByCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreatedByCheckBoxActionPerformed
+        if (CreatedByCheckBox.isSelected()) {
+            CreatedByTextField.setEnabled(true);
+        } else {
+            CreatedByTextField.setEnabled(false);
+        }
+    }//GEN-LAST:event_CreatedByCheckBoxActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AndText1;
     private javax.swing.JScrollPane CollectionDisplayScrollPane;
     private javax.swing.JButton CreateButton;
+    private javax.swing.JCheckBox CreatedByCheckBox;
+    private javax.swing.JTextField CreatedByTextField;
     private javax.swing.JTextField CreationEndYearTextField;
     private javax.swing.JTextField CreationStartYearTextField;
     private javax.swing.JLabel CreationYearLabel;
@@ -1030,6 +1060,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private final String material = "Material";
     private final String type = "Type";
     private final String technique = "Technique";
+    private final String creator = "Creator";
     
     private final List<String> categories = new ArrayList<>();
     
@@ -1110,6 +1141,10 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         TechniqueTextField.setText("");
         TechniqueTextField.setEnabled(false);
         
+        CreatedByCheckBox.setSelected(false);
+        CreatedByTextField.setText("");
+        CreatedByTextField.setEnabled(false);
+        
         HasLimitCheckBox.setSelected(true);
         LimitTextField.setText("10");
         LimitTextField.setEnabled(true);
@@ -1173,6 +1208,9 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 
                 HasLimitCheckBox.isSelected(),
                 LimitTextField.getText().trim().toLowerCase(),
+                
+                CreatedByCheckBox.isSelected(),
+                CreatedByTextField.getText().trim().toLowerCase(),
                 
                 HasImageCheckBox.isSelected()
                 
