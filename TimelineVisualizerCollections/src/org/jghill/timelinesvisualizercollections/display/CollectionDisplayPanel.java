@@ -274,13 +274,13 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
             level3 = false;
             update = true;
             dateArray = timeLineBuilder.createScaleInfo(collection, 1);
-        } else if (scale > 4 && scale <= 16 && !level2) {
+        } else if (scale > 4 && scale <= 40 && !level2) {
             level1 = false;
             level2 = true;
             level3 = false;
             update = true;
             dateArray = timeLineBuilder.createScaleInfo(collection, 10);
-        } else if (scale > 16 && !level3) {
+        } else if (scale > 40 && !level3) {
             level1 = false;
             level2 = false;
             level3 = true;
