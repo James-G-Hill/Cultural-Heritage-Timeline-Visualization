@@ -19,6 +19,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toMap;
+import static java.util.Map.Entry.comparingByValue;
+import static java.util.stream.Collectors.toMap;
 
 /**
  * A Panel for displaying the results.
@@ -36,6 +38,8 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     private ManMadeObject[] collection;
     private TimeLine[] timelines;
     private int[] dateArray;
+    
+    private int dateDifference;
     
     private String filter;
     
@@ -233,6 +237,7 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
             }
             paintTimeLines();
             dateArray = timeLineBuilder.createScaleInfo(collection);
+            dateDifference = dateArray[dateArray.length-1] - dateArray[0]; 
             this.setPreferredSize(
                     new Dimension(
                             size,
@@ -297,7 +302,7 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     }
     
     /**
-     * Update the zoom level when reacting to the slider changing.
+     * Update the scaleZoom level when reacting to the slider changing.
      * 
      * @param e the event that's changed.
      */
@@ -309,16 +314,16 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
         if (source.getValueIsAdjusting()) {
             
             int viewerWidth = viewer.getSize().width;
-            int maxSize = source.getValue() + viewerWidth;
+            int scaleZoom = viewerWidth + (source.getValue() * (dateDifference / 10));
             
-            if (maxSize >= viewerWidth && maxSize <= MAX_SIZE + viewerWidth) {
+            if (scaleZoom >= viewerWidth && scaleZoom <= MAX_SIZE + viewerWidth && dateDifference > 10) {
                 
                 int position = viewer.getViewPosition().x;
                 int halfWidth = viewerWidth / 2;
                 int oldCentre = position + halfWidth;
-                double ratio = (double) maxSize / size;
+                double ratio = (double) scaleZoom / size;
                 
-                size = maxSize;
+                size = scaleZoom;
                 
                 viewer.setViewPosition(
                         new Point(
