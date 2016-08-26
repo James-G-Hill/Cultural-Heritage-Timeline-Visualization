@@ -101,7 +101,7 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
         
         TreeMap<String, List<ManMadeObject>> categories = new TreeMap<>();
         
-        for(ManMadeObject object: collection) {
+        for (ManMadeObject object: collection) {
             if (object.getTimeSpan() != null) {
                 String result;
                 switch(filter) {
@@ -199,7 +199,7 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
         Collections.shuffle(colors);
         ArrayList<ManMadeObject> other = new ArrayList<>();
         
-        for(Map.Entry<String, List<ManMadeObject>> entry: categories.entrySet()) {
+        for (Map.Entry<String, List<ManMadeObject>> entry: categories.entrySet()) {
             if (count < 3) {
                 timelines[count] = new TimeLine(
                         entry.getKey(),
@@ -222,7 +222,7 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
             );
         }
         
-        for(TimeLine tm : timelines) {
+        for (TimeLine tm : timelines) {
             this.add(tm);
         }
         
@@ -247,7 +247,7 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
      */
     protected void paintTimeLines() {
         int tlCount = 0;
-        for(TimeLine tm : timelines) {
+        for (TimeLine tm : timelines) {
             tm.setBounds(
                     0,
                     tlCount + (TIMELINE_HEIGHT * tlCount),
