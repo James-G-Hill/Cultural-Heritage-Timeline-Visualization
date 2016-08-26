@@ -156,7 +156,7 @@ public class ScaleBuilder {
         if (interval == 0) {
             return 10;
         } else {
-            return ((interval + difference) / interval) * zoom;
+            return ((difference / interval) * zoom) + 1;
         }
     }
     
