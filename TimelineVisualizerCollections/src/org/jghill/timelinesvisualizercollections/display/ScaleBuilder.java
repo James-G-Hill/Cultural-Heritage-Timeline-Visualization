@@ -11,6 +11,8 @@ import org.jghill.timelinevisualizerentities.ManMadeObject;
  */
 public class ScaleBuilder {
     
+    private int zoom;
+    
     /**
      * Constructor.
      */
@@ -22,7 +24,11 @@ public class ScaleBuilder {
      * @param collection of objects to calculate from.
      * @return an array of dates for the scales.
      */
-    public int[] createScaleInfo(ManMadeObject[] collection) {
+    public int[] createScaleInfo(
+            ManMadeObject[] collection,
+            int zoom
+    ) {
+        this.zoom = zoom;
         Calendar earliest = calculateEarliest(collection);
         Calendar latest = calculateLatest(collection);
         int interval = calculateInterval(
@@ -36,7 +42,7 @@ public class ScaleBuilder {
     }
     
     /**
-     * Calculate the earliest date to display on the timeline.
+     * Calculate the earliest date to display on the TimeLine.
      * 
      * @param collection the collection of objects to calculate from.
      */
@@ -80,6 +86,23 @@ public class ScaleBuilder {
     }
     
     /**
+     * Calculates the intervals size.
+     * 
+     * @return the size of the interval.
+     */
+    private int calculateInterval(
+            Calendar start,
+            Calendar end
+    ) {
+        int difference = end.get(Calendar.YEAR) - start.get(Calendar.YEAR);
+        if (difference < 10) {
+            return 1;
+        } else {
+            return (int) (Math.pow(10, Math.ceil(Math.log10(difference/10))));
+        }
+    }
+    
+    /**
      * Returns the start date for the scale.
      * 
      * @param earliest date.
@@ -120,23 +143,6 @@ public class ScaleBuilder {
     }
     
     /**
-     * Calculates the intervals size.
-     * 
-     * @return the size of the interval.
-     */
-    private int calculateInterval(
-            Calendar start,
-            Calendar end
-    ) {
-        int difference = end.get(Calendar.YEAR) - start.get(Calendar.YEAR);
-        if (difference < 10) {
-            return 1;
-        } else {
-            return (int) Math.pow(10, Math.ceil(Math.log10(difference/10)));
-        }
-    }
-    
-    /**
      * Calculates the number of intervals to display on the TimeLine.
      * 
      * @return the number of intervals.
@@ -150,7 +156,7 @@ public class ScaleBuilder {
         if (interval == 0) {
             return 10;
         } else {
-            return (interval + difference) / interval;
+            return ((interval + difference) / interval) * zoom;
         }
     }
     
@@ -173,7 +179,7 @@ public class ScaleBuilder {
             return dates;
         } else {
             for(int i = 0; i < intervalsCount; i++) {
-                dates[i] = start.get(Calendar.YEAR) + (i * interval);
+                dates[i] = start.get(Calendar.YEAR) + ((i * interval) / zoom);
             }
             return dates;
         }
