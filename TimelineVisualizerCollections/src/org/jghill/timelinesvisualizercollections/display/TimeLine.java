@@ -43,6 +43,8 @@ public class TimeLine extends JLayeredPane {
     private int lineLength;
     private int scaleLength;
     
+    private boolean update = true;
+    
     private final Color color;
     
     /**
@@ -99,18 +101,22 @@ public class TimeLine extends JLayeredPane {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (objects.length > 0) {
-            if (intervals == null) {
+            if (update) {
+                update = getUpdate();
                 setLabels();
             }
             paintTimeLine(g);
-        }
     }
     
     /**
      * Creates the list of labels to place onto the TimeLine.
      */
     private void setLabels() {
+        if (labels != null) {
+            for(int i = 0; i < intervals.length; i++) {
+                this.remove(labels[i]);
+            }
+        }
         intervals = cdp.getDateArray();
         labels = new JLabel[intervals.length];
         for(int i = 0; i < intervals.length; i++) {
@@ -275,6 +281,15 @@ public class TimeLine extends JLayeredPane {
      */
     public ManMadeObject[] getEntities() {
         return objects;
+    }
+    
+    /**
+     * Checks whether or not the labels need updating.
+     * 
+     * @return 
+     */
+    public boolean getUpdate() {
+        return cdp.getUpdate();
     }
     
 }
