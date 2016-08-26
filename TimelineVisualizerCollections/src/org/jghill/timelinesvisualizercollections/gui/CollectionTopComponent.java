@@ -604,10 +604,10 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         CollectionDisplayScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         CollectionDisplayScrollPane.setViewportView(collectionDisplayPanel);
 
-        ZoomSlider.setMajorTickSpacing(1000);
-        ZoomSlider.setMaximum(10000);
-        ZoomSlider.setMinimum(1000);
+        ZoomSlider.setMajorTickSpacing(100);
+        ZoomSlider.setMaximum(1000);
         ZoomSlider.setPaintTicks(true);
+        ZoomSlider.setValue(0);
 
         org.openide.awt.Mnemonics.setLocalizedText(ZoomOutLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ZoomOutLabel.text")); // NOI18N
 
