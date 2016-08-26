@@ -268,23 +268,19 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
      */
     private void modifyScaleZoom() {
         int scale = size / viewer.getSize().width;
-//        System.out.println("Scale " + scale);
-//        System.out.println("Level1 " + level1);
-//        System.out.println("Level2 " + level2);
-//        System.out.println("Level3 " + level3);
-        if (scale <= 1 && !level1) {
+        if (scale <= 4 && !level1) {
             level1 = true;
             level2 = false;
             level3 = false;
             update = true;
             dateArray = timeLineBuilder.createScaleInfo(collection, 1);
-        } else if (scale > 1 && scale <= 10 && !level2) {
+        } else if (scale > 4 && scale <= 16 && !level2) {
             level1 = false;
             level2 = true;
             level3 = false;
             update = true;
             dateArray = timeLineBuilder.createScaleInfo(collection, 10);
-        } else if (scale > 10 && !level3) {
+        } else if (scale > 16 && !level3) {
             level1 = false;
             level2 = false;
             level3 = true;
