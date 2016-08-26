@@ -178,7 +178,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         ZoomOutLabel = new javax.swing.JLabel();
         ZoomInLabel = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(1100, 500));
+        setPreferredSize(new java.awt.Dimension(1100, 524));
 
         Tab.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -224,7 +224,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 .addGap(18, 18, 18)
                 .addComponent(NotesText)
                 .addGap(18, 18, 18)
-                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -529,6 +529,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
 
         EntitiesTable.setAutoCreateRowSorter(true);
         EntitiesTable.setModel(new EntityTableModel(coll));
+        EntitiesTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
         EntitiesScrollPane.setViewportView(EntitiesTable);
 
         javax.swing.GroupLayout EntitiesLayout = new javax.swing.GroupLayout(Entities);
@@ -544,7 +545,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             EntitiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EntitiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -660,7 +661,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VisualizerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(CollectionDisplayScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addComponent(CollectionDisplayScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ZoomSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -698,7 +699,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tab, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+                .addComponent(Tab, javax.swing.GroupLayout.PREFERRED_SIZE, 502, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
