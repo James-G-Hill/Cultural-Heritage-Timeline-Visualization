@@ -19,8 +19,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toMap;
-import static java.util.Map.Entry.comparingByValue;
-import static java.util.stream.Collectors.toMap;
 
 /**
  * A Panel for displaying the results.
@@ -84,10 +82,12 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
             ManMadeObject[] collection,
             String filter
     ) {
-        viewer = (JViewport) this.getParent();
         clear();
         this.filter = filter;
         this.collection = collection;
+        viewer = (JViewport) this.getParent();
+        dateArray = timeLineBuilder.createScaleInfo(collection, 1);
+        dateDifference = dateArray[dateArray.length-1] - dateArray[0];
         runFilter();
         revalidate();
         repaint();
@@ -235,15 +235,9 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
             if (size < viewer.getSize().width) {
                 size = viewer.getSize().width;
             }
+            modifyScaleZoom();
             paintTimeLines();
-            dateArray = timeLineBuilder.createScaleInfo(collection);
-            dateDifference = dateArray[dateArray.length-1] - dateArray[0]; 
-            this.setPreferredSize(
-                    new Dimension(
-                            size,
-                            timelines.length * TIMELINE_HEIGHT
-                    )
-            );
+            changeSize();
         }
         revalidate();
     }
@@ -264,6 +258,47 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
         }
     }
     
+    private boolean level1 = false;
+    private boolean level2 = true;
+    private boolean level3 = true;
+    private boolean update;
+    
+    /**
+     * Check the zoom level and modify the scale if necessary.
+     */
+    private void modifyScaleZoom() {
+        int scale = size / viewer.getSize().width;
+//        System.out.println("Scale " + scale);
+//        System.out.println("Level1 " + level1);
+//        System.out.println("Level2 " + level2);
+//        System.out.println("Level3 " + level3);
+        if (scale <= 1 && !level1) {
+            level1 = true;
+            level2 = false;
+            level3 = false;
+            update = true;
+            dateArray = timeLineBuilder.createScaleInfo(collection, 1);
+        } else if (scale > 1 && scale <= 10 && !level2) {
+            level1 = false;
+            level2 = true;
+            level3 = false;
+            update = true;
+            dateArray = timeLineBuilder.createScaleInfo(collection, 10);
+        } else if (scale > 10 && !level3) {
+            level1 = false;
+            level2 = false;
+            level3 = true;
+            update = true;
+            dateArray = timeLineBuilder.createScaleInfo(collection, 100);
+        } else {
+            update = false;
+        }
+    }
+    
+    public boolean getUpdate() {
+        return update;
+    }
+  
     /**
      * Returns the array of dates associated with this display.
      * 
@@ -314,7 +349,7 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
         if (source.getValueIsAdjusting()) {
             
             int viewerWidth = viewer.getSize().width;
-            int scaleZoom = viewerWidth + (source.getValue() * (dateDifference / 10));
+            int scaleZoom = viewerWidth + ((source.getValue() * viewerWidth) / 100);
             
             if (scaleZoom >= viewerWidth && scaleZoom <= MAX_SIZE + viewerWidth && dateDifference > 10) {
                 
@@ -322,12 +357,13 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
                 int halfWidth = viewerWidth / 2;
                 int oldCentre = position + halfWidth;
                 double ratio = (double) scaleZoom / size;
-                
+                int newX = Math.max(0, (int) (Math.round(oldCentre * ratio) - halfWidth));
                 size = scaleZoom;
+                changeSize();
                 
                 viewer.setViewPosition(
                         new Point(
-                                (int) ((oldCentre * ratio) - halfWidth),
+                                newX,
                                 viewer.getViewPosition().y
                         )
                 );
@@ -338,6 +374,18 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
             
         }
         
+    }
+    
+    /**
+     * Changes the size of this panel.
+     */
+    private void changeSize() {
+        this.setPreferredSize(
+                new Dimension(
+                        size,
+                        timelines.length * TIMELINE_HEIGHT
+                )
+        );
     }
     
 }
