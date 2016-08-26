@@ -101,8 +101,7 @@ public class TimeLine extends JLayeredPane {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-            if (update) {
-                update = getUpdate();
+            if (getUpdate()) {
                 setLabels();
             }
             paintTimeLine(g);
