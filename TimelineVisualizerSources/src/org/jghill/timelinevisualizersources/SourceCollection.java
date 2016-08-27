@@ -24,6 +24,8 @@ public class SourceCollection implements Lookup.Provider {
     
     private static SourceManagerXMLWriter xmlWriter;
     
+    public static boolean loaded = false;
+    
     /**
      * Returns the single instance of this singleton pattern.
      * 
@@ -98,6 +100,16 @@ public class SourceCollection implements Lookup.Provider {
             xmlWriter.build();
             xmlWriter.print();
         } catch (ParserConfigurationException ex) {}
+    }
+    
+    /**
+     * Sets the 'loaded' variable to show that the XML file has already been
+     * loaded in.
+     */
+    public static void setLoaded() {
+        if (!loaded) {
+            loaded = true;
+        }
     }
     
 }
