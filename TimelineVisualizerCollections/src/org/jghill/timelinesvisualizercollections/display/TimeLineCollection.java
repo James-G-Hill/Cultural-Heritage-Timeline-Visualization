@@ -20,9 +20,12 @@ import static java.util.stream.Collectors.toMap;
  */
 public class TimeLineCollection {
     
+    private final int MAX_CATEGORIES = 4;
+    
     private final List<Color> colors = Colours.getColours();
-    private TimeLine[] timeLines;
     private final CollectionDisplayPanel cdp;
+    
+    private TimeLine[] timeLines;
     
     /**
      * Constructor.
@@ -41,6 +44,7 @@ public class TimeLineCollection {
             ManMadeObject[] collection,
             String filter
     ) {
+        Collections.shuffle(colors);
         runFilter(collection, filter);
     }
     
@@ -108,10 +112,10 @@ public class TimeLineCollection {
     ) {
         TimeLine[] timeline;
         int categoriesCount = categories.size();
-        if (categoriesCount < 5) {
+        if (categoriesCount <= MAX_CATEGORIES) {
             timeline = new TimeLine[categoriesCount];
         } else {
-            timeline = new TimeLine[4];
+            timeline = new TimeLine[MAX_CATEGORIES];
         }
         return timeline;
     }
@@ -148,11 +152,10 @@ public class TimeLineCollection {
             TreeMap<String, List<ManMadeObject>> categories
     ) {    
         int count = 0;
-        Collections.shuffle(colors);
         ArrayList<ManMadeObject> other = new ArrayList<>();
         
         for (Map.Entry<String, List<ManMadeObject>> entry: categories.entrySet()) {
-            if (count < 3) {
+            if (count < (MAX_CATEGORIES - 1)) {
                 timeLines[count] = new TimeLine(
                         entry.getKey(),
                         entry.getValue().toArray(new ManMadeObject[entry.getValue().size()]),
@@ -165,11 +168,11 @@ public class TimeLineCollection {
             count++;
         }
         
-        if (count >= 3 && !other.isEmpty()) {
-            timeLines[3] = new TimeLine(
+        if (count >= (MAX_CATEGORIES - 1) && !other.isEmpty()) {
+            timeLines[(MAX_CATEGORIES - 1)] = new TimeLine(
                     "Other",
                     other.toArray(new ManMadeObject[other.size()]),
-                    colors.get(3),
+                    colors.get((MAX_CATEGORIES - 1)),
                     cdp
             );
         }
