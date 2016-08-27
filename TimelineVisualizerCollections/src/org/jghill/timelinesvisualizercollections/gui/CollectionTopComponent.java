@@ -20,18 +20,19 @@ import org.openide.util.NbBundle.Messages;
 import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinesvisualizercollections.container.CollectionContainer;
 import org.jghill.timelinesvisualizercollections.display.EntityDisplay;
-import org.jghill.timelinesvisualizercollections.display.TimeLine;
+import org.jghill.timelinesvisualizercollections.display.TimeLineCollection;
 import org.jghill.timelinesvisualizerdispatcher.Dispatcher;
 import org.jghill.timelinesvisualizerqueriesbuilder.QueryBuilder;
 import org.jghill.timelinesvisualizerqueriesbuilder.QuerySettings;
 import org.jghill.timelinevisualizerentities.Entities;
-import org.jghill.timelinevisualizerentities.ManMadeObject;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueries.QueryShell;
 import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
 import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
+import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.RequestProcessor;
@@ -60,6 +61,8 @@ import org.openide.util.lookup.InstanceContent;
     "HINT_CollectionTopComponent=This is a Collection window"
 })
 public final class CollectionTopComponent extends TopComponent implements FocusListener {
+    
+    private static final int TAB_VISUAL = 3;
     
     /**
      * Constructor.
@@ -104,6 +107,10 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         FirstFilterComboBox.setSelectedIndex(0);
         
         collectionDisplayPanel.setSlider(ZoomSlider);
+        
+        timeLinesCollection = new TimeLineCollection(
+            collectionDisplayPanel
+        );
         
     }
 
@@ -740,10 +747,22 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 catch(InterruptedException | ExecutionException e){}
                 
                 entityModelChange();
-                paintVisualDisplay(
-                    etb.getFlattenedCollection(),
-                    (String) FirstFilterComboBox.getSelectedItem()
+                
+                timeLinesCollection.createTimeLines(
+                        etb.getFlattenedCollection(),
+                        (String) FirstFilterComboBox.getSelectedItem()
                 );
+                if (etb.getFlattenedCollection().length > 0) {
+                    paintVisualDisplay();
+                } else {
+                    String msg = "There were no objects returned.";
+                    NotifyDescriptor nd;
+                    nd = new NotifyDescriptor.Message(
+                            msg,
+                            NotifyDescriptor.INFORMATION_MESSAGE
+                    );
+                    DialogDisplayer.getDefault().notify(nd);
+                }
                 
             } catch (HttpException ex) {
                 output("502 Proxy Error: endpoint not available.");
@@ -766,10 +785,11 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             qtb.deleteSource(row);
             entityModelChange();
             queryModelChange();
-            paintVisualDisplay(
-                etb.getFlattenedCollection(),
-                (String) FirstFilterComboBox.getSelectedItem()
+            timeLinesCollection.createTimeLines(
+                    etb.getFlattenedCollection(),
+                    (String) FirstFilterComboBox.getSelectedItem()
             );
+            paintVisualDisplay();
         }
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
@@ -841,7 +861,6 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         String selectedItem = (String) Group1ComboBox.getSelectedItem();
         if (selectedItem.equalsIgnoreCase("None")) {
             filterDisplay(
-                true,
                 false,
                 false,
                 (String) FirstFilterComboBox.getSelectedItem(),
@@ -856,7 +875,6 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             );
         } else {
             filterDisplay(
-                true,
                 true,
                 false,
                 (String) FirstFilterComboBox.getSelectedItem(),
@@ -876,8 +894,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
 
     private void FirstFilterComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstFilterComboBoxActionPerformed
         String selectedItem = (String) FirstFilterComboBox.getSelectedItem();
-        String[] timelines = filterDisplay(
-            true,
+        filterDisplay(
             false,
             false,
             selectedItem,
@@ -898,15 +915,17 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                     false,
                     false
             );
-            ComboBoxModel comboModel = new DefaultComboBoxModel(timelines);
+            ComboBoxModel comboModel;
+            comboModel = new DefaultComboBoxModel(
+                    timeLinesCollection.getTimeLinesNames()
+            );
             Group1ComboBox.setModel(comboModel);
         }
     }//GEN-LAST:event_FirstFilterComboBoxActionPerformed
 
     private void Group1FilterComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Group1FilterComboBoxActionPerformed
         String selectedItem = (String) Group1FilterComboBox.getSelectedItem();
-        String[] timelines = filterDisplay(
-            true,
+        filterDisplay(
             true,
             false,
             (String) FirstFilterComboBox.getSelectedItem(),
@@ -927,7 +946,10 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                     true,
                     false
             );
-            ComboBoxModel comboModel = new DefaultComboBoxModel(timelines);
+            ComboBoxModel comboModel;
+            comboModel = new DefaultComboBoxModel(
+                    timeLinesCollection.getTimeLinesNames()
+            );
             Group2ComboBox.setModel(comboModel);
         }
     }//GEN-LAST:event_Group1FilterComboBoxActionPerformed
@@ -935,7 +957,6 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private void Group2FilterComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Group2FilterComboBoxActionPerformed
         String selectedItem = (String) Group2FilterComboBox.getSelectedItem();
         filterDisplay(
-            true,
             true,
             true,
             (String) FirstFilterComboBox.getSelectedItem(),
@@ -948,7 +969,6 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         String selectedItem = (String) Group2ComboBox.getSelectedItem();
         if (selectedItem.equalsIgnoreCase("None")) {
             filterDisplay(
-                true,
                 true,
                 false,
                 (String) FirstFilterComboBox.getSelectedItem(),
@@ -963,7 +983,6 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             );
         } else {
             filterDisplay(
-                true,
                 true,
                 true,
                 (String) FirstFilterComboBox.getSelectedItem(),
@@ -1065,8 +1084,6 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     
     private final List<String> categories = new ArrayList<>();
     
-    private static final int TAB_VISUAL = 3;
-    
     private final EntityTableModel etb;
     private final QueryTableModel qtb;
     private final Collection coll;
@@ -1074,15 +1091,18 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private final AbstractLookup abLookup = new AbstractLookup(content);
     private final Lookup.Result <Source> sources;
     
+    private final TimeLineCollection timeLinesCollection;
+    
     @Override
     public void componentOpened() {
         setName(coll.getName());
         associateLookup(abLookup);
         queryModelChange();
-        paintVisualDisplay(
+        timeLinesCollection.createTimeLines(
                 etb.getFlattenedCollection(),
                 (String) FirstFilterComboBox.getSelectedItem()
         );
+        paintVisualDisplay();
     }
 
     @Override
@@ -1259,24 +1279,13 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     /**
      * Paints the visual display.
      */
-    private String[] paintVisualDisplay(
-            ManMadeObject[] collection,
-            String filter
-    ) {
-        TimeLine[] timelines;
-        if (collection.length > 0) {
-            timelines = collectionDisplayPanel.setArray(collection, filter);
+    private void paintVisualDisplay() {
+        if (timeLinesCollection.getCount() > 0) {
+            collectionDisplayPanel.setArray(timeLinesCollection);
             Tab.setSelectedIndex(TAB_VISUAL);
         } else {
             collectionDisplayPanel.clear();
-            timelines = new TimeLine[0];
         }
-        String[] timelineNames = new String[timelines.length + 1];
-        timelineNames[0] = "None";
-        for (int i = 1; i < timelineNames.length; i++) {
-            timelineNames[i] = timelines[i-1].getName();
-        }
-        return timelineNames;
     }
 
     @Override
@@ -1323,41 +1332,38 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     /**
      * Filters the display to the correct level.
      * 
-     * @param first level.
      * @param second level.
      * @param third level.
      * @param filter1 the term to filter with.
      * @param filter2 the term to filter with.
      * @param filter3 the term to filter with.
      */
-    private String[] filterDisplay(
-            boolean first,
+    private void filterDisplay(
             boolean second,
             boolean third,
             String filter1,
             String filter2,
             String filter3
     ) {
-        String[] timelines = null;
-        if (first) {
-            timelines = paintVisualDisplay(
-                etb.getFlattenedCollection(),
-                filter1
+        if (timeLinesCollection != null) {
+            timeLinesCollection.createTimeLines(
+                   etb.getFlattenedCollection(),
+                   filter1
             );
+            if (second) {
+                timeLinesCollection.createTimeLines(
+                        timeLinesCollection.getAllTimeLineObjects(),
+                        filter2
+                );
+            }
+            if (third) {
+                timeLinesCollection.createTimeLines(
+                        timeLinesCollection.getAllTimeLineObjects(),
+                        filter3
+                );
+            }
+            paintVisualDisplay();
         }
-        if (second) {
-            timelines = paintVisualDisplay(
-                collectionDisplayPanel.getTimeLine((String) Group1ComboBox.getSelectedItem()),
-                filter2
-            );
-        }
-        if (third) {
-            timelines = paintVisualDisplay(
-                collectionDisplayPanel.getTimeLine((String) Group2ComboBox.getSelectedItem()),
-                filter3
-            );
-        }
-        return timelines;
     }
     
 }
