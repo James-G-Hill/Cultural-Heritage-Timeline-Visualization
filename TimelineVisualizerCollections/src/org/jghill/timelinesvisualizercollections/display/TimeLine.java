@@ -212,7 +212,8 @@ public class TimeLine extends JLayeredPane {
                 LINE_INDENT,
                 vertical,
                 LINE_INDENT + lineLength,
-                vertical);
+                vertical
+        );
         int x, y;
         y = vertical;
         for(int i = 0; i < intervals.length; i++) {
