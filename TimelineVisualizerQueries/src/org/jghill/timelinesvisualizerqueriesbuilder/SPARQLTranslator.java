@@ -40,6 +40,10 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String DATE = "?date ";
     private static final String CREATOR = "?creator ";
     
+    private static final String DEPICTION_SAMPLE = "?depictionSample ";
+    private static final String TECHNIQUE_SAMPLE = "?techniqueSample ";
+    private static final String IMAGE_SAMPLE = "?imageSample ";
+    
     private static final String DESCRIPTION = "?description ";
     private static final String CURATORIAL = "?curatorial ";
     
@@ -53,6 +57,11 @@ public class SPARQLTranslator implements QueryTranslator {
         return new SPARQLQueryShell(build(), sparql, settings.queryName);
     }
     
+    /**
+     * Builds the query from the components.
+     * 
+     * @return the final query as a String.
+     */
     private String build() {
         return
                 prefix() + "\n\n" +
@@ -60,6 +69,7 @@ public class SPARQLTranslator implements QueryTranslator {
                 WHERE + "\n\n" +
                 whereClause() + "\n\n" +
                 END + "\n\n" +
+                groupBy() + "\n\n" +
                 limit();
     }
     
@@ -85,16 +95,16 @@ public class SPARQLTranslator implements QueryTranslator {
                 SELECT + " \n" +
                 IDENTIFIER + " \n" +
                 NAME + " \n" +
-                DEPICTION + " \n" +
                 CONSISTS + " \n" +
                 TYPE + " \n" +
-                TECHNIQUE + " \n" +
-                IMAGE + " \n" +
                 DATE + " \n" +
                 CREATOR + " \n" +
                 OBJECT + " \n" +
                 DESCRIPTION + " \n" +
-                CURATORIAL + " \n";
+                CURATORIAL + " \n" +
+                "(SAMPLE (" + DEPICTION_SAMPLE + ") AS " + DEPICTION + " ) \n" +
+                "(SAMPLE (" + TECHNIQUE_SAMPLE + ") AS " + TECHNIQUE + " ) \n" +
+                "(SAMPLE (" + IMAGE_SAMPLE + ") AS " + IMAGE + " ) \n";
     }
     
     /**
@@ -187,13 +197,13 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getDepiction() {
         String query = "";
         String triple = "";
-        triple += "{ " + OBJECT + "crm:P62_depicts/skos:prefLabel " + DEPICTION + " } \n";
+        triple += "{ " + OBJECT + "crm:P62_depicts/skos:prefLabel " + DEPICTION_SAMPLE + " } \n";
         triple += UNION;
-        triple += "{ " + OBJECT + "crm:P129_is_about/edan:/skos:prefLabel " + DEPICTION + " } \n";
+        triple += "{ " + OBJECT + "crm:P129_is_about/edan:/skos:prefLabel " + DEPICTION_SAMPLE + " } \n";
         if (settings.hasDepictionCheck) {
             query += triple;
             query += " . \n";
-            query += "FILTER (CONTAINS(LCASE(" + DEPICTION + "), \"" + settings.depiction + "\")). \n";
+            query += "FILTER (CONTAINS(LCASE(" + DEPICTION_SAMPLE + "), \"" + settings.depiction + "\")). \n";
         } else {
             query += "OPTIONAL { ";
             query += triple;
@@ -251,12 +261,12 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getTechnique() {
         String query = "";
-        String triple = PRODUCTION + "crm:P9_consists_of [ crm:P32_used_general_technique [ skos:prefLabel " + TECHNIQUE + " ] ] ";
+        String triple = PRODUCTION + "crm:P9_consists_of [ crm:P32_used_general_technique [ skos:prefLabel " + TECHNIQUE_SAMPLE + " ] ] ";
         if (settings.hasTechniqueCheck) {
             query += "{ ";
             query += triple;
             query += " } . \n";
-            query += "FILTER (CONTAINS(LCASE(" + TECHNIQUE + "), \"" + settings.technique + "\")). \n";
+            query += "FILTER (CONTAINS(LCASE(" + TECHNIQUE_SAMPLE + "), \"" + settings.technique + "\")). \n";
         } else {
             query += "OPTIONAL { ";
             query += triple;
@@ -272,7 +282,7 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getImage() {
         String query = "";
-        String triple = OBJECT + "crm:P138i_has_representation " + IMAGE;
+        String triple = OBJECT + "crm:P138i_has_representation " + IMAGE_SAMPLE;
         if (settings.hasImageCheck) {
             query += "{ ";
             query += triple;
@@ -324,6 +334,23 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getCuration() {
         return "OPTIONAL { " + OBJECT + "bmo:PX_curatorial_comment " + CURATORIAL + " }. \n";
+    }
+    
+    /**
+     * Groups the selection by the following categories.
+     */
+    private String groupBy() {
+        return
+                "GROUP BY" + " \n" +
+                IDENTIFIER + " \n" +
+                NAME + " \n" +
+                CONSISTS + " \n" +
+                TYPE + " \n" +
+                DATE + " \n" +
+                CREATOR + " \n" +
+                OBJECT + " \n" +
+                DESCRIPTION + " \n" +
+                CURATORIAL + " \n";
     }
     
     /**
