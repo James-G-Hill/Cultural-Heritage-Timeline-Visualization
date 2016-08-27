@@ -18,7 +18,11 @@ public class SPARQLEndpoint extends Source {
      * @param webAddress the web address.
      * @param cidoc the CIDOC CRM address.
      */
-    public SPARQLEndpoint(String name, String webAddress, String cidoc) {
+    public SPARQLEndpoint(
+            String name,
+            String webAddress,
+            String cidoc
+    ) {
         super.setSourceName(name);
         this.webAddress = webAddress;
         this.cidocAddress = cidoc;
