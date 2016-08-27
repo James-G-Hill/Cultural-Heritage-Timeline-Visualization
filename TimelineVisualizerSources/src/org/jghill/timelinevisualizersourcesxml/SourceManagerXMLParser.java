@@ -1,5 +1,6 @@
 package org.jghill.timelinevisualizersourcesxml;
 
+import java.util.List;
 import javax.xml.xpath.XPathExpressionException;
 import org.jghill.timelinevisualizersources.Source;
 
@@ -15,6 +16,6 @@ public interface SourceManagerXMLParser {
      * 
      * @return an array of the Sources.
      */
-    public Source[] parseSources() throws XPathExpressionException;
+    public List<Source> parseSources() throws XPathExpressionException;
     
 }
