@@ -106,12 +106,13 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
         for (TimeLine tm : timeLines) {
             tm.setBounds(
                     0,
-                    tlCount + (TIMELINE_HEIGHT * tlCount),
+                    TIMELINE_HEIGHT * tlCount,
                     size,
                     TIMELINE_HEIGHT
             );
             tlCount++;
         }
+        update = true;
     }
     
     /**
@@ -142,6 +143,11 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
         }
     }
     
+    /**
+     * Returns the status of the 'update' variable.
+     * 
+     * @return the update variable.
+     */
     public boolean getUpdate() {
         return update;
     }
