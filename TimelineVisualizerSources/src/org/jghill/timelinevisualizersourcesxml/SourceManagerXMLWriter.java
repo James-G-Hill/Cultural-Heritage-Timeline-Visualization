@@ -1,7 +1,5 @@
 package org.jghill.timelinevisualizersourcesxml;
 
-import org.jghill.timelinevisualizersources.SourceCollection;
-
 /**
  * An XML writer for the Source Manager info.
  * 
@@ -11,10 +9,8 @@ public interface SourceManagerXMLWriter {
     
     /**
      * Builds a DOM document for this Source Manager.
-     * 
-     * @param collection of Sources to be built from.
      */
-    public void build(SourceCollection collection);
+    public void build();
     
     /**
      * Prints a DOM document to the system.
