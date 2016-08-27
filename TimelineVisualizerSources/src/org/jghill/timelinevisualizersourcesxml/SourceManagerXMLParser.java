@@ -1,6 +1,6 @@
 package org.jghill.timelinevisualizersourcesxml;
 
-import org.jghill.timelinevisualizersources.SourceCollection;
+import org.jghill.timelinevisualizersources.Source;
 
 /**
  * An interface for XML parsing the Source Manager information.
@@ -10,15 +10,10 @@ import org.jghill.timelinevisualizersources.SourceCollection;
 public interface SourceManagerXMLParser {
     
     /**
-     * Builds a DOM document for this Source Manager.
+     * A method for parsing Sources from an xml file.
      * 
-     * @param collection of Sources to be built from.
+     * @return an array of the Sources.
      */
-    public void build(SourceCollection collection);
-    
-    /**
-     * Prints a DOM document to the system.
-     */
-    public void print();
+    public Source[] parseSources();
     
 }
