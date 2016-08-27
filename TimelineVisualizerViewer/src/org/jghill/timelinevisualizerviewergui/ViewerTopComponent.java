@@ -68,6 +68,7 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
         ViewerScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         ViewerScrollPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ViewerScrollPane.setHorizontalScrollBar(null);
+        ViewerScrollPane.setMinimumSize(new java.awt.Dimension(0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -77,7 +78,7 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ViewerScrollPane, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(ViewerScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
