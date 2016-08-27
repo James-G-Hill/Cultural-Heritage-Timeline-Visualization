@@ -43,8 +43,6 @@ public class TimeLine extends JLayeredPane {
     private int lineLength;
     private int scaleLength;
     
-    private boolean update = true;
-    
     private final Color color;
     
     /**
