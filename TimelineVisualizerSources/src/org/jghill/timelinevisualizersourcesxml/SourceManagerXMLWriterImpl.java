@@ -39,7 +39,7 @@ public class SourceManagerXMLWriterImpl implements SourceManagerXMLWriter {
     @Override
     public void build() {
         doc = builder.newDocument();
-        Element rootElement = doc.createElement("Source Manager");
+        Element rootElement = doc.createElement("manager");
         doc.appendChild(rootElement);
         createSourceList(rootElement);
     }
@@ -52,7 +52,7 @@ public class SourceManagerXMLWriterImpl implements SourceManagerXMLWriter {
             trans.setOutputProperty(OutputKeys.INDENT, "yes");
             trans.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
             DOMSource source =  new DOMSource(doc);
-            StreamResult file = new StreamResult(new File("Sources"));
+            StreamResult file = new StreamResult(new File("Source Manager.xml"));
             trans.transform(source, file);
         } catch (TransformerException ex) {}
     }
