@@ -27,10 +27,9 @@ public class SourceManagerXMLParserImpl implements SourceManagerXMLParser {
     private final XPath path;
     
     
-    public SourceManagerXMLParserImpl() throws ParserConfigurationException, SAXException, IOException {
+    public SourceManagerXMLParserImpl(File f) throws ParserConfigurationException, SAXException, IOException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         builder = factory.newDocumentBuilder();
-        File f = new File("Source Manager");
         doc = builder.parse(f);
         XPathFactory xFactory = XPathFactory.newInstance();
         path = xFactory.newXPath();
@@ -43,12 +42,12 @@ public class SourceManagerXMLParserImpl implements SourceManagerXMLParser {
         sourcesCount = Integer.parseInt(
                 path.evaluate("count(/manager/source)", doc)
         );
-        for (int i = 0; i < sourcesCount; i++) {
-            String type = path.evaluate("count(/manager/source/type)", doc);
+        for (int i = 1; i <= sourcesCount; i++) {
+            String type = path.evaluate("/manager/source[" + i + "]/type", doc);
             if (type.equalsIgnoreCase("SPARQL Endpoint")) {
-                String name = path.evaluate("count(/manager/source/name)", doc);
-                String uri = path.evaluate("count(/manager/source/uri)", doc);
-                String cidoc = path.evaluate("count(/manager/source/cidoc)", doc);
+                String name = path.evaluate("/manager/source[" + i + "]/name", doc);
+                String uri = path.evaluate("/manager/source[" + i + "]/uri", doc);
+                String cidoc = path.evaluate("/manager/source[" + i + "]/cidoc", doc);
                 Source s = new SPARQLEndpoint(
                         name,
                         uri,
