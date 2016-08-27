@@ -92,16 +92,13 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
         DetailsLabel = new javax.swing.JLabel();
         DetailsTextField = new javax.swing.JTextField();
 
-        setMaximumSize(new java.awt.Dimension(1000, 1000));
-        setMinimumSize(new java.awt.Dimension(1, 1));
         setOpaque(true);
         setPreferredSize(new java.awt.Dimension(320, 850));
 
         PropertiesScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         PropertiesScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         PropertiesScrollPane.setHorizontalScrollBar(null);
-        PropertiesScrollPane.setMaximumSize(new java.awt.Dimension(1000, 1000));
-        PropertiesScrollPane.setMinimumSize(new java.awt.Dimension(1, 1));
+        PropertiesScrollPane.setMinimumSize(new java.awt.Dimension(0, 0));
         PropertiesScrollPane.setPreferredSize(new java.awt.Dimension(320, 850));
 
         PropertiesPanel.setMaximumSize(new java.awt.Dimension(320, 850));
