@@ -97,7 +97,8 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
         setOpaque(true);
         setPreferredSize(new java.awt.Dimension(320, 850));
 
-        PropertiesScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        PropertiesScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        PropertiesScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         PropertiesScrollPane.setHorizontalScrollBar(null);
         PropertiesScrollPane.setMaximumSize(new java.awt.Dimension(1000, 1000));
         PropertiesScrollPane.setMinimumSize(new java.awt.Dimension(1, 1));
