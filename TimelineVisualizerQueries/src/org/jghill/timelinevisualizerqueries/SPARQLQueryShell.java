@@ -52,6 +52,33 @@ public class SPARQLQueryShell extends QueryShell {
         return QUERY_TYPE;
     }
     
+    /**
+     * Returns the query as a String.
+     * 
+     * @return the query string.
+     */
+    public String getQueryString() {
+        return queryString;
+    }
+    
+    /**
+     * Returns the service address.
+     * 
+     * @return the address.
+     */
+    public String getServiceAddress() {
+        return service.getWebAddress();
+    }
+    
+    /**
+     * Returns the CIDOC implementation address.
+     * 
+     * @return the CIDOC implementation.
+     */
+    public String getCIDOCAddress() {
+        return service.getCIDOCAddress();
+    }
+    
     @Override
     public EntitiesCollection run() {
         output(queryString);
