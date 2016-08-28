@@ -14,6 +14,8 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toMap;
+import static java.util.Map.Entry.comparingByValue;
+import static java.util.stream.Collectors.toMap;
 
 /**
  * Filters a collection of objects to a set of TimeLines.
@@ -21,6 +23,8 @@ import static java.util.stream.Collectors.toMap;
  * @author JGHill
  */
 public class TimeLineCollection {
+    
+    private static final List<Color> COLORS = Colours.getColours();
     
     private final String none = "None";
     private final String query = "Query";
@@ -33,7 +37,6 @@ public class TimeLineCollection {
     
     private final int MAX_CATEGORIES = 4;
     
-    private final List<Color> colors = Colours.getColours();
     private final CollectionDisplayPanel cdp;
     
     private TimeLine[] timeLines;
@@ -103,7 +106,7 @@ public class TimeLineCollection {
             ManMadeObject[] collection,
             String filter
     ) {
-        Collections.shuffle(colors);
+        Collections.shuffle(COLORS);
         runFilter(collection, filter);
     }
     
@@ -224,7 +227,7 @@ public class TimeLineCollection {
                 timeLines[count] = new TimeLine(
                         entry.getKey(),
                         entry.getValue().toArray(new ManMadeObject[entry.getValue().size()]),
-                        colors.get(count),
+                        COLORS.get(count),
                         cdp
                 );
             } else {
@@ -237,7 +240,7 @@ public class TimeLineCollection {
             timeLines[MAX_CATEGORIES - 1] = new TimeLine(
                     "Other",
                     other.toArray(new ManMadeObject[other.size()]),
-                    colors.get(MAX_CATEGORIES - 1),
+                    COLORS.get(count),
                     cdp
             );
         }
