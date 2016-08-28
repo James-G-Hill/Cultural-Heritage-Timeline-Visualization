@@ -252,7 +252,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceTextLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.SourceTextLabel.text")); // NOI18N
 
-        SourceComboBox.setModel(new DefaultComboBoxModel(SourceCollection.getInstance().collectionToArray()));
+        SourceComboBox.setModel(SourceCollection.getSourceComboBoxModel());
 
         org.openide.awt.Mnemonics.setLocalizedText(HasNameCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasNameCheckBox.text")); // NOI18N
         HasNameCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -1091,6 +1091,10 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
      */
     private boolean querySettingsAreValid() {
         
+        if (SourceComboBox.getSelectedItem().toString().equalsIgnoreCase("Select . . .")) {
+            return false;
+        }
+        
         String startYear = CreationStartYearTextField.getText();
         if(startYear.length() > 4) {return false;}
         if(!Pattern.matches("[0-9]+", startYear) && !startYear.isEmpty()) {return false;}
@@ -1113,7 +1117,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         QuerySettings settings;
         settings = new QuerySettings(
                 
-                (Source) SourceComboBox.getSelectedItem(),
+                SourceCollection.getSource((String) SourceComboBox.getSelectedItem()),
                 QueryNameTextField.getText().trim(),
                 
                 CreationStartYearTextField.getText().trim().toLowerCase(),
