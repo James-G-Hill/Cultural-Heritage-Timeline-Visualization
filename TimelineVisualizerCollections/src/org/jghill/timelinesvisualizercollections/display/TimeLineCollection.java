@@ -14,8 +14,6 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toMap;
-import static java.util.Map.Entry.comparingByValue;
-import static java.util.stream.Collectors.toMap;
 
 /**
  * Filters a collection of objects to a set of TimeLines.
@@ -117,7 +115,7 @@ public class TimeLineCollection {
             ManMadeObject[] collection,
             String filter
     ) {
-        TreeMap<String, List<ManMadeObject>> categories = new TreeMap<>();
+        Map<String, List<ManMadeObject>> categories = new TreeMap<>();
         
         for (ManMadeObject object: collection) {
             if (object.getTimeSpan() != null) {
@@ -176,7 +174,7 @@ public class TimeLineCollection {
      * @return an array of TimeLines.
      */
     private TimeLine[] createTimeLineArray(
-            TreeMap<String, List<ManMadeObject>> categories
+            Map<String, List<ManMadeObject>> categories
     ) {
         TimeLine[] timeline;
         int categoriesCount = categories.size();
@@ -194,21 +192,19 @@ public class TimeLineCollection {
      * @param categories a list of categories.
      * @return a sorted TreeMap of categories.
      */
-    private TreeMap<String, List<ManMadeObject>> sortCategories(
-            TreeMap<String, List<ManMadeObject>> categories
+    private Map<String, List<ManMadeObject>> sortCategories(
+            Map<String, List<ManMadeObject>> categories
     ) {
         Map<String, List<ManMadeObject>> sorted;
         sorted = categories.entrySet().stream()
-                .sorted(comparingByValue(comparingInt(List::size)))
+                .sorted(comparingByValue(comparingInt((List list) -> list.size()).reversed()))
                 .collect(toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue,
                         (a, b) -> {throw new AssertionError();},
                         LinkedHashMap::new
                 ));
-        TreeMap<String, List<ManMadeObject>> objectTree;
-        objectTree = new TreeMap<>(sorted);
-        return objectTree;
+        return sorted;
     }
     
     /**
@@ -217,7 +213,7 @@ public class TimeLineCollection {
      * @param categories that can be passed into TimeLines.
      */
     private void assignTimeLines(
-            TreeMap<String, List<ManMadeObject>> categories
+            Map<String, List<ManMadeObject>> categories
     ) {    
         int count = 0;
         ArrayList<ManMadeObject> other = new ArrayList<>();
@@ -230,16 +226,16 @@ public class TimeLineCollection {
                         COLORS.get(count),
                         cdp
                 );
+                count++;
             } else {
                 other.addAll(entry.getValue());
             }
-            count++;
         }
         
         if (count >= (MAX_CATEGORIES - 1) && !other.isEmpty()) {
             timeLines[MAX_CATEGORIES - 1] = new TimeLine(
                     "Other",
-                    other.toArray(new ManMadeObject[other.size()]),
+                    other.toArray(new ManMadeObject[0]),
                     COLORS.get(count),
                     cdp
             );
