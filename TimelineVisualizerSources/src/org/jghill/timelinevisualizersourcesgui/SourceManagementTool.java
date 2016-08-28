@@ -1,17 +1,8 @@
 package org.jghill.timelinevisualizersourcesgui;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
 import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
 import org.jghill.timelinevisualizersources.SourceTableModel;
-import org.jghill.timelinevisualizersourcesxml.SourceManagerXMLParser;
-import org.jghill.timelinevisualizersourcesxml.SourceManagerXMLParserImpl;
-import org.openide.util.Exceptions;
-import org.xml.sax.SAXException;
 
 /**
  * A dialog box for managing sources.
@@ -28,7 +19,6 @@ public class SourceManagementTool extends javax.swing.JDialog {
             boolean modal
     ) {
         super(parent, modal);
-        if (!SourceCollection.loaded) {loadXML();}
         initComponents();
     }
 
@@ -179,23 +169,5 @@ public class SourceManagementTool extends javax.swing.JDialog {
     private javax.swing.JScrollPane SourceManagementScrollPane;
     private javax.swing.JTable SourceManagementSourceTable;
     // End of variables declaration//GEN-END:variables
-    
-    /**
-     * Loads the Sources from an XML file.
-     */
-    private void loadXML() {
-        File f = new File("Source Manager.xml");
-        if (f.exists()) {
-            try {
-                SourceManagerXMLParser parser;
-                parser = new SourceManagerXMLParserImpl(f);
-                List<Source> sources = parser.parseSources();
-                sources.stream().forEach(SourceCollection::addSource);
-                SourceCollection.setLoaded();
-            } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
-                Exceptions.printStackTrace(ex);
-            }
-        }
-    }
     
 }
