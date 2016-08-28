@@ -1,13 +1,21 @@
 package org.jghill.timelinevisualizersources;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
+import org.jghill.timelinevisualizersourcesxml.SourceManagerXMLParser;
+import org.jghill.timelinevisualizersourcesxml.SourceManagerXMLParserImpl;
 import org.jghill.timelinevisualizersourcesxml.SourceManagerXMLWriter;
 import org.jghill.timelinevisualizersourcesxml.SourceManagerXMLWriterImpl;
+import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
+import org.xml.sax.SAXException;
 
 /**
  * A singleton pattern holding a collections of sources.
@@ -18,7 +26,6 @@ public class SourceCollection implements Lookup.Provider {
     
     private static final SortedSet<Source> SOURCES = new TreeSet<>();
     private static final SourceCollection COLLECTION = new SourceCollection();
-    
     private static final InstanceContent IC = new InstanceContent();
     private static final Lookup LOOKUP = new AbstractLookup(IC);
     
@@ -32,6 +39,7 @@ public class SourceCollection implements Lookup.Provider {
      * @return this SourceCollection.
      */
     public static SourceCollection getInstance() {
+        if (!loaded) {loadXML();}
         return COLLECTION;
     }
     
@@ -103,12 +111,20 @@ public class SourceCollection implements Lookup.Provider {
     }
     
     /**
-     * Sets the 'loaded' variable to show that the XML file has already been
-     * loaded in.
+     * Loads the Sources from an XML file.
      */
-    public static void setLoaded() {
-        if (!loaded) {
-            loaded = true;
+    private static void loadXML() {
+        File f = new File("Source Manager.xml");
+        if (f.exists()) {
+            try {
+                SourceManagerXMLParser parser;
+                parser = new SourceManagerXMLParserImpl(f);
+                List<Source> sources = parser.parseSources();
+                sources.stream().forEach(SourceCollection::addSource);
+                loaded = true;
+            } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
+                Exceptions.printStackTrace(ex);
+            }
         }
     }
     
