@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toMap;
 
@@ -20,6 +22,15 @@ import static java.util.stream.Collectors.toMap;
  */
 public class TimeLineCollection {
     
+    private final String none = "None";
+    private final String query = "Query";
+    private final String source = "Source";
+    private final String depicts = "Depicts";
+    private final String material = "Material";
+    private final String type = "Type";
+    private final String technique = "Technique";
+    private final String creator = "Creator";
+    
     private final int MAX_CATEGORIES = 4;
     
     private final List<Color> colors = Colours.getColours();
@@ -27,12 +38,60 @@ public class TimeLineCollection {
     
     private TimeLine[] timeLines;
     
+    private final TreeMap<String, List<String>> filters;
+    private List<String> filterList;
+    
     /**
      * Constructor.
      */
     public TimeLineCollection(CollectionDisplayPanel cdp) {
         this.cdp = cdp;
+        filters = new TreeMap<>();
     }
+    
+    /**
+     * 
+     * @param collection 
+     */
+    public void createFilters(ManMadeObject[] collection) {
+        
+        createInitialFilter();
+        for (ManMadeObject object: collection) {
+            if (object.getTimeSpan() != null) {
+                if (!filters.get(query).contains(object.getQueryName())) {
+                    filters.get(query).add(object.getQueryName());
+                }
+                if (!filters.get(source).contains(object.getSourceName())) {
+                    filters.get(source).add(object.getSourceName());
+                }
+                if (!filters.get(depicts).contains(object.getDepicts())) {
+                    filters.get(depicts).add(object.getDepicts());
+                }
+                if (!filters.get(material).contains(object.getConsists())) {
+                    filters.get(material).add(object.getConsists());
+                }
+                if (!filters.get(type).contains(object.getType())) {
+                    filters.get(type).add(object.getType());
+                }
+                if (!filters.get(technique).contains(object.getTechnique())) {
+                    filters.get(technique).add(object.getTechnique());
+                }
+                if (!filters.get(creator).contains(object.getCreator())) {
+                    filters.get(creator).add(object.getCreator());
+                }
+            }
+        }
+        
+        filterList = new ArrayList<>();
+        filterList.add(none);
+        filters.forEach((k,v)->{
+            if (v.size() > 1) {
+                filterList.add(k);
+            }
+        });
+        
+    }
+    
     
     /**
      * Create TimeLines from a set of objects.
@@ -61,22 +120,28 @@ public class TimeLineCollection {
             if (object.getTimeSpan() != null) {
                 String result;
                 switch(filter) {
-                    case "Query" :
+                    case query :
                         result = object.getQueryName();
                         break;
-                    case "Source" :
+                    case source :
                         result = object.getSourceName();
                         break;
-                    case "Material" :
+                    case depicts :
+                        result = object.getDepicts();
+                        break;
+                    case material :
                         result = object.getConsists();
                         break;
-                    case "Type" :
+                    case type :
                         result = object.getType();
                         break;
-                    case "Technique" :
+                    case technique :
                         result = object.getTechnique();
                         break;
-                    case "None" :
+                    case creator :
+                        result = object.getCreator();
+                        break;
+                    case none :
                         result = "General";
                         break;
                     default :
@@ -155,7 +220,7 @@ public class TimeLineCollection {
         ArrayList<ManMadeObject> other = new ArrayList<>();
         
         for (Map.Entry<String, List<ManMadeObject>> entry: categories.entrySet()) {
-            if (count < (MAX_CATEGORIES - 1)) {
+            if (count < MAX_CATEGORIES - 1) {
                 timeLines[count] = new TimeLine(
                         entry.getKey(),
                         entry.getValue().toArray(new ManMadeObject[entry.getValue().size()]),
@@ -169,10 +234,10 @@ public class TimeLineCollection {
         }
         
         if (count >= (MAX_CATEGORIES - 1) && !other.isEmpty()) {
-            timeLines[(MAX_CATEGORIES - 1)] = new TimeLine(
+            timeLines[MAX_CATEGORIES - 1] = new TimeLine(
                     "Other",
                     other.toArray(new ManMadeObject[other.size()]),
-                    colors.get((MAX_CATEGORIES - 1)),
+                    colors.get(MAX_CATEGORIES - 1),
                     cdp
             );
         }
@@ -187,9 +252,13 @@ public class TimeLineCollection {
      */
     public ManMadeObject[] getTimeLineObjects(String timelineName) {
         ManMadeObject[] objects = null;
-        for (TimeLine timeline : timeLines) {
-            if (timeline.getName().equalsIgnoreCase(timelineName)) {
-                objects = timeline.getEntities();
+        if (timelineName.equalsIgnoreCase("None")) {
+            objects = getAllTimeLineObjects();
+        } else {
+            for (TimeLine timeline : timeLines) {
+                if (timeline.getName().equalsIgnoreCase(timelineName)) {
+                    objects = timeline.getEntities();
+                }
             }
         }
         return objects;
@@ -223,7 +292,7 @@ public class TimeLineCollection {
      * 
      * @return the names of the TimeLines.
      */
-    public String[] getTimeLinesNames() {
+    private String[] getTimeLinesNames() {
         String[] timeLineNames;
         timeLineNames = new String[timeLines.length + 1];
         timeLineNames[0] = "None";
@@ -240,6 +309,39 @@ public class TimeLineCollection {
      */
     public int getCount() {
         return timeLines.length;
+    }
+    
+    /**
+     * Returns the comboBox model for the filters.
+     * 
+     * @return the comboBox model.
+     */
+    public ComboBoxModel getFilterComboBoxModel() {
+        return new DefaultComboBoxModel(filterList.toArray());
+    }
+    
+    /**
+     * Returns the comboBox model for the parameters.
+     * 
+     * @return the comboBox model.
+     */
+    public ComboBoxModel getCategoryComboBoxModel() {
+        return new DefaultComboBoxModel(getTimeLinesNames());
+    }
+    
+    /**
+     * Clears the filter.
+     */
+    private void createInitialFilter() {
+        filters.clear();
+        filters.put(none, new ArrayList<>());
+        filters.put(query, new ArrayList<>());
+        filters.put(source, new ArrayList<>());
+        filters.put(depicts, new ArrayList<>());
+        filters.put(material, new ArrayList<>());
+        filters.put(type, new ArrayList<>());
+        filters.put(technique, new ArrayList<>());
+        filters.put(creator, new ArrayList<>());
     }
     
 }
