@@ -186,7 +186,7 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
         if (source.getValueIsAdjusting() && timeLines != null) {
             
             int viewerWidth = viewer.getSize().width;
-            int scaleZoom = viewerWidth + ((source.getValue() * viewerWidth) / 100);
+            int scaleZoom = viewerWidth + ((source.getValue() * viewerWidth));
             
             if (scaleZoom >= viewerWidth && scaleZoom <= MAX_SIZE + viewerWidth && dateDifference > 10) {
                 
