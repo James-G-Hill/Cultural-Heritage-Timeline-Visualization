@@ -7,4 +7,14 @@ package org.jghill.timelinesvisualizercollectionxml;
  */
 public interface CollectionXMLWriter {
     
+    /**
+     * Builds a DOM document for this Collection.
+     */
+    public void build();
+    
+    /**
+     * Prints a DOM document to the system.
+     */
+    public void print();
+    
 }
