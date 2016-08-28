@@ -2,9 +2,14 @@ package org.jghill.timelinevisualizersources;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.function.Consumer;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 import org.jghill.timelinevisualizersourcesxml.SourceManagerXMLParser;
@@ -75,6 +80,22 @@ public class SourceCollection implements Lookup.Provider {
     }
     
     /**
+     * Get a Source from a name.
+     * 
+     * @param name of the Source.
+     * @return the Source.
+     */
+    public static Source getSource(String name) {
+        Source source = null;
+        for (Source s : SOURCES) {
+            if (s.getSourceName().equalsIgnoreCase(name)) {
+                source = s;
+            }
+        }
+        return source;
+    }
+    
+    /**
      * Returns the number of sources in the SourceCollection.
      * 
      * @return the size of the collection.
@@ -93,7 +114,22 @@ public class SourceCollection implements Lookup.Provider {
         sources = SOURCES.toArray(sources);
         return sources;
     }
-
+    
+    /**
+     * Returns a ComboBox based on the existing Sources.
+     * 
+     * @return the ComboBox.
+     */
+    public static ComboBoxModel getSourceComboBoxModel() {
+        if (!loaded) {loadXML();}
+        List<String> sources = new ArrayList<>();
+        sources.add("Select . . .");
+        for (Source source : SOURCES.toArray(new Source[0])) {
+            sources.add(source.getSourceName());
+        }
+        return new DefaultComboBoxModel(sources.toArray(new String[0]));
+    }
+    
     @Override
     public Lookup getLookup() {
         return LOOKUP;
@@ -114,7 +150,7 @@ public class SourceCollection implements Lookup.Provider {
      * Loads the Sources from an XML file.
      */
     private static void loadXML() {
-        File f = new File("Source Manager.xml");
+        File f = new File("Source Manager/Source Manager.xml");
         if (f.exists()) {
             try {
                 SourceManagerXMLParser parser;
