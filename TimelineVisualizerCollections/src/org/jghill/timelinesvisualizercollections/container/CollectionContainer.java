@@ -1,5 +1,6 @@
 package org.jghill.timelinesvisualizercollections.container;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -52,6 +53,8 @@ public class CollectionContainer {
     public static void deleteCollection(Collection coll) {
         COLLECTION.remove(coll);
         CHILDREN.update(COLLECTION.toArray(new Collection[0]));
+        File file = new File("Collections/" + coll.getName() + ".xml");
+        file.delete();
     }
     
     /**
