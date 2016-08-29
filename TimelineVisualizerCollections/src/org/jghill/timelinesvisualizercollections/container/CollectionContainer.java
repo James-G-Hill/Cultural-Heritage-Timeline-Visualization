@@ -11,6 +11,7 @@ import org.openide.util.lookup.InstanceContent;
 
 /**
  * A collection for holding projects.
+ * 
  * @author JGHill
  */
 public class CollectionContainer {
@@ -26,6 +27,7 @@ public class CollectionContainer {
     
     /**
      * Returns the single instance of this singleton pattern.
+     * 
      * @return the single instance of this container.
      */
     public static CollectionContainer getInstance() {
@@ -34,15 +36,17 @@ public class CollectionContainer {
     
     /**
      * A method for adding collections to the container.
+     * 
      * @param coll the project to be added.
      */
     public static void addCollection(Collection coll) {
         COLLECTION.add(coll);
-        CHILDREN.update(COLLECTION.toArray(new Collection[COLLECTION.size()]));
+        CHILDREN.update(COLLECTION.toArray(new Collection[0]));
     }
     
     /**
      * A method for removing collections from the container.
+     * 
      * @param coll the project to be added.
      */
     public static void deleteCollection(Collection coll) {
@@ -52,6 +56,7 @@ public class CollectionContainer {
     
     /**
      * Returns the size of the collection.
+     * 
      * @return the size of the collection.
      */
     public static int getSize() {
@@ -60,6 +65,7 @@ public class CollectionContainer {
     
     /**
      * Returns all the CollectionChildren.
+     * 
      * @return the CollectionChildren.
      */
     public static CollectionChildren getChildren() {
@@ -68,6 +74,7 @@ public class CollectionContainer {
     
     /**
      * Returns the Lookup for this container.
+     * 
      * @return the Lookup.
      */
     public static Lookup getLookup() {
@@ -76,6 +83,7 @@ public class CollectionContainer {
     
     /**
      * Adds a Collection to the lookup for the container.
+     * 
      * @param coll to be added.
      */
     public static void addToLookup(Collection coll) {
