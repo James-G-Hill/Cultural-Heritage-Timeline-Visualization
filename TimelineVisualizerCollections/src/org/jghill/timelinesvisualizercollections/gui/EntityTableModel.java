@@ -135,13 +135,13 @@ public class EntityTableModel extends AbstractTableModel {
      */
     private List<Entities> entitiesFlatten(EntitiesCollection coll) {
         List<Entities> arr = new ArrayList<>();
-        for (Entities e : coll.getCollectionSet()) {
+        coll.getCollectionSet().stream().forEach((e) -> {
             if(e instanceof EntitiesCollection) {
                 arr.addAll(entitiesFlatten((EntitiesCollection)e));
             } else {
                 arr.add(e);
             }
-        }
+        });
         return arr;
     }
     
