@@ -9,7 +9,6 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
-import org.jghill.timelinevisualizersources.SPARQLEndpoint;
 import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
 
@@ -21,7 +20,8 @@ import org.netbeans.api.io.InputOutput;
 public class SPARQLQueryShell extends QueryShell {
     
     private final String queryString;
-    private final SPARQLEndpoint service;
+    private final String service;
+    private final String cidoc;
     
     private static final String QUERY_TYPE = "SPARQL Endpoint";
     
@@ -30,15 +30,18 @@ public class SPARQLQueryShell extends QueryShell {
      * 
      * @param queryString holding the SPARQL query.
      * @param service with the URI for the service address.
+     * @param cidoc implementation used.
      * @param name of the Source.
      */
     public SPARQLQueryShell(
             String queryString,
-            SPARQLEndpoint service,
+            String service,
+            String cidoc,
             String name
     ) {
         this.queryString = queryString;
         this.service = service;
+        this.cidoc = cidoc;
         super.setQueryName(name);
     }
     
@@ -67,7 +70,7 @@ public class SPARQLQueryShell extends QueryShell {
      * @return the address.
      */
     public String getServiceAddress() {
-        return service.getWebAddress();
+        return service;
     }
     
     /**
@@ -76,7 +79,7 @@ public class SPARQLQueryShell extends QueryShell {
      * @return the CIDOC implementation.
      */
     public String getCIDOCAddress() {
-        return service.getCIDOCAddress();
+        return cidoc;
     }
     
     @Override
@@ -96,7 +99,7 @@ public class SPARQLQueryShell extends QueryShell {
         output("getting results");
         ResultSet results;
         
-        try(QueryExecution qexec = QueryExecutionFactory.sparqlService(service.getWebAddress(), query)) {
+        try(QueryExecution qexec = QueryExecutionFactory.sparqlService(service, query)) {
             results = qexec.execSelect();
             return buildEntities(results);
         } catch (HttpException ex) {
@@ -198,7 +201,7 @@ public class SPARQLQueryShell extends QueryShell {
             thing = new ManMadeObject(
                     title,
                     identity,
-                    service.getSourceName(),
+                    service,
                     super.getQueryName(),
                     depicts,
                     consists,
