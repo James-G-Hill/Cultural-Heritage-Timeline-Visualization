@@ -1,6 +1,13 @@
 package org.jghill.timelinevisualizerviewergui;
 
+import java.io.File;
+import java.io.IOException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
+import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinesvisualizercollections.container.CollectionContainer;
+import org.jghill.timelinesvisualizercollectionxml.CollectionXMLParser;
+import org.jghill.timelinesvisualizercollectionxml.CollectionXMLParserImpl;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.explorer.ExplorerManager;
@@ -9,6 +16,7 @@ import org.openide.explorer.view.BeanTreeView;
 import org.openide.nodes.AbstractNode;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
+import org.xml.sax.SAXException;
 
 /**
  * Viewer for the manipulation of Collections.
@@ -50,6 +58,8 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
         associateLookup(ExplorerUtils.createLookup(manager, getActionMap()));
         manager.setRootContext(new AbstractNode(CollectionContainer.getChildren()));
         manager.getRootContext().setDisplayName("Collections");
+        
+        loadFromFile();
         
     }
 
@@ -113,6 +123,27 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
     @Override
     public ExplorerManager getExplorerManager() {
         return manager;
+    }
+    
+    /**
+     * Loads any .xml files from the Collections folder.
+     */
+    private void loadFromFile() {
+        
+        File folder = new File("Collections/");
+        File[] listOfFiles = folder.listFiles();
+        
+        for (File file : listOfFiles) {
+            if (file.getName().endsWith(".xml")) {
+                try {    
+                    CollectionXMLParser parser;
+                    parser = new CollectionXMLParserImpl(file);
+                    Collection collection = parser.parseCollection();
+                    CollectionContainer.addCollection(collection);
+                } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {}
+            }
+        }
+        
     }
     
 }
