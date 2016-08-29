@@ -117,8 +117,8 @@ public class CollectionXMLWriterImpl implements CollectionXMLWriter {
             q.appendChild(createTextElement("type", query.getQueryType()));
             if (query.getQueryType().equalsIgnoreCase("sparql endpoint")) {
                 SPARQLQueryShell sparql = (SPARQLQueryShell) query;
-                q.appendChild(createTextElement("query", sparql.getQueryString()));
-                q.appendChild(createTextElement("addres", sparql.getServiceAddress()));
+                q.appendChild(createTextElement("querystring", sparql.getQueryString()));
+                q.appendChild(createTextElement("address", sparql.getServiceAddress()));
                 q.appendChild(createTextElement("cidoc", sparql.getCIDOCAddress()));
             }
         }
@@ -147,6 +147,7 @@ public class CollectionXMLWriterImpl implements CollectionXMLWriter {
                 en.appendChild(createTextElement("curatorial", thing.getCuratorial()));
                 en.appendChild(createTextElement("depicts", thing.getDepicts()));
                 en.appendChild(createTextElement("description", thing.getDescription()));
+                en.appendChild(createTextElement("image", thing.getImageURL().toString()));
                 en.appendChild(createTextElement("object", thing.getObject()));
                 en.appendChild(createTextElement("technique", thing.getTechnique()));
                 en.appendChild(createTextElement("type", thing.getType()));
