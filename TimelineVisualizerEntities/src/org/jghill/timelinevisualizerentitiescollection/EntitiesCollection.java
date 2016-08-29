@@ -17,6 +17,11 @@ public class EntitiesCollection extends Entities {
     
     private final List<Entities> list;
     
+    /**
+     * Constructor.
+     * 
+     * @param name of this collection of Entities.
+     */
     public EntitiesCollection(String name) {
         super(name, "", "", "");
         list = new ArrayList<>();
