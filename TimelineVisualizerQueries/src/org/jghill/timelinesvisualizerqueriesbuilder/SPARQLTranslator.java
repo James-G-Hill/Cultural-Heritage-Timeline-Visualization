@@ -109,12 +109,12 @@ public class SPARQLTranslator implements QueryTranslator {
                 TECHNIQUE + " \n" +
                 IMAGE + " \n" +
                 OBJECT + " \n" +
-                "(SAMPLE (" + NAME + ") AS " + NAME_SAMPLE + ") \n" +
-                "(SAMPLE (" + TYPE + ") AS " + TYPE_SAMPLE + ") \n" +
-                "(SAMPLE (" + CREATOR + ") AS " + CREATOR_SAMPLE + ") \n" +
-                "(SAMPLE (" + DESCRIPTION + ") AS " + DESCRIPTION_SAMPLE + ") \n" +
-                "(SAMPLE (" + CURATORIAL + ") AS " + CURATORIAL_SAMPLE + ") \n" +
-                "(SAMPLE (" + DEPICTION + ") AS " + DEPICTION_SAMPLE + ") \n";
+                "(SAMPLE(" + NAME + ") AS " + NAME_SAMPLE + ") \n" +
+                "(SAMPLE(" + TYPE + ") AS " + TYPE_SAMPLE + ") \n" +
+                "(SAMPLE(" + CREATOR + ") AS " + CREATOR_SAMPLE + ") \n" +
+                "(SAMPLE(" + DESCRIPTION + ") AS " + DESCRIPTION_SAMPLE + ") \n" +
+                "(SAMPLE(" + CURATORIAL + ") AS " + CURATORIAL_SAMPLE + ") \n" +
+                "(SAMPLE(" + DEPICTION + ") AS " + DEPICTION_SAMPLE + ") \n";
     }
     
     /**
