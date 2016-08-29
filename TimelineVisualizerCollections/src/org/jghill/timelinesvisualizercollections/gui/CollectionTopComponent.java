@@ -18,6 +18,8 @@ import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinesvisualizercollections.container.CollectionContainer;
 import org.jghill.timelinesvisualizercollections.display.EntityDisplay;
 import org.jghill.timelinesvisualizercollections.display.TimeLineCollection;
+import org.jghill.timelinesvisualizercollectionxml.CollectionXMLWriter;
+import org.jghill.timelinesvisualizercollectionxml.CollectionXMLWriterImpl;
 import org.jghill.timelinesvisualizerdispatcher.Dispatcher;
 import org.jghill.timelinesvisualizerqueriesbuilder.QueryBuilder;
 import org.jghill.timelinesvisualizerqueriesbuilder.QuerySettings;
@@ -169,6 +171,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         ZoomSlider = new javax.swing.JSlider();
         ZoomOutLabel = new javax.swing.JLabel();
         ZoomInLabel = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1100, 524));
 
@@ -216,7 +219,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 .addGap(18, 18, 18)
                 .addComponent(NotesText)
                 .addGap(18, 18, 18)
-                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                .addComponent(NotesTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -537,7 +540,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             EntitiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EntitiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                .addComponent(EntitiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -606,6 +609,13 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
 
         org.openide.awt.Mnemonics.setLocalizedText(ZoomInLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ZoomInLabel.text")); // NOI18N
 
+        org.openide.awt.Mnemonics.setLocalizedText(jButton2, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.jButton2.text")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout VisualizerLayout = new javax.swing.GroupLayout(Visualizer);
         Visualizer.setLayout(VisualizerLayout);
         VisualizerLayout.setHorizontalGroup(
@@ -642,23 +652,27 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                                 .addGap(18, 18, 18)
                                 .addComponent(Group2FilterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Group2FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Group2FilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 78, Short.MAX_VALUE))
                             .addGroup(VisualizerLayout.createSequentialGroup()
                                 .addGap(26, 26, 26)
-                                .addComponent(ZoomInLabel)))
-                        .addGap(0, 78, Short.MAX_VALUE)))
+                                .addComponent(ZoomInLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2)))))
                 .addContainerGap())
         );
         VisualizerLayout.setVerticalGroup(
             VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VisualizerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(CollectionDisplayScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+                .addComponent(CollectionDisplayScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ZoomSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ZoomOutLabel)
-                    .addComponent(ZoomInLabel))
+                    .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ZoomInLabel)
+                        .addComponent(jButton2)))
                 .addGap(18, 18, 18)
                 .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -691,8 +705,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tab, javax.swing.GroupLayout.PREFERRED_SIZE, 502, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(Tab, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.AccessibleContext.accessibleName")); // NOI18N
@@ -928,6 +941,13 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         }
     }//GEN-LAST:event_CreatedByCheckBoxActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        CollectionXMLWriter writer;
+        writer = new CollectionXMLWriterImpl(coll);
+        writer.build();
+        writer.print();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AndText1;
     private javax.swing.JScrollPane CollectionDisplayScrollPane;
@@ -990,6 +1010,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private javax.swing.JLabel ZoomOutLabel;
     private javax.swing.JSlider ZoomSlider;
     private org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel collectionDisplayPanel;
+    private javax.swing.JButton jButton2;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
     
