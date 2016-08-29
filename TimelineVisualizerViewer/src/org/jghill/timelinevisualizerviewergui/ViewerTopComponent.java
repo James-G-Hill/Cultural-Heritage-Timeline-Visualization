@@ -29,7 +29,7 @@ import org.xml.sax.SAXException;
         preferredID = "ViewerTopComponent",
         persistenceType = TopComponent.PERSISTENCE_ALWAYS
 )
-@TopComponent.Registration(mode = "explorer", openAtStartup = true)
+@TopComponent.Registration(mode = "viewer", openAtStartup = true)
 @ActionID(category = "Window", id = "org.jghill.timelinesvisualizercollectionsgui.ViewerTopComponent")
 @TopComponent.OpenActionRegistration(
         displayName = "#CTL_CollectionViewerAction",
@@ -55,11 +55,7 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
         putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
         
-        associateLookup(ExplorerUtils.createLookup(manager, getActionMap()));
-        manager.setRootContext(new AbstractNode(CollectionContainer.getChildren()));
-        manager.getRootContext().setDisplayName("Collections");
-        
-        loadFromFile();
+        setup();
         
     }
 
@@ -95,6 +91,16 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane ViewerScrollPane;
     // End of variables declaration//GEN-END:variables
+    
+    /**
+     * Called by the constructor.
+     */
+    private void setup() {
+        associateLookup(ExplorerUtils.createLookup(manager, getActionMap()));
+        manager.setRootContext(new AbstractNode(CollectionContainer.getChildren()));
+        manager.getRootContext().setDisplayName("Collections");
+        loadFromFile();
+    }
     
     @Override
     public void componentOpened() {}
