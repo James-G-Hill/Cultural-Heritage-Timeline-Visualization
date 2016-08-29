@@ -953,6 +953,14 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             );
             writer.build();
             writer.print();
+            String msg = "The collection has been saved.";
+            NotifyDescriptor nd;
+            nd = new NotifyDescriptor.Message(
+                    msg,
+                    NotifyDescriptor.INFORMATION_MESSAGE
+            );
+            DialogDisplayer.getDefault().notify(nd);
+            
         } catch (ParserConfigurationException ex) {
             Exceptions.printStackTrace(ex);
         }
