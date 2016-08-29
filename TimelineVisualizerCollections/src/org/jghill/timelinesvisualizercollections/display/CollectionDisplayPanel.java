@@ -173,6 +173,9 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
         repaint();
     }
     
+    private JSlider source;
+    int lastSourceValue;
+    
     /**
      * Update the scaleZoom level when reacting to the slider changing.
      * 
@@ -181,13 +184,15 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     @Override
     public void stateChanged(ChangeEvent e) {
         
-        JSlider source = (JSlider) e.getSource();
+        source = (JSlider) e.getSource();
+        int sourceValue = source.getValue();
         
-        if (source.getValueIsAdjusting() && timeLines != null) {
+        if (source.getValueIsAdjusting() && sourceValue != lastSourceValue && timeLines != null) {
+            lastSourceValue = sourceValue;
             
             int interval = (getDateArray()[getDateArray().length-1] - getDateArray()[0]);
             int viewerWidth = viewer.getSize().width;
-            int scaleZoom = (int) ((int) viewerWidth + (source.getValue() * (viewerWidth * ((double) interval / 100))));
+            int scaleZoom = (int) ((int) viewerWidth + (sourceValue * (viewerWidth * ((double) interval / 100))));
             
             if (scaleZoom >= viewerWidth && scaleZoom <= MAX_SIZE + viewerWidth && dateDifference > 10) {
                 
