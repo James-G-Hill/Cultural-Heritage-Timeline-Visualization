@@ -52,20 +52,22 @@ public class CollectionXMLParserImpl implements CollectionXMLParser {
         // Setup basic collection info.
         String name;
         String notes;
-        name = path.evaluate("/information/name", doc);
-        notes = path.evaluate("/information/notes", doc);
+        name = path.evaluate("/collection/information/name", doc);
+        notes = path.evaluate("/collection/information/notes", doc);
         
         // Setup the Queries.
         QueriesCollection queries = new QueriesCollection();
         int queriesCount;
-        queriesCount = Integer.parseInt(path.evaluate("count(/queries/query)", doc));
-        for (int i = 0; i < queriesCount; i++) {
-            String queryName = path.evaluate("/queries/query/name", doc);
-            String queryType = path.evaluate("/queries/query/type", doc);
+        queriesCount = Integer.parseInt(path.evaluate("count(/collection/queries/query)", doc));
+        System.out.println("queryCount " + queriesCount);
+        for (int i = 1; i <= queriesCount; i++) {
+            String queryName = path.evaluate("/collection/queries/query[" + i + "]/name", doc);
+            String queryType = path.evaluate("/collection/queries/query[" + i + "]/type", doc);
+            System.out.println("queryType " + queryType);
             if (queryType.equalsIgnoreCase("sparql endpoint")) {
-                String queryString = path.evaluate("/queries/query/querystring", doc);
-                String address = path.evaluate("/queries/query/address", doc);
-                String cidoc = path.evaluate("/queries/query/cidoc", doc);
+                String queryString = path.evaluate("/collection/queries/query[" + i + "]/querystring", doc);
+                String address = path.evaluate("/collection/queries/query[" + i + "]/address", doc);
+                String cidoc = path.evaluate("/collection/queries/query[" + i + "]/cidoc", doc);
                 QueryShell query  = new SPARQLQueryShell(
                         queryString,
                         address,
@@ -79,22 +81,23 @@ public class CollectionXMLParserImpl implements CollectionXMLParser {
         // Setup the Entities.
         EntitiesCollection entities = new EntitiesCollection("Entities");
         int entitiesCount;
-        entitiesCount = Integer.parseInt(path.evaluate("count(/entities/entity)", doc));
-        for (int i = 0; i < entitiesCount; i++) {
-            String identifier = path.evaluate("/entities/entity[" + i + "]/identifier", doc);
-            String entityName = path.evaluate("/entities/entity[" + i + "]/name", doc);
-            String query = path.evaluate("/entities/entity[" + i + "]/query", doc);
-            String source = path.evaluate("/entities/entity[" + i + "]/source", doc);
-            String consists = path.evaluate("/entities/entity[" + i + "]/consists", doc);
-            String creator = path.evaluate("/entities/entity[" + i + "]/creator", doc);
-            String curatorial = path.evaluate("/entities/entity[" + i + "]/curatorial", doc);
-            String depicts = path.evaluate("/entities/entity[" + i + "]/depicts", doc);
-            String description = path.evaluate("/entities/entity[" + i + "]/description", doc);
-            String image = path.evaluate("/entities/entity[" + i + "]/image", doc);
-            String object = path.evaluate("/entities/entity[" + i + "]/object", doc);
-            String technique = path.evaluate("/entities/entity[" + i + "]/technique", doc);
-            String type = path.evaluate("/entities/entity[" + i + "]/type", doc);
-            String year = path.evaluate("/entities/entity[" + i + "]/year", doc);
+        entitiesCount = Integer.parseInt(path.evaluate("count(/collection/entities/entity)", doc));
+        System.out.println("entitiesCount " + entitiesCount);
+        for (int i = 1; i <= entitiesCount; i++) {
+            String identifier = path.evaluate("/collection/entities/entity[" + i + "]/identifier", doc);
+            String entityName = path.evaluate("/collection/entities/entity[" + i + "]/name", doc);
+            String query = path.evaluate("/collection/entities/entity[" + i + "]/query", doc);
+            String source = path.evaluate("/collection/entities/entity[" + i + "]/source", doc);
+            String consists = path.evaluate("/collection/entities/entity[" + i + "]/consists", doc);
+            String creator = path.evaluate("/collection/entities/entity[" + i + "]/creator", doc);
+            String curatorial = path.evaluate("/collection/entities/entity[" + i + "]/curatorial", doc);
+            String depicts = path.evaluate("/collection/entities/entity[" + i + "]/depicts", doc);
+            String description = path.evaluate("/collection/entities/entity[" + i + "]/description", doc);
+            String image = path.evaluate("/collection/entities/entity[" + i + "]/image", doc);
+            String object = path.evaluate("/collection/entities/entity[" + i + "]/object", doc);
+            String technique = path.evaluate("/collection/entities/entity[" + i + "]/technique", doc);
+            String type = path.evaluate("/collection/entities/entity[" + i + "]/type", doc);
+            String year = path.evaluate("/collection/entities/entity[" + i + "]/year", doc);
             Entities entity = new ManMadeObject(
                     entityName,
                     identifier,
