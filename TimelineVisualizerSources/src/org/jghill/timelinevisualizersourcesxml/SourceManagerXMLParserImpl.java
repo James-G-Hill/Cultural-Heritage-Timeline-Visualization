@@ -26,7 +26,14 @@ public class SourceManagerXMLParserImpl implements SourceManagerXMLParser {
     private final DocumentBuilder builder;
     private final XPath path;
     
-    
+    /**
+     * The Constructor.
+     * 
+     * @param f the file name.
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException 
+     */
     public SourceManagerXMLParserImpl(File f) throws ParserConfigurationException, SAXException, IOException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         builder = factory.newDocumentBuilder();
