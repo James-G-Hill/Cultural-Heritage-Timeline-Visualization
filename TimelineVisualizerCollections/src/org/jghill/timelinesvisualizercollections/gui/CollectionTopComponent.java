@@ -32,6 +32,7 @@ import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
 import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
+import org.netbeans.api.progress.*;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 import org.openide.util.Exceptions;
@@ -734,7 +735,11 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     }//GEN-LAST:event_CreateButtonActionPerformed
 
     private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
-        if (coll.getQueriesCollection().getCount() > 0) {
+        int queriesCount = coll.getQueriesCollection().getCount();
+        ProgressHandle handle;
+        handle = ProgressHandleFactory.createHandle("Querying");
+        handle.start(queriesCount);
+        if (queriesCount > 0) {
             RequestProcessor executor = new RequestProcessor(coll.getName());
             try
             {
@@ -776,6 +781,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 output("502 Proxy Error: endpoint not available.");
             } finally {
                 executor.shutdown();
+                handle.finish();
                 this.setCursor(Cursor.getDefaultCursor());
             }
         } else {
