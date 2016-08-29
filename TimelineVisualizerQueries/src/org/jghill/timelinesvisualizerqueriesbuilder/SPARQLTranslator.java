@@ -143,7 +143,6 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getDates() {
         String dates = "";
-        
         dates += PRODUCTION + " a crm:E12_Production ";
         dates += "; crm:P108_has_produced " + OBJECT + " . \n";
         dates += "\n";
@@ -316,11 +315,12 @@ public class SPARQLTranslator implements QueryTranslator {
         triple += "{ { " + PRODUCTION2 + "crm:P108_has_produced " + OBJECT + " . \n";
         triple += PRODUCTION2 + "crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label " + CREATOR + " } ";
         triple += UNION;
-        triple += " { " + PRODUCTION + "crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel " + CREATOR + " } } ";
+        triple += " { " + PRODUCTION2 + "crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel " + CREATOR + " } } ";
         if (settings.hasCreatorCheck) {
             query += "{ ";
             query += triple;
             query += " } . \n";
+            query += "FILTER (CONTAINS(LCASE(" + CREATOR + "), \"" + settings.creator + "\")). \n";
         } else {
             query += "OPTIONAL { ";
             query += triple;
