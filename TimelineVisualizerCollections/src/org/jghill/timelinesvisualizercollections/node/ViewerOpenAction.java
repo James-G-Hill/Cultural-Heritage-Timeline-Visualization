@@ -26,6 +26,9 @@ public class ViewerOpenAction extends AbstractAction {
         setup();
     }
     
+    /**
+     * Completes the construction.
+     */
     private void setup() {
         putValue(NAME, actionName);
     }
