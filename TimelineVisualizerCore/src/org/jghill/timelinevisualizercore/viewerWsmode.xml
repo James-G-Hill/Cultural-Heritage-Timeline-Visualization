@@ -8,5 +8,6 @@
   </constraints>
   <bounds x="0" y="0" width="500" height="500"/>
   <frame state="0"/>
+    
     <empty-behavior permanent="true"/>
 </mode>
