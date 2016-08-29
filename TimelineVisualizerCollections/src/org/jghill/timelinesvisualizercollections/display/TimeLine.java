@@ -143,17 +143,24 @@ public class TimeLine extends JLayeredPane {
         
     }
     
+    private JViewport viewPort;
+    private int viewPortLastX;
+    
     /**
      * Places the description onto the TimeLine.
      */
     private void paintDescription() {
-        JViewport viewPort  = (JViewport) cdp.getParent();
-        description.setBounds(
-                viewPort.getViewPosition().x + DESCRIPTION_INDENT,
-                DESCRIPTION_INDENT,
-                DESCRIPTION_LENGTH,
-                DESCRIPTION_HEIGHT
-        );
+        viewPort  = (JViewport) cdp.getParent();
+        int viewPortX = viewPort.getViewPosition().x;
+        if (viewPortX != viewPortLastX) {
+            viewPortLastX = viewPortX;
+            description.setBounds(
+                    viewPortX + DESCRIPTION_INDENT,
+                    DESCRIPTION_INDENT,
+                    DESCRIPTION_LENGTH,
+                    DESCRIPTION_HEIGHT
+            );
+        }
     }
     
     /**
