@@ -15,6 +15,6 @@ public interface CollectionXMLParser {
      * 
      * @return a Collection.
      */
-    public Collection parseCollections() throws XPathExpressionException;
+    public Collection parseCollection() throws XPathExpressionException;
     
 }
