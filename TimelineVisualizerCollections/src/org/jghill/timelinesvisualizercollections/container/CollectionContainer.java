@@ -51,7 +51,7 @@ public class CollectionContainer {
      */
     public static void deleteCollection(Collection coll) {
         COLLECTION.remove(coll);
-        CHILDREN.update(COLLECTION.toArray(new Collection[COLLECTION.size()]));
+        CHILDREN.update(COLLECTION.toArray(new Collection[0]));
     }
     
     /**
