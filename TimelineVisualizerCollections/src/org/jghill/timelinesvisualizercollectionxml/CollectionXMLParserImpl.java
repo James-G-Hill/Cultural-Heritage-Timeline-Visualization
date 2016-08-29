@@ -59,11 +59,9 @@ public class CollectionXMLParserImpl implements CollectionXMLParser {
         QueriesCollection queries = new QueriesCollection();
         int queriesCount;
         queriesCount = Integer.parseInt(path.evaluate("count(/collection/queries/query)", doc));
-        System.out.println("queryCount " + queriesCount);
         for (int i = 1; i <= queriesCount; i++) {
             String queryName = path.evaluate("/collection/queries/query[" + i + "]/name", doc);
             String queryType = path.evaluate("/collection/queries/query[" + i + "]/type", doc);
-            System.out.println("queryType " + queryType);
             if (queryType.equalsIgnoreCase("sparql endpoint")) {
                 String queryString = path.evaluate("/collection/queries/query[" + i + "]/querystring", doc);
                 String address = path.evaluate("/collection/queries/query[" + i + "]/address", doc);
@@ -82,7 +80,6 @@ public class CollectionXMLParserImpl implements CollectionXMLParser {
         EntitiesCollection entities = new EntitiesCollection("Entities");
         int entitiesCount;
         entitiesCount = Integer.parseInt(path.evaluate("count(/collection/entities/entity)", doc));
-        System.out.println("entitiesCount " + entitiesCount);
         for (int i = 1; i <= entitiesCount; i++) {
             String identifier = path.evaluate("/collection/entities/entity[" + i + "]/identifier", doc);
             String entityName = path.evaluate("/collection/entities/entity[" + i + "]/name", doc);
