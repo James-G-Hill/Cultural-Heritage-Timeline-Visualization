@@ -140,7 +140,10 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
                     parser = new CollectionXMLParserImpl(file);
                     Collection collection = parser.parseCollection();
                     CollectionContainer.addCollection(collection);
-                } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {}
+                    CollectionContainer.addToLookup(collection);
+                } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
+                    System.out.println("Error: " + ex);
+                }
             }
         }
         
