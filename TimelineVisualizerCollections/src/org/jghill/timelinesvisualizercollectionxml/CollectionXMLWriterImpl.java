@@ -159,11 +159,15 @@ public class CollectionXMLWriterImpl implements CollectionXMLWriter {
                 en.appendChild(createTextElement("curatorial", "" + thing.getCuratorial()));
                 en.appendChild(createTextElement("depicts", "" + thing.getDepicts()));
                 en.appendChild(createTextElement("description", "" + thing.getDescription()));
-                en.appendChild(createTextElement("image", "" + thing.getImageURL().toString()));
+                if (thing.getImageURL() != null) {
+                    en.appendChild(createTextElement("image", "" + thing.getImageURL().toString()));
+                }
                 en.appendChild(createTextElement("object", "" + thing.getObject()));
                 en.appendChild(createTextElement("technique", "" + thing.getTechnique()));
                 en.appendChild(createTextElement("type", "" + thing.getType()));
-                en.appendChild(createTextElement("year", "" + thing.getTimeSpan().toString()));
+                if (thing.getTimeSpan() != null) {
+                    en.appendChild(createTextElement("year", "" + thing.getTimeSpan().toString()));
+                }
             }
             e.appendChild(en);
         }
