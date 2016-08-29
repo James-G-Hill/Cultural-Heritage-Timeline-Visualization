@@ -1,7 +1,6 @@
 package org.jghill.timelinesvisualizercollectionxml;
 
 import java.io.File;
-import java.util.Set;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,8 +12,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinevisualizerentities.Entities;
+import org.jghill.timelinevisualizerentities.ManMadeObject;
 import org.jghill.timelinevisualizerentities.PhysicalThing;
-import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.jghill.timelinevisualizerqueries.QueryShell;
 import org.jghill.timelinevisualizerqueries.SPARQLQueryShell;
 import org.jghill.timelinevisualizerqueriescollection.QueriesCollection;
@@ -29,19 +28,24 @@ import org.w3c.dom.Text;
  */
 public class CollectionXMLWriterImpl implements CollectionXMLWriter {
     
+    private final Collection collection;
+    private final ManMadeObject[] entities;
     private final DocumentBuilder builder;
     private Document doc;
-    
-    Collection collection;
     
     /**
      * This is a constructor.
      * 
      * @param collection to be written to XML.
+     * @param entities to be written.
      * @throws javax.xml.parsers.ParserConfigurationException
      */
-    public CollectionXMLWriterImpl(Collection collection) throws ParserConfigurationException {
+    public CollectionXMLWriterImpl(
+            Collection collection,
+            ManMadeObject[] entities
+    ) throws ParserConfigurationException {
         this.collection = collection;
+        this.entities = entities;
         builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
     }
     
@@ -67,7 +71,9 @@ public class CollectionXMLWriterImpl implements CollectionXMLWriter {
                     )
             );
             trans.transform(source, file);
-        } catch (TransformerException ex) {}
+        } catch (TransformerException ex) {
+            System.out.println("Transformer " + ex);
+        }
     }
     
     /**
@@ -77,7 +83,10 @@ public class CollectionXMLWriterImpl implements CollectionXMLWriter {
      * @param text to be contained with the element.
      * @return the element.
      */
-    private Element createTextElement(String name, String text) {
+    private Element createTextElement(
+            String name,
+            String text
+    ) {
         Text t = doc.createTextNode(text);
         Element e = doc.createElement(name);
         e.appendChild(t);
@@ -102,8 +111,8 @@ public class CollectionXMLWriterImpl implements CollectionXMLWriter {
      */
     private Element createInfo() {
         Element e = doc.createElement("information");
-        e.appendChild(createTextElement("name", collection.getName()));
-        e.appendChild(createTextElement("notes", collection.getNotes()));
+        e.appendChild(createTextElement("name", "" + collection.getName()));
+        e.appendChild(createTextElement("notes", "" + collection.getNotes()));
         return e;
     }
     
@@ -117,14 +126,15 @@ public class CollectionXMLWriterImpl implements CollectionXMLWriter {
         QueriesCollection queries = collection.getQueriesCollection();
         for (QueryShell query : queries) {
             Element q = doc.createElement("query");
-            q.appendChild(createTextElement("name", query.getQueryName()));
-            q.appendChild(createTextElement("type", query.getQueryType()));
+            q.appendChild(createTextElement("name", "" + query.getQueryName()));
+            q.appendChild(createTextElement("type", "" + query.getQueryType()));
             if (query.getQueryType().equalsIgnoreCase("sparql endpoint")) {
                 SPARQLQueryShell sparql = (SPARQLQueryShell) query;
-                q.appendChild(createTextElement("querystring", sparql.getQueryString()));
-                q.appendChild(createTextElement("address", sparql.getServiceAddress()));
-                q.appendChild(createTextElement("cidoc", sparql.getCIDOCAddress()));
+                q.appendChild(createTextElement("querystring", "" + sparql.getQueryString()));
+                q.appendChild(createTextElement("address", "" + sparql.getServiceAddress()));
+                q.appendChild(createTextElement("cidoc", "" + sparql.getCIDOCAddress()));
             }
+            e.appendChild(q);
         }
         return e;
     }
@@ -136,27 +146,26 @@ public class CollectionXMLWriterImpl implements CollectionXMLWriter {
      */
     private Element createEntities() {
         Element e = doc.createElement("entities");
-        EntitiesCollection entities = collection.getEntitiesCollection();
-        Set<Entities> entitiesSet = entities.getCollectionSet();
-        for (Entities entity : entitiesSet) {
+        for (Entities entity : entities) {
             Element en = doc.createElement("entity");
-            en.appendChild(createTextElement("identifier", entity.getIdentifier()));
-            en.appendChild(createTextElement("name", entity.getName()));
-            en.appendChild(createTextElement("query", entity.getQueryName()));
-            en.appendChild(createTextElement("source", entity.getSourceName()));
+            en.appendChild(createTextElement("identifier", "" + entity.getIdentifier()));
+            en.appendChild(createTextElement("name", "" + entity.getName()));
+            en.appendChild(createTextElement("query", "" + entity.getQueryName()));
+            en.appendChild(createTextElement("source", "" + entity.getSourceName()));
             if (entity instanceof PhysicalThing) {
                 PhysicalThing thing = (PhysicalThing) entity;
-                en.appendChild(createTextElement("consists", thing.getConsists()));
-                en.appendChild(createTextElement("creator", thing.getCreator()));
-                en.appendChild(createTextElement("curatorial", thing.getCuratorial()));
-                en.appendChild(createTextElement("depicts", thing.getDepicts()));
-                en.appendChild(createTextElement("description", thing.getDescription()));
-                en.appendChild(createTextElement("image", thing.getImageURL().toString()));
-                en.appendChild(createTextElement("object", thing.getObject()));
-                en.appendChild(createTextElement("technique", thing.getTechnique()));
-                en.appendChild(createTextElement("type", thing.getType()));
-                en.appendChild(createTextElement("year", thing.getTimeSpan().toString()));
+                en.appendChild(createTextElement("consists", "" + thing.getConsists()));
+                en.appendChild(createTextElement("creator", "" + thing.getCreator()));
+                en.appendChild(createTextElement("curatorial", "" + thing.getCuratorial()));
+                en.appendChild(createTextElement("depicts", "" + thing.getDepicts()));
+                en.appendChild(createTextElement("description", "" + thing.getDescription()));
+                en.appendChild(createTextElement("image", "" + thing.getImageURL().toString()));
+                en.appendChild(createTextElement("object", "" + thing.getObject()));
+                en.appendChild(createTextElement("technique", "" + thing.getTechnique()));
+                en.appendChild(createTextElement("type", "" + thing.getType()));
+                en.appendChild(createTextElement("year", "" + thing.getTimeSpan().toString()));
             }
+            e.appendChild(en);
         }
         return e;
     }
