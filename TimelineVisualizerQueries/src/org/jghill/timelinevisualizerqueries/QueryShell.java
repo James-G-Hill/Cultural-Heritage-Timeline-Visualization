@@ -18,18 +18,38 @@ public abstract class QueryShell implements Comparable {
      */
     public abstract String getQueryType();
     
+    /**
+     * Returns the name of the query.
+     * 
+     * @return the query name.
+     */
     public String getQueryName() {
         return queryName;
     }
     
+    /**
+     * Sets the name of the query.
+     * 
+     * @param name of the query.
+     */
     public void setQueryName(String name) {
         queryName = name;
     }
     
+    /**
+     * Returns the last run date.
+     * 
+     * @return the last run date.
+     */
     public Date getLastRunDate() {
         return lastRunDate;
     }
     
+    /**
+     * Sets the last run date.
+     * 
+     * @param lastRun of the query.
+     */
     public void setLastRunDate(Date lastRun) {
         lastRunDate = lastRun;
     }
