@@ -50,7 +50,7 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl>, L
             new CanOpen() {
                 @Override
                 public void open(Collection coll) {
-                    if(!tc.isOpened() || tc == null) {
+                    if (tc == null || !tc.isOpened()) {
                         CollectionContainer.addToLookup(coll);
                         CollectionTopComponent collTC = new CollectionTopComponent();
                         collTC.open();
@@ -65,8 +65,10 @@ public class CollectionImpl implements Collection, Comparable<CollectionImpl>, L
                 @Override
                 public void delete(Collection coll) {
                     CollectionContainer.deleteCollection(coll);
-                    tc.close();
-                    tc = null;
+                    if (tc != null) {
+                        tc.close();
+                        tc = null;
+                    }
                 }
             }
         );
