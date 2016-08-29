@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<manager>
+  <source>
+    <name>British Museum</name>
+    <type>SPARQL Endpoint</type>
+    <uri>http://collection.britishmuseum.org/sparql</uri>
+    <cidoc>http://erlangen-crm.org/current/</cidoc>
+  </source>
+  <source>
+    <name>Smithsonian American Art Museum</name>
+    <type>SPARQL Endpoint</type>
+    <uri>http://edan.si.edu/saam/sparql</uri>
+    <cidoc>http://www.cidoc-crm.org/cidoc-crm/</cidoc>
+  </source>
+</manager>

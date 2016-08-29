@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<collection>
+  <information>
+    <name>america</name>
+    <notes>null</notes>
+  </information>
+  <queries>
+    <query>
+      <name>1920s</name>
+      <type>SPARQL Endpoint</type>
+      <querystring>PREFIX bmo: &lt;http://collection.britishmuseum.org/id/ontology/&gt; 
+PREFIX crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt; 
+PREFIX edan: &lt;http://edan.si.edu/saam/id/ontologies/&gt; 
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; 
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; 
+PREFIX thes: &lt;http://collection.britishmuseum.org/id/thesauri/&gt; 
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+
+
+SELECT  
+?identifier  
+?name  
+?consists  
+?type  
+?date  
+?creator  
+?object  
+?description  
+?curatorial  
+?depicts  
+?technique  
+?image  
+
+
+WHERE { 
+
+?production  a crm:E12_Production ; crm:P108_has_produced ?object  . 
+
+{ ?production crm:P9_consists_of [ crm:P4_has_time-span ?time  ] } 
+UNION 
+{ ?production  crm:P4_has_time-span ?time  } 
+?time a crm:E52_Time-Span ; rdfs:label ?date  . 
+FILTER (xsd:integer(?date ) &gt;= 1920) . 
+FILTER (xsd:integer(?date ) &lt;= 1929) . 
+
+{ ?object crm:P48_has_preferred_identifier/rdfs:label ?identifier  } . 
+
+OPTIONAL { { ?object crm:P102_has_title/rdfs:label ?name  } 
+ } . 
+
+OPTIONAL { { ?object crm:P62_depicts/skos:prefLabel ?depicts  } 
+UNION { ?object crm:P129_is_about/edan:/skos:prefLabel ?depicts  } 
+ } . 
+
+OPTIONAL { { ?object crm:P45_consists_of/skos:prefLabel ?consists  } 
+UNION { ?object edan:PE_medium_description ?consists  } 
+ } . 
+
+OPTIONAL { { { ?object bmo:PX_object_type/skos:prefLabel ?type  } 
+UNION { ?object edan:PE_object_mainclass/skos:prefLabel ?type  } } 
+ } . 
+
+OPTIONAL { ?production crm:P9_consists_of [ crm:P32_used_general_technique [ skos:prefLabel ?technique  ] ]  } . 
+
+OPTIONAL { { { ?production crm:P14_carried_out_by [ crm:P1_is_identified_by [ rdfs:label ?creator  ] ] } UNION  { ?production crm:P9_consists_of [ crm:P14_carried_out_by [ skos:prefLabel ?creator  ] ] } }  } . 
+
+OPTIONAL { ?object bmo:PX_physical_description ?description  }. 
+
+OPTIONAL { ?object bmo:PX_curatorial_comment ?curatorial  }. 
+
+OPTIONAL { ?object crm:P138i_has_representation ?image  } . 
+
+
+} 
+
+LIMIT 10</querystring>
+      <address>http://edan.si.edu/saam/sparql</address>
+      <cidoc>http://www.cidoc-crm.org/cidoc-crm/</cidoc>
+    </query>
+  </queries>
+  <entities>
+    <entity>
+      <identifier>1969.178.3</identifier>
+      <name>(Fragments, portfolio)</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>lithograph</consists>
+      <creator/>
+      <curatorial/>
+      <depicts/>
+      <description/>
+      <image>http://americanart.si.edu/images/1969/1969.178.3_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1969.178.3</object>
+      <technique/>
+      <type/>
+      <year>1922</year>
+    </entity>
+    <entity>
+      <identifier>1976.70</identifier>
+      <name>Louise Hellstrom</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>pastel on paper</consists>
+      <creator/>
+      <curatorial/>
+      <depicts/>
+      <description/>
+      <image>http://americanart.si.edu/images/1976/1976.70_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1976.70</object>
+      <technique/>
+      <type/>
+      <year>1927</year>
+    </entity>
+    <entity>
+      <identifier>1973.141.1</identifier>
+      <name>My Neighbors</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>oil on canvas</consists>
+      <creator/>
+      <curatorial/>
+      <depicts/>
+      <description/>
+      <image>http://americanart.si.edu/images/1973/1973.141.1_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1973.141.1</object>
+      <technique/>
+      <type/>
+      <year>1929</year>
+    </entity>
+    <entity>
+      <identifier>1971.435</identifier>
+      <name>Porta Della Carta</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>pencil on paper</consists>
+      <creator/>
+      <curatorial/>
+      <depicts/>
+      <description/>
+      <image>http://americanart.si.edu/images/1971/1971.435_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1971.435</object>
+      <technique/>
+      <type/>
+      <year>1929</year>
+    </entity>
+    <entity>
+      <identifier>1988.15.15</identifier>
+      <name>The Gothic Spirit, from the Gargoyle Series No. 8</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>etching and stipple on paper</consists>
+      <creator/>
+      <curatorial/>
+      <depicts/>
+      <description/>
+      <image>http://americanart.si.edu/images/1988/1988.15.15_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1988.15.15</object>
+      <technique/>
+      <type/>
+      <year>1922</year>
+    </entity>
+    <entity>
+      <identifier>1979.98.11</identifier>
+      <name>The Patroness</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>drypoint on paper</consists>
+      <creator/>
+      <curatorial/>
+      <depicts/>
+      <description/>
+      <image>http://americanart.si.edu/images/1979/1979.98.11_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1979.98.11</object>
+      <technique/>
+      <type/>
+      <year>1927</year>
+    </entity>
+    <entity>
+      <identifier>1974.37.1</identifier>
+      <name>The Titan</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>lithograph on paper</consists>
+      <creator/>
+      <curatorial/>
+      <depicts/>
+      <description/>
+      <image>http://americanart.si.edu/images/1974/1974.37.1_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1974.37.1</object>
+      <technique/>
+      <type/>
+      <year>1929</year>
+    </entity>
+    <entity>
+      <identifier>1972.74.51</identifier>
+      <name>Untitled</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>etching on paper</consists>
+      <creator/>
+      <curatorial/>
+      <depicts/>
+      <description/>
+      <image>http://americanart.si.edu/images/1972/1972.74.51_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1972.74.51</object>
+      <technique/>
+      <type/>
+      <year>1925</year>
+    </entity>
+    <entity>
+      <identifier>1974.58</identifier>
+      <name>West Forty-Second Street, Night</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>color aquatint and etching on paper</consists>
+      <creator/>
+      <curatorial/>
+      <depicts/>
+      <description/>
+      <image>http://americanart.si.edu/images/1974/1974.58_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1974.58</object>
+      <technique/>
+      <type/>
+      <year>1922</year>
+    </entity>
+    <entity>
+      <identifier>1971.156</identifier>
+      <name>Where the Junk Sails Lift</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>color aquatint on paper</consists>
+      <creator/>
+      <curatorial/>
+      <depicts/>
+      <description/>
+      <image>http://americanart.si.edu/images/1971/1971.156_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1971.156</object>
+      <technique/>
+      <type/>
+      <year>1923</year>
+    </entity>
+  </entities>
+</collection>
