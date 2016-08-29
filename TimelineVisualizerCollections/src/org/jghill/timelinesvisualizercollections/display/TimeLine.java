@@ -144,7 +144,7 @@ public class TimeLine extends JLayeredPane {
     }
     
     private JViewport viewPort;
-    private int viewPortLastX;
+    private int viewPortLastX = -1;
     
     /**
      * Places the description onto the TimeLine.
