@@ -188,8 +188,6 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
             int interval = (getDateArray()[getDateArray().length-1] - getDateArray()[0]);
             int viewerWidth = viewer.getSize().width;
             int scaleZoom = (int) ((int) viewerWidth + (source.getValue() * (viewerWidth * ((double) interval / 100))));
-            System.out.println("division " + (((double) interval / 100)));
-            
             
             if (scaleZoom >= viewerWidth && scaleZoom <= MAX_SIZE + viewerWidth && dateDifference > 10) {
                 
