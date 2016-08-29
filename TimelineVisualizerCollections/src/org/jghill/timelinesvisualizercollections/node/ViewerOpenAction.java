@@ -16,8 +16,17 @@ public class ViewerOpenAction extends AbstractAction {
     private final Collection coll;
     private final String actionName = "Open";
     
+    /**
+     * Constructor.
+     * 
+     * @param lu the Lookup.
+     */
     public ViewerOpenAction(Lookup lu) {
         coll = lu.lookup(Collection.class);
+        setup();
+    }
+    
+    private void setup() {
         putValue(NAME, actionName);
     }
     
