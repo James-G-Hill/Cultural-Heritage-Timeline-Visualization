@@ -19,6 +19,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String EDAN = "edan: <http://edan.si.edu/saam/id/ontologies/> \n";
     private static final String RDF = "rdfs: <http://www.w3.org/2000/01/rdf-schema#> \n";
     private static final String SKOS = "skos: <http://www.w3.org/2004/02/skos/core#> \n";
+    private static final String SKOS2 = "skos2: <http://www.w3.org/2008/05/skos#> \n";
     private static final String THES = "thes: <http://collection.britishmuseum.org/id/thesauri/> \n";
     private static final String XML = "xsd: <http://www.w3.org/2001/XMLSchema#> \n";
     
@@ -39,15 +40,11 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String IMAGE = "?image ";
     private static final String DATE = "?date ";
     private static final String CREATOR = "?creator ";
-    
-//    private static final String DEPICTION_SAMPLE = "?depictionSample ";
-//    private static final String TECHNIQUE_SAMPLE = "?techniqueSample ";
-//    private static final String IMAGE_SAMPLE = "?imageSample ";
-    
     private static final String DESCRIPTION = "?description ";
     private static final String CURATORIAL = "?curatorial ";
     
     private static final String PRODUCTION = "?production ";
+    private static final String PRODUCTION2 = "?production2 ";
     private static final String TIME = "?time ";
     
     @Override
@@ -74,7 +71,6 @@ public class SPARQLTranslator implements QueryTranslator {
                 WHERE + "\n\n" +
                 whereClause() + "\n\n" +
                 END + "\n\n" +
-//                groupBy() + "\n\n" +
                 limit();
     }
     
@@ -88,6 +84,7 @@ public class SPARQLTranslator implements QueryTranslator {
                 PREFIX + EDAN +
                 PREFIX + RDF +
                 PREFIX + SKOS +
+                PREFIX + SKOS2 +
                 PREFIX + THES +
                 PREFIX + XML;
     }
@@ -142,7 +139,7 @@ public class SPARQLTranslator implements QueryTranslator {
         dates += PRODUCTION + " a crm:E12_Production ";
         dates += "; crm:P108_has_produced " + OBJECT + " . \n";
         dates += "\n";
-        dates += "{ " + PRODUCTION + "crm:P9_consists_of [ crm:P4_has_time-span " + TIME + " ] } \n";
+        dates += "{ " + PRODUCTION + "crm:P9_consists_of/crm:P4_has_time-span " + TIME + " } \n";
         dates += UNION + "\n";
         dates += "{ " + PRODUCTION + " crm:P4_has_time-span " + TIME + " } \n";
         dates += TIME + "a crm:E52_Time-Span ; rdfs:label " + DATE + " . \n";
@@ -181,8 +178,6 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getName() {
         String query = "";
         String triple = "";
-//        triple += "{ " + OBJECT + "rdfs:label " + NAME + " } \n";
-//        triple += UNION;
         triple += "{ " + OBJECT + "crm:P102_has_title/rdfs:label " + NAME + " } \n";
         if (settings.hasNameCheck) {
             query += triple;
@@ -204,7 +199,7 @@ public class SPARQLTranslator implements QueryTranslator {
         String triple = "";
         triple += "{ " + OBJECT + "crm:P62_depicts/skos:prefLabel " + DEPICTION + " } \n";
         triple += UNION;
-        triple += "{ " + OBJECT + "crm:P129_is_about/edan:/skos:prefLabel " + DEPICTION + " } \n";
+        triple += "{ " + OBJECT + "crm:P128_carries/crm:P129_is_about/skos2:prefLabel " + DEPICTION + " } \n";
         if (settings.hasDepictionCheck) {
             query += triple;
             query += " . \n";
@@ -240,13 +235,15 @@ public class SPARQLTranslator implements QueryTranslator {
     
     /**
      * The type of the object.
+     * 
+     * @return the type query string.
      */
     private String getType() {
         String query = "";
         String triple = "";
         triple += "{ { " + OBJECT + "bmo:PX_object_type/skos:prefLabel " + TYPE + " } \n";
         triple += UNION;
-        triple += "{ " + OBJECT + "edan:PE_object_mainclass/skos:prefLabel " + TYPE + " } } \n";
+        triple += "{ " + OBJECT + "edan:PE_object_mainclass/skos2:prefLabel " + TYPE + " } } \n";
         if (settings.hasTypeCheck) {
             query += triple;
             query += " . \n";
@@ -266,7 +263,7 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getTechnique() {
         String query = "";
-        String triple = PRODUCTION + "crm:P9_consists_of [ crm:P32_used_general_technique [ skos:prefLabel " + TECHNIQUE + " ] ] ";
+        String triple = PRODUCTION + "crm:P9_consists_of/crm:P32_used_general_technique/skos:prefLabel " + TECHNIQUE + " ";
         if (settings.hasTechniqueCheck) {
             query += "{ ";
             query += triple;
@@ -308,9 +305,10 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getCreator() {
         String query = "";
         String triple = "";
-        triple += "{ { " + PRODUCTION + "crm:P14_carried_out_by [ crm:P1_is_identified_by [ rdfs:label " + CREATOR + " ] ] } ";
+        triple += "{ { " + PRODUCTION2 + "crm:P108_has_produced " + OBJECT + " . \n";
+        triple += PRODUCTION2 + "crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label " + CREATOR + " } ";
         triple += UNION;
-        triple += " { " + PRODUCTION + "crm:P9_consists_of [ crm:P14_carried_out_by [ skos:prefLabel " + CREATOR + " ] ] } } ";
+        triple += " { " + PRODUCTION + "crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel " + CREATOR + " } } ";
         if (settings.hasCreatorCheck) {
             query += "{ ";
             query += triple;
