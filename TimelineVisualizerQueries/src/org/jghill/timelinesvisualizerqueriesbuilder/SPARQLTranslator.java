@@ -23,7 +23,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String XML = "xsd: <http://www.w3.org/2001/XMLSchema#> \n";
     
     private static final String PREFIX = "PREFIX ";
-    private static final String SELECT = "SELECT DISTINCT ";
+    private static final String SELECT = "SELECT ";
     private static final String WHERE = "WHERE { ";
     private static final String END = "} ";
     private static final String LIMIT = "LIMIT ";
@@ -40,9 +40,9 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String DATE = "?date ";
     private static final String CREATOR = "?creator ";
     
-    private static final String DEPICTION_SAMPLE = "?depictionSample ";
-    private static final String TECHNIQUE_SAMPLE = "?techniqueSample ";
-    private static final String IMAGE_SAMPLE = "?imageSample ";
+//    private static final String DEPICTION_SAMPLE = "?depictionSample ";
+//    private static final String TECHNIQUE_SAMPLE = "?techniqueSample ";
+//    private static final String IMAGE_SAMPLE = "?imageSample ";
     
     private static final String DESCRIPTION = "?description ";
     private static final String CURATORIAL = "?curatorial ";
@@ -54,7 +54,12 @@ public class SPARQLTranslator implements QueryTranslator {
     public QueryShell translate(QuerySettings settings) {
         this.settings = settings;
         sparql = (SPARQLEndpoint) settings.source;
-        return new SPARQLQueryShell(build(), sparql, settings.queryName);
+        return new SPARQLQueryShell(
+                build(),
+                sparql.getWebAddress(),
+                sparql.getCIDOCAddress(),
+                settings.queryName
+        );
     }
     
     /**
@@ -69,7 +74,7 @@ public class SPARQLTranslator implements QueryTranslator {
                 WHERE + "\n\n" +
                 whereClause() + "\n\n" +
                 END + "\n\n" +
-                groupBy() + "\n\n" +
+//                groupBy() + "\n\n" +
                 limit();
     }
     
@@ -102,9 +107,9 @@ public class SPARQLTranslator implements QueryTranslator {
                 OBJECT + " \n" +
                 DESCRIPTION + " \n" +
                 CURATORIAL + " \n" +
-                "(SAMPLE (" + DEPICTION_SAMPLE + ") AS " + DEPICTION + " ) \n" +
-                "(SAMPLE (" + TECHNIQUE_SAMPLE + ") AS " + TECHNIQUE + " ) \n" +
-                "(SAMPLE (" + IMAGE_SAMPLE + ") AS " + IMAGE + " ) \n";
+                DEPICTION + " \n" +
+                TECHNIQUE + " \n" +
+                IMAGE + " \n";
     }
     
     /**
@@ -176,8 +181,8 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getName() {
         String query = "";
         String triple = "";
-        triple += "{ " + OBJECT + "rdfs:label " + NAME + " } \n";
-        triple += UNION;
+//        triple += "{ " + OBJECT + "rdfs:label " + NAME + " } \n";
+//        triple += UNION;
         triple += "{ " + OBJECT + "crm:P102_has_title/rdfs:label " + NAME + " } \n";
         if (settings.hasNameCheck) {
             query += triple;
@@ -197,13 +202,13 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getDepiction() {
         String query = "";
         String triple = "";
-        triple += "{ " + OBJECT + "crm:P62_depicts/skos:prefLabel " + DEPICTION_SAMPLE + " } \n";
+        triple += "{ " + OBJECT + "crm:P62_depicts/skos:prefLabel " + DEPICTION + " } \n";
         triple += UNION;
-        triple += "{ " + OBJECT + "crm:P129_is_about/edan:/skos:prefLabel " + DEPICTION_SAMPLE + " } \n";
+        triple += "{ " + OBJECT + "crm:P129_is_about/edan:/skos:prefLabel " + DEPICTION + " } \n";
         if (settings.hasDepictionCheck) {
             query += triple;
             query += " . \n";
-            query += "FILTER (CONTAINS(LCASE(" + DEPICTION_SAMPLE + "), \"" + settings.depiction + "\")). \n";
+            query += "FILTER (CONTAINS(LCASE(" + DEPICTION + "), \"" + settings.depiction + "\")). \n";
         } else {
             query += "OPTIONAL { ";
             query += triple;
@@ -261,12 +266,12 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getTechnique() {
         String query = "";
-        String triple = PRODUCTION + "crm:P9_consists_of [ crm:P32_used_general_technique [ skos:prefLabel " + TECHNIQUE_SAMPLE + " ] ] ";
+        String triple = PRODUCTION + "crm:P9_consists_of [ crm:P32_used_general_technique [ skos:prefLabel " + TECHNIQUE + " ] ] ";
         if (settings.hasTechniqueCheck) {
             query += "{ ";
             query += triple;
             query += " } . \n";
-            query += "FILTER (CONTAINS(LCASE(" + TECHNIQUE_SAMPLE + "), \"" + settings.technique + "\")). \n";
+            query += "FILTER (CONTAINS(LCASE(" + TECHNIQUE + "), \"" + settings.technique + "\")). \n";
         } else {
             query += "OPTIONAL { ";
             query += triple;
@@ -282,7 +287,7 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getImage() {
         String query = "";
-        String triple = OBJECT + "crm:P138i_has_representation " + IMAGE_SAMPLE;
+        String triple = OBJECT + "crm:P138i_has_representation " + IMAGE;
         if (settings.hasImageCheck) {
             query += "{ ";
             query += triple;
@@ -336,22 +341,22 @@ public class SPARQLTranslator implements QueryTranslator {
         return "OPTIONAL { " + OBJECT + "bmo:PX_curatorial_comment " + CURATORIAL + " }. \n";
     }
     
-    /**
-     * Groups the selection by the following categories.
-     */
-    private String groupBy() {
-        return
-                "GROUP BY" + " \n" +
-                IDENTIFIER + " \n" +
-                NAME + " \n" +
-                CONSISTS + " \n" +
-                TYPE + " \n" +
-                DATE + " \n" +
-                CREATOR + " \n" +
-                OBJECT + " \n" +
-                DESCRIPTION + " \n" +
-                CURATORIAL + " \n";
-    }
+//    /**
+//     * Groups the selection by the following categories.
+//     */
+//    private String groupBy() {
+//        return
+//                "GROUP BY" + " \n" +
+//                IDENTIFIER + " \n" +
+//                NAME + " \n" +
+//                CONSISTS + " \n" +
+//                TYPE + " \n" +
+//                DATE + " \n" +
+//                CREATOR + " \n" +
+//                OBJECT + " \n" +
+//                DESCRIPTION + " \n" +
+//                CURATORIAL + " \n";
+//    }
     
     /**
      * Builds the LIMIT part of expression.
