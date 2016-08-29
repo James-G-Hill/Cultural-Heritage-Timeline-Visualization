@@ -37,6 +37,9 @@ public class EntityDisplay extends JPanel implements Comparable<EntityDisplay>, 
     private int w = 110;
     private int h = 110;
     
+    /**
+     * Constructor.
+     */
     public EntityDisplay() {}
     
     /**
