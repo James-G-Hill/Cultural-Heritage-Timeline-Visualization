@@ -9,6 +9,7 @@ import java.util.concurrent.Future;
 import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.xml.parsers.ParserConfigurationException;
 import org.apache.jena.atlas.web.HttpException;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
@@ -33,6 +34,7 @@ import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
+import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.RequestProcessor;
@@ -171,7 +173,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         ZoomSlider = new javax.swing.JSlider();
         ZoomOutLabel = new javax.swing.JLabel();
         ZoomInLabel = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        SaveButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1100, 524));
 
@@ -310,6 +312,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         SourceNameTextLabel.setOpaque(true);
 
         QueryNameTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.QueryNameTextField.text")); // NOI18N
+        QueryNameTextField.setNextFocusableComponent(SourceComboBox);
 
         org.openide.awt.Mnemonics.setLocalizedText(CreationYearLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.CreationYearLabel.text")); // NOI18N
         CreationYearLabel.setToolTipText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.CreationYearLabel.toolTipText")); // NOI18N
@@ -609,10 +612,10 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
 
         org.openide.awt.Mnemonics.setLocalizedText(ZoomInLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.ZoomInLabel.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton2, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.jButton2.text")); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        org.openide.awt.Mnemonics.setLocalizedText(SaveButton, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.SaveButton.text")); // NOI18N
+        SaveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                SaveButtonActionPerformed(evt);
             }
         });
 
@@ -658,7 +661,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                                 .addGap(26, 26, 26)
                                 .addComponent(ZoomInLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2)))))
+                                .addComponent(SaveButton)))))
                 .addContainerGap())
         );
         VisualizerLayout.setVerticalGroup(
@@ -672,7 +675,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                     .addComponent(ZoomOutLabel)
                     .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(ZoomInLabel)
-                        .addComponent(jButton2)))
+                        .addComponent(SaveButton)))
                 .addGap(18, 18, 18)
                 .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(VisualizerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -941,12 +944,19 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         }
     }//GEN-LAST:event_CreatedByCheckBoxActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
         CollectionXMLWriter writer;
-        writer = new CollectionXMLWriterImpl(coll);
-        writer.build();
-        writer.print();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        try {
+            writer = new CollectionXMLWriterImpl(
+                    coll,
+                    etb.getFlattenedCollection()
+            );
+            writer.build();
+            writer.print();
+        } catch (ParserConfigurationException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+    }//GEN-LAST:event_SaveButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AndText1;
@@ -997,6 +1007,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private javax.swing.JSeparator QuerySeparator;
     private javax.swing.JButton ResetButton;
     private javax.swing.JButton RunButton;
+    private javax.swing.JButton SaveButton;
     private javax.swing.JComboBox<String> SourceComboBox;
     private javax.swing.JLabel SourceNameTextLabel;
     private javax.swing.JLabel SourceTextLabel;
@@ -1010,7 +1021,6 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private javax.swing.JLabel ZoomOutLabel;
     private javax.swing.JSlider ZoomSlider;
     private org.jghill.timelinesvisualizercollections.display.CollectionDisplayPanel collectionDisplayPanel;
-    private javax.swing.JButton jButton2;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
     
