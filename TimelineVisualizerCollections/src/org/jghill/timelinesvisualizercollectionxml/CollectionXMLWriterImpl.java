@@ -3,6 +3,8 @@ package org.jghill.timelinesvisualizercollectionxml;
 import java.io.File;
 import java.util.Set;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
@@ -27,7 +29,7 @@ import org.w3c.dom.Text;
  */
 public class CollectionXMLWriterImpl implements CollectionXMLWriter {
     
-    private DocumentBuilder builder;
+    private final DocumentBuilder builder;
     private Document doc;
     
     Collection collection;
@@ -36,9 +38,11 @@ public class CollectionXMLWriterImpl implements CollectionXMLWriter {
      * This is a constructor.
      * 
      * @param collection to be written to XML.
+     * @throws javax.xml.parsers.ParserConfigurationException
      */
-    public CollectionXMLWriterImpl(Collection collection) {
+    public CollectionXMLWriterImpl(Collection collection) throws ParserConfigurationException {
         this.collection = collection;
+        builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
     }
     
     @Override
