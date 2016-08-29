@@ -51,6 +51,7 @@ public class TimeLineCollection {
     }
     
     /**
+     * Selects the filters that will be used to fill the ComboBox.
      * 
      * @param collection 
      */
@@ -85,7 +86,7 @@ public class TimeLineCollection {
         
         filterList = new ArrayList<>();
         filterList.add(none);
-        filters.forEach((k,v)->{
+        filters.forEach((k, v) -> {
             if (v.size() > 1) {
                 filterList.add(k);
             }
@@ -149,14 +150,29 @@ public class TimeLineCollection {
                         result = "General";
                         break;
                 }
-                if (categories.containsKey(result)) {
-                    List<ManMadeObject> set = categories.get(result);
-                    set.add(object);
+                
+                if (!result.equalsIgnoreCase("")) {
+                    List<ManMadeObject> list;
+                    if (categories.containsKey(result)) {
+                        list = categories.get(result);
+                        list.add(object);
+                    } else {
+                        list = new ArrayList<>();
+                        list.add(object);
+                        categories.putIfAbsent(result, list);
+                    }
                 } else {
-                    List<ManMadeObject> list = new ArrayList<>();
-                    list.add(object);
-                    categories.putIfAbsent(result, list);
+                    List<ManMadeObject> list;
+                    if (categories.containsKey("Blank")) {
+                        list = categories.get("Blank");
+                        list.add(object);
+                    } else {
+                        list = new ArrayList<>();
+                        list.add(object);
+                        categories.putIfAbsent("Blank", list);
+                    }
                 }
+                
             }
         }
         
