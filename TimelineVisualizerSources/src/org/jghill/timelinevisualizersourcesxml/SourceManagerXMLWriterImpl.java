@@ -93,7 +93,10 @@ public class SourceManagerXMLWriterImpl implements SourceManagerXMLWriter {
      * @param text to be contained with the element.
      * @return the element.
      */
-    private Element createTextElement(String name, String text) {
+    private Element createTextElement(
+            String name,
+            String text
+    ) {
         Text t = doc.createTextNode(text);
         Element e = doc.createElement(name);
         e.appendChild(t);
