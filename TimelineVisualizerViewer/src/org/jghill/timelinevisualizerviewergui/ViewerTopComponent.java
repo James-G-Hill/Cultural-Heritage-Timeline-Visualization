@@ -44,6 +44,9 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
     
     private final ExplorerManager manager = new ExplorerManager();
     
+    /**
+     * Constructor.
+     */
     public ViewerTopComponent() {
         
         initComponents();
@@ -69,6 +72,8 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
 
         ViewerScrollPane = new BeanTreeView();
 
+        setMinimumSize(new java.awt.Dimension(200, 0));
+        setOpaque(true);
         setPreferredSize(new java.awt.Dimension(200, 500));
 
         ViewerScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
