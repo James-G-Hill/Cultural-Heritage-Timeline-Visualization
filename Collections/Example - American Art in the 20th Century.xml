@@ -1,0 +1,2403 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<collection>
+  <information>
+    <name>Example - American Art in the 20th Century</name>
+    <notes>null</notes>
+  </information>
+  <queries>
+    <query>
+      <name>1900s</name>
+      <type>SPARQL Endpoint</type>
+      <querystring>PREFIX bmo: &lt;http://collection.britishmuseum.org/id/ontology/&gt; 
+PREFIX crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt; 
+PREFIX edan: &lt;http://edan.si.edu/saam/id/ontologies/&gt; 
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; 
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; 
+PREFIX skos2: &lt;http://www.w3.org/2008/05/skos#&gt; 
+PREFIX thes: &lt;http://collection.britishmuseum.org/id/thesauri/&gt; 
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+
+
+SELECT  
+?identifier  
+?consists  
+?date  
+?technique  
+?image  
+?object  
+(SAMPLE(?nameSample ) AS ?name ) 
+(SAMPLE(?typeSample ) AS ?type ) 
+(SAMPLE(?creatorSample ) AS ?creator ) 
+(SAMPLE(?descriptionSample ) AS ?description ) 
+(SAMPLE(?curatorialSample ) AS ?curatorial ) 
+(SAMPLE(?depictsSample ) AS ?depicts ) 
+
+
+WHERE { 
+
+?production  a crm:E12_Production ; crm:P108_has_produced ?object  . 
+
+{ ?production crm:P9_consists_of/crm:P4_has_time-span ?time  } 
+UNION 
+{ ?production  crm:P4_has_time-span ?time  } 
+?time a crm:E52_Time-Span ; rdfs:label ?date  . 
+FILTER (xsd:integer(?date ) &gt;= 1900) . 
+FILTER (xsd:integer(?date ) &lt;= 1909) . 
+
+{ ?object crm:P48_has_preferred_identifier/rdfs:label ?identifier  } . 
+
+OPTIONAL { { ?object crm:P102_has_title/rdfs:label ?nameSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P62_depicts/skos:prefLabel ?depictsSample  } 
+UNION { ?object crm:P128_carries/crm:P129_is_about/skos2:prefLabel ?depictsSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P45_consists_of/skos:prefLabel ?consists  } 
+UNION { ?object edan:PE_medium_description ?consists  } 
+ } . 
+
+OPTIONAL { { { ?object bmo:PX_object_type/skos:prefLabel ?typeSample  } 
+UNION { ?object edan:PE_object_mainclass/skos2:prefLabel ?typeSample  } } 
+ } . 
+
+OPTIONAL { ?production crm:P9_consists_of/crm:P32_used_general_technique/skos:prefLabel ?technique   } . 
+
+OPTIONAL { { { ?production2 crm:P108_has_produced ?object  . 
+?production2 crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label ?creatorSample  } UNION  { ?production2 crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel ?creatorSample  } }  } . 
+
+OPTIONAL { ?object bmo:PX_physical_description ?descriptionSample  }. 
+
+OPTIONAL { ?object bmo:PX_curatorial_comment ?curatorialSample  }. 
+
+OPTIONAL { ?object crm:P138i_has_representation ?image  } . 
+
+
+} 
+
+GROUP BY 
+?identifier  
+?consists  
+?date  
+?technique  
+?object  
+?image  
+
+LIMIT 10</querystring>
+      <address>http://edan.si.edu/saam/sparql</address>
+      <cidoc>http://www.cidoc-crm.org/cidoc-crm/</cidoc>
+    </query>
+    <query>
+      <name>1910s</name>
+      <type>SPARQL Endpoint</type>
+      <querystring>PREFIX bmo: &lt;http://collection.britishmuseum.org/id/ontology/&gt; 
+PREFIX crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt; 
+PREFIX edan: &lt;http://edan.si.edu/saam/id/ontologies/&gt; 
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; 
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; 
+PREFIX skos2: &lt;http://www.w3.org/2008/05/skos#&gt; 
+PREFIX thes: &lt;http://collection.britishmuseum.org/id/thesauri/&gt; 
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+
+
+SELECT  
+?identifier  
+?consists  
+?date  
+?technique  
+?image  
+?object  
+(SAMPLE(?nameSample ) AS ?name ) 
+(SAMPLE(?typeSample ) AS ?type ) 
+(SAMPLE(?creatorSample ) AS ?creator ) 
+(SAMPLE(?descriptionSample ) AS ?description ) 
+(SAMPLE(?curatorialSample ) AS ?curatorial ) 
+(SAMPLE(?depictsSample ) AS ?depicts ) 
+
+
+WHERE { 
+
+?production  a crm:E12_Production ; crm:P108_has_produced ?object  . 
+
+{ ?production crm:P9_consists_of/crm:P4_has_time-span ?time  } 
+UNION 
+{ ?production  crm:P4_has_time-span ?time  } 
+?time a crm:E52_Time-Span ; rdfs:label ?date  . 
+FILTER (xsd:integer(?date ) &gt;= 1910) . 
+FILTER (xsd:integer(?date ) &lt;= 1919) . 
+
+{ ?object crm:P48_has_preferred_identifier/rdfs:label ?identifier  } . 
+
+OPTIONAL { { ?object crm:P102_has_title/rdfs:label ?nameSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P62_depicts/skos:prefLabel ?depictsSample  } 
+UNION { ?object crm:P128_carries/crm:P129_is_about/skos2:prefLabel ?depictsSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P45_consists_of/skos:prefLabel ?consists  } 
+UNION { ?object edan:PE_medium_description ?consists  } 
+ } . 
+
+OPTIONAL { { { ?object bmo:PX_object_type/skos:prefLabel ?typeSample  } 
+UNION { ?object edan:PE_object_mainclass/skos2:prefLabel ?typeSample  } } 
+ } . 
+
+OPTIONAL { ?production crm:P9_consists_of/crm:P32_used_general_technique/skos:prefLabel ?technique   } . 
+
+OPTIONAL { { { ?production2 crm:P108_has_produced ?object  . 
+?production2 crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label ?creatorSample  } UNION  { ?production2 crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel ?creatorSample  } }  } . 
+
+OPTIONAL { ?object bmo:PX_physical_description ?descriptionSample  }. 
+
+OPTIONAL { ?object bmo:PX_curatorial_comment ?curatorialSample  }. 
+
+OPTIONAL { ?object crm:P138i_has_representation ?image  } . 
+
+
+} 
+
+GROUP BY 
+?identifier  
+?consists  
+?date  
+?technique  
+?object  
+?image  
+
+LIMIT 10</querystring>
+      <address>http://edan.si.edu/saam/sparql</address>
+      <cidoc>http://www.cidoc-crm.org/cidoc-crm/</cidoc>
+    </query>
+    <query>
+      <name>1920s</name>
+      <type>SPARQL Endpoint</type>
+      <querystring>PREFIX bmo: &lt;http://collection.britishmuseum.org/id/ontology/&gt; 
+PREFIX crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt; 
+PREFIX edan: &lt;http://edan.si.edu/saam/id/ontologies/&gt; 
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; 
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; 
+PREFIX skos2: &lt;http://www.w3.org/2008/05/skos#&gt; 
+PREFIX thes: &lt;http://collection.britishmuseum.org/id/thesauri/&gt; 
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+
+
+SELECT  
+?identifier  
+?consists  
+?date  
+?technique  
+?image  
+?object  
+(SAMPLE(?nameSample ) AS ?name ) 
+(SAMPLE(?typeSample ) AS ?type ) 
+(SAMPLE(?creatorSample ) AS ?creator ) 
+(SAMPLE(?descriptionSample ) AS ?description ) 
+(SAMPLE(?curatorialSample ) AS ?curatorial ) 
+(SAMPLE(?depictsSample ) AS ?depicts ) 
+
+
+WHERE { 
+
+?production  a crm:E12_Production ; crm:P108_has_produced ?object  . 
+
+{ ?production crm:P9_consists_of/crm:P4_has_time-span ?time  } 
+UNION 
+{ ?production  crm:P4_has_time-span ?time  } 
+?time a crm:E52_Time-Span ; rdfs:label ?date  . 
+FILTER (xsd:integer(?date ) &gt;= 1920) . 
+FILTER (xsd:integer(?date ) &lt;= 1929) . 
+
+{ ?object crm:P48_has_preferred_identifier/rdfs:label ?identifier  } . 
+
+OPTIONAL { { ?object crm:P102_has_title/rdfs:label ?nameSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P62_depicts/skos:prefLabel ?depictsSample  } 
+UNION { ?object crm:P128_carries/crm:P129_is_about/skos2:prefLabel ?depictsSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P45_consists_of/skos:prefLabel ?consists  } 
+UNION { ?object edan:PE_medium_description ?consists  } 
+ } . 
+
+OPTIONAL { { { ?object bmo:PX_object_type/skos:prefLabel ?typeSample  } 
+UNION { ?object edan:PE_object_mainclass/skos2:prefLabel ?typeSample  } } 
+ } . 
+
+OPTIONAL { ?production crm:P9_consists_of/crm:P32_used_general_technique/skos:prefLabel ?technique   } . 
+
+OPTIONAL { { { ?production2 crm:P108_has_produced ?object  . 
+?production2 crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label ?creatorSample  } UNION  { ?production2 crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel ?creatorSample  } }  } . 
+
+OPTIONAL { ?object bmo:PX_physical_description ?descriptionSample  }. 
+
+OPTIONAL { ?object bmo:PX_curatorial_comment ?curatorialSample  }. 
+
+OPTIONAL { ?object crm:P138i_has_representation ?image  } . 
+
+
+} 
+
+GROUP BY 
+?identifier  
+?consists  
+?date  
+?technique  
+?object  
+?image  
+
+LIMIT 10</querystring>
+      <address>http://edan.si.edu/saam/sparql</address>
+      <cidoc>http://www.cidoc-crm.org/cidoc-crm/</cidoc>
+    </query>
+    <query>
+      <name>1930s</name>
+      <type>SPARQL Endpoint</type>
+      <querystring>PREFIX bmo: &lt;http://collection.britishmuseum.org/id/ontology/&gt; 
+PREFIX crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt; 
+PREFIX edan: &lt;http://edan.si.edu/saam/id/ontologies/&gt; 
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; 
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; 
+PREFIX skos2: &lt;http://www.w3.org/2008/05/skos#&gt; 
+PREFIX thes: &lt;http://collection.britishmuseum.org/id/thesauri/&gt; 
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+
+
+SELECT  
+?identifier  
+?consists  
+?date  
+?technique  
+?image  
+?object  
+(SAMPLE(?nameSample ) AS ?name ) 
+(SAMPLE(?typeSample ) AS ?type ) 
+(SAMPLE(?creatorSample ) AS ?creator ) 
+(SAMPLE(?descriptionSample ) AS ?description ) 
+(SAMPLE(?curatorialSample ) AS ?curatorial ) 
+(SAMPLE(?depictsSample ) AS ?depicts ) 
+
+
+WHERE { 
+
+?production  a crm:E12_Production ; crm:P108_has_produced ?object  . 
+
+{ ?production crm:P9_consists_of/crm:P4_has_time-span ?time  } 
+UNION 
+{ ?production  crm:P4_has_time-span ?time  } 
+?time a crm:E52_Time-Span ; rdfs:label ?date  . 
+FILTER (xsd:integer(?date ) &gt;= 1930) . 
+FILTER (xsd:integer(?date ) &lt;= 1939) . 
+
+{ ?object crm:P48_has_preferred_identifier/rdfs:label ?identifier  } . 
+
+OPTIONAL { { ?object crm:P102_has_title/rdfs:label ?nameSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P62_depicts/skos:prefLabel ?depictsSample  } 
+UNION { ?object crm:P128_carries/crm:P129_is_about/skos2:prefLabel ?depictsSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P45_consists_of/skos:prefLabel ?consists  } 
+UNION { ?object edan:PE_medium_description ?consists  } 
+ } . 
+
+OPTIONAL { { { ?object bmo:PX_object_type/skos:prefLabel ?typeSample  } 
+UNION { ?object edan:PE_object_mainclass/skos2:prefLabel ?typeSample  } } 
+ } . 
+
+OPTIONAL { ?production crm:P9_consists_of/crm:P32_used_general_technique/skos:prefLabel ?technique   } . 
+
+OPTIONAL { { { ?production2 crm:P108_has_produced ?object  . 
+?production2 crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label ?creatorSample  } UNION  { ?production2 crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel ?creatorSample  } }  } . 
+
+OPTIONAL { ?object bmo:PX_physical_description ?descriptionSample  }. 
+
+OPTIONAL { ?object bmo:PX_curatorial_comment ?curatorialSample  }. 
+
+OPTIONAL { ?object crm:P138i_has_representation ?image  } . 
+
+
+} 
+
+GROUP BY 
+?identifier  
+?consists  
+?date  
+?technique  
+?object  
+?image  
+
+LIMIT 10</querystring>
+      <address>http://edan.si.edu/saam/sparql</address>
+      <cidoc>http://www.cidoc-crm.org/cidoc-crm/</cidoc>
+    </query>
+    <query>
+      <name>1940s</name>
+      <type>SPARQL Endpoint</type>
+      <querystring>PREFIX bmo: &lt;http://collection.britishmuseum.org/id/ontology/&gt; 
+PREFIX crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt; 
+PREFIX edan: &lt;http://edan.si.edu/saam/id/ontologies/&gt; 
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; 
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; 
+PREFIX skos2: &lt;http://www.w3.org/2008/05/skos#&gt; 
+PREFIX thes: &lt;http://collection.britishmuseum.org/id/thesauri/&gt; 
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+
+
+SELECT  
+?identifier  
+?consists  
+?date  
+?technique  
+?image  
+?object  
+(SAMPLE(?nameSample ) AS ?name ) 
+(SAMPLE(?typeSample ) AS ?type ) 
+(SAMPLE(?creatorSample ) AS ?creator ) 
+(SAMPLE(?descriptionSample ) AS ?description ) 
+(SAMPLE(?curatorialSample ) AS ?curatorial ) 
+(SAMPLE(?depictsSample ) AS ?depicts ) 
+
+
+WHERE { 
+
+?production  a crm:E12_Production ; crm:P108_has_produced ?object  . 
+
+{ ?production crm:P9_consists_of/crm:P4_has_time-span ?time  } 
+UNION 
+{ ?production  crm:P4_has_time-span ?time  } 
+?time a crm:E52_Time-Span ; rdfs:label ?date  . 
+FILTER (xsd:integer(?date ) &gt;= 1940) . 
+FILTER (xsd:integer(?date ) &lt;= 1949) . 
+
+{ ?object crm:P48_has_preferred_identifier/rdfs:label ?identifier  } . 
+
+OPTIONAL { { ?object crm:P102_has_title/rdfs:label ?nameSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P62_depicts/skos:prefLabel ?depictsSample  } 
+UNION { ?object crm:P128_carries/crm:P129_is_about/skos2:prefLabel ?depictsSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P45_consists_of/skos:prefLabel ?consists  } 
+UNION { ?object edan:PE_medium_description ?consists  } 
+ } . 
+
+OPTIONAL { { { ?object bmo:PX_object_type/skos:prefLabel ?typeSample  } 
+UNION { ?object edan:PE_object_mainclass/skos2:prefLabel ?typeSample  } } 
+ } . 
+
+OPTIONAL { ?production crm:P9_consists_of/crm:P32_used_general_technique/skos:prefLabel ?technique   } . 
+
+OPTIONAL { { { ?production2 crm:P108_has_produced ?object  . 
+?production2 crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label ?creatorSample  } UNION  { ?production2 crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel ?creatorSample  } }  } . 
+
+OPTIONAL { ?object bmo:PX_physical_description ?descriptionSample  }. 
+
+OPTIONAL { ?object bmo:PX_curatorial_comment ?curatorialSample  }. 
+
+OPTIONAL { ?object crm:P138i_has_representation ?image  } . 
+
+
+} 
+
+GROUP BY 
+?identifier  
+?consists  
+?date  
+?technique  
+?object  
+?image  
+
+LIMIT 10</querystring>
+      <address>http://edan.si.edu/saam/sparql</address>
+      <cidoc>http://www.cidoc-crm.org/cidoc-crm/</cidoc>
+    </query>
+    <query>
+      <name>1950s</name>
+      <type>SPARQL Endpoint</type>
+      <querystring>PREFIX bmo: &lt;http://collection.britishmuseum.org/id/ontology/&gt; 
+PREFIX crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt; 
+PREFIX edan: &lt;http://edan.si.edu/saam/id/ontologies/&gt; 
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; 
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; 
+PREFIX skos2: &lt;http://www.w3.org/2008/05/skos#&gt; 
+PREFIX thes: &lt;http://collection.britishmuseum.org/id/thesauri/&gt; 
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+
+
+SELECT  
+?identifier  
+?consists  
+?date  
+?technique  
+?image  
+?object  
+(SAMPLE(?nameSample ) AS ?name ) 
+(SAMPLE(?typeSample ) AS ?type ) 
+(SAMPLE(?creatorSample ) AS ?creator ) 
+(SAMPLE(?descriptionSample ) AS ?description ) 
+(SAMPLE(?curatorialSample ) AS ?curatorial ) 
+(SAMPLE(?depictsSample ) AS ?depicts ) 
+
+
+WHERE { 
+
+?production  a crm:E12_Production ; crm:P108_has_produced ?object  . 
+
+{ ?production crm:P9_consists_of/crm:P4_has_time-span ?time  } 
+UNION 
+{ ?production  crm:P4_has_time-span ?time  } 
+?time a crm:E52_Time-Span ; rdfs:label ?date  . 
+FILTER (xsd:integer(?date ) &gt;= 1950) . 
+FILTER (xsd:integer(?date ) &lt;= 1959) . 
+
+{ ?object crm:P48_has_preferred_identifier/rdfs:label ?identifier  } . 
+
+OPTIONAL { { ?object crm:P102_has_title/rdfs:label ?nameSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P62_depicts/skos:prefLabel ?depictsSample  } 
+UNION { ?object crm:P128_carries/crm:P129_is_about/skos2:prefLabel ?depictsSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P45_consists_of/skos:prefLabel ?consists  } 
+UNION { ?object edan:PE_medium_description ?consists  } 
+ } . 
+
+OPTIONAL { { { ?object bmo:PX_object_type/skos:prefLabel ?typeSample  } 
+UNION { ?object edan:PE_object_mainclass/skos2:prefLabel ?typeSample  } } 
+ } . 
+
+OPTIONAL { ?production crm:P9_consists_of/crm:P32_used_general_technique/skos:prefLabel ?technique   } . 
+
+OPTIONAL { { { ?production2 crm:P108_has_produced ?object  . 
+?production2 crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label ?creatorSample  } UNION  { ?production2 crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel ?creatorSample  } }  } . 
+
+OPTIONAL { ?object bmo:PX_physical_description ?descriptionSample  }. 
+
+OPTIONAL { ?object bmo:PX_curatorial_comment ?curatorialSample  }. 
+
+OPTIONAL { ?object crm:P138i_has_representation ?image  } . 
+
+
+} 
+
+GROUP BY 
+?identifier  
+?consists  
+?date  
+?technique  
+?object  
+?image  
+
+LIMIT 10</querystring>
+      <address>http://edan.si.edu/saam/sparql</address>
+      <cidoc>http://www.cidoc-crm.org/cidoc-crm/</cidoc>
+    </query>
+    <query>
+      <name>1960s</name>
+      <type>SPARQL Endpoint</type>
+      <querystring>PREFIX bmo: &lt;http://collection.britishmuseum.org/id/ontology/&gt; 
+PREFIX crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt; 
+PREFIX edan: &lt;http://edan.si.edu/saam/id/ontologies/&gt; 
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; 
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; 
+PREFIX skos2: &lt;http://www.w3.org/2008/05/skos#&gt; 
+PREFIX thes: &lt;http://collection.britishmuseum.org/id/thesauri/&gt; 
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+
+
+SELECT  
+?identifier  
+?consists  
+?date  
+?technique  
+?image  
+?object  
+(SAMPLE(?nameSample ) AS ?name ) 
+(SAMPLE(?typeSample ) AS ?type ) 
+(SAMPLE(?creatorSample ) AS ?creator ) 
+(SAMPLE(?descriptionSample ) AS ?description ) 
+(SAMPLE(?curatorialSample ) AS ?curatorial ) 
+(SAMPLE(?depictsSample ) AS ?depicts ) 
+
+
+WHERE { 
+
+?production  a crm:E12_Production ; crm:P108_has_produced ?object  . 
+
+{ ?production crm:P9_consists_of/crm:P4_has_time-span ?time  } 
+UNION 
+{ ?production  crm:P4_has_time-span ?time  } 
+?time a crm:E52_Time-Span ; rdfs:label ?date  . 
+FILTER (xsd:integer(?date ) &gt;= 1960) . 
+FILTER (xsd:integer(?date ) &lt;= 1969) . 
+
+{ ?object crm:P48_has_preferred_identifier/rdfs:label ?identifier  } . 
+
+OPTIONAL { { ?object crm:P102_has_title/rdfs:label ?nameSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P62_depicts/skos:prefLabel ?depictsSample  } 
+UNION { ?object crm:P128_carries/crm:P129_is_about/skos2:prefLabel ?depictsSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P45_consists_of/skos:prefLabel ?consists  } 
+UNION { ?object edan:PE_medium_description ?consists  } 
+ } . 
+
+OPTIONAL { { { ?object bmo:PX_object_type/skos:prefLabel ?typeSample  } 
+UNION { ?object edan:PE_object_mainclass/skos2:prefLabel ?typeSample  } } 
+ } . 
+
+OPTIONAL { ?production crm:P9_consists_of/crm:P32_used_general_technique/skos:prefLabel ?technique   } . 
+
+OPTIONAL { { { ?production2 crm:P108_has_produced ?object  . 
+?production2 crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label ?creatorSample  } UNION  { ?production2 crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel ?creatorSample  } }  } . 
+
+OPTIONAL { ?object bmo:PX_physical_description ?descriptionSample  }. 
+
+OPTIONAL { ?object bmo:PX_curatorial_comment ?curatorialSample  }. 
+
+OPTIONAL { ?object crm:P138i_has_representation ?image  } . 
+
+
+} 
+
+GROUP BY 
+?identifier  
+?consists  
+?date  
+?technique  
+?object  
+?image  
+
+LIMIT 10</querystring>
+      <address>http://edan.si.edu/saam/sparql</address>
+      <cidoc>http://www.cidoc-crm.org/cidoc-crm/</cidoc>
+    </query>
+    <query>
+      <name>1970s</name>
+      <type>SPARQL Endpoint</type>
+      <querystring>PREFIX bmo: &lt;http://collection.britishmuseum.org/id/ontology/&gt; 
+PREFIX crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt; 
+PREFIX edan: &lt;http://edan.si.edu/saam/id/ontologies/&gt; 
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; 
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; 
+PREFIX skos2: &lt;http://www.w3.org/2008/05/skos#&gt; 
+PREFIX thes: &lt;http://collection.britishmuseum.org/id/thesauri/&gt; 
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+
+
+SELECT  
+?identifier  
+?consists  
+?date  
+?technique  
+?image  
+?object  
+(SAMPLE(?nameSample ) AS ?name ) 
+(SAMPLE(?typeSample ) AS ?type ) 
+(SAMPLE(?creatorSample ) AS ?creator ) 
+(SAMPLE(?descriptionSample ) AS ?description ) 
+(SAMPLE(?curatorialSample ) AS ?curatorial ) 
+(SAMPLE(?depictsSample ) AS ?depicts ) 
+
+
+WHERE { 
+
+?production  a crm:E12_Production ; crm:P108_has_produced ?object  . 
+
+{ ?production crm:P9_consists_of/crm:P4_has_time-span ?time  } 
+UNION 
+{ ?production  crm:P4_has_time-span ?time  } 
+?time a crm:E52_Time-Span ; rdfs:label ?date  . 
+FILTER (xsd:integer(?date ) &gt;= 1970) . 
+FILTER (xsd:integer(?date ) &lt;= 1979) . 
+
+{ ?object crm:P48_has_preferred_identifier/rdfs:label ?identifier  } . 
+
+OPTIONAL { { ?object crm:P102_has_title/rdfs:label ?nameSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P62_depicts/skos:prefLabel ?depictsSample  } 
+UNION { ?object crm:P128_carries/crm:P129_is_about/skos2:prefLabel ?depictsSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P45_consists_of/skos:prefLabel ?consists  } 
+UNION { ?object edan:PE_medium_description ?consists  } 
+ } . 
+
+OPTIONAL { { { ?object bmo:PX_object_type/skos:prefLabel ?typeSample  } 
+UNION { ?object edan:PE_object_mainclass/skos2:prefLabel ?typeSample  } } 
+ } . 
+
+OPTIONAL { ?production crm:P9_consists_of/crm:P32_used_general_technique/skos:prefLabel ?technique   } . 
+
+OPTIONAL { { { ?production2 crm:P108_has_produced ?object  . 
+?production2 crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label ?creatorSample  } UNION  { ?production2 crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel ?creatorSample  } }  } . 
+
+OPTIONAL { ?object bmo:PX_physical_description ?descriptionSample  }. 
+
+OPTIONAL { ?object bmo:PX_curatorial_comment ?curatorialSample  }. 
+
+OPTIONAL { ?object crm:P138i_has_representation ?image  } . 
+
+
+} 
+
+GROUP BY 
+?identifier  
+?consists  
+?date  
+?technique  
+?object  
+?image  
+
+LIMIT 10</querystring>
+      <address>http://edan.si.edu/saam/sparql</address>
+      <cidoc>http://www.cidoc-crm.org/cidoc-crm/</cidoc>
+    </query>
+    <query>
+      <name>1980s</name>
+      <type>SPARQL Endpoint</type>
+      <querystring>PREFIX bmo: &lt;http://collection.britishmuseum.org/id/ontology/&gt; 
+PREFIX crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt; 
+PREFIX edan: &lt;http://edan.si.edu/saam/id/ontologies/&gt; 
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; 
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; 
+PREFIX skos2: &lt;http://www.w3.org/2008/05/skos#&gt; 
+PREFIX thes: &lt;http://collection.britishmuseum.org/id/thesauri/&gt; 
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+
+
+SELECT  
+?identifier  
+?consists  
+?date  
+?technique  
+?image  
+?object  
+(SAMPLE(?nameSample ) AS ?name ) 
+(SAMPLE(?typeSample ) AS ?type ) 
+(SAMPLE(?creatorSample ) AS ?creator ) 
+(SAMPLE(?descriptionSample ) AS ?description ) 
+(SAMPLE(?curatorialSample ) AS ?curatorial ) 
+(SAMPLE(?depictsSample ) AS ?depicts ) 
+
+
+WHERE { 
+
+?production  a crm:E12_Production ; crm:P108_has_produced ?object  . 
+
+{ ?production crm:P9_consists_of/crm:P4_has_time-span ?time  } 
+UNION 
+{ ?production  crm:P4_has_time-span ?time  } 
+?time a crm:E52_Time-Span ; rdfs:label ?date  . 
+FILTER (xsd:integer(?date ) &gt;= 1980) . 
+FILTER (xsd:integer(?date ) &lt;= 1989) . 
+
+{ ?object crm:P48_has_preferred_identifier/rdfs:label ?identifier  } . 
+
+OPTIONAL { { ?object crm:P102_has_title/rdfs:label ?nameSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P62_depicts/skos:prefLabel ?depictsSample  } 
+UNION { ?object crm:P128_carries/crm:P129_is_about/skos2:prefLabel ?depictsSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P45_consists_of/skos:prefLabel ?consists  } 
+UNION { ?object edan:PE_medium_description ?consists  } 
+ } . 
+
+OPTIONAL { { { ?object bmo:PX_object_type/skos:prefLabel ?typeSample  } 
+UNION { ?object edan:PE_object_mainclass/skos2:prefLabel ?typeSample  } } 
+ } . 
+
+OPTIONAL { ?production crm:P9_consists_of/crm:P32_used_general_technique/skos:prefLabel ?technique   } . 
+
+OPTIONAL { { { ?production2 crm:P108_has_produced ?object  . 
+?production2 crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label ?creatorSample  } UNION  { ?production2 crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel ?creatorSample  } }  } . 
+
+OPTIONAL { ?object bmo:PX_physical_description ?descriptionSample  }. 
+
+OPTIONAL { ?object bmo:PX_curatorial_comment ?curatorialSample  }. 
+
+OPTIONAL { ?object crm:P138i_has_representation ?image  } . 
+
+
+} 
+
+GROUP BY 
+?identifier  
+?consists  
+?date  
+?technique  
+?object  
+?image  
+
+LIMIT 10</querystring>
+      <address>http://edan.si.edu/saam/sparql</address>
+      <cidoc>http://www.cidoc-crm.org/cidoc-crm/</cidoc>
+    </query>
+    <query>
+      <name>1990s</name>
+      <type>SPARQL Endpoint</type>
+      <querystring>PREFIX bmo: &lt;http://collection.britishmuseum.org/id/ontology/&gt; 
+PREFIX crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt; 
+PREFIX edan: &lt;http://edan.si.edu/saam/id/ontologies/&gt; 
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; 
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; 
+PREFIX skos2: &lt;http://www.w3.org/2008/05/skos#&gt; 
+PREFIX thes: &lt;http://collection.britishmuseum.org/id/thesauri/&gt; 
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+
+
+SELECT  
+?identifier  
+?consists  
+?date  
+?technique  
+?image  
+?object  
+(SAMPLE(?nameSample ) AS ?name ) 
+(SAMPLE(?typeSample ) AS ?type ) 
+(SAMPLE(?creatorSample ) AS ?creator ) 
+(SAMPLE(?descriptionSample ) AS ?description ) 
+(SAMPLE(?curatorialSample ) AS ?curatorial ) 
+(SAMPLE(?depictsSample ) AS ?depicts ) 
+
+
+WHERE { 
+
+?production  a crm:E12_Production ; crm:P108_has_produced ?object  . 
+
+{ ?production crm:P9_consists_of/crm:P4_has_time-span ?time  } 
+UNION 
+{ ?production  crm:P4_has_time-span ?time  } 
+?time a crm:E52_Time-Span ; rdfs:label ?date  . 
+FILTER (xsd:integer(?date ) &gt;= 1990) . 
+FILTER (xsd:integer(?date ) &lt;= 1999) . 
+
+{ ?object crm:P48_has_preferred_identifier/rdfs:label ?identifier  } . 
+
+OPTIONAL { { ?object crm:P102_has_title/rdfs:label ?nameSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P62_depicts/skos:prefLabel ?depictsSample  } 
+UNION { ?object crm:P128_carries/crm:P129_is_about/skos2:prefLabel ?depictsSample  } 
+ } . 
+
+OPTIONAL { { ?object crm:P45_consists_of/skos:prefLabel ?consists  } 
+UNION { ?object edan:PE_medium_description ?consists  } 
+ } . 
+
+OPTIONAL { { { ?object bmo:PX_object_type/skos:prefLabel ?typeSample  } 
+UNION { ?object edan:PE_object_mainclass/skos2:prefLabel ?typeSample  } } 
+ } . 
+
+OPTIONAL { ?production crm:P9_consists_of/crm:P32_used_general_technique/skos:prefLabel ?technique   } . 
+
+OPTIONAL { { { ?production2 crm:P108_has_produced ?object  . 
+?production2 crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label ?creatorSample  } UNION  { ?production2 crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel ?creatorSample  } }  } . 
+
+OPTIONAL { ?object bmo:PX_physical_description ?descriptionSample  }. 
+
+OPTIONAL { ?object bmo:PX_curatorial_comment ?curatorialSample  }. 
+
+OPTIONAL { ?object crm:P138i_has_representation ?image  } . 
+
+
+} 
+
+GROUP BY 
+?identifier  
+?consists  
+?date  
+?technique  
+?object  
+?image  
+
+LIMIT 10</querystring>
+      <address>http://edan.si.edu/saam/sparql</address>
+      <cidoc>http://www.cidoc-crm.org/cidoc-crm/</cidoc>
+    </query>
+  </queries>
+  <entities>
+    <entity>
+      <identifier>1973.130.191</identifier>
+      <name>At the Nursery</name>
+      <query>1900s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>photomechanical wood engraving on paper</consists>
+      <creator>Henry Wolf</creator>
+      <curatorial/>
+      <depicts>Architecture Exterior-detail-fence</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1973/1973.130.191_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1973.130.191</object>
+      <technique/>
+      <type/>
+      <year>1902</year>
+    </entity>
+    <entity>
+      <identifier>1976.127.13</identifier>
+      <name>Comedy</name>
+      <query>1900s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>plaster/cast and patinated</consists>
+      <creator> Emily C. Bishop</creator>
+      <curatorial/>
+      <depicts>Figure</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1976/1976.127.13_2a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1976.127.13</object>
+      <technique/>
+      <type>Sculpture</type>
+      <year>1907</year>
+    </entity>
+    <entity>
+      <identifier>1988.5.15</identifier>
+      <name>Martinez, Ambrosio--San Juan</name>
+      <query>1900s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>photogravure on tissue</consists>
+      <creator> Edward Sheriff Curtis</creator>
+      <curatorial/>
+      <depicts>SAAM permanent collection</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1988/1988.5.15_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1988.5.15</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1905</year>
+    </entity>
+    <entity>
+      <identifier>1951.14.25</identifier>
+      <name>Mirza Abul Fazl</name>
+      <query>1900s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>pastel on paper</consists>
+      <creator>Mrs. Alice Pike Barney</creator>
+      <curatorial/>
+      <depicts>signature</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1951/1951.14.25_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1951.14.25</object>
+      <technique/>
+      <type>Drawing</type>
+      <year>1903</year>
+    </entity>
+    <entity>
+      <identifier>1973.130.237</identifier>
+      <name>Morning Mists</name>
+      <query>1900s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>wood engraving on paper</consists>
+      <creator>Henry Wolf</creator>
+      <curatorial/>
+      <depicts>Landscape-weather-fog</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1973/1973.130.237_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1973.130.237</object>
+      <technique/>
+      <type/>
+      <year>1907</year>
+    </entity>
+    <entity>
+      <identifier>1985.66.387,775</identifier>
+      <name>Onas on the March</name>
+      <query>1900s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>oil on canvas</consists>
+      <creator> Charles Furlong</creator>
+      <curatorial/>
+      <depicts>Ethnic-Indian</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1985/1985.66.387775_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1985.66.387775</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1908</year>
+    </entity>
+    <entity>
+      <identifier>1970.355.448</identifier>
+      <name>Spotted Saxifrage (Saxifraga bronchialis)</name>
+      <query>1900s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>watercolor on paper</consists>
+      <creator> Mary Morris Vaux</creator>
+      <curatorial/>
+      <depicts>Occupation-Photographer</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1970/1970.355.448_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1970.355.448</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1903</year>
+    </entity>
+    <entity>
+      <identifier>1970.355.154</identifier>
+      <name>Stachys palustria</name>
+      <query>1900s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>watercolor on paper</consists>
+      <creator> Mary Morris Vaux</creator>
+      <curatorial/>
+      <depicts>Still life</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1970/1970.355.154_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1970.355.154</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1900</year>
+    </entity>
+    <entity>
+      <identifier>1971.446.89</identifier>
+      <name>Study for Equestrian Monument</name>
+      <query>1900s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>conte crayon and white chalk</consists>
+      <creator> Solon Hannibal Borglum</creator>
+      <curatorial/>
+      <depicts>Object-weapon-sword</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1971/1971.446.89_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1971.446.89</object>
+      <technique/>
+      <type>Drawing</type>
+      <year>1905</year>
+    </entity>
+    <entity>
+      <identifier>1967.72.202</identifier>
+      <name>Window</name>
+      <query>1900s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>lithograph</consists>
+      <creator> Theodore Polos</creator>
+      <curatorial/>
+      <depicts>Architecture-detail-window</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1967/1967.72.202_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1967.72.202</object>
+      <technique/>
+      <type/>
+      <year>1902</year>
+    </entity>
+    <entity>
+      <identifier>1971.446.35</identifier>
+      <name>Cathedral</name>
+      <query>1910s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>pencil, charcoal</consists>
+      <creator> Solon Hannibal Borglum</creator>
+      <curatorial/>
+      <depicts>Architecture</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1971/1971.446.35A_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1971.446.35</object>
+      <technique/>
+      <type>Drawing</type>
+      <year>1919</year>
+    </entity>
+    <entity>
+      <identifier>1973.130.269</identifier>
+      <name>Conde Duque d'Olivarez</name>
+      <query>1910s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>wood engraving on paper</consists>
+      <creator>Henry Wolf</creator>
+      <curatorial/>
+      <depicts>Portrait male-d'Olivarez, Conde Duque-full length</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1973/1973.130.269_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1973.130.269</object>
+      <technique/>
+      <type/>
+      <year>1911</year>
+    </entity>
+    <entity>
+      <identifier>1978.132.2</identifier>
+      <name>Girls Sliding</name>
+      <query>1910s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>etching on paper</consists>
+      <creator>John Sloan</creator>
+      <curatorial/>
+      <depicts>PAPER</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1978/1978.132.2_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1978.132.2</object>
+      <technique/>
+      <type/>
+      <year>1915</year>
+    </entity>
+    <entity>
+      <identifier>1992.13.63</identifier>
+      <name>Going to the Fair</name>
+      <query>1910s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>color woodcut on paper</consists>
+      <creator>Helen Hyde</creator>
+      <curatorial/>
+      <depicts>PAPER-TISSUE PAPER</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1992/1992.13.63_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1992.13.63</object>
+      <technique/>
+      <type/>
+      <year>1910</year>
+    </entity>
+    <entity>
+      <identifier>1955.4.14</identifier>
+      <name>Iceberg, Head of Bowdoin Bay, July 1892--Greenland</name>
+      <query>1910s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>chalk on paper</consists>
+      <creator> Frank W. Stokes</creator>
+      <curatorial/>
+      <depicts>monogram or symbol</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1955/1955.4.14_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1955.4.14</object>
+      <technique/>
+      <type>Drawing</type>
+      <year>1915</year>
+    </entity>
+    <entity>
+      <identifier>1974.69.14</identifier>
+      <name>In the Gardens of the Villa Palmieri</name>
+      <query>1910s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>oil on wood</consists>
+      <creator> J. Carroll Beckwith</creator>
+      <curatorial/>
+      <depicts>Architecture Exterior-castle-Villa Palmieri</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1974/1974.69.14_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1974.69.14</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1910</year>
+    </entity>
+    <entity>
+      <identifier>1965.16.53</identifier>
+      <name>Mary Frances Holter Medal</name>
+      <query>1910s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>bronze</consists>
+      <creator> Paul Howard Manship</creator>
+      <curatorial/>
+      <depicts>ARTstor</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1965/1965.16.53_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1965.16.53</object>
+      <technique/>
+      <type>Sculpture</type>
+      <year>1919</year>
+    </entity>
+    <entity>
+      <identifier>1965.16.100</identifier>
+      <name>Robert P. Perkins Portrait Medal</name>
+      <query>1910s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>bronze</consists>
+      <creator> Paul Howard Manship</creator>
+      <curatorial/>
+      <depicts>Metal</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1965/1965.16.100A-B_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1965.16.100</object>
+      <technique/>
+      <type>Sculpture</type>
+      <year>1918</year>
+    </entity>
+    <entity>
+      <identifier>1972.167.89</identifier>
+      <name>Squatting Polar Bear</name>
+      <query>1910s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>bronze on marble base</consists>
+      <creator>Albert Laessle</creator>
+      <curatorial/>
+      <depicts>Metal</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1972/1972.167.89_4a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1972.167.89</object>
+      <technique/>
+      <type>Sculpture</type>
+      <year>1916</year>
+    </entity>
+    <entity>
+      <identifier>1970.355.186</identifier>
+      <name>Tall Fleabane (Erigeron acris)</name>
+      <query>1910s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>watercolor on paper</consists>
+      <creator> Mary Morris Vaux</creator>
+      <curatorial/>
+      <depicts>Study-botanical study-Erigeron acris</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1970/1970.355.186_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1970.355.186</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1917</year>
+    </entity>
+    <entity>
+      <identifier>1970.65.214</identifier>
+      <name>(Couple in Room)</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>pencil on paper</consists>
+      <creator> Zorach Samovich</creator>
+      <curatorial/>
+      <depicts>Figure group</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1970/1970.65.214_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1970.65.214</object>
+      <technique/>
+      <type>Drawing</type>
+      <year>1929</year>
+    </entity>
+    <entity>
+      <identifier>1979.98.108</identifier>
+      <name>Bridge at Old Lyme</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>etching and drypoint on paper</consists>
+      <creator> F. Childe Hassam</creator>
+      <curatorial/>
+      <depicts>Landscape-Connecticut-Old Lyme</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1979/1979.98.108_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1979.98.108</object>
+      <technique/>
+      <type/>
+      <year>1922</year>
+    </entity>
+    <entity>
+      <identifier>1969.174</identifier>
+      <name>Field Artillery</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>bronze</consists>
+      <creator>Herbert Haseltine</creator>
+      <curatorial/>
+      <depicts>Metal</depicts>
+      <description/>
+      <object>http://edan.si.edu/saam/id/object/1969.174</object>
+      <technique/>
+      <type>Sculpture</type>
+      <year>1920</year>
+    </entity>
+    <entity>
+      <identifier>1976.17.22</identifier>
+      <name>Isles of Shoals</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>etching on paper</consists>
+      <creator>Kerr Eby</creator>
+      <curatorial/>
+      <depicts>edition</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1976/1976.17.22_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1976.17.22</object>
+      <technique/>
+      <type/>
+      <year>1924</year>
+    </entity>
+    <entity>
+      <identifier>1973.124.7</identifier>
+      <name>Mercanto di Legumi alla Fiera</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>pencil and watercolor on paper mounted on paper</consists>
+      <creator> Herman Armour Webster</creator>
+      <curatorial/>
+      <depicts>Architecture Exterior-commercial-market</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1973/1973.124.7_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1973.124.7</object>
+      <technique/>
+      <type>Drawing</type>
+      <year>1926</year>
+    </entity>
+    <entity>
+      <identifier>1965.42</identifier>
+      <name>Pear in Basket</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>lithograph</consists>
+      <creator> Edmund Hartley</creator>
+      <curatorial/>
+      <depicts>Still life-fruit-pear</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1965/1965.42_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1965.42</object>
+      <technique/>
+      <type/>
+      <year>1923</year>
+    </entity>
+    <entity>
+      <identifier>1958.11.27</identifier>
+      <name>Primavera</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>bronze</consists>
+      <creator> Paul W. Bartlett</creator>
+      <curatorial/>
+      <depicts>CAST</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1958/1958.11.27_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1958.11.27</object>
+      <technique/>
+      <type>Sculpture</type>
+      <year>1925</year>
+    </entity>
+    <entity>
+      <identifier>1983.90.1</identifier>
+      <name>Street in Porto Maurizio</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>etching on paper</consists>
+      <creator>John Taylor Arms</creator>
+      <curatorial/>
+      <depicts>artist-painter</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1983/1983.90.1_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1983.90.1</object>
+      <technique/>
+      <type/>
+      <year>1928</year>
+    </entity>
+    <entity>
+      <identifier>1970.355.235</identifier>
+      <name>Untitled--Plant Study</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>watercolor on paper</consists>
+      <creator> Mary Morris Vaux</creator>
+      <curatorial/>
+      <depicts>Still life</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1970/1970.355.235_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1970.355.235</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1922</year>
+    </entity>
+    <entity>
+      <identifier>1962.12.7</identifier>
+      <name>William Howard Taft</name>
+      <query>1920s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>bronze on marble base</consists>
+      <creator> Percy Bryant Baker</creator>
+      <curatorial/>
+      <depicts>artist-printmaker</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1962/1962.12.7_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1962.12.7</object>
+      <technique/>
+      <type>Sculpture</type>
+      <year>1922</year>
+    </entity>
+    <entity>
+      <identifier>1983.105.8</identifier>
+      <name>Design</name>
+      <query>1930s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>ink, colored ink and pencil on paper</consists>
+      <creator> Emmanuel Radnitsky</creator>
+      <curatorial/>
+      <depicts>date</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1983/1983.105.8_8a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1983.105.8</object>
+      <technique/>
+      <type>Drawing</type>
+      <year>1938</year>
+    </entity>
+    <entity>
+      <identifier>1966.69.5</identifier>
+      <name>Going Home</name>
+      <query>1930s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>lithograph</consists>
+      <creator>Jacob Kainen</creator>
+      <curatorial/>
+      <depicts>Architecture Exterior-domestic-house</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1966/1966.69.5_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1966.69.5</object>
+      <technique/>
+      <type/>
+      <year>1937</year>
+    </entity>
+    <entity>
+      <identifier>1967.59.942</identifier>
+      <name>Jolster</name>
+      <query>1930s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>oil on burlap</consists>
+      <creator> William Henry Johnson</creator>
+      <curatorial/>
+      <depicts>ARTstor</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1967/1967.59.942_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1967.59.942</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1936</year>
+    </entity>
+    <entity>
+      <identifier>2000.76.16</identifier>
+      <name>Lake Mary, Inyo National Forest</name>
+      <query>1930s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>color woodcut on paper</consists>
+      <creator> Zoroku Obata</creator>
+      <curatorial/>
+      <depicts>Landscape-lake-Lake Mary</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/2000/2000.76.16_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/2000.76.16</object>
+      <technique/>
+      <type/>
+      <year>1930</year>
+    </entity>
+    <entity>
+      <identifier>1974.28.308</identifier>
+      <name>Mining Village (Study for mural, Huntington, West Virginia forestry service building)</name>
+      <query>1930s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>tempera on fiberboard</consists>
+      <creator>Stevan Dohanos</creator>
+      <curatorial/>
+      <depicts>FIBERBOARD</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1974/1974.28.308_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1974.28.308</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1937</year>
+    </entity>
+    <entity>
+      <identifier>1974.28.44</identifier>
+      <name>Navajo Women</name>
+      <query>1930s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>oil on fiberboard: masonite</consists>
+      <creator> Yazzie Bahe</creator>
+      <curatorial/>
+      <depicts>Figure group-female</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1974/1974.28.44_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1974.28.44</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1934</year>
+    </entity>
+    <entity>
+      <identifier>1968.116.8</identifier>
+      <name>Painting II</name>
+      <query>1930s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>oil on linen</consists>
+      <creator>Myron Lechay</creator>
+      <curatorial/>
+      <depicts>FABRIC-LINEN</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1968/1968.116.8_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1968.116.8</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1938</year>
+    </entity>
+    <entity>
+      <identifier>1967.133.1</identifier>
+      <name>Still Life, Flowers</name>
+      <query>1930s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>watercolor</consists>
+      <creator> Charles Lay</creator>
+      <curatorial/>
+      <depicts>Still life</depicts>
+      <description/>
+      <object>http://edan.si.edu/saam/id/object/1967.133.1</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1934</year>
+    </entity>
+    <entity>
+      <identifier>1964.1.206</identifier>
+      <name>The Fog Lifts</name>
+      <query>1930s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>lithograph on paper</consists>
+      <creator> Raymond Skolfield</creator>
+      <curatorial/>
+      <depicts>New Deal-Works Progress Administration, Federal Art Project-New York City</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1964/1964.1.206_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1964.1.206</object>
+      <technique/>
+      <type/>
+      <year>1938</year>
+    </entity>
+    <entity>
+      <identifier>1985.8.30</identifier>
+      <name>The Last Halt: Stop of Hooker's Band in East Hartford before Crossing River (Study for East Hartford, Connecticut Postal Station Mural)</name>
+      <query>1930s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>oil on fiberboard</consists>
+      <creator> Alton S, Tobey</creator>
+      <curatorial/>
+      <depicts>Occupation-Craftsman</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1985/1985.8.30_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1985.8.30</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1939</year>
+    </entity>
+    <entity>
+      <identifier>1972.167.38</identifier>
+      <name>Genesis</name>
+      <query>1940s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>bronze</consists>
+      <creator> Adolph Alexander Weinman</creator>
+      <curatorial/>
+      <depicts>Metal</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1972/1972.167.38R_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1972.167.38</object>
+      <technique/>
+      <type>Sculpture</type>
+      <year>1949</year>
+    </entity>
+    <entity>
+      <identifier>1988.65.9</identifier>
+      <name>Hudson Valley</name>
+      <query>1940s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>color woodcut on paper</consists>
+      <creator>Louis Lozowick</creator>
+      <curatorial/>
+      <depicts>ARTstor</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1988/1988.65.9_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1988.65.9</object>
+      <technique/>
+      <type/>
+      <year>1940</year>
+    </entity>
+    <entity>
+      <identifier>1974.28.263</identifier>
+      <name>Landscape--Woodstock</name>
+      <query>1940s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>watercolor and brush and ink on paper</consists>
+      <creator>Antoinette Green</creator>
+      <curatorial/>
+      <depicts>Landscape-New York-Woodstock</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1974/1974.28.263_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1974.28.263</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1940</year>
+    </entity>
+    <entity>
+      <identifier>1984.88.7</identifier>
+      <name>Locomotive Study (alternate design for mural study, Bowling Green, Kentucky Post Office)</name>
+      <query>1940s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>pencil, pen and ink, carbon pencil, sanguine ink wash, and Chinese white on paper</consists>
+      <creator>Edward Laning</creator>
+      <curatorial/>
+      <depicts>New Deal-Treasury Section of Painting and Sculpture-Kentucky</depicts>
+      <description/>
+      <object>http://edan.si.edu/saam/id/object/1984.88.7</object>
+      <technique/>
+      <type>Drawing</type>
+      <year>1941</year>
+    </entity>
+    <entity>
+      <identifier>1992.53.5</identifier>
+      <name>Phoebe and Jellicoe, from Illustrations to the songs from William Blake's \"Island in the Moon\"</name>
+      <query>1940s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>white ink on black ink on paper</consists>
+      <creator> Charles Zekowski</creator>
+      <curatorial/>
+      <depicts>number</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1992/1992.53.5_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1992.53.5</object>
+      <technique/>
+      <type>Drawing</type>
+      <year>1945</year>
+    </entity>
+    <entity>
+      <identifier>1976.146.27</identifier>
+      <name>Self-Portrait</name>
+      <query>1940s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>oil and graphite on linen</consists>
+      <creator>Morris Kantor</creator>
+      <curatorial/>
+      <depicts>Portrait</depicts>
+      <description/>
+      <object>http://edan.si.edu/saam/id/object/1976.146.27</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1942</year>
+    </entity>
+    <entity>
+      <identifier>1985.38.12</identifier>
+      <name>Third Avenue, New York</name>
+      <query>1940s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>gelatin silver print</consists>
+      <creator> Charles Clayton Webb</creator>
+      <curatorial/>
+      <depicts>number</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1985/1985.38.12_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1985.38.12</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1946</year>
+    </entity>
+    <entity>
+      <identifier>1986.92.75</identifier>
+      <name>Untitled</name>
+      <query>1940s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>oil on fiberboard</consists>
+      <creator> Adolph Frederick Reinhardt</creator>
+      <curatorial/>
+      <depicts>Gender-female</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1986/1986.92.75_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1986.92.75</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1940</year>
+    </entity>
+    <entity>
+      <identifier>1989.47.16</identifier>
+      <name>Untitled, from the portfolio Drawings</name>
+      <query>1940s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>offset lithograph on paper mounted on paper</consists>
+      <creator>George Stillman</creator>
+      <curatorial/>
+      <depicts>signature</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1989/1989.47.16_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1989.47.16</object>
+      <technique/>
+      <type/>
+      <year>1948</year>
+    </entity>
+    <entity>
+      <identifier>1980.17.3</identifier>
+      <name>Wine and Fruit</name>
+      <query>1940s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>screenprint on paper</consists>
+      <creator> Edward A. Landon</creator>
+      <curatorial/>
+      <depicts>Still life</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1980/1980.17.3_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1980.17.3</object>
+      <technique/>
+      <type/>
+      <year>1947</year>
+    </entity>
+    <entity>
+      <identifier>1980.137.29</identifier>
+      <name>Black Rectangle</name>
+      <query>1950s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>brush and ink and ink wash on paper</consists>
+      <creator> Samuel Lewis Francis</creator>
+      <curatorial/>
+      <depicts>number</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1980/1980.137.29_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1980.137.29</object>
+      <technique/>
+      <type>Drawing</type>
+      <year>1953</year>
+    </entity>
+    <entity>
+      <identifier>2014.12.20</identifier>
+      <name>Black and White</name>
+      <query>1950s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>oil on canvas</consists>
+      <creator>Jack Youngerman</creator>
+      <curatorial/>
+      <depicts>Abstract</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/2014/2014.12.20_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/2014.12.20</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1958</year>
+    </entity>
+    <entity>
+      <identifier>1990.105.11</identifier>
+      <name>Calm Morning</name>
+      <query>1950s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>color woodcut on paper</consists>
+      <creator>Werner Drewes</creator>
+      <curatorial/>
+      <depicts>date</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1990/1990.105.11_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1990.105.11</object>
+      <technique/>
+      <type/>
+      <year>1954</year>
+    </entity>
+    <entity>
+      <identifier>1973.124.186</identifier>
+      <name>Ferme a St. Jean de Monts</name>
+      <query>1950s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>etching</consists>
+      <creator> Herman Armour Webster</creator>
+      <curatorial/>
+      <depicts>Architecture Exterior-domestic-shed</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1973/1973.124.186_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1973.124.186</object>
+      <technique/>
+      <type/>
+      <year>1955</year>
+    </entity>
+    <entity>
+      <identifier>1979.32.2</identifier>
+      <name>Feu de Joie</name>
+      <query>1950s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>oil on canvas</consists>
+      <creator> Jean De Botton</creator>
+      <curatorial/>
+      <depicts>Nonrepresentational</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1979/1979.32.2_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1979.32.2</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1959</year>
+    </entity>
+    <entity>
+      <identifier>1966.47.62</identifier>
+      <name>Hairdo</name>
+      <query>1950s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>bronze on marble base</consists>
+      <creator> Paul Howard Manship</creator>
+      <curatorial/>
+      <depicts>Metal</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1966/1966.47.62_2a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1966.47.62</object>
+      <technique/>
+      <type>Sculpture</type>
+      <year>1952</year>
+    </entity>
+    <entity>
+      <identifier>1997.118.38</identifier>
+      <name>Nick Biondi, Golden Gloves boxer, with unidentified figure</name>
+      <query>1950s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>gelatin silver print</consists>
+      <creator>Garry Winogrand</creator>
+      <curatorial/>
+      <depicts>GELATIN SILVER</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1997/1997.118.38_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1997.118.38</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1955</year>
+    </entity>
+    <entity>
+      <identifier>1966.47.74</identifier>
+      <name>Nude with Child</name>
+      <query>1950s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>gilded bronze on marble base</consists>
+      <creator> Paul Howard Manship</creator>
+      <curatorial/>
+      <depicts>STONE-MARBLE</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1966/1966.47.74_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1966.47.74</object>
+      <technique/>
+      <type>Sculpture</type>
+      <year>1958</year>
+    </entity>
+    <entity>
+      <identifier>1966.64.13</identifier>
+      <name>The Distaff Side</name>
+      <query>1950s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>lithograph on paper</consists>
+      <creator> Louis Henri Jean Charlot</creator>
+      <curatorial/>
+      <depicts>Architecture Interior-domestic-kitchen</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1966/1966.64.13_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1966.64.13</object>
+      <technique/>
+      <type/>
+      <year>1951</year>
+    </entity>
+    <entity>
+      <identifier>1968.73.11</identifier>
+      <name>Untitled</name>
+      <query>1950s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>brush and ink on paper</consists>
+      <creator>Sacha Kolin</creator>
+      <curatorial/>
+      <depicts>signature</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1968/1968.73.11_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1968.73.11</object>
+      <technique/>
+      <type>Drawing</type>
+      <year>1954</year>
+    </entity>
+    <entity>
+      <identifier>1970.263.1</identifier>
+      <name>Base of Blast Furnace--Pouring Floor</name>
+      <query>1960s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists/>
+      <creator> Alfred Hennen McAdams</creator>
+      <curatorial/>
+      <depicts/>
+      <description/>
+      <object>http://edan.si.edu/saam/id/object/1970.263.1</object>
+      <technique/>
+      <type/>
+      <year>1969</year>
+    </entity>
+    <entity>
+      <identifier>2007.27.2</identifier>
+      <name>Black and White Indian (Quicksilver Messenger Service, Howlin' Wolf...Avalon Ballroom, San Francisco, California 7/26/68-7/28/68)</name>
+      <query>1960s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>color offset lithograph on paper</consists>
+      <creator>Casey Simpson</creator>
+      <curatorial/>
+      <depicts>PAPER</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/2007/2007.27.2_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/2007.27.2</object>
+      <technique/>
+      <type/>
+      <year>1968</year>
+    </entity>
+    <entity>
+      <identifier>1996.104.5</identifier>
+      <name>Dr. Peppercorn</name>
+      <query>1960s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>acrylic on canvas</consists>
+      <creator> Gene Bernard Davis</creator>
+      <curatorial/>
+      <depicts>Abstract-geometric</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1996/1996.104.5_2a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1996.104.5</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1967</year>
+    </entity>
+    <entity>
+      <identifier>1993.43</identifier>
+      <name>Indestructible Object</name>
+      <query>1960s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>wood, fiber, metal, and paper on cardboard</consists>
+      <creator> Emmanuel Radnitsky</creator>
+      <curatorial/>
+      <depicts>FABRIC</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1993/1993.43_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1993.43</object>
+      <technique/>
+      <type>Sculpture</type>
+      <year>1965</year>
+    </entity>
+    <entity>
+      <identifier>1968.97.9</identifier>
+      <name>L' Amour Fou</name>
+      <query>1960s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>color lithograph</consists>
+      <creator> Jose Luis Cuevas y Novelo</creator>
+      <curatorial/>
+      <depicts>NEA Artists Archive</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1968/1968.97.9_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1968.97.9</object>
+      <technique/>
+      <type/>
+      <year>1968</year>
+    </entity>
+    <entity>
+      <identifier>2013.8.17R-V</identifier>
+      <name>MOTHER GOOSE Records: SITTIN BY THE WINDOW (M. MIKE) / ANGIE</name>
+      <query>1960s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>mixed media on paper and paperboard</consists>
+      <creator>Mingering Mike</creator>
+      <curatorial/>
+      <depicts/>
+      <description/>
+      <image>http://americanart.si.edu/images/2013/2013.8.17R-V_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/2013.8.17R-V</object>
+      <technique/>
+      <type/>
+      <year>1968</year>
+    </entity>
+    <entity>
+      <identifier>1984.33</identifier>
+      <name>Mother and Child at the Beach (Version II)</name>
+      <query>1960s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>pencil on paper</consists>
+      <creator>Stefano Cusumano</creator>
+      <curatorial/>
+      <depicts>PAPER-J. Whatman 1962 England</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1984/1984.33_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1984.33</object>
+      <technique/>
+      <type>Drawing</type>
+      <year>1962</year>
+    </entity>
+    <entity>
+      <identifier>1976.143.2</identifier>
+      <name>Ruler</name>
+      <query>1960s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>lithograph on paper</consists>
+      <creator>Jasper Johns</creator>
+      <curatorial/>
+      <depicts>LITHOGRAPH</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1976/1976.143.2_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1976.143.2</object>
+      <technique/>
+      <type/>
+      <year>1966</year>
+    </entity>
+    <entity>
+      <identifier>1971.449.10</identifier>
+      <name>Two Marys (Empyrean Children)</name>
+      <query>1960s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>plaster</consists>
+      <creator> Zorach Samovich</creator>
+      <curatorial/>
+      <depicts>Plaster</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1971/1971.449.10_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1971.449.10</object>
+      <technique/>
+      <type>Sculpture</type>
+      <year>1960</year>
+    </entity>
+    <entity>
+      <identifier>2002.26.34.2</identifier>
+      <name>Zebra, from the portfolio Series II</name>
+      <query>1960s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>screenprint on canvas mounted on paperboard</consists>
+      <creator> Gene Bernard Davis</creator>
+      <curatorial/>
+      <depicts>estate seal or owner's mark</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/2002/2002.26.34.2_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/2002.26.34.2</object>
+      <technique/>
+      <type/>
+      <year>1969</year>
+    </entity>
+    <entity>
+      <identifier>1991.176</identifier>
+      <name>17th Summer</name>
+      <query>1970s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>acrylic on wood</consists>
+      <creator> Anne Dean Truitt</creator>
+      <curatorial/>
+      <depicts>Wood</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1991/1991.176_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1991.176</object>
+      <technique/>
+      <type>Sculpture</type>
+      <year>1974</year>
+    </entity>
+    <entity>
+      <identifier>2003.42.661</identifier>
+      <name>Alexander Von Humboldt Monument, New York City, from the series The American Monument</name>
+      <query>1970s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>gelatin silver print</consists>
+      <creator> Lee Norman Friedlander</creator>
+      <curatorial/>
+      <depicts>Monument-statue-Humboldt</depicts>
+      <description/>
+      <object>http://edan.si.edu/saam/id/object/2003.42.661</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1975</year>
+    </entity>
+    <entity>
+      <identifier>1983.63.1842</identifier>
+      <name>Antique Shop, from the Kansas Documentary Survey Project</name>
+      <query>1970s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>gelatin silver print</consists>
+      <creator> Terry Hoyt Evans</creator>
+      <curatorial/>
+      <depicts>Interior</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1983/1983.63.1842_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1983.63.1842</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1974</year>
+    </entity>
+    <entity>
+      <identifier>2000.41.3</identifier>
+      <name>Backpack Box</name>
+      <query>1970s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>sterling silver, 18k gold, and copper</consists>
+      <creator> Stuart Albert Golder</creator>
+      <curatorial/>
+      <depicts>Metal</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/2000/2000.41.3_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/2000.41.3</object>
+      <technique/>
+      <type/>
+      <year>1979</year>
+    </entity>
+    <entity>
+      <identifier>2003.42.530</identifier>
+      <name>Civil War Memorial, Bennington, Vermont, from the series The American Monument</name>
+      <query>1970s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>gelatin silver print</consists>
+      <creator> Lee Norman Friedlander</creator>
+      <curatorial/>
+      <depicts>Monument-memorial-Civil War</depicts>
+      <description/>
+      <object>http://edan.si.edu/saam/id/object/2003.42.530</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1975</year>
+    </entity>
+    <entity>
+      <identifier>2003.42.660</identifier>
+      <name>General Lafayette, Burlington, Vermont, from the series The American Monument</name>
+      <query>1970s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>gelatin silver print</consists>
+      <creator> Lee Norman Friedlander</creator>
+      <curatorial/>
+      <depicts>PAPER</depicts>
+      <description/>
+      <object>http://edan.si.edu/saam/id/object/2003.42.660</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1975</year>
+    </entity>
+    <entity>
+      <identifier>1979.29.2</identifier>
+      <name>Shafts of Light</name>
+      <query>1970s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>etching and aquatint on paper</consists>
+      <creator>Werner Drewes</creator>
+      <curatorial/>
+      <depicts>SAAM permanent collection</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1979/1979.29.2_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1979.29.2</object>
+      <technique/>
+      <type/>
+      <year>1978</year>
+    </entity>
+    <entity>
+      <identifier>1979.53.25</identifier>
+      <name>Shoe Sack</name>
+      <query>1970s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>oil on canvas</consists>
+      <creator> Edward Paschke</creator>
+      <curatorial/>
+      <depicts>Still life</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1979/1979.53.25_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1979.53.25</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1972</year>
+    </entity>
+    <entity>
+      <identifier>2003.42.662</identifier>
+      <name>The American Spirit, Bennington, Vermont, from the series The American Monument</name>
+      <query>1970s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>gelatin silver print</consists>
+      <creator> Lee Norman Friedlander</creator>
+      <curatorial/>
+      <depicts>PAPER</depicts>
+      <description/>
+      <object>http://edan.si.edu/saam/id/object/2003.42.662</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1975</year>
+    </entity>
+    <entity>
+      <identifier>1980.6.5</identifier>
+      <name>Untitled</name>
+      <query>1970s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>oil on fiberboard</consists>
+      <creator>Milton Resnick</creator>
+      <curatorial/>
+      <depicts>Abstract</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1980/1980.6.5_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1980.6.5</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1975</year>
+    </entity>
+    <entity>
+      <identifier>2015.44.5</identifier>
+      <name>65 East 125th Street, Harlem</name>
+      <query>1980s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>inkjet print</consists>
+      <creator> Camilo Jose Vergara</creator>
+      <curatorial/>
+      <depicts>number</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/2015/2015.44.5_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/2015.44.5</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1981</year>
+    </entity>
+    <entity>
+      <identifier>1982.39</identifier>
+      <name>Aretha: Mysterious Lady of Sorrows</name>
+      <query>1980s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>oil on canvas</consists>
+      <creator>Douglas Bourgeois</creator>
+      <curatorial/>
+      <depicts>Ethnic-African-American</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1982/1982.39_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1982.39</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1981</year>
+    </entity>
+    <entity>
+      <identifier>1986.3.3</identifier>
+      <name>Baptist Missionaries Teaching the Children about Jesus and Watermelon at the River Park Projects: Rochester, New York</name>
+      <query>1980s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>gelatin silver print</consists>
+      <creator> James J. Stone</creator>
+      <curatorial/>
+      <depicts>PAPER</depicts>
+      <description/>
+      <object>http://edan.si.edu/saam/id/object/1986.3.3</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1985</year>
+    </entity>
+    <entity>
+      <identifier>1983.63.514</identifier>
+      <name>Donald Douglas Drive at Lakewood Boulevard</name>
+      <query>1980s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>gelatin silver print</consists>
+      <creator> Judith Anne Fiskin</creator>
+      <curatorial/>
+      <depicts>GELATIN SILVER</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1983/1983.63.514_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1983.63.514</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1980</year>
+    </entity>
+    <entity>
+      <identifier>1988.13.84</identifier>
+      <name>Statue of Liberty, Trinidad, Colorado, from the portfolio Statues of Liberty</name>
+      <query>1980s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>silver dye bleach print</consists>
+      <creator> H. Arthur Taussig</creator>
+      <curatorial/>
+      <depicts>Gender-female</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1988/1988.13.84_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1988.13.84</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1987</year>
+    </entity>
+    <entity>
+      <identifier>1984.145.24</identifier>
+      <name>Swimmer, Honolulu, Hawaii, from the series Shooting for the Gold</name>
+      <query>1980s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>dye transfer print</consists>
+      <creator> Walter Iooss</creator>
+      <curatorial/>
+      <depicts>Figure</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1984/1984.145.24_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1984.145.24</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1983</year>
+    </entity>
+    <entity>
+      <identifier>2002.70.7</identifier>
+      <name>Teapot</name>
+      <query>1980s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>stoneware</consists>
+      <creator> Charles Austin Hindes</creator>
+      <curatorial/>
+      <depicts>Clay</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/2002/2002.70.7_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/2002.70.7</object>
+      <technique/>
+      <type/>
+      <year>1982</year>
+    </entity>
+    <entity>
+      <identifier>1988.51</identifier>
+      <name>Untitled</name>
+      <query>1980s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>color woodcut on paper</consists>
+      <creator> Joel Elias Shapiro</creator>
+      <curatorial/>
+      <depicts>signature</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1988/1988.51_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1988.51</object>
+      <technique/>
+      <type/>
+      <year>1988</year>
+    </entity>
+    <entity>
+      <identifier>2007.40.2</identifier>
+      <name>Untitled, from the series The Pond</name>
+      <query>1980s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>gelatin silver print</consists>
+      <creator> John Ralph Gossage</creator>
+      <curatorial/>
+      <depicts>Landscape</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/2007/2007.40.2_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/2007.40.2</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1985</year>
+    </entity>
+    <entity>
+      <identifier>1997.124.28</identifier>
+      <name>Babylon, the Great, is Fallen</name>
+      <query>1990s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>acrylic, oil, tempera and glitter on canvas</consists>
+      <creator>Robert Roberg</creator>
+      <curatorial/>
+      <depicts>Animal-lion</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1997/1997.124.28_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1997.124.28</object>
+      <technique/>
+      <type>Painting</type>
+      <year>1992</year>
+    </entity>
+    <entity>
+      <identifier>1993.16.63</identifier>
+      <name>Clouds and Landscape #18</name>
+      <query>1990s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>selenium-toned gelatin silver print</consists>
+      <creator> N. J. Jaffee</creator>
+      <curatorial/>
+      <depicts>title</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1993/1993.16.63_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1993.16.63</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1990</year>
+    </entity>
+    <entity>
+      <identifier>1999.22.2</identifier>
+      <name>Dancing Red Elephant Chalice</name>
+      <query>1990s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>blown, lampworked and modeled colored glass</consists>
+      <creator>Donavon Boutz</creator>
+      <curatorial/>
+      <depicts>GLASS</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1999/1999.22.2_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1999.22.2</object>
+      <technique/>
+      <type/>
+      <year>1999</year>
+    </entity>
+    <entity>
+      <identifier>1994.119.4A-C</identifier>
+      <name>Jordanelle/Autumn Equinox, from the portfolio The Sundance Equinox</name>
+      <query>1990s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>silver dye bleach print</consists>
+      <creator>Robert Glenn Ketchum</creator>
+      <curatorial/>
+      <depicts>SILVER DYE BLEACH</depicts>
+      <description/>
+      <object>http://edan.si.edu/saam/id/object/1994.119.4A-C</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1990</year>
+    </entity>
+    <entity>
+      <identifier>2008.13.21</identifier>
+      <name>Kitchen in a house in Ludlow, eastern Colorado, July 6, 1999</name>
+      <query>1990s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>chromogenic print</consists>
+      <creator> Steven Ralph Fitch</creator>
+      <curatorial/>
+      <depicts>CHROMOGENIC</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/2008/2008.13.21_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/2008.13.21</object>
+      <technique/>
+      <type>Photography</type>
+      <year>1999</year>
+    </entity>
+    <entity>
+      <identifier>1994.110.2.4</identifier>
+      <name>Portrait, from the portfolio A.G.B. 1 + 10</name>
+      <query>1990s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>etching: asphaltum stopout relief, acquatint and hardground on paper</consists>
+      <creator>Andrew Balkin</creator>
+      <curatorial/>
+      <depicts>Portrait female-unidentified-bust</depicts>
+      <description/>
+      <object>http://edan.si.edu/saam/id/object/1994.110.2.4</object>
+      <technique/>
+      <type/>
+      <year>1993</year>
+    </entity>
+    <entity>
+      <identifier>1997.124.65</identifier>
+      <name>Protect and Serve</name>
+      <query>1990s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>painted wood, metal, hair, plastic</consists>
+      <creator>Nicholas Herrera</creator>
+      <curatorial/>
+      <depicts>Mixed Media</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1997/1997.124.65_2a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1997.124.65</object>
+      <technique/>
+      <type>Sculpture</type>
+      <year>1994</year>
+    </entity>
+    <entity>
+      <identifier>1991.67</identifier>
+      <name>Vase #65-78</name>
+      <query>1990s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>cut, ground, beveled, polished, and laminated plate glass</consists>
+      <creator> Sid Hutter</creator>
+      <curatorial/>
+      <depicts>GLASS</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1991/1991.67_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1991.67</object>
+      <technique/>
+      <type/>
+      <year>1990</year>
+    </entity>
+    <entity>
+      <identifier>2006.39.1A-F</identifier>
+      <name>Vortices and Reveries</name>
+      <query>1990s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>paper from kozo fibers with pigments and mixed media</consists>
+      <creator>Karen Stahlecker</creator>
+      <curatorial/>
+      <depicts>Fiber</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/2006/2006.39_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/2006.39.1A-F</object>
+      <technique/>
+      <type/>
+      <year>1993</year>
+    </entity>
+    <entity>
+      <identifier>1995.32</identifier>
+      <name>When She Was Bad...</name>
+      <query>1990s</query>
+      <source>http://edan.si.edu/saam/sparql</source>
+      <consists>rift white oak, pau amarello, oil with silver metallic stippling, sandblasted glass, mirror, handmade paper, and brass screws</consists>
+      <creator>Rosanne Somerson</creator>
+      <curatorial/>
+      <depicts>Wood</depicts>
+      <description/>
+      <image>http://americanart.si.edu/images/1995/1995.32_1a.jpg</image>
+      <object>http://edan.si.edu/saam/id/object/1995.32</object>
+      <technique/>
+      <type/>
+      <year>1995</year>
+    </entity>
+  </entities>
+</collection>
