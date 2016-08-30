@@ -735,10 +735,17 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     }//GEN-LAST:event_CreateButtonActionPerformed
 
     private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
+        
+        String wait = "The query may take some time. " +
+                "You will be notified when it is complete.";
+        NotifyDescriptor waitNotification;
+        waitNotification = new NotifyDescriptor.Message(
+                wait,
+                NotifyDescriptor.WARNING_MESSAGE
+        );
+        DialogDisplayer.getDefault().notify(waitNotification);
+        
         int queriesCount = coll.getQueriesCollection().getCount();
-        ProgressHandle handle;
-        handle = ProgressHandleFactory.createHandle("Querying");
-        handle.start(queriesCount);
         if (queriesCount > 0) {
             RequestProcessor executor = new RequestProcessor(coll.getName());
             try
@@ -749,7 +756,8 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 
                 Future<EntitiesCollection> result;
                 
-                Dispatcher dispatcher = new Dispatcher(coll.getQueriesCollection());
+                Dispatcher dispatcher;
+                dispatcher = new Dispatcher(coll.getQueriesCollection());
                 result = executor.submit(dispatcher);
                 
                 EntitiesCollection newEntities;
@@ -765,11 +773,17 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 setFirstFilter();
                 runFirstFilter();
                 
+                NotifyDescriptor nd;
                 if (etb.getFlattenedCollection().length > 0) {
+                    String msg = "Query has completed.";
+                    nd = new NotifyDescriptor.Message(
+                            msg,
+                            NotifyDescriptor.INFORMATION_MESSAGE
+                    );
+                    DialogDisplayer.getDefault().notify(nd);
                     paintVisualDisplay();
                 } else {
                     String msg = "There were no objects returned.";
-                    NotifyDescriptor nd;
                     nd = new NotifyDescriptor.Message(
                             msg,
                             NotifyDescriptor.INFORMATION_MESSAGE
@@ -781,7 +795,6 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                 output("502 Proxy Error: endpoint not available.");
             } finally {
                 executor.shutdown();
-                handle.finish();
                 this.setCursor(Cursor.getDefaultCursor());
             }
         } else {
