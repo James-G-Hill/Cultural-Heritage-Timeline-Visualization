@@ -735,18 +735,19 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     }//GEN-LAST:event_CreateButtonActionPerformed
 
     private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
-        
-        String wait = "The query may take some time. " +
-                "You will be notified when it is complete.";
-        NotifyDescriptor waitNotification;
-        waitNotification = new NotifyDescriptor.Message(
-                wait,
-                NotifyDescriptor.WARNING_MESSAGE
-        );
-        DialogDisplayer.getDefault().notify(waitNotification);
-        
         int queriesCount = coll.getQueriesCollection().getCount();
         if (queriesCount > 0) {
+            
+            String wait = "The query may take some time. " +
+                "You will be notified when it is complete. " +
+                    "Click to proceed with the query.";
+            NotifyDescriptor waitNotification;
+            waitNotification = new NotifyDescriptor.Message(
+                    wait,
+                    NotifyDescriptor.WARNING_MESSAGE
+            );
+            DialogDisplayer.getDefault().notify(waitNotification);
+            
             RequestProcessor executor = new RequestProcessor(coll.getName());
             try
             {
