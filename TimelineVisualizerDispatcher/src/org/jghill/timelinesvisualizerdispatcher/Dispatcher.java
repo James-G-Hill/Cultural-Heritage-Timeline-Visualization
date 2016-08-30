@@ -16,7 +16,7 @@ import org.netbeans.api.io.InputOutput;
  */
 public class Dispatcher implements Callable {
     
-    QueriesCollection queries;
+    private final QueriesCollection queries;
     
     /**
      * The Constructor.
@@ -39,6 +39,7 @@ public class Dispatcher implements Callable {
         entities = new EntitiesCollection("Collection");
         
         output("Running campaigns");
+        output("");
         for(QueryShell q : queries) {
             output("Running query: " + q.getQueryName());
             EntitiesCollection queryResults;
@@ -46,7 +47,9 @@ public class Dispatcher implements Callable {
             entities.addThing(queryResults);
             q.setLastRunDate(new Date());
         }
+        output("");
         output("All campaigns run");
+        output("");
         
         return entities;
         
