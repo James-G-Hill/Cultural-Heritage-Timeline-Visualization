@@ -32,7 +32,6 @@ import org.jghill.timelinevisualizersources.Source;
 import org.jghill.timelinevisualizersources.SourceCollection;
 import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
-import org.netbeans.api.progress.*;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 import org.openide.util.Exceptions;
