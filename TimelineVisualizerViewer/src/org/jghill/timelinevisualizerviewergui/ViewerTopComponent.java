@@ -8,6 +8,8 @@ import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinesvisualizercollections.container.CollectionContainer;
 import org.jghill.timelinesvisualizercollectionxml.CollectionXMLParser;
 import org.jghill.timelinesvisualizercollectionxml.CollectionXMLParserImpl;
+import org.netbeans.api.io.IOProvider;
+import org.netbeans.api.io.InputOutput;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.explorer.ExplorerManager;
@@ -31,6 +33,7 @@ import org.xml.sax.SAXException;
 )
 @TopComponent.Registration(mode = "viewer", openAtStartup = true)
 @ActionID(category = "Window", id = "org.jghill.timelinesvisualizercollectionsgui.ViewerTopComponent")
+//@ActionReference(path = "Menu/Window" /*, position = 333 */)
 @TopComponent.OpenActionRegistration(
         displayName = "#CTL_CollectionViewerAction",
         preferredID = "ViewerTopComponent"
@@ -48,6 +51,8 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
      * Constructor.
      */
     public ViewerTopComponent() {
+        
+        output("constructing");
         
         initComponents();
         setName(Bundle.CTL_CollectionViewerTopComponent());
@@ -72,20 +77,23 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
 
         ViewerScrollPane = new BeanTreeView();
 
-        setMinimumSize(new java.awt.Dimension(200, 0));
+        setToolTipText(org.openide.util.NbBundle.getMessage(ViewerTopComponent.class, "ViewerTopComponent.toolTipText")); // NOI18N
+        setMinimumSize(new java.awt.Dimension(250, 100));
         setOpaque(true);
-        setPreferredSize(new java.awt.Dimension(200, 500));
+        setPreferredSize(new java.awt.Dimension(250, 500));
 
         ViewerScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        ViewerScrollPane.setToolTipText(org.openide.util.NbBundle.getMessage(ViewerTopComponent.class, "ViewerTopComponent.ViewerScrollPane.toolTipText")); // NOI18N
         ViewerScrollPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ViewerScrollPane.setHorizontalScrollBar(null);
-        ViewerScrollPane.setMinimumSize(new java.awt.Dimension(0, 0));
+        ViewerScrollPane.setMinimumSize(new java.awt.Dimension(250, 100));
+        ViewerScrollPane.setPreferredSize(new java.awt.Dimension(250, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ViewerScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addComponent(ViewerScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,10 +109,12 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
      * Called by the constructor.
      */
     private void setup() {
+        output("staring setup");
         associateLookup(ExplorerUtils.createLookup(manager, getActionMap()));
         manager.setRootContext(new AbstractNode(CollectionContainer.getChildren()));
         manager.getRootContext().setDisplayName("Collections");
         loadFromFile();
+        output("finished setup");
     }
     
     @Override
@@ -116,11 +126,13 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
     @Override
     protected void componentActivated() {
         ExplorerUtils.activateActions(manager, true);
+        output("activated");
     }
     
     @Override
     protected void componentDeactivated() {
         ExplorerUtils.activateActions(manager, false);
+        output("deactivated");
     }
     
     void writeProperties(java.util.Properties p) {
@@ -141,6 +153,8 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
      */
     private void loadFromFile() {
         
+        output("loading form .xml");
+        
         File folder = new File("Collections/");
         File[] listOfFiles = folder.listFiles();
         
@@ -158,6 +172,18 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
             }
         }
         
+        output("finished loading form .xml");
+        
+    }
+    
+    /**
+     * Outputs an explanation of the action.
+     * 
+     * @param text toString of the returned entity.
+     */
+    private void output(String text) {
+        InputOutput io = IOProvider.getDefault().getIO("Main", false);
+        io.getOut().println(text);
     }
     
 }
