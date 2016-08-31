@@ -34,7 +34,25 @@ public abstract class PhysicalThing extends Entities {
     protected URL imageURL;
     protected File imageFile;
     protected BufferedImage image;
-
+    
+    /**
+     * Constructor.
+     * 
+     * @param name
+     * @param identifier
+     * @param source
+     * @param query
+     * @param depicts
+     * @param consists
+     * @param type
+     * @param technique
+     * @param image
+     * @param beginYear
+     * @param creator
+     * @param object
+     * @param description
+     * @param curatorial 
+     */
     public PhysicalThing(
             String name,
             String identifier,
