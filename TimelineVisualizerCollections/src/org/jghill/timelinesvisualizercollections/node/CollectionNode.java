@@ -11,6 +11,7 @@ import org.openide.util.lookup.InstanceContent;
 
 /**
  * A node for holding a Collection in the Viewer.
+ * 
  * @author JGHill
  */
 public class CollectionNode extends AbstractNode implements PropertyChangeListener {
@@ -19,11 +20,25 @@ public class CollectionNode extends AbstractNode implements PropertyChangeListen
     private InstanceContent instanceContent;
     private final String displayName = "Collections";
     
+    /**
+     * Constructor with Collection only.
+     * 
+     * @param coll the collection.
+     */
     public CollectionNode(Collection coll) {
         this(coll, new InstanceContent());
     }
     
-    public CollectionNode(Collection coll, InstanceContent ic) {
+    /**
+     * Constructor with Collection and Lookup.
+     * 
+     * @param coll the Collection.
+     * @param ic the Lookup.
+     */
+    public CollectionNode(
+            Collection coll,
+            InstanceContent ic
+    ) {
         super(Children.LEAF, new AbstractLookup(ic));
         this.collection = coll;
         this.instanceContent = ic;
@@ -31,11 +46,17 @@ public class CollectionNode extends AbstractNode implements PropertyChangeListen
         setup();
     }
     
+    /**
+     * Constructor.
+     */
     public CollectionNode() {
         super(new CollectionChildren());
         setDisplayName(displayName);
     }
     
+    /**
+     * Sets up the node.
+     */
     private void setup() {
         setDisplayName(collection.getName());
         collection.addPropertyChangeListener(this);
