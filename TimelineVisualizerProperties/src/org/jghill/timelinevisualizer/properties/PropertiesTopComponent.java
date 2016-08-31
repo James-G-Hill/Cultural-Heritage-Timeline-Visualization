@@ -92,17 +92,16 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
         DetailsLabel = new javax.swing.JLabel();
         DetailsTextField = new javax.swing.JTextField();
 
+        setMinimumSize(new java.awt.Dimension(320, 850));
         setOpaque(true);
-        setPreferredSize(new java.awt.Dimension(320, 850));
 
         PropertiesScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         PropertiesScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         PropertiesScrollPane.setHorizontalScrollBar(null);
-        PropertiesScrollPane.setMinimumSize(new java.awt.Dimension(0, 0));
+        PropertiesScrollPane.setMinimumSize(new java.awt.Dimension(320, 850));
         PropertiesScrollPane.setPreferredSize(new java.awt.Dimension(320, 850));
 
-        PropertiesPanel.setMaximumSize(new java.awt.Dimension(320, 850));
-        PropertiesPanel.setMinimumSize(new java.awt.Dimension(1, 1));
+        PropertiesPanel.setMinimumSize(new java.awt.Dimension(320, 850));
         PropertiesPanel.setPreferredSize(new java.awt.Dimension(320, 850));
 
         org.openide.awt.Mnemonics.setLocalizedText(CommentaryLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.CommentaryLabel.text")); // NOI18N
