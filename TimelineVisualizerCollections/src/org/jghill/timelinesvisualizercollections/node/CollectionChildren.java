@@ -6,10 +6,14 @@ import org.openide.nodes.Node;
 
 /**
  * An index system for managing the Collection nodes.
+ * 
  * @author JGHill
  */
 public class CollectionChildren extends Children.Keys {
     
+    /**
+     * The Constructor.
+     */
     public CollectionChildren() {}
     
     @Override
@@ -23,6 +27,10 @@ public class CollectionChildren extends Children.Keys {
         super.addNotify();
     }
     
+    /**
+     * Updates the keys for the nodes.
+     * @param colls 
+     */
     public void update(Collection[] colls) {
         setKeys(colls);
     }
