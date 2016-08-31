@@ -15,6 +15,14 @@ abstract public class Entities implements Comparable {
     private final String source;
     private final String query;
     
+    /**
+     * Constructor.
+     * 
+     * @param name of the Entity.
+     * @param identifier for the Entity.
+     * @param source of the Entity.
+     * @param query from which the Entity was pulled.
+     */
     public Entities(
             String name,
             String identifier,
