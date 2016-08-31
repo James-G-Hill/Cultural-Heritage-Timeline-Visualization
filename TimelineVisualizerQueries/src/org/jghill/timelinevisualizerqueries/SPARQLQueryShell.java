@@ -97,6 +97,7 @@ public class SPARQLQueryShell extends QueryShell {
     private EntitiesCollection getResults(Query query) throws HttpException {
         
         output("getting results");
+        output("");
         ResultSet results;
         
         try(QueryExecution qexec = QueryExecutionFactory.sparqlService(service, query)) {
@@ -197,8 +198,9 @@ public class SPARQLQueryShell extends QueryShell {
                 output("Curatorial  : " + curatorial);
             }
             
-            ManMadeObject thing;
-            thing = new ManMadeObject(
+            output("");
+            
+            ManMadeObject thing = new ManMadeObject(
                     title,
                     identity,
                     service,
