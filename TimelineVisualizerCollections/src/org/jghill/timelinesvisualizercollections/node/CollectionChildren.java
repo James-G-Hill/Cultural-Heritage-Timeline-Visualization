@@ -29,6 +29,7 @@ public class CollectionChildren extends Children.Keys {
     
     /**
      * Updates the keys for the nodes.
+     * 
      * @param colls 
      */
     public void update(Collection[] colls) {
