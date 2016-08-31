@@ -31,24 +31,24 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String UNION = "UNION ";
     
     private static final String IDENTIFIER = "?identifier ";
-    private static final String NAME = "?nameSample ";
+    private static final String NAME = "?name ";
     private static final String OBJECT = "?object ";
-    private static final String DEPICTION = "?depictsSample ";
+    private static final String DEPICTION = "?depicts ";
     private static final String CONSISTS = "?consists ";
-    private static final String TYPE = "?typeSample ";
+    private static final String TYPE = "?type ";
     private static final String TECHNIQUE = "?technique ";
     private static final String IMAGE = "?image ";
     private static final String DATE = "?date ";
-    private static final String CREATOR = "?creatorSample ";
-    private static final String DESCRIPTION = "?descriptionSample ";
-    private static final String CURATORIAL = "?curatorialSample ";
+    private static final String CREATOR = "?creator ";
+    private static final String DESCRIPTION = "?description ";
+    private static final String CURATORIAL = "?curatorial ";
     
-    private static final String NAME_SAMPLE = "?name ";
-    private static final String TYPE_SAMPLE = "?type ";
-    private static final String CREATOR_SAMPLE = "?creator ";
-    private static final String DESCRIPTION_SAMPLE = "?description ";
-    private static final String CURATORIAL_SAMPLE = "?curatorial ";
-    private static final String DEPICTION_SAMPLE = "?depicts ";
+//    private static final String NAME_SAMPLE = "?name ";
+//    private static final String TYPE_SAMPLE = "?type ";
+//    private static final String CREATOR_SAMPLE = "?creator ";
+//    private static final String DESCRIPTION_SAMPLE = "?description ";
+//    private static final String CURATORIAL_SAMPLE = "?curatorial ";
+//    private static final String DEPICTION_SAMPLE = "?depicts ";
     
     private static final String PRODUCTION = "?production ";
     private static final String PRODUCTION2 = "?production2 ";
@@ -78,7 +78,7 @@ public class SPARQLTranslator implements QueryTranslator {
                 WHERE + "\n\n" +
                 whereClause() + "\n\n" +
                 END + "\n\n" +
-                groupBy() +
+//                groupBy() +
                 limit();
     }
     
@@ -109,12 +109,12 @@ public class SPARQLTranslator implements QueryTranslator {
                 TECHNIQUE + " \n" +
                 IMAGE + " \n" +
                 OBJECT + " \n" +
-                "(SAMPLE(" + NAME + ") AS " + NAME_SAMPLE + ") \n" +
-                "(SAMPLE(" + TYPE + ") AS " + TYPE_SAMPLE + ") \n" +
-                "(SAMPLE(" + CREATOR + ") AS " + CREATOR_SAMPLE + ") \n" +
-                "(SAMPLE(" + DESCRIPTION + ") AS " + DESCRIPTION_SAMPLE + ") \n" +
-                "(SAMPLE(" + CURATORIAL + ") AS " + CURATORIAL_SAMPLE + ") \n" +
-                "(SAMPLE(" + DEPICTION + ") AS " + DEPICTION_SAMPLE + ") \n";
+                NAME + " \n" +
+                TYPE + " \n" +
+                CREATOR + " \n" +
+                DESCRIPTION + " \n" +
+                CURATORIAL + " \n" +
+                DEPICTION + " \n";
     }
     
     /**
