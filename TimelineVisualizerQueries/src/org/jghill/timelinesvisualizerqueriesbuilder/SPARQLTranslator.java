@@ -172,7 +172,7 @@ public class SPARQLTranslator implements QueryTranslator {
         String triple = OBJECT + "crm:P48_has_preferred_identifier/rdfs:label " + IDENTIFIER;
         query += "{ ";
         query += triple;
-        query += " } . \n";
+        query += " }\n";
         if (settings.hasIdentifierCheck) {
             query += "FILTER (CONTAINS(LCASE(" + IDENTIFIER + "), \"" + settings.identifier + "\")). \n";
         }
@@ -185,15 +185,14 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getName() {
         String query = "";
         String triple = "";
-        triple += "{ " + OBJECT + "crm:P102_has_title/rdfs:label " + NAME + " } \n";
+        triple += "{ " + OBJECT + "crm:P102_has_title/rdfs:label " + NAME + " }\n";
         if (settings.hasNameCheck) {
             query += triple;
-            query += ". \n";
             query += "FILTER (CONTAINS(LCASE(" + NAME + "), \"" + settings.name + "\")). \n"; 
         } else {
             query += "OPTIONAL { ";
             query += triple;
-            query += " } . \n";
+            query += " }\n";
         }
         return query;
     }
@@ -204,9 +203,9 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getDepiction() {
         String query = "";
         String triple = "";
-        triple += "{ " + OBJECT + "crm:P62_depicts/skos:prefLabel " + DEPICTION + " } \n";
+        triple += "{ " + OBJECT + "crm:P62_depicts/skos:prefLabel " + DEPICTION + " }\n";
         triple += UNION;
-        triple += "{ " + OBJECT + "crm:P128_carries/crm:P129_is_about/skos2:prefLabel " + DEPICTION + " } \n";
+        triple += "{ " + OBJECT + "crm:P128_carries/crm:P129_is_about/skos2:prefLabel " + DEPICTION + " }\n";
         if (settings.hasDepictionCheck) {
             query += triple;
             query += " . \n";
@@ -214,7 +213,7 @@ public class SPARQLTranslator implements QueryTranslator {
         } else {
             query += "OPTIONAL { ";
             query += triple;
-            query += " } . \n";
+            query += " }\n";
         }
         return query;
     }
@@ -225,17 +224,16 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getConsists() {
         String query = "";
         String triple = "";
-        triple += "{ " + OBJECT + "crm:P45_consists_of/skos:prefLabel " + CONSISTS + " } \n";
+        triple += "{ " + OBJECT + "crm:P45_consists_of/skos:prefLabel " + CONSISTS + " }\n";
         triple += UNION;
-        triple += "{ " + OBJECT + "edan:PE_medium_description " + CONSISTS + " } \n";
+        triple += "{ " + OBJECT + "edan:PE_medium_description " + CONSISTS + " }\n";
         if (settings.hasConsistsCheck) {
             query += triple;
-            query += " . \n";
             query += "FILTER (CONTAINS(LCASE(" + CONSISTS + "), \"" + settings.consists + "\")). \n";
         } else {
             query += "OPTIONAL { ";
             query += triple;
-            query += " } . \n";
+            query += " }\n";
         }
         return query;
     }
@@ -248,17 +246,16 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getType() {
         String query = "";
         String triple = "";
-        triple += "{ { " + OBJECT + "bmo:PX_object_type/skos:prefLabel " + TYPE + " } \n";
-        triple += UNION;
-        triple += "{ " + OBJECT + "edan:PE_object_mainclass/skos2:prefLabel " + TYPE + " } } \n";
+        triple += "{ { " + OBJECT + "bmo:PX_object_type/skos:prefLabel " + TYPE + " }\n";
+        triple += UNION + "\n";
+        triple += "{ " + OBJECT + "edan:PE_object_mainclass/skos2:prefLabel " + TYPE + " } }\n";
         if (settings.hasTypeCheck) {
             query += triple;
-            query += " . \n";
             query += "FILTER (CONTAINS(LCASE(" + TYPE + "), \"" + settings.type + "\")). \n";
         } else {
             query += "OPTIONAL { ";
             query += triple;
-            query += " } . \n";
+            query += " }\n";
         }
         return query;
     }
@@ -274,12 +271,12 @@ public class SPARQLTranslator implements QueryTranslator {
         if (settings.hasTechniqueCheck) {
             query += "{ ";
             query += triple;
-            query += " } . \n";
+            query += " }\n";
             query += "FILTER (CONTAINS(LCASE(" + TECHNIQUE + "), \"" + settings.technique + "\")). \n";
         } else {
             query += "OPTIONAL { ";
             query += triple;
-            query += " } . \n";
+            query += " }\n";
         }
         return query;
     }
@@ -295,11 +292,11 @@ public class SPARQLTranslator implements QueryTranslator {
         if (settings.hasImageCheck) {
             query += "{ ";
             query += triple;
-            query += " } . \n";
+            query += " }\n";
         } else {
             query += "OPTIONAL { ";
             query += triple;
-            query += " } . \n";
+            query += " }\n";
         }
         return query;
     }
@@ -324,7 +321,7 @@ public class SPARQLTranslator implements QueryTranslator {
         } else {
             query += "OPTIONAL { ";
             query += triple;
-            query += " } . \n";
+            query += " }\n";
         }
         return query;
     }
@@ -335,7 +332,7 @@ public class SPARQLTranslator implements QueryTranslator {
      * @return the object description request.
      */
     private String getDescription() {
-        return "OPTIONAL { " + OBJECT + "bmo:PX_physical_description " + DESCRIPTION + " }. \n";
+        return "OPTIONAL { " + OBJECT + "bmo:PX_physical_description " + DESCRIPTION + " }\n";
     }
     
     /**
@@ -344,7 +341,7 @@ public class SPARQLTranslator implements QueryTranslator {
      * @return the curatorial comment request.
      */
     private String getCuration() {
-        return "OPTIONAL { " + OBJECT + "bmo:PX_curatorial_comment " + CURATORIAL + " }. \n";
+        return "OPTIONAL { " + OBJECT + "bmo:PX_curatorial_comment " + CURATORIAL + " }\n";
     }
     
     /**
