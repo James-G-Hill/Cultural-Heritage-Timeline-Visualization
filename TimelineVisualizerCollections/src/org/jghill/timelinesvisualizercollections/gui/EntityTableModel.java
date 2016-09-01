@@ -112,7 +112,7 @@ public class EntityTableModel extends AbstractTableModel {
      * Updates the array fed from the data table.
      */
     private void updateDataTable() {
-        List flat = entitiesFlatten(collection.getEntitiesCollection());
+        List flat = collection.getEntitiesCollection().getCollectionSet();
         entities = new ManMadeObject[flat.size()];
         flat.toArray(entities);
     }
@@ -125,24 +125,6 @@ public class EntityTableModel extends AbstractTableModel {
      */
     public Entities returnQuery(int index) {
         return entities[index];
-    }
-    
-    /**
-     * Flattens the entities collection into a single list.
-     * 
-     * @param coll the EntitiesCollection.
-     * @return a list containing all internal non-collections.
-     */
-    private List<Entities> entitiesFlatten(EntitiesCollection coll) {
-        List<Entities> arr = new ArrayList<>();
-        coll.getCollectionSet().stream().forEach((e) -> {
-            if(e instanceof EntitiesCollection) {
-                arr.addAll(entitiesFlatten((EntitiesCollection)e));
-            } else {
-                arr.add(e);
-            }
-        });
-        return arr;
     }
     
     /**
