@@ -9,11 +9,14 @@ import javax.swing.table.AbstractTableModel;
  */
 public class SourceTableModel extends AbstractTableModel {
 
-    private final SourceCollection collection;
     private Source[] sources;
     
+    /**
+     * Constructor.
+     * 
+     * @param c the Collection.
+     */
     public SourceTableModel(SourceCollection c) {
-        this.collection = c;
         updateDataTable();
     }
     
@@ -61,8 +64,8 @@ public class SourceTableModel extends AbstractTableModel {
      * Updates the array fed from the data table.
      */
     private void updateDataTable() {
-        sources = new Source[collection.getSize()];
-        collection.getSourceCollectionSet().toArray(sources);
+        sources = new Source[SourceCollection.getSize()];
+        SourceCollection.getSourceCollectionSet().toArray(sources);
     }
     
     /**
@@ -71,7 +74,7 @@ public class SourceTableModel extends AbstractTableModel {
      * @param index the row number of the source.
      */
     public void deleteSource(int index) {
-        collection.deleteSource(sources[index]);
+        SourceCollection.deleteSource(sources[index]);
         fireTableDataChanged();
     }
     
