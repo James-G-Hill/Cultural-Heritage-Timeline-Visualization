@@ -170,9 +170,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getIdentifier() {
         String query = "";
         String triple = OBJECT + "crm:P48_has_preferred_identifier/rdfs:label " + IDENTIFIER;
-        query += "{ ";
-        query += triple;
-        query += " }\n";
+        query += "{ " + triple + " }\n";
         if (settings.hasIdentifierCheck) {
             query += "FILTER (CONTAINS(LCASE(" + IDENTIFIER + "), \"" + settings.identifier + "\")). \n";
         }
@@ -184,10 +182,9 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getName() {
         String query = "";
-        String triple = "";
-        triple += "{ " + OBJECT + "crm:P102_has_title/rdfs:label " + NAME + " }\n";
+        String triple = OBJECT + "crm:P102_has_title/rdfs:label " + NAME;
         if (settings.hasNameCheck) {
-            query += triple;
+            query += "{ " + triple + " }\n";
             query += "FILTER (CONTAINS(LCASE(" + NAME + "), \"" + settings.name + "\")). \n"; 
         } else {
             query += "OPTIONAL { ";
@@ -309,10 +306,11 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getCreator() {
         String query = "";
         String triple = "";
-        triple += "{ { " + PRODUCTION2 + "crm:P108_has_produced " + OBJECT + " . \n";
-        triple += PRODUCTION2 + "crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label " + CREATOR + " } ";
+        triple += PRODUCTION2 + " a crm:E12_Production ";
+        triple += "; crm:P108_has_produced " + OBJECT + " .\n";
+        triple += "{ " + PRODUCTION2 + "crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label " + CREATOR + " } ";
         triple += UNION;
-        triple += " { " + PRODUCTION2 + "crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel " + CREATOR + " } } ";
+        triple += " { " + PRODUCTION2 + "crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel " + CREATOR + " } ";
         if (settings.hasCreatorCheck) {
             query += "{ ";
             query += triple;
