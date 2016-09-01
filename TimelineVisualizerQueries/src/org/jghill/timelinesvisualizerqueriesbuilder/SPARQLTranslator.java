@@ -24,7 +24,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String XML = "xsd: <http://www.w3.org/2001/XMLSchema#> \n";
     
     private static final String PREFIX = "PREFIX ";
-    private static final String SELECT = "SELECT ";
+    private static final String SELECT = "SELECT DISTINCT ";
     private static final String WHERE = "WHERE { ";
     private static final String END = "} ";
     private static final String LIMIT = "LIMIT ";
