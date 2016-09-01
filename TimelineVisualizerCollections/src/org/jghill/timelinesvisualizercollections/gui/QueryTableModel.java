@@ -14,6 +14,11 @@ public class QueryTableModel extends AbstractTableModel {
     private final Collection collection;
     private QueryShell[] shells;
     
+    /**
+     * Constructor.
+     * 
+     * @param c the Collection.
+     */
     public QueryTableModel(Collection c) {
         this.collection = c;
         updateDataTable();
