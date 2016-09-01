@@ -6,6 +6,8 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinesvisualizercollections.node.CollectionChildren;
+import org.jghill.timelinevisualizerentities.Entities;
+import org.jghill.timelinevisualizerentities.PhysicalThing;
 import org.openide.util.Lookup;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
@@ -53,6 +55,12 @@ public class CollectionContainer {
     public static void deleteCollection(Collection coll) {
         COLLECTION.remove(coll);
         CHILDREN.update(COLLECTION.toArray(new Collection[0]));
+        for (Entities entity : coll.getEntitiesCollection().getCollectionSet()) {
+            if (entity instanceof PhysicalThing) {
+                PhysicalThing pt = (PhysicalThing) entity;
+                pt.getImageFile().delete();
+            }
+        }
         File file = new File("Collections/" + coll.getName() + ".xml");
         file.delete();
     }
