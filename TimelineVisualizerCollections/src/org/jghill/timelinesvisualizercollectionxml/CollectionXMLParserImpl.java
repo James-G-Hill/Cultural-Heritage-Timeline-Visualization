@@ -72,7 +72,7 @@ public class CollectionXMLParserImpl implements CollectionXMLParser {
                         address,
                         cidoc,
                         queryName,
-                        10
+                        limit
                 );
                 queries.addQuery(query);
             }
