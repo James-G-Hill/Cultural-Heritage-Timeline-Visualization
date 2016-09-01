@@ -8,8 +8,6 @@ import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinesvisualizercollections.container.CollectionContainer;
 import org.jghill.timelinesvisualizercollectionxml.CollectionXMLParser;
 import org.jghill.timelinesvisualizercollectionxml.CollectionXMLParserImpl;
-import org.netbeans.api.io.IOProvider;
-import org.netbeans.api.io.InputOutput;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.explorer.ExplorerManager;
@@ -51,8 +49,6 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
      * Constructor.
      */
     public ViewerTopComponent() {
-        
-        output("constructing");
         
         initComponents();
         setName(Bundle.CTL_CollectionViewerTopComponent());
@@ -109,12 +105,10 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
      * Called by the constructor.
      */
     private void setup() {
-        output("staring setup");
         associateLookup(ExplorerUtils.createLookup(manager, getActionMap()));
         manager.setRootContext(new AbstractNode(CollectionContainer.getChildren()));
         manager.getRootContext().setDisplayName("Collections");
         loadFromFile();
-        output("finished setup");
     }
     
     @Override
@@ -126,13 +120,11 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
     @Override
     protected void componentActivated() {
         ExplorerUtils.activateActions(manager, true);
-        output("activated");
     }
     
     @Override
     protected void componentDeactivated() {
         ExplorerUtils.activateActions(manager, false);
-        output("deactivated");
     }
     
     void writeProperties(java.util.Properties p) {
@@ -153,8 +145,6 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
      */
     private void loadFromFile() {
         
-        output("loading form .xml");
-        
         File folder = new File("Collections/");
         File[] listOfFiles = folder.listFiles();
         
@@ -172,18 +162,6 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
             }
         }
         
-        output("finished loading form .xml");
-        
-    }
-    
-    /**
-     * Outputs an explanation of the action.
-     * 
-     * @param text toString of the returned entity.
-     */
-    private void output(String text) {
-        InputOutput io = IOProvider.getDefault().getIO("Main", false);
-        io.getOut().println(text);
     }
     
 }
