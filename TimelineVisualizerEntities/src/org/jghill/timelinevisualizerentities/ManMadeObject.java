@@ -41,7 +41,8 @@ public class ManMadeObject extends PhysicalThing {
             String description,
             String curatorial
     ) {
-        super(name,
+        super(
+                name,
                 identifier,
                 source,
                 query,
