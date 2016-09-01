@@ -14,6 +14,8 @@ public class SPARQLTranslator implements QueryTranslator {
     private QuerySettings settings;
     private SPARQLEndpoint sparql;
     
+    private static final int LIMIT_COUNT = 100;
+    
     private static final String BMO = "bmo: <http://collection.britishmuseum.org/id/ontology/> \n";
     private static final String CRM = "crm: ";
     private static final String EDAN = "edan: <http://edan.si.edu/saam/id/ontologies/> \n";
@@ -341,7 +343,7 @@ public class SPARQLTranslator implements QueryTranslator {
      * @return the limit command.
      */
     private String limit() {
-        return LIMIT + "100";
+        return LIMIT + LIMIT_COUNT;
     }
     
 }
