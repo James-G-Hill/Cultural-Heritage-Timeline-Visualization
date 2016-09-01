@@ -16,6 +16,11 @@ public class ViewerDeleteAction extends AbstractAction {
     private final Collection coll;
     private final String actionName = "Delete";
     
+    /**
+     * Constructor.
+     * 
+     * @param lu lookup for the object.
+     */
     public ViewerDeleteAction(Lookup lu) {
         coll = lu.lookup(Collection.class);
         putValue(NAME, actionName);
