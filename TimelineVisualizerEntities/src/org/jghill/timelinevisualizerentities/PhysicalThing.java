@@ -84,6 +84,21 @@ public abstract class PhysicalThing extends Entities {
         this.curatorial = curatorial;
         this.imageURL = createURL(image);
         this.timeSpan = createYear(beginYear);
+        checkForImage();
+    }
+    
+    /**
+     * Check that image file exists already and assign if it does.
+     */
+    private void checkForImage() {
+        if (imageFile == null) {
+            File temp;
+            temp = new File("Data/Images/" + super.getIdentifier() + ".jpg");
+            if (temp.exists()) {
+                System.out.println("Reached here.");
+                imageFile = temp;
+            }
+        }
     }
     
     /**
@@ -174,7 +189,7 @@ public abstract class PhysicalThing extends Entities {
                 try {
                     image = (BufferedImage) ImageIO.read(imageURL);
                     File temp;
-                    temp = new File("Images/" + super.getIdentifier() + ".jpg");
+                    temp = new File("Data/Images/" + super.getIdentifier() + ".jpg");
                     imageFile = temp;
                     ImageIO.write(image, "jpg", imageFile);
                 } catch(IOException ex) {}
