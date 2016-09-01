@@ -33,7 +33,6 @@ public abstract class PhysicalThing extends Entities {
     
     protected URL imageURL;
     protected File imageFile;
-    protected BufferedImage image;
     
     /**
      * Constructor.
@@ -168,18 +167,24 @@ public abstract class PhysicalThing extends Entities {
      * 
      * @return the Image related to this Thing or a null.
      */
-    private void getImage() {
-        if (image == null) {
+    private BufferedImage getImage() {
+        BufferedImage image = null;
+        if (imageFile == null) {
             if(imageURL != null) {
                 try {
                     image = (BufferedImage) ImageIO.read(imageURL);
-                    File temp = File.createTempFile(super.getIdentifier(), "jpg");
+                    File temp;
+                    temp = new File("Images/" + super.getIdentifier() + ".jpg");
                     imageFile = temp;
-                    temp.deleteOnExit();
-                    ImageIO.write(image, "jpg", temp);
+                    ImageIO.write(image, "jpg", imageFile);
                 } catch(IOException ex) {}
             }
+        } else {
+            try {
+                image = ImageIO.read(imageFile);
+            } catch (IOException ex) {}
         }
+        return image;
     }
     
     /**
@@ -189,7 +194,7 @@ public abstract class PhysicalThing extends Entities {
      * @return the thumbnail image.
      */
     public BufferedImage getThumb(int dimension) {
-        getImage();
+        BufferedImage image = getImage();
         if (image != null) {
 
             int x = image.getWidth();
