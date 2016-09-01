@@ -95,7 +95,6 @@ public abstract class PhysicalThing extends Entities {
             File temp;
             temp = new File("Data/Images/" + super.getIdentifier() + ".jpg");
             if (temp.exists()) {
-                System.out.println("Reached here.");
                 imageFile = temp;
             }
         }
