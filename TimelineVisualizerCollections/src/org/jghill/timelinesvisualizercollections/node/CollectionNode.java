@@ -39,7 +39,10 @@ public class CollectionNode extends AbstractNode implements PropertyChangeListen
             Collection coll,
             InstanceContent ic
     ) {
-        super(Children.LEAF, new AbstractLookup(ic));
+        super(
+                Children.LEAF,
+                new AbstractLookup(ic)
+        );
         this.collection = coll;
         this.instanceContent = ic;
         this.instanceContent.add(coll);
