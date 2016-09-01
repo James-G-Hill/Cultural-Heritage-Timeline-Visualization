@@ -29,7 +29,7 @@ public final class CollectionNew implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Collection collection = new CollectionImpl(
-                    "New " + LocalDateTime.now(), 
+                    "New " + LocalDateTime.now().toString().replace(":", "-"), 
                     new EntitiesCollection("Collection"), 
                     new QueriesCollection());
         CollectionContainer.addCollection(collection);
