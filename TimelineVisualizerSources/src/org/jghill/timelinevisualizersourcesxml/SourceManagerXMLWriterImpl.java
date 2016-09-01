@@ -52,7 +52,7 @@ public class SourceManagerXMLWriterImpl implements SourceManagerXMLWriter {
             trans.setOutputProperty(OutputKeys.INDENT, "yes");
             trans.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
             DOMSource source =  new DOMSource(doc);
-            StreamResult file = new StreamResult(new File("Data/Source Manager/Source Manager.xml"));
+            StreamResult file = new StreamResult(new File("release/Data/Source Manager/Source Manager.xml"));
             trans.transform(source, file);
         } catch (TransformerException ex) {}
     }

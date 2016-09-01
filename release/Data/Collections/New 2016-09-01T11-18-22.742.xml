@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<collection>
+  <information>
+    <name>New 2016-09-01T11-18-22.742</name>
+    <notes>null</notes>
+  </information>
+  <queries>
+    <query>
+      <name>q1</name>
+      <type>SPARQL Endpoint</type>
+      <querystring>PREFIX bmo: &lt;http://collection.britishmuseum.org/id/ontology/&gt; 
+PREFIX crm: &lt;http://erlangen-crm.org/current/&gt; 
+PREFIX edan: &lt;http://edan.si.edu/saam/id/ontologies/&gt; 
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; 
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; 
+PREFIX skos2: &lt;http://www.w3.org/2008/05/skos#&gt; 
+PREFIX thes: &lt;http://collection.britishmuseum.org/id/thesauri/&gt; 
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+
+
+SELECT DISTINCT  
+?identifier  
+?consists  
+?date  
+?technique  
+?image  
+?object  
+?name  
+?type  
+?creator  
+?description  
+?curatorial  
+?depicts  
+
+
+WHERE { 
+
+?production  a crm:E12_Production ; crm:P108_has_produced ?object  . 
+
+{ ?production crm:P9_consists_of/crm:P4_has_time-span ?time  } 
+UNION 
+{ ?production  crm:P4_has_time-span ?time  } 
+?time a crm:E52_Time-Span ; rdfs:label ?date  . 
+FILTER (xsd:integer(?date ) &gt;= 1900) . 
+FILTER (xsd:integer(?date ) &lt;= 1920) . 
+
+{ ?object crm:P48_has_preferred_identifier/rdfs:label ?identifier  }
+
+OPTIONAL { { ?object crm:P102_has_title/rdfs:label ?name  }
+ }
+
+OPTIONAL { { ?object crm:P62_depicts/skos:prefLabel ?depicts  }
+UNION { ?object crm:P128_carries/crm:P129_is_about/skos2:prefLabel ?depicts  }
+ }
+
+OPTIONAL { { ?object crm:P45_consists_of/skos:prefLabel ?consists  }
+UNION { ?object edan:PE_medium_description ?consists  }
+ }
+
+OPTIONAL { { { ?object bmo:PX_object_type/skos:prefLabel ?type  }
+UNION 
+{ ?object edan:PE_object_mainclass/skos2:prefLabel ?type  } }
+ }
+
+OPTIONAL { ?production crm:P9_consists_of/crm:P32_used_general_technique/skos:prefLabel ?technique   }
+
+OPTIONAL { { { ?production2 crm:P108_has_produced ?object  . 
+?production2 crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label ?creator  } UNION  { ?production2 crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel ?creator  } }  }
+
+OPTIONAL { ?object bmo:PX_physical_description ?description  }
+
+OPTIONAL { ?object bmo:PX_curatorial_comment ?curatorial  }
+
+{ ?object crm:P138i_has_representation ?image  }
+
+
+} 
+
+LIMIT 40</querystring>
+      <address>http://collection.britishmuseum.org/sparql</address>
+      <cidoc>http://erlangen-crm.org/current/</cidoc>
+    </query>
+  </queries>
+  <entities>
+    <entity>
+      <identifier>MCT7543</identifier>
+      <name>MCT7543</name>
+      <query>q1</query>
+      <source>http://collection.britishmuseum.org/sparql</source>
+      <consists>wood</consists>
+      <creator>R J Moss &amp; Co</creator>
+      <curatorial>Text from J. Rudoe 'Decorative Arts 1850-1950. A catalogue of the British Museum collection'. 2nd ed.1994. no.23
+
+     W.A.S. Benson trained as an architect with Basil Champneys before turning in 1880 to the design and manufacture of domestic lighting and establishing his own workshops in Fulham for the machine production of metalwork on a large scale. His workshops soon expanded to premises in Chiswick Mall and an even larger factory, the Eyot works, St Peter's Square, Hammersmith, was nearly completed when A.H. Church was writing on Benson in 1890. Benson's first showroom was in Campden Hill Road and in 1887 he moved to 82 New Bond Street. He was a close friend of William Morris, becoming a director of Morris &amp; Company on Morris's death in 1896. Information about Benson's assistants can be gleaned from the detailed listings in the catalogues of the Arts &amp; Crafts Exhibition Society, London, in view of its policy of acknowledging makers as well as designers. Benson exhibited with the Society from its foundation in 1888, when J. Lovegrove is listed as executor. By 1890 Lovegrove, as supervisor of the workshop, was assisted by T. Pinches, J. Taylor and C. Green; J. McVeigh is recorded as a pattern maker (Catalogue of the Third Exhibition) 1890, 178-82, nos 232-51).
+
+     By the late 1890s Benson's metalwork was widely admired on the Continent and in America (see The House Beautiful v, April 1899). It was exhibited in Bing's Maison de 1'Art Nouveau from at least 1896 (The Studio VII, 1896,179), when the Nordenfjeldske Kunstindustrimuseum, Trondheim, purchased a group of nine items (Weisberg, G.P. 'Art Nouveau Bing: Paris Style 1900' New York 1986, figs 100-105, col. pl. 25). Benson's metalwork was later shown in the Hirschwald Gallery, Berlin (The Studio XIII, 1898, 118), at the Paris Exhibition of 1900, the Turin Exhibition of 1902 (Die Kunst v, 1901-2, 418) and at the Hohenzollern Kunstgewerbehaus, Berlin, in 1906, as part of an 'English tea-table' (Velhagen &amp; Klasings Monatsheft 1905-6, II, March 1906, 119).
+
+     It is difficult to date Benson metalwork with any accuracy. A number of items are illustrated in the many articles in contemporary journals of the 1890s and early 1900s, but Benson's earliest surviving catalogues date from about 1897, and there is little information on the firm's early products of the 1880s. The 1896 Trondheim group, which comprises tableware, lamps and hearth furniture, is thus of especial significance. The Trondheim group also includes a rare instance of a registered design, a copper tray registered in 1894 (Wakefield, H. et al. 'British Decorative Arts of the late Nineteenth Century in the Nordenfjeldske Kunstindustrimuseum', Nordenfeldske Kunstindustrimuseum Arbok, Trondheim 1961-2,  51-6, figs 53-61). Early in the First World War the factory turned to the manufacture of munitions and never went back to the production of domestic metalwares; the firm closed down in 1920 when Benson retired. Thus, unless a contemporary illustration has been found, most of the items catalogued here have been dated to c.1890-1914.
+
+     It is not certain when Benson began to work in electroplate. However, the detailed listings in the Arts &amp; Crafts Exhibition Society Catalogues give some guidance; Benson's metalwork ts usually specified as copper or brass up until 1903, when the first reference to electroplate appears (Arts &amp; Crafts Exhibition Society, Catalogue of the Seventh Exhibition, 1903, 149, no. 393, an electroplate teaset).
+
+     Most of Benson's kettles are much deeper in form; the shallow, flat shape of this kettle is unusual. For a range of kettles, see Haslam &amp; Whiteway, 'W.A.S. Benson Metalwork', exhibition catalogue, Michael Whiteway in association with Paul Reeves, Haslam &amp; Whiteway, London 1981, with introduction by Michael Collins.. A number of Benson kettles appear in the Army &amp; Navy Stores 1907 Price List, though unlike the lamps, they are not credited to Benson; they are notably more expensive than other models.</curatorial>
+      <depicts/>
+      <description>Kettle and stand with burner; electroplate, the kettle with wicker-bound handle ending in decorative `cartouches' in the eighteenth-century style, the lid with ebonised wood knop; the stand with leaf-shaped rests and paw feet.</description>
+      <image>http://www.britishmuseum.org/collectionimages/AN00831/AN00831601_001_l.jpg</image>
+      <object>http://collection.britishmuseum.org/id/object/MCT7543</object>
+      <technique>bound</technique>
+      <type>kettle</type>
+      <year>1900</year>
+    </entity>
+  </entities>
+</collection>
