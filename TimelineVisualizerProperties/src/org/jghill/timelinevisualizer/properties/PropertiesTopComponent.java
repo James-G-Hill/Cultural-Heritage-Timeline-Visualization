@@ -433,16 +433,37 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
             ManMadeObject entity = allEntities.iterator().next();
             
             CreationYearTextField.setText(entity.getTimeSpan().toString());
+            CreationYearTextField.setCaretPosition(0);
+            
             IdentifierTextField.setText(entity.getIdentifier());
+            IdentifierTextField.setCaretPosition(0);
+                    
             NameTextField.setText(entity.getName());
+            NameTextField.setCaretPosition(0);
+                    
             SourceTextField.setText(entity.getSourceName());
+            SourceTextField.setCaretPosition(0);
+                    
             QueryTextField.setText(entity.getQueryName());
+            QueryTextField.setCaretPosition(0);
+                    
             DepictsTextField.setText(entity.getDepicts());
+            DepictsTextField.setCaretPosition(0);
+            
             ConsistsTextField.setText(entity.getConsists());
+            ConsistsTextField.setCaretPosition(0);
+            
             TypeTextField.setText(entity.getType());
+            TypeTextField.setCaretPosition(0);
+            
             TechniqueTextField.setText(entity.getTechnique());
+            TechniqueTextField.setCaretPosition(0);
+            
             CreatorTextField.setText(entity.getCreator());
+            CreatorTextField.setCaretPosition(0);
+            
             DetailsTextField.setText(entity.getObject());
+            DetailsTextField.setCaretPosition(0);
             
             DescriptionTextArea.setText(entity.getDescription());
             DescriptionTextArea.setCaretPosition(0);
