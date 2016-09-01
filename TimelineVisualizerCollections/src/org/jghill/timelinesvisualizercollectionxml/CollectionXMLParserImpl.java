@@ -66,11 +66,13 @@ public class CollectionXMLParserImpl implements CollectionXMLParser {
                 String queryString = path.evaluate("/collection/queries/query[" + i + "]/querystring", doc);
                 String address = path.evaluate("/collection/queries/query[" + i + "]/address", doc);
                 String cidoc = path.evaluate("/collection/queries/query[" + i + "]/cidoc", doc);
+                int limit = Integer.parseInt(path.evaluate("/collection/queries/query[" + i + "]/limit", doc));
                 QueryShell query  = new SPARQLQueryShell(
                         queryString,
                         address,
                         cidoc,
-                        queryName
+                        queryName,
+                        10
                 );
                 queries.addQuery(query);
             }
