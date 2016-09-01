@@ -145,7 +145,7 @@ public final class ViewerTopComponent extends TopComponent implements ExplorerMa
      */
     private void loadFromFile() {
         
-        File folder = new File("Collections/");
+        File folder = new File("Data/Collections/");
         File[] listOfFiles = folder.listFiles();
         
         for (File file : listOfFiles) {
