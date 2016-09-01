@@ -24,7 +24,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String XML = "xsd: <http://www.w3.org/2001/XMLSchema#> \n";
     
     private static final String PREFIX = "PREFIX ";
-    private static final String SELECT = "SELECT DISTINCT ";
+    private static final String SELECT = "SELECT ";
     private static final String WHERE = "WHERE { ";
     private static final String END = "} ";
     private static final String LIMIT = "LIMIT ";
@@ -342,21 +342,26 @@ public class SPARQLTranslator implements QueryTranslator {
         return "OPTIONAL { " + OBJECT + "bmo:PX_curatorial_comment " + CURATORIAL + " }\n";
     }
     
-    /**
-     * Groups the selection by the following categories.
-     * 
-     * @return the group by string.
-     */
-    private String groupBy() {
-        return
-                "GROUP BY" + " \n" +
-                IDENTIFIER + " \n" +
-                CONSISTS + " \n" +
-                DATE + " \n" +
-                TECHNIQUE + " \n" +
-                OBJECT + " \n" +
-                IMAGE + " \n\n";
-    }
+//    /**
+//     * Groups the selection by the following categories.
+//     * 
+//     * @return the group by string.
+//     */
+//    private String groupBy() {
+//        return
+//                "GROUP BY" + " \n" +
+//                IDENTIFIER + " \n" +
+//                CONSISTS + " \n" +
+//                DATE + " \n" +
+//                TECHNIQUE + " \n" +
+//                OBJECT + " \n" +
+//                NAME + " \n" +
+//                IMAGE + " \n" +
+//                CREATOR + " \n" +
+//                DESCRIPTION + " \n" +
+//                CURATORIAL + " \n" +
+//                DEPICTION + " \n\n";
+//    }
     
     /**
      * Builds the LIMIT part of expression.
