@@ -70,7 +70,8 @@ public class SPARQLQueryShell extends QueryShell {
         try(QueryExecution qexec = QueryExecutionFactory.sparqlService(service, query)) {
             results = qexec.execSelect();
             return buildEntities(results, qexec);
-        } catch (HttpException ex) {
+        } catch (Exception ex) {
+            System.out.println("Error? " + ex.getMessage());
             throw new HttpException("502 Proxy Error: " + ex.getMessage());
         }
         
@@ -98,34 +99,34 @@ public class SPARQLQueryShell extends QueryShell {
             
             String identity = "";
             if (soln.get("identifier") != null) {
-                identity = soln.get("identifier").toString();
+                identity = soln.get("identifier").toString().trim();
             }
             
             String title = "";
             if (soln.get("name") != null) {
-                title = soln.get("name").toString();
+                title = soln.get("name").toString().trim();
             } else {
                 title = identity;
             }
             
             String depicts = "";
             if (soln.get("depicts") != null) {
-                depicts = soln.get("depicts").toString();
+                depicts = soln.get("depicts").toString().trim();
             }
             
             String consists = "";
             if (soln.get("consists") != null) {
-                consists = soln.get("consists").toString();
+                consists = soln.get("consists").toString().trim();
             }
             
             String type = "";
             if (soln.get("type") != null) {
-                type = soln.get("type").toString();
+                type = soln.get("type").toString().trim();
             }
             
             String technique = "";
             if (soln.get("technique") != null) {
-                technique = soln.get("technique").toString();
+                technique = soln.get("technique").toString().trim();
             }
             
             String image = "";
@@ -140,7 +141,7 @@ public class SPARQLQueryShell extends QueryShell {
             
             String creator = "";
             if (soln.get("creator") != null) {
-                creator = soln.get("creator").toString();
+                creator = soln.get("creator").toString().trim();
             }
             
             String object = "";
@@ -150,12 +151,12 @@ public class SPARQLQueryShell extends QueryShell {
             
             String description = "";
             if (soln.get("description") != null) {
-                description = soln.get("description").toString();
+                description = soln.get("description").toString().trim();
             }
             
             String curatorial = "";
             if (soln.get("curatorial") != null) {
-                curatorial = soln.get("curatorial").toString();
+                curatorial = soln.get("curatorial").toString().trim();
             }
             
             output("");
