@@ -188,7 +188,7 @@ public abstract class PhysicalThing extends Entities {
                 try {
                     image = (BufferedImage) ImageIO.read(imageURL);
                     File temp;
-                    temp = new File("release/Data/Images/" + super.getIdentifier() + ".jpg");
+                    temp = new File("Data/Images/" + super.getIdentifier() + ".jpg");
                     imageFile = temp;
                     ImageIO.write(image, "jpg", imageFile);
                 } catch(IOException ex) {}
