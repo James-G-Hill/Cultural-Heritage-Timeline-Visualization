@@ -266,6 +266,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             }
         });
 
+        HasImageCheckBox.setSelected(true);
         org.openide.awt.Mnemonics.setLocalizedText(HasImageCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasImageCheckBox.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(HasIdentifierCheckBox, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.HasIdentifierCheckBox.text")); // NOI18N
@@ -1139,7 +1140,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         LimitTextField.setText("10");
         LimitTextField.setEnabled(true);
         
-        HasImageCheckBox.setSelected(false);
+        HasImageCheckBox.setSelected(true);
         
     }
     
