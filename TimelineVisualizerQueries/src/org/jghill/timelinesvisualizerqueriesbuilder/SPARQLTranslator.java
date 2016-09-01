@@ -24,7 +24,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String XML = "xsd: <http://www.w3.org/2001/XMLSchema#> \n";
     
     private static final String PREFIX = "PREFIX ";
-    private static final String SELECT = "SELECT ";
+    private static final String SELECT = "SELECT DISTINCT ";
     private static final String WHERE = "WHERE { ";
     private static final String END = "} ";
     private static final String LIMIT = "LIMIT ";
@@ -43,13 +43,6 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String DESCRIPTION = "?description ";
     private static final String CURATORIAL = "?curatorial ";
     
-//    private static final String NAME_SAMPLE = "?name ";
-//    private static final String TYPE_SAMPLE = "?type ";
-//    private static final String CREATOR_SAMPLE = "?creator ";
-//    private static final String DESCRIPTION_SAMPLE = "?description ";
-//    private static final String CURATORIAL_SAMPLE = "?curatorial ";
-//    private static final String DEPICTION_SAMPLE = "?depicts ";
-    
     private static final String PRODUCTION = "?production ";
     private static final String PRODUCTION2 = "?production2 ";
     private static final String TIME = "?time ";
@@ -62,7 +55,8 @@ public class SPARQLTranslator implements QueryTranslator {
                 build(),
                 sparql.getWebAddress(),
                 sparql.getCIDOCAddress(),
-                settings.queryName
+                settings.queryName,
+                Integer.parseInt(settings.limit)
         );
     }
     
@@ -78,7 +72,6 @@ public class SPARQLTranslator implements QueryTranslator {
                 WHERE + "\n\n" +
                 whereClause() + "\n\n" +
                 END + "\n\n" +
-//                groupBy() +
                 limit();
     }
     
@@ -342,34 +335,13 @@ public class SPARQLTranslator implements QueryTranslator {
         return "OPTIONAL { " + OBJECT + "bmo:PX_curatorial_comment " + CURATORIAL + " }\n";
     }
     
-//    /**
-//     * Groups the selection by the following categories.
-//     * 
-//     * @return the group by string.
-//     */
-//    private String groupBy() {
-//        return
-//                "GROUP BY" + " \n" +
-//                IDENTIFIER + " \n" +
-//                CONSISTS + " \n" +
-//                DATE + " \n" +
-//                TECHNIQUE + " \n" +
-//                OBJECT + " \n" +
-//                NAME + " \n" +
-//                IMAGE + " \n" +
-//                CREATOR + " \n" +
-//                DESCRIPTION + " \n" +
-//                CURATORIAL + " \n" +
-//                DEPICTION + " \n\n";
-//    }
-    
     /**
      * Builds the LIMIT part of expression.
      * 
      * @return the limit command.
      */
     private String limit() {
-        return LIMIT + settings.limit;
+        return LIMIT + "100";
     }
     
 }
