@@ -1,12 +1,10 @@
 package org.jghill.timelinesvisualizercollections.gui;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 import javax.swing.table.AbstractTableModel;
 import org.jghill.timelinesvisualizercollections.Collection;
 import org.jghill.timelinevisualizerentities.Entities;
 import org.jghill.timelinevisualizerentities.ManMadeObject;
-import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 
 /**
  * A model for assisting display of Entities in the Entity Table.
@@ -112,7 +110,7 @@ public class EntityTableModel extends AbstractTableModel {
      * Updates the array fed from the data table.
      */
     private void updateDataTable() {
-        List flat = collection.getEntitiesCollection().getCollectionSet();
+        Set flat = collection.getEntitiesCollection().getCollectionSet();
         entities = new ManMadeObject[flat.size()];
         flat.toArray(entities);
     }
