@@ -882,14 +882,6 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         }
     }//GEN-LAST:event_HasTechniqueCheckBoxActionPerformed
 
-    private void HasLimitCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HasLimitCheckBoxActionPerformed
-        if (HasLimitCheckBox.isSelected()) {
-            LimitTextField.setEnabled(true);
-        } else {
-            LimitTextField.setEnabled(false);
-        }
-    }//GEN-LAST:event_HasLimitCheckBoxActionPerformed
-
     private void Group1ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Group1ComboBoxActionPerformed
         String selectedItem = (String) Group1ComboBox.getSelectedItem();
         if (selectedItem.equalsIgnoreCase("None")) {
@@ -985,6 +977,14 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             Exceptions.printStackTrace(ex);
         }
     }//GEN-LAST:event_SaveButtonActionPerformed
+
+    private void HasLimitCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HasLimitCheckBoxActionPerformed
+        if (HasLimitCheckBox.isSelected()) {
+            LimitTextField.setEnabled(true);
+        } else {
+            LimitTextField.setEnabled(false);
+        }
+    }//GEN-LAST:event_HasLimitCheckBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AndText1;
