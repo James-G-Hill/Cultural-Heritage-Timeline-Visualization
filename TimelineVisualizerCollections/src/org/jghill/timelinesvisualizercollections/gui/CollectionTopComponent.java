@@ -741,7 +741,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
             
             String wait = "The query may take some time. " +
                 "You will be notified when it is complete. " +
-                    "Click to proceed with the query.";
+                    "Do you wish to continue now?.";
             NotifyDescriptor waitNotification;
             waitNotification = new NotifyDescriptor.Message(
                     wait,
@@ -1165,6 +1165,9 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         
         if(QueryNameTextField.getText().isEmpty()) {return false;}
         if(SourceComboBox.getSelectedItem() == null) {return false;}
+        if(!LimitTextField.getText().matches("^-?\\d+$")) {return false;}
+        if(Integer.parseInt(LimitTextField.getText()) < 0) {return false;}
+        if(Integer.parseInt(LimitTextField.getText()) > 100) {return false;}
         
         return true;
         
