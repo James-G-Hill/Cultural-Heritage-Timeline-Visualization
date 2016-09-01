@@ -133,6 +133,7 @@ public class CollectionXMLWriterImpl implements CollectionXMLWriter {
                 q.appendChild(createTextElement("querystring", "" + sparql.getQueryString()));
                 q.appendChild(createTextElement("address", "" + sparql.getServiceAddress()));
                 q.appendChild(createTextElement("cidoc", "" + sparql.getCIDOCAddress()));
+                q.appendChild(createTextElement("limit", "" + sparql.getLimit()));
             }
             e.appendChild(q);
         }
