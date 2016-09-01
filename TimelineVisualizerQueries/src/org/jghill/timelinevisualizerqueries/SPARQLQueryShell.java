@@ -22,6 +22,7 @@ public class SPARQLQueryShell extends QueryShell {
     private final String queryString;
     private final String service;
     private final String cidoc;
+    private final int limit;
     
     private static final String QUERY_TYPE = "SPARQL Endpoint";
     
@@ -32,17 +33,180 @@ public class SPARQLQueryShell extends QueryShell {
      * @param service with the URI for the service address.
      * @param cidoc implementation used.
      * @param name of the Source.
+     * @param limit the number of records required.
      */
     public SPARQLQueryShell(
             String queryString,
             String service,
             String cidoc,
-            String name
+            String name,
+            int limit
     ) {
         this.queryString = queryString;
         this.service = service;
         this.cidoc = cidoc;
+        this.limit = limit;
         super.setQueryName(name);
+    }
+    
+    @Override
+    public EntitiesCollection run() {
+        output(queryString);
+        return getResults(QueryFactory.create(queryString));
+    }
+    
+    /**
+     * Executes the query and returns the results.
+     * 
+     * @param query the QueryFactory.
+     * @return the entities.
+     */
+    private EntitiesCollection getResults(Query query) throws HttpException {
+        
+        output("getting results");
+        output("");
+        ResultSet results;
+        
+        try(QueryExecution qexec = QueryExecutionFactory.sparqlService(service, query)) {
+            results = qexec.execSelect();
+            return buildEntities(results, qexec);
+        } catch (HttpException ex) {
+            throw new HttpException("502 Proxy Error: " + ex.getMessage());
+        }
+        
+    }
+    
+    /**
+     * Builds the collection of entities.
+     * 
+     * @param results the ResultSet
+     * @return the entities.
+     */
+    private EntitiesCollection buildEntities(
+            ResultSet results,
+            QueryExecution qexec
+    ) {
+        
+        EntitiesCollection entities;
+        entities = new EntitiesCollection(this.getQueryName());
+        
+        int recordCount = 0;
+        
+        for(; results.hasNext();) {
+            
+            QuerySolution soln = results.next();
+            
+            String identity = "";
+            if (soln.get("identifier") != null) {
+                identity = soln.get("identifier").toString();
+            }
+            
+            String title = "";
+            if (soln.get("name") != null) {
+                title = soln.get("name").toString();
+            } else {
+                title = identity;
+            }
+            
+            String depicts = "";
+            if (soln.get("depicts") != null) {
+                depicts = soln.get("depicts").toString();
+            }
+            
+            String consists = "";
+            if (soln.get("consists") != null) {
+                consists = soln.get("consists").toString();
+            }
+            
+            String type = "";
+            if (soln.get("type") != null) {
+                type = soln.get("type").toString();
+            }
+            
+            String technique = "";
+            if (soln.get("technique") != null) {
+                technique = soln.get("technique").toString();
+            }
+            
+            String image = "";
+            if (soln.get("image") != null) {
+                image = soln.get("image").toString();
+            }
+            
+            String year = "";
+            if (soln.get("date") != null) {
+                year = soln.get("date").toString();
+            }
+            
+            String creator = "";
+            if (soln.get("creator") != null) {
+                creator = soln.get("creator").toString();
+            }
+            
+            String object = "";
+            if (soln.get("object") != null) {
+                object = soln.get("object").toString();
+            }
+            
+            String description = "";
+            if (soln.get("description") != null) {
+                description = soln.get("description").toString();
+            }
+            
+            String curatorial = "";
+            if (soln.get("curatorial") != null) {
+                curatorial = soln.get("curatorial").toString();
+            }
+            
+            output("");
+            
+            ManMadeObject thing = new ManMadeObject(
+                    title,
+                    identity,
+                    service,
+                    super.getQueryName(),
+                    depicts,
+                    consists,
+                    type,
+                    technique,
+                    image,
+                    year,
+                    creator,
+                    object,
+                    description,
+                    curatorial
+            );
+            
+            if (!entities.getCollectionSet().contains(thing)) {
+                entities.addThing(thing);
+                recordCount++;
+                
+                output("Identifier  : " + identity.trim());
+                output("Title       : " + title.trim());
+                output("Depicts     : " + depicts.trim());
+                output("Consists    : " + consists.trim());
+                output("Type        : " + type.trim());
+                output("Technique   : " + technique.trim());
+                output("Image       : " + image.trim());
+                output("Date        : " + year.trim());
+                output("Creator     : " + creator.trim());
+                output("Object      : " + object.trim());
+                output("Description : " + description.trim());
+                output("Curatorial  : " + curatorial.trim());
+                
+            }
+            
+            if (recordCount >= limit) {
+                break;
+            }
+            
+        }
+        
+        qexec.abort();
+        qexec.close();
+        
+        return entities;
+        
     }
     
     /**
@@ -82,147 +246,13 @@ public class SPARQLQueryShell extends QueryShell {
         return cidoc;
     }
     
-    @Override
-    public EntitiesCollection run() {
-        output(queryString);
-        return getResults(QueryFactory.create(queryString));
-    }
-    
     /**
-     * Executes the query and returns the results.
+     * Returns the limit passed to this query.
      * 
-     * @param query the QueryFactory.
-     * @return the entities.
+     * @return the limit.
      */
-    private EntitiesCollection getResults(Query query) throws HttpException {
-        
-        output("getting results");
-        output("");
-        ResultSet results;
-        
-        try(QueryExecution qexec = QueryExecutionFactory.sparqlService(service, query)) {
-            results = qexec.execSelect();
-            return buildEntities(results);
-        } catch (HttpException ex) {
-            throw new HttpException("502 Proxy Error: " + ex.getMessage());
-        }
-        
-    }
-    
-    /**
-     * Builds the collection of entities.
-     * 
-     * @param results the ResultSet
-     * @return the entities.
-     */
-    private EntitiesCollection buildEntities(ResultSet results) {
-        
-        EntitiesCollection entities;
-        entities = new EntitiesCollection(this.getQueryName());
-        
-        for(; results.hasNext();) {
-            
-            QuerySolution soln = results.next();
-            
-            String identity = "";
-            if (soln.get("identifier") != null) {
-                identity = soln.get("identifier").toString();
-                output("Identifier  : " + identity);
-            }
-            
-            String title = "";
-            if (soln.get("name") != null) {
-                title = soln.get("name").toString();
-                output("Title       : " + title);
-            } else {
-                title = identity;
-            }
-            
-            String depicts = "";
-            if (soln.get("depicts") != null) {
-                depicts = soln.get("depicts").toString();
-                output("Depicts     : " + depicts);
-            }
-            
-            String consists = "";
-            if (soln.get("consists") != null) {
-                consists = soln.get("consists").toString();
-                output("Consists    : " + consists);
-            }
-            
-            String type = "";
-            if (soln.get("type") != null) {
-                type = soln.get("type").toString();
-                output("Type        : " + type);
-            }
-            
-            String technique = "";
-            if (soln.get("technique") != null) {
-                technique = soln.get("technique").toString();
-                output("Technique   : " + technique);
-            }
-            
-            String image = "";
-            if (soln.get("image") != null) {
-                image = soln.get("image").toString();
-                output("Image       : " + image);
-            }
-            
-            String year = "";
-            if (soln.get("date") != null) {
-                year = soln.get("date").toString();
-                output("Date        : " + year);
-            }
-            
-            String creator = "";
-            if (soln.get("creator") != null) {
-                creator = soln.get("creator").toString();
-                output("Creator     : " + creator);
-            }
-            
-            String object = "";
-            if (soln.get("object") != null) {
-                object = soln.get("object").toString();
-                output("Object      : " + object);
-            }
-            
-            String description = "";
-            if (soln.get("description") != null) {
-                description = soln.get("description").toString();
-                output("Description : " + description);
-            }
-            
-            String curatorial = "";
-            if (soln.get("curatorial") != null) {
-                curatorial = soln.get("curatorial").toString();
-                output("Curatorial  : " + curatorial);
-            }
-            
-            output("");
-            
-            ManMadeObject thing = new ManMadeObject(
-                    title,
-                    identity,
-                    service,
-                    super.getQueryName(),
-                    depicts,
-                    consists,
-                    type,
-                    technique,
-                    image,
-                    year,
-                    creator,
-                    object,
-                    description,
-                    curatorial
-            );
-            
-            entities.addThing(thing);
-            
-        }
-        
-        return entities;
-        
+    public int getLimit() {
+        return limit;
     }
     
     /**
