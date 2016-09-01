@@ -61,7 +61,7 @@ public class CollectionContainer {
                 pt.getImageFile().delete();
             }
         }
-        File file = new File("Collections/" + coll.getName() + ".xml");
+        File file = new File("Data/Collections/" + coll.getName() + ".xml");
         file.delete();
     }
     
