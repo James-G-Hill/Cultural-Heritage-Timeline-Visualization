@@ -14,8 +14,6 @@ public class SPARQLTranslator implements QueryTranslator {
     private QuerySettings settings;
     private SPARQLEndpoint sparql;
     
-    private static final int LIMIT_COUNT = 100;
-    
     private static final String BMO = "bmo: <http://collection.britishmuseum.org/id/ontology/> \n";
     private static final String CRM = "crm: ";
     private static final String EDAN = "edan: <http://edan.si.edu/saam/id/ontologies/> \n";
@@ -26,7 +24,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String XML = "xsd: <http://www.w3.org/2001/XMLSchema#> \n";
     
     private static final String PREFIX = "PREFIX ";
-    private static final String SELECT = "SELECT DISTINCT ";
+    private static final String SELECT = "SELECT REDUCED ";
     private static final String WHERE = "WHERE { ";
     private static final String END = "} ";
     private static final String LIMIT = "LIMIT ";
@@ -74,7 +72,7 @@ public class SPARQLTranslator implements QueryTranslator {
                 WHERE + "\n\n" +
                 whereClause() + "\n\n" +
                 END + "\n\n" +
-                limit();
+                limit() + "\n\n";
     }
     
     /**
@@ -138,13 +136,12 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getDates() {
         String dates = "";
-        dates += PRODUCTION + " a crm:E12_Production ";
-        dates += "; crm:P108_has_produced " + OBJECT + " . \n";
+        dates += PRODUCTION + " crm:P108_has_produced " + OBJECT + " . \n";
         dates += "\n";
         dates += "{ " + PRODUCTION + "crm:P9_consists_of/crm:P4_has_time-span " + TIME + " } \n";
         dates += UNION + "\n";
         dates += "{ " + PRODUCTION + " crm:P4_has_time-span " + TIME + " } \n";
-        dates += TIME + "a crm:E52_Time-Span ; rdfs:label " + DATE + " . \n";
+        dates += TIME + " rdfs:label " + DATE + " . \n";
         
         if (!settings.creationStartDate.equals("")) {
             dates += "FILTER (xsd:integer(" + DATE + ") >= " +
@@ -301,8 +298,7 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getCreator() {
         String query = "";
         String triple = "";
-        triple += PRODUCTION2 + " a crm:E12_Production ";
-        triple += "; crm:P108_has_produced " + OBJECT + " .\n";
+        triple += PRODUCTION2 + " crm:P108_has_produced " + OBJECT + " .\n";
         triple += "{ " + PRODUCTION2 + "crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label " + CREATOR + " } ";
         triple += UNION;
         triple += " { " + PRODUCTION2 + "crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel " + CREATOR + " } ";
@@ -343,7 +339,7 @@ public class SPARQLTranslator implements QueryTranslator {
      * @return the limit command.
      */
     private String limit() {
-        return LIMIT + LIMIT_COUNT;
+        return LIMIT + 1000;
     }
     
 }
