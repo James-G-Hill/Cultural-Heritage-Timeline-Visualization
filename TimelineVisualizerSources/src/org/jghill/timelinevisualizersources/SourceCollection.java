@@ -148,7 +148,7 @@ public class SourceCollection implements Lookup.Provider {
      * Loads the Sources from an XML file.
      */
     private static void loadXML() {
-        File f = new File("release/Data/Source Manager/Source Manager.xml");
+        File f = new File("Data/Source Manager/Source Manager.xml");
         if (f.exists()) {
             try {
                 SourceManagerXMLParser parser;
