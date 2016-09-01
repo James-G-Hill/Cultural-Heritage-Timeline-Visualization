@@ -1,8 +1,9 @@
 package org.jghill.timelinevisualizerentitiescollection;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import org.jghill.timelinevisualizerentities.Entities;
 
 /**
@@ -13,7 +14,7 @@ import org.jghill.timelinevisualizerentities.Entities;
  */
 public class EntitiesCollection extends Entities {
     
-    private final List<Entities> list;
+    private final Set<Entities> list;
     
     /**
      * Constructor.
@@ -22,7 +23,7 @@ public class EntitiesCollection extends Entities {
      */
     public EntitiesCollection(String name) {
         super(name, "", "", "");
-        list = new ArrayList<>();
+        list = new TreeSet<>();
     }
     
     /**
@@ -32,7 +33,6 @@ public class EntitiesCollection extends Entities {
      */
     public void addThing(Entities e) {
         list.add(e);
-        Collections.sort(list);
     }
     
     /**
@@ -49,8 +49,8 @@ public class EntitiesCollection extends Entities {
      * 
      * @return the entity list.
      */
-    public List<Entities> getCollectionSet() {
-        List<Entities> arr = new ArrayList<>();
+    public Set<Entities> getCollectionSet() {
+        Set<Entities> arr = new TreeSet<>();
         list.stream().forEach((e) -> {
             if(e instanceof EntitiesCollection) {
                 arr.addAll(entitiesFlatten((EntitiesCollection)e));
