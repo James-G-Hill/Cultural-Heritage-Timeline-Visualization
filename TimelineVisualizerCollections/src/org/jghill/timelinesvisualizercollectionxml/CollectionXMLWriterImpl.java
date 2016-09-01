@@ -67,7 +67,7 @@ public class CollectionXMLWriterImpl implements CollectionXMLWriter {
             DOMSource source =  new DOMSource(doc);
             StreamResult file = new StreamResult(
                     new File(
-                            "Data/Collections/" + collection.getName() + ".xml"
+                            "release/Data/Collections/" + collection.getName() + ".xml"
                     )
             );
             trans.transform(source, file);
