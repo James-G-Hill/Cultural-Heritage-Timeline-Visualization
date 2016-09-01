@@ -3,8 +3,6 @@ package org.jghill.timelinevisualizerentitiescollection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
 import org.jghill.timelinevisualizerentities.Entities;
 
 /**
@@ -51,10 +49,34 @@ public class EntitiesCollection extends Entities {
      * 
      * @return the entity list.
      */
-    public SortedSet<Entities> getCollectionSet() {
-        SortedSet<Entities> sorted = new TreeSet<>();
-        sorted.addAll(list);
-        return sorted;
+    public List<Entities> getCollectionSet() {
+        List<Entities> arr = new ArrayList<>();
+        list.stream().forEach((e) -> {
+            if(e instanceof EntitiesCollection) {
+                arr.addAll(entitiesFlatten((EntitiesCollection)e));
+            } else {
+                arr.add(e);
+            }
+        });
+        return arr;
+    }
+    
+    /**
+     * Flattens the entities collection into a single list.
+     * 
+     * @param coll the EntitiesCollection.
+     * @return a list containing all internal non-collections.
+     */
+    private List<Entities> entitiesFlatten(EntitiesCollection coll) {
+        List<Entities> arr = new ArrayList<>();
+        coll.getCollectionSet().stream().forEach((e) -> {
+            if(e instanceof EntitiesCollection) {
+                arr.addAll(entitiesFlatten((EntitiesCollection)e));
+            } else {
+                arr.add(e);
+            }
+        });
+        return arr;
     }
     
     /**
