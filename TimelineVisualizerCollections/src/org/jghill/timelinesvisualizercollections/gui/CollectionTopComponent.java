@@ -1136,7 +1136,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         CreatedByTextField.setEnabled(false);
         
         HasLimitCheckBox.setSelected(true);
-        LimitTextField.setText("10");
+        LimitTextField.setText("100");
         LimitTextField.setEnabled(true);
         
         HasImageCheckBox.setSelected(true);
@@ -1166,7 +1166,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         if(SourceComboBox.getSelectedItem() == null) {return false;}
         if(!LimitTextField.getText().matches("^-?\\d+$")) {return false;}
         if(Integer.parseInt(LimitTextField.getText()) < 0) {return false;}
-        if(Integer.parseInt(LimitTextField.getText()) > 40) {return false;}
+        if(Integer.parseInt(LimitTextField.getText()) > 500) {return false;}
         
         return true;
         
