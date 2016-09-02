@@ -138,10 +138,9 @@ public class SPARQLTranslator implements QueryTranslator {
         String dates = "";
         dates += PRODUCTION + " crm:P108_has_produced " + OBJECT + " . \n";
         dates += "\n";
-        dates += "{ " + PRODUCTION + "crm:P9_consists_of/crm:P4_has_time-span " + TIME + " } \n";
+        dates += "{ " + PRODUCTION + "crm:P9_consists_of/crm:P4_has_time-span/rdfs:label " + DATE + " } \n";
         dates += UNION + "\n";
-        dates += "{ " + PRODUCTION + " crm:P4_has_time-span " + TIME + " } \n";
-        dates += TIME + " rdfs:label " + DATE + " . \n";
+        dates += "{ " + PRODUCTION + " crm:P4_has_time-span/rdfs:label " + DATE + " } .\n";
         
         if (!settings.creationStartDate.equals("")) {
             dates += "FILTER (xsd:integer(" + DATE + ") >= " +
@@ -339,7 +338,7 @@ public class SPARQLTranslator implements QueryTranslator {
      * @return the limit command.
      */
     private String limit() {
-        return LIMIT + 1000;
+        return LIMIT + settings.limit;
     }
     
 }
