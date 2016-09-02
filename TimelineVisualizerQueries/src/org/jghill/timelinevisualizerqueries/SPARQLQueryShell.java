@@ -90,7 +90,7 @@ public class SPARQLQueryShell extends QueryShell {
         EntitiesCollection entities;
         entities = new EntitiesCollection(this.getQueryName());
         
-        int recordCount = 0;
+//        int recordCount = 0;
         
         for(; results.hasNext();) {
             
@@ -177,7 +177,7 @@ public class SPARQLQueryShell extends QueryShell {
             
             if (!entities.getCollectionSet().contains(thing)) {
                 entities.addThing(thing);
-                recordCount++;
+//                recordCount++;
                 
                 output("Identifier  : " + identity.trim());
                 output("Title       : " + title.trim());
@@ -194,10 +194,10 @@ public class SPARQLQueryShell extends QueryShell {
                 output("");
                 
             }
-            
-            if (recordCount >= limit) {
-                break;
-            }
+//            
+//            if (recordCount >= limit) {
+//                break;
+//            }
             
         }
         
