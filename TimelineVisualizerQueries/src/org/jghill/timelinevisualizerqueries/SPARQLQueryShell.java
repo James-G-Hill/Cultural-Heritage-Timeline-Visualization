@@ -71,7 +71,6 @@ public class SPARQLQueryShell extends QueryShell {
             results = qexec.execSelect();
             return buildEntities(results, qexec);
         } catch (Exception ex) {
-            System.out.println("Error? " + ex.getMessage());
             throw new HttpException("502 Proxy Error: " + ex.getMessage());
         }
         
@@ -159,8 +158,6 @@ public class SPARQLQueryShell extends QueryShell {
                 curatorial = soln.get("curatorial").toString().trim();
             }
             
-            output("");
-            
             ManMadeObject thing = new ManMadeObject(
                     title,
                     identity,
@@ -194,6 +191,7 @@ public class SPARQLQueryShell extends QueryShell {
                 output("Object      : " + object.trim());
                 output("Description : " + description.trim());
                 output("Curatorial  : " + curatorial.trim());
+                output("");
                 
             }
             
