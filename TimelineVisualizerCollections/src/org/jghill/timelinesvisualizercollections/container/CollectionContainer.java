@@ -58,7 +58,9 @@ public class CollectionContainer {
         for (Entities entity : coll.getEntitiesCollection().getCollectionSet()) {
             if (entity instanceof PhysicalThing) {
                 PhysicalThing pt = (PhysicalThing) entity;
-                pt.getImageFile().delete();
+                if (pt.getImageFile() != null) {
+                    pt.getImageFile().delete();
+                }
             }
         }
         File file = new File("Data/Collections/" + coll.getName() + ".xml");
