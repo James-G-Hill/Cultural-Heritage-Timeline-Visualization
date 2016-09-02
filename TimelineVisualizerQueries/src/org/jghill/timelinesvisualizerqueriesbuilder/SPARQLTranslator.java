@@ -43,9 +43,17 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String DESCRIPTION = "?description ";
     private static final String CURATORIAL = "?curatorial ";
     
+//    private static final String NAME_SAMPLE = "?name ";
+//    private static final String OBJECT_SAMPLE = "?object ";
+//    private static final String DEPICTION_SAMPLE = "?depicts ";
+//    private static final String CONSISTS_SAMPLE = "?consists ";
+//    private static final String TYPE_SAMPLE = "?type ";
+//    private static final String TECHNIQUE_SAMPLE = "?technique ";
+//    private static final String IMAGE_SAMPLE = "?image ";
+//    private static final String CREATOR_SAMPLE = "?creator ";
+    
     private static final String PRODUCTION = "?production ";
     private static final String PRODUCTION2 = "?production2 ";
-    private static final String TIME = "?time ";
     
     @Override
     public QueryShell translate(QuerySettings settings) {
@@ -72,6 +80,7 @@ public class SPARQLTranslator implements QueryTranslator {
                 WHERE + "\n\n" +
                 whereClause() + "\n\n" +
                 END + "\n\n" +
+//                groupBy() + "\n\n" +
                 limit() + "\n\n";
     }
     
@@ -99,15 +108,15 @@ public class SPARQLTranslator implements QueryTranslator {
                 IDENTIFIER + " \n" +
                 CONSISTS + " \n" +
                 DATE + " \n" +
-                TECHNIQUE + " \n" +
                 IMAGE + " \n" +
                 OBJECT + " \n" +
                 NAME + " \n" +
                 TYPE + " \n" +
-                CREATOR + " \n" +
                 DESCRIPTION + " \n" +
                 CURATORIAL + " \n" +
-                DEPICTION + " \n";
+                DEPICTION + " \n" +
+                TECHNIQUE + " \n" +
+                CREATOR + " \n";
     }
     
     /**
@@ -178,9 +187,7 @@ public class SPARQLTranslator implements QueryTranslator {
             query += "{ " + triple + " }\n";
             query += "FILTER (CONTAINS(LCASE(" + NAME + "), \"" + settings.name + "\")). \n"; 
         } else {
-            query += "OPTIONAL { ";
-            query += triple;
-            query += " }\n";
+            query += triple + " . \n";
         }
         return query;
     }
@@ -199,9 +206,7 @@ public class SPARQLTranslator implements QueryTranslator {
             query += " . \n";
             query += "FILTER (CONTAINS(LCASE(" + DEPICTION + "), \"" + settings.depiction + "\")). \n";
         } else {
-            query += "OPTIONAL { ";
-            query += triple;
-            query += " }\n";
+            query += triple + " . \n";
         }
         return query;
     }
@@ -219,9 +224,7 @@ public class SPARQLTranslator implements QueryTranslator {
             query += triple;
             query += "FILTER (CONTAINS(LCASE(" + CONSISTS + "), \"" + settings.consists + "\")). \n";
         } else {
-            query += "OPTIONAL { ";
-            query += triple;
-            query += " }\n";
+            query += triple + " . \n";
         }
         return query;
     }
@@ -241,9 +244,7 @@ public class SPARQLTranslator implements QueryTranslator {
             query += triple;
             query += "FILTER (CONTAINS(LCASE(" + TYPE + "), \"" + settings.type + "\")). \n";
         } else {
-            query += "OPTIONAL { ";
-            query += triple;
-            query += " }\n";
+            query += triple + " . \n";
         }
         return query;
     }
@@ -307,9 +308,7 @@ public class SPARQLTranslator implements QueryTranslator {
             query += " } . \n";
             query += "FILTER (CONTAINS(LCASE(" + CREATOR + "), \"" + settings.creator + "\")). \n";
         } else {
-            query += "OPTIONAL { ";
-            query += triple;
-            query += " }\n";
+            query += triple + " \n";
         }
         return query;
     }
@@ -332,13 +331,33 @@ public class SPARQLTranslator implements QueryTranslator {
         return "OPTIONAL { " + OBJECT + "bmo:PX_curatorial_comment " + CURATORIAL + " }\n";
     }
     
+//    /**
+//     * Groups the selection by the following categories.
+//     * 
+//     * @return the group by string.
+//     */
+//    private String groupBy() {
+//        return
+//                "GROUP BY" + " \n" +
+//                IDENTIFIER + " \n" +
+////                CONSISTS + " \n" +
+//                DATE + " \n" +
+////                IMAGE + " \n" +
+//                OBJECT + " \n" +
+////                NAME + " \n" +
+////                TYPE + " \n" +
+//                DESCRIPTION + " \n" +
+//                CURATORIAL + " \n\n";
+////                DEPICTION + " \n\n";
+//    }
+    
     /**
      * Builds the LIMIT part of expression.
      * 
      * @return the limit command.
      */
     private String limit() {
-        return LIMIT + settings.limit;
+        return LIMIT + (Integer.parseInt(settings.limit));
     }
     
 }
