@@ -81,7 +81,7 @@ public class SPARQLTranslator implements QueryTranslator {
                 whereClause() + "\n\n" +
                 END + "\n\n" +
 //                groupBy() + "\n\n" +
-                limit() + "\n\n";
+                limit();
     }
     
     /**
@@ -146,7 +146,6 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getDates() {
         String dates = "";
         dates += PRODUCTION + " crm:P108_has_produced " + OBJECT + " . \n";
-        dates += "\n";
         dates += "{ " + PRODUCTION + "crm:P9_consists_of/crm:P4_has_time-span/rdfs:label " + DATE + " } \n";
         dates += UNION + "\n";
         dates += "{ " + PRODUCTION + " crm:P4_has_time-span/rdfs:label " + DATE + " } .\n";
@@ -168,13 +167,11 @@ public class SPARQLTranslator implements QueryTranslator {
      * The identifier of the object.
      */
     private String getIdentifier() {
-        String query = "";
-        String triple = OBJECT + "crm:P48_has_preferred_identifier/rdfs:label " + IDENTIFIER;
-        query += "{ " + triple + " }\n";
+        String triple = OBJECT + "crm:P48_has_preferred_identifier/rdfs:label " + IDENTIFIER + " .\n";
         if (settings.hasIdentifierCheck) {
-            query += "FILTER (CONTAINS(LCASE(" + IDENTIFIER + "), \"" + settings.identifier + "\")). \n";
+            triple += "FILTER (CONTAINS(LCASE(" + IDENTIFIER + "), \"" + settings.identifier + "\")). \n";
         }
-        return query;
+        return triple;
     }
     
     /**
@@ -273,15 +270,14 @@ public class SPARQLTranslator implements QueryTranslator {
     /**
      * Returns the image that represents this object.
      * 
-     * @return the image url.
+     * @return the image URL.
      */
     private String getImage() {
         String query = "";
         String triple = OBJECT + "crm:P138i_has_representation " + IMAGE;
         if (settings.hasImageCheck) {
-            query += "{ ";
             query += triple;
-            query += " }\n";
+            query += " .\n";
         } else {
             query += "OPTIONAL { ";
             query += triple;
@@ -297,18 +293,16 @@ public class SPARQLTranslator implements QueryTranslator {
      */
     private String getCreator() {
         String query = "";
-        String triple = "";
+        String triple = "OPTIONAL { ";
         triple += PRODUCTION2 + " crm:P108_has_produced " + OBJECT + " .\n";
-        triple += "{ " + PRODUCTION2 + "crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label " + CREATOR + " } ";
-        triple += UNION;
-        triple += " { " + PRODUCTION2 + "crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel " + CREATOR + " } ";
+        triple += "{ " + PRODUCTION2 + "crm:P14_carried_out_by/crm:P1_is_identified_by/rdfs:label " + CREATOR + " } \n";
+        triple += UNION + " \n";
+        triple += "{ " + PRODUCTION2 + "crm:P9_consists_of/crm:P14_carried_out_by/skos:prefLabel " + CREATOR + " } } .\n";
         if (settings.hasCreatorCheck) {
-            query += "{ ";
             query += triple;
-            query += " } . \n";
             query += "FILTER (CONTAINS(LCASE(" + CREATOR + "), \"" + settings.creator + "\")). \n";
         } else {
-            query += triple + " \n";
+            query += triple;
         }
         return query;
     }
