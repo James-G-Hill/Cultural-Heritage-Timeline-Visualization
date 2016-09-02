@@ -180,6 +180,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         Tab.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         NotesTextBox.setColumns(20);
+        NotesTextBox.setLineWrap(true);
         NotesTextBox.setRows(5);
         NotesTextPanel.setViewportView(NotesTextBox);
 
@@ -445,9 +446,8 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                                 .addGap(42, 42, 42)))
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(TechniqueTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                            .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(IdentifierTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                                .addComponent(MaterialTextField)))))
+                            .addComponent(IdentifierTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                            .addComponent(MaterialTextField, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addContainerGap())
         );
         QueriesLayout.setVerticalGroup(
@@ -1166,7 +1166,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         if(SourceComboBox.getSelectedItem() == null) {return false;}
         if(!LimitTextField.getText().matches("^-?\\d+$")) {return false;}
         if(Integer.parseInt(LimitTextField.getText()) < 0) {return false;}
-        if(Integer.parseInt(LimitTextField.getText()) > 500) {return false;}
+        if(Integer.parseInt(LimitTextField.getText()) > 1000) {return false;}
         
         return true;
         
