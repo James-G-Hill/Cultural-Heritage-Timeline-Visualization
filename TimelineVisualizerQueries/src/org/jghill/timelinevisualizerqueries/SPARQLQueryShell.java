@@ -11,6 +11,8 @@ import org.jghill.timelinevisualizerentities.ManMadeObject;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
+import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
 
 /**
  * A concrete implementation of the QueryShell class representing a SPARQL query.
@@ -63,14 +65,20 @@ public class SPARQLQueryShell extends QueryShell {
      */
     private EntitiesCollection getResults(Query query) throws HttpException {
         
-        output("getting results");
+        output("connecting to endpoint");
         output("");
-        ResultSet results;
         
         try(QueryExecution qexec = QueryExecutionFactory.sparqlService(service, query)) {
-            results = qexec.execSelect();
+            ResultSet results = qexec.execSelect();
+            System.out.println(results);
             return buildEntities(results, qexec);
         } catch (Exception ex) {
+            NotifyDescriptor nd;
+            nd = new NotifyDescriptor.Message(
+                    "Error: " + ex.getMessage(),
+                    NotifyDescriptor.INFORMATION_MESSAGE
+            );
+            DialogDisplayer.getDefault().notify(nd);
             throw new HttpException("502 Proxy Error: " + ex.getMessage());
         }
         
@@ -87,10 +95,11 @@ public class SPARQLQueryShell extends QueryShell {
             QueryExecution qexec
     ) {
         
+        output("getting results");
+        output("");
+        
         EntitiesCollection entities;
         entities = new EntitiesCollection(this.getQueryName());
-        
-//        int recordCount = 0;
         
         for(; results.hasNext();) {
             
@@ -177,7 +186,6 @@ public class SPARQLQueryShell extends QueryShell {
             
             if (!entities.getCollectionSet().contains(thing)) {
                 entities.addThing(thing);
-//                recordCount++;
                 
                 output("Identifier  : " + identity.trim());
                 output("Title       : " + title.trim());
@@ -194,10 +202,6 @@ public class SPARQLQueryShell extends QueryShell {
                 output("");
                 
             }
-//            
-//            if (recordCount >= limit) {
-//                break;
-//            }
             
         }
         
