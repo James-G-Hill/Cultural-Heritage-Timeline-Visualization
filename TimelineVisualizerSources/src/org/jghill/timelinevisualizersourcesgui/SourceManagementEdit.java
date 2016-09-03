@@ -16,9 +16,13 @@ public class SourceManagementEdit extends javax.swing.JDialog {
     private final String type;
     
     /**
-     * Creates new form SourceManagementEdit
+     * Constructor.
      */
-    public SourceManagementEdit(java.awt.Frame parent, boolean modal, Source src) {
+    public SourceManagementEdit(
+            java.awt.Frame parent,
+            boolean modal,
+            Source src
+    ) {
         super(parent, modal);
         
         this.src = src;
@@ -128,6 +132,7 @@ public class SourceManagementEdit extends javax.swing.JDialog {
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
         if(!internalPanel.getAddressText().isEmpty()) {
             editSPARQLEndpoint();
+            sourceTable.fireTableDataChanged();
             this.dispose();
         }
     }//GEN-LAST:event_ConfirmActionPerformed
@@ -150,8 +155,10 @@ public class SourceManagementEdit extends javax.swing.JDialog {
      */
     private void editSPARQLEndpoint() {
         String webText = internalPanel.getAddressText();
+        String cidocText = internalPanel.getCIDOCText();
         SPARQLEndpoint sparql = (SPARQLEndpoint) src;
         sparql.setWebAddress(webText);
+        sparql.setCIDOCAddress(cidocText);
     }
     
     /**
