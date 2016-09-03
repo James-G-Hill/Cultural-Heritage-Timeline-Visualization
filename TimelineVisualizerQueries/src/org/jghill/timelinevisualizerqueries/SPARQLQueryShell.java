@@ -11,8 +11,6 @@ import org.jghill.timelinevisualizerentities.ManMadeObject;
 import org.jghill.timelinevisualizerentitiescollection.EntitiesCollection;
 import org.netbeans.api.io.IOProvider;
 import org.netbeans.api.io.InputOutput;
-import org.openide.DialogDisplayer;
-import org.openide.NotifyDescriptor;
 
 /**
  * A concrete implementation of the QueryShell class representing a SPARQL query.
@@ -72,13 +70,7 @@ public class SPARQLQueryShell extends QueryShell {
             ResultSet results = qexec.execSelect();
             return buildEntities(results, qexec);
         } catch (Exception ex) {
-            NotifyDescriptor nd;
-            nd = new NotifyDescriptor.Message(
-                    "Error: " + ex.getMessage(),
-                    NotifyDescriptor.INFORMATION_MESSAGE
-            );
-            DialogDisplayer.getDefault().notify(nd);
-            throw new HttpException("502 Proxy Error: " + ex.getMessage());
+            return null;
         }
         
     }
