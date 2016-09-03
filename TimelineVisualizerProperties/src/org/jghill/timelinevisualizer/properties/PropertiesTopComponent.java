@@ -39,6 +39,9 @@ import org.openide.util.Utilities;
 })
 public final class PropertiesTopComponent extends TopComponent implements LookupListener {
 
+    /**
+     * Constructor.
+     */
     public PropertiesTopComponent() {
         initComponents();
         setName(Bundle.CTL_PropertiesTopComponent());
