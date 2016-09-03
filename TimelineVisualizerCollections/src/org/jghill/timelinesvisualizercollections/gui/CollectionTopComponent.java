@@ -758,36 +758,40 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                     Dispatcher dispatcher;
                     dispatcher = new Dispatcher(coll.getQueriesCollection());
                     result = executor.submit(dispatcher);
+                    
+                    if (result != null) {
+                    
+                        EntitiesCollection newEntities;
+                        try
+                        {
+                            newEntities = result.get();
+                            entities.addThing(newEntities);
+                        }
+                        catch(InterruptedException | ExecutionException e){}
 
-                    EntitiesCollection newEntities;
-                    try
-                    {
-                        newEntities = result.get();
-                        entities.addThing(newEntities);
-                    }
-                    catch(InterruptedException | ExecutionException e){}
+                        entityModelChange();
 
-                    entityModelChange();
+                        setFirstFilter();
+                        runFirstFilter();
 
-                    setFirstFilter();
-                    runFirstFilter();
-
-                    NotifyDescriptor nd;
-                    if (etb.getFlattenedCollection().length > 0) {
-                        String msg = "Query has completed.";
-                        nd = new NotifyDescriptor.Message(
-                                msg,
-                                NotifyDescriptor.INFORMATION_MESSAGE
-                        );
-                        DialogDisplayer.getDefault().notify(nd);
-                        paintVisualDisplay();
-                    } else {
-                        String msg = "There were no objects returned.";
-                        nd = new NotifyDescriptor.Message(
-                                msg,
-                                NotifyDescriptor.INFORMATION_MESSAGE
-                        );
-                        DialogDisplayer.getDefault().notify(nd);
+                        NotifyDescriptor nd;
+                        if (etb.getFlattenedCollection().length > 0) {
+                            String msg = "Query has completed.";
+                            nd = new NotifyDescriptor.Message(
+                                    msg,
+                                    NotifyDescriptor.INFORMATION_MESSAGE
+                            );
+                            DialogDisplayer.getDefault().notify(nd);
+                            paintVisualDisplay();
+                        } else {
+                            String msg = "There were no objects returned.";
+                            nd = new NotifyDescriptor.Message(
+                                    msg,
+                                    NotifyDescriptor.INFORMATION_MESSAGE
+                            );
+                            DialogDisplayer.getDefault().notify(nd);
+                        }
+                        
                     }
 
                 } catch (HttpException ex) {
