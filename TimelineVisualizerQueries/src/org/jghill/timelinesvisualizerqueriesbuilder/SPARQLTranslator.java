@@ -153,9 +153,12 @@ public class SPARQLTranslator implements QueryTranslator {
         if (!settings.creationStartDate.equals("")) {
             dates += "FILTER (xsd:integer(" + DATE + ") >= " +
                     settings.creationStartDate + ") . \n";
+        } else if (settings.creationStartDate.equals("") &&
+                !settings.creationEndDate.equals("")) {
+            dates += "FILTER (xsd:integer(" + DATE + ") >" + 0 + ") . \n";
         }
         
-        if(!settings.creationEndDate.equals("")) {
+        if (!settings.creationEndDate.equals("")) {
             dates += "FILTER (xsd:integer(" + DATE + ") <= " +
                     settings.creationEndDate + ") . \n";
         }
@@ -255,9 +258,7 @@ public class SPARQLTranslator implements QueryTranslator {
         String query = "";
         String triple = PRODUCTION + "crm:P9_consists_of/crm:P32_used_general_technique/skos:prefLabel " + TECHNIQUE + " ";
         if (settings.hasTechniqueCheck) {
-            query += "{ ";
-            query += triple;
-            query += " }\n";
+            query += "{ " + triple + " }\n";
             query += "FILTER (CONTAINS(LCASE(" + TECHNIQUE + "), \"" + settings.technique + "\")). \n";
         } else {
             query += "OPTIONAL { ";
