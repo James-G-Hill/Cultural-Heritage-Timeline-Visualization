@@ -70,7 +70,6 @@ public class SPARQLQueryShell extends QueryShell {
         
         try(QueryExecution qexec = QueryExecutionFactory.sparqlService(service, query)) {
             ResultSet results = qexec.execSelect();
-            System.out.println(results);
             return buildEntities(results, qexec);
         } catch (Exception ex) {
             NotifyDescriptor nd;
