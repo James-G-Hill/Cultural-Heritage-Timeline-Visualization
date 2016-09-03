@@ -44,7 +44,9 @@ public class Dispatcher implements Callable {
             output("Running query: " + q.getQueryName());
             EntitiesCollection queryResults;
             queryResults = q.run();
-            entities.addThing(queryResults);
+            if (queryResults != null) {
+                entities.addThing(queryResults);
+            }
             q.setLastRunDate(new Date());
         }
         output("");
