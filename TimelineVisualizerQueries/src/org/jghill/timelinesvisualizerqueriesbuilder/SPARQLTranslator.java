@@ -206,7 +206,7 @@ public class SPARQLTranslator implements QueryTranslator {
             query += " . \n";
             query += "FILTER (CONTAINS(LCASE(" + DEPICTION + "), \"" + settings.depiction + "\")). \n";
         } else {
-            query += triple + " . \n";
+            query += "OPTIONAL { " + triple + " } . \n";
         }
         return query;
     }
