@@ -309,6 +309,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
 
         LimitTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         LimitTextField.setText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.LimitTextField.text")); // NOI18N
+        LimitTextField.setToolTipText(org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.LimitTextField.toolTipText")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(SourceNameTextLabel, org.openide.util.NbBundle.getMessage(CollectionTopComponent.class, "CollectionTopComponent.SourceNameTextLabel.text")); // NOI18N
         SourceNameTextLabel.setOpaque(true);
@@ -1052,6 +1053,8 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
     
+    private final static String ROW_LIMIT = "200";
+    
     private final EntityTableModel etb;
     private final QueryTableModel qtb;
     private final Collection coll;
@@ -1136,7 +1139,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         CreatedByTextField.setEnabled(false);
         
         HasLimitCheckBox.setSelected(true);
-        LimitTextField.setText("100");
+        LimitTextField.setText(ROW_LIMIT);
         LimitTextField.setEnabled(true);
         
         HasImageCheckBox.setSelected(true);
