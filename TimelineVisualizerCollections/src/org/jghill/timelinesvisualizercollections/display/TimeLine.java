@@ -24,6 +24,10 @@ public class TimeLine extends JLayeredPane {
     private final static int SCALE_INDENT = 40;
     private final static int UPNOTCH = 5;
     private final static int DOWNNOTCH = 15;
+    private final static int SCALE_OFFSET_FROM_BOTTOM = 25;
+    private static final int LABEL_OFFSET = 5;
+    private static final int LABEL_LENGTH = 50;
+    private static final int LABEL_HEIGHT = 15;
     
     private final static int DESCRIPTION_INDENT = 5;
     private final static int DESCRIPTION_LENGTH = 400;
@@ -121,7 +125,7 @@ public class TimeLine extends JLayeredPane {
             this.add(labels[i]);
         }
     }
-        
+    
     /**
      * Paints the scale onto the TimeLine.
      * 
@@ -132,7 +136,7 @@ public class TimeLine extends JLayeredPane {
         int height = getHeight();
         int width = getWidth();
         
-        vertical = height - 25;
+        vertical = height - SCALE_OFFSET_FROM_BOTTOM;
         lineLength = width - (LINE_INDENT * 2);
         scaleLength = lineLength - (SCALE_INDENT * 2);
         
@@ -178,10 +182,10 @@ public class TimeLine extends JLayeredPane {
             JLabel label
     ) {
         label.setBounds(
-                x + 5,
-                y + 5,
-                50,
-                15
+                x + LABEL_OFFSET,
+                y + LABEL_OFFSET,
+                LABEL_LENGTH,
+                LABEL_HEIGHT
         );
         label.setText(String.valueOf(year));
     }
