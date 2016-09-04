@@ -447,8 +447,8 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
                                 .addGap(42, 42, 42)))
                         .addGroup(QueriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(TechniqueTextField)
-                            .addComponent(IdentifierTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(MaterialTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(MaterialTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                            .addComponent(IdentifierTextField, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addGap(114, 114, 114))
         );
         QueriesLayout.setVerticalGroup(
