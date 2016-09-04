@@ -95,16 +95,17 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
         DetailsLabel = new javax.swing.JLabel();
         DetailsTextField = new javax.swing.JTextField();
 
-        setMinimumSize(new java.awt.Dimension(320, 850));
         setOpaque(true);
 
         PropertiesScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        PropertiesScrollPane.setToolTipText(org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.PropertiesScrollPane.toolTipText")); // NOI18N
         PropertiesScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         PropertiesScrollPane.setHorizontalScrollBar(null);
-        PropertiesScrollPane.setMinimumSize(new java.awt.Dimension(320, 850));
+        PropertiesScrollPane.setMaximumSize(new java.awt.Dimension(320, 32767));
+        PropertiesScrollPane.setMinimumSize(new java.awt.Dimension(320, 0));
         PropertiesScrollPane.setPreferredSize(new java.awt.Dimension(320, 850));
 
-        PropertiesPanel.setMinimumSize(new java.awt.Dimension(320, 850));
+        PropertiesPanel.setMinimumSize(new java.awt.Dimension(0, 0));
         PropertiesPanel.setPreferredSize(new java.awt.Dimension(320, 850));
 
         org.openide.awt.Mnemonics.setLocalizedText(CommentaryLabel, org.openide.util.NbBundle.getMessage(PropertiesTopComponent.class, "PropertiesTopComponent.CommentaryLabel.text")); // NOI18N
@@ -363,9 +364,7 @@ public final class PropertiesTopComponent extends TopComponent implements Lookup
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(PropertiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(PropertiesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

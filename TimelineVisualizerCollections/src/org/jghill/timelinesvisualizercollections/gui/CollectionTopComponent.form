@@ -31,7 +31,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="Tab" pref="1080" max="32767" attributes="0"/>
+              <Component id="Tab" pref="950" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -73,11 +73,11 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="TitleTextBox" alignment="1" pref="1055" max="32767" attributes="0"/>
+                          <Component id="TitleTextBox" alignment="1" pref="925" max="32767" attributes="0"/>
                           <Component id="NotesTextPanel" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="NotesText" min="-2" pref="200" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="875" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="725" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -92,7 +92,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="NotesText" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="NotesTextPanel" pref="354" max="32767" attributes="0"/>
+                      <Component id="NotesTextPanel" pref="352" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -176,28 +176,28 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="RunButton" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="QueriesScrollPane" min="-2" pref="400" max="-2" attributes="0"/>
+                          <Component id="QueriesScrollPane" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="QuerySeparator" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="VerticalSeparator" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="QueryBuilderText" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="302" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="SourceNameTextLabel" min="-2" pref="66" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="QueryNameTextField" min="-2" pref="186" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="513" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="ResetButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="CreateButton" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="SourceTextLabel" min="-2" pref="66" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="SourceComboBox" min="-2" pref="203" max="-2" attributes="0"/>
@@ -213,8 +213,8 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="CreationStartYearTextField" alignment="0" pref="112" max="32767" attributes="0"/>
-                                          <Component id="CreatedByTextField" max="32767" attributes="0"/>
+                                          <Component id="CreationStartYearTextField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="CreatedByTextField" min="-2" pref="112" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -226,8 +226,8 @@
                                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="TypeTextField" max="32767" attributes="0"/>
-                                          <Component id="NameTextField" pref="112" max="32767" attributes="0"/>
-                                          <Component id="DepictionTextField" alignment="0" pref="112" max="32767" attributes="0"/>
+                                          <Component id="NameTextField" max="32767" attributes="0"/>
+                                          <Component id="DepictionTextField" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -252,30 +252,29 @@
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="TechniqueTextField" pref="112" max="32767" attributes="0"/>
-                                  <Component id="IdentifierTextField" alignment="0" pref="112" max="32767" attributes="0"/>
-                                  <Component id="MaterialTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TechniqueTextField" max="32767" attributes="0"/>
+                                  <Component id="IdentifierTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="MaterialTextField" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="QuerySeparator" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="ExistingQueriesText" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="QueriesScrollPane" pref="405" max="32767" attributes="0"/>
+                              <Component id="QueriesScrollPane" pref="403" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="DeleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="RunButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="RunButton" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -341,6 +340,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
+                  <Component id="QuerySeparator" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -674,7 +674,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="EntitiesScrollPane" pref="1075" max="32767" attributes="0"/>
+                      <Component id="EntitiesScrollPane" pref="925" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -683,7 +683,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="EntitiesScrollPane" pref="454" max="32767" attributes="0"/>
+                      <Component id="EntitiesScrollPane" pref="452" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -730,19 +730,24 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="CollectionDisplayScrollPane" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="FirstFilterLabel" min="-2" pref="75" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="FirstFilterComboBox" min="-2" pref="100" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Group1Label" min="-2" pref="75" max="-2" attributes="0"/>
-                                  <Component id="ZoomOutLabel" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="FirstFilterLabel" min="-2" pref="75" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="FirstFilterComboBox" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Component id="ZoomOutLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="ZoomSlider" min="-2" pref="494" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="ZoomInLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="Group1Label" min="-2" pref="75" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="Group1ComboBox" min="-2" pref="100" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="Group1FilterLabel" min="-2" pref="75" max="-2" attributes="0"/>
@@ -752,21 +757,11 @@
                                       <Component id="Group2Label" min="-2" pref="75" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="Group2ComboBox" min="-2" pref="100" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="ZoomSlider" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="Group2FilterLabel" min="-2" pref="75" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="Group2FilterComboBox" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="78" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                      <Component id="ZoomInLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="88" max="32767" attributes="0"/>
                                       <Component id="SaveButton" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -780,15 +775,18 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="CollectionDisplayScrollPane" pref="387" max="32767" attributes="0"/>
+                      <Component id="CollectionDisplayScrollPane" pref="384" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="ZoomSlider" min="-2" pref="21" max="-2" attributes="0"/>
-                          <Component id="ZoomOutLabel" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="ZoomInLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="SaveButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="ZoomSlider" min="-2" pref="21" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="FirstFilterLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="FirstFilterComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="ZoomInLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="ZoomOutLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -797,10 +795,9 @@
                               <Component id="Group2ComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Group2FilterLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Group2FilterComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SaveButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="FirstFilterLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="FirstFilterComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Group1Label" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Group1ComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Group1FilterLabel" alignment="3" min="-2" max="-2" attributes="0"/>
