@@ -2,6 +2,12 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[340, 32767]"/>
+    </Property>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[340, 0]"/>
+    </Property>
     <Property name="opaque" type="boolean" value="true"/>
   </Properties>
   <AuxValues>
@@ -19,7 +25,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="PropertiesScrollPane" max="32767" attributes="0"/>
+          <Component id="PropertiesScrollPane" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -40,13 +46,13 @@
           <ComponentRef name="null"/>
         </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[320, 32767]"/>
+          <Dimension value="[340, 32767]"/>
         </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[320, 0]"/>
+          <Dimension value="[340, 0]"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[320, 850]"/>
+          <Dimension value="[340, 850]"/>
         </Property>
       </Properties>
 
@@ -68,7 +74,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ImagePanel" min="-2" max="-2" attributes="0"/>
+                          <Component id="ImagePanel" min="-2" pref="297" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="IdentifierLabel" max="32767" attributes="0"/>
@@ -88,22 +94,22 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="DescriptionScrollPane" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="TypeTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TypeTextField" alignment="0" pref="213" max="32767" attributes="0"/>
                                   <Component id="ConsistsTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="DepictsTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="QueryTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="SourceTextField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="CreationYearTextField" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
-                                  <Component id="TechniqueTextField" max="32767" attributes="0"/>
+                                  <Component id="TechniqueTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="CommentaryScrollPane" max="32767" attributes="0"/>
                                   <Component id="IdentifierTextField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="NameTextField" max="32767" attributes="0"/>
-                                  <Component id="CreatorTextField" max="32767" attributes="0"/>
-                                  <Component id="DetailsTextField" max="32767" attributes="0"/>
+                                  <Component id="NameTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="CreatorTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="DetailsTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="CreationYearTextField" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="14" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -111,11 +117,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="ImagePanel" min="-2" max="-2" attributes="0"/>
+                      <Component id="ImagePanel" min="-2" pref="307" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="CreationYearLabel" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="CreationYearTextField" alignment="3" max="32767" attributes="0"/>
+                          <Component id="CreationYearTextField" alignment="3" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -125,7 +131,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="NameLabel" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="NameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="NameTextField" alignment="3" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -240,12 +246,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="276" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="293" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="276" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="303" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
