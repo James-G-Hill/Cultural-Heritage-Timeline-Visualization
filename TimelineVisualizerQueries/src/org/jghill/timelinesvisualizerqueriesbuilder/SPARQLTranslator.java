@@ -43,15 +43,6 @@ public class SPARQLTranslator implements QueryTranslator {
     private static final String DESCRIPTION = "?description ";
     private static final String CURATORIAL = "?curatorial ";
     
-//    private static final String NAME_SAMPLE = "?name ";
-//    private static final String OBJECT_SAMPLE = "?object ";
-//    private static final String DEPICTION_SAMPLE = "?depicts ";
-//    private static final String CONSISTS_SAMPLE = "?consists ";
-//    private static final String TYPE_SAMPLE = "?type ";
-//    private static final String TECHNIQUE_SAMPLE = "?technique ";
-//    private static final String IMAGE_SAMPLE = "?image ";
-//    private static final String CREATOR_SAMPLE = "?creator ";
-    
     private static final String PRODUCTION = "?production ";
     private static final String PRODUCTION2 = "?production2 ";
     
@@ -80,7 +71,6 @@ public class SPARQLTranslator implements QueryTranslator {
                 WHERE + "\n\n" +
                 whereClause() + "\n\n" +
                 END + "\n\n" +
-//                groupBy() + "\n\n" +
                 limit();
     }
     
@@ -237,9 +227,9 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getType() {
         String query = "";
         String triple = "";
-        triple += "{ { " + OBJECT + "bmo:PX_object_type/skos:prefLabel " + TYPE + " }\n";
+        triple += "{ " + OBJECT + "bmo:PX_object_type/skos:prefLabel " + TYPE + " }\n";
         triple += UNION + "\n";
-        triple += "{ " + OBJECT + "edan:PE_object_mainclass/skos2:prefLabel " + TYPE + " } }\n";
+        triple += "{ " + OBJECT + "edan:PE_object_mainclass/skos2:prefLabel " + TYPE + " }\n";
         if (settings.hasTypeCheck) {
             query += triple;
             query += "FILTER (CONTAINS(LCASE(" + TYPE + "), \"" + settings.type + "\")). \n";
@@ -325,26 +315,6 @@ public class SPARQLTranslator implements QueryTranslator {
     private String getCuration() {
         return "OPTIONAL { " + OBJECT + "bmo:PX_curatorial_comment " + CURATORIAL + " }\n";
     }
-    
-//    /**
-//     * Groups the selection by the following categories.
-//     * 
-//     * @return the group by string.
-//     */
-//    private String groupBy() {
-//        return
-//                "GROUP BY" + " \n" +
-//                IDENTIFIER + " \n" +
-////                CONSISTS + " \n" +
-//                DATE + " \n" +
-////                IMAGE + " \n" +
-//                OBJECT + " \n" +
-////                NAME + " \n" +
-////                TYPE + " \n" +
-//                DESCRIPTION + " \n" +
-//                CURATORIAL + " \n\n";
-////                DEPICTION + " \n\n";
-//    }
     
     /**
      * Builds the LIMIT part of expression.
