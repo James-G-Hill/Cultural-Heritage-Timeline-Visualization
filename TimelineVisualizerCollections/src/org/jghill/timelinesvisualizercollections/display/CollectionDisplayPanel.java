@@ -23,7 +23,6 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
     private boolean level1 = false;
     private boolean level2 = true;
     private boolean level3 = true;
-    private boolean update = true;
     
     private int size;
     
@@ -75,6 +74,8 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
         this.collection = timeLinesCollection.getAllTimeLineObjects();
         this.timeLines = timeLinesCollection.getTimeLines();
         viewer = (JViewport) this.getParent();
+        size = viewer.getSize().width;
+        zoom.setValue(0);
         dateArray = scaleBuilder.createScaleInfo(collection, 1);
         dateDifference = dateArray[dateArray.length-1] - dateArray[0];
         for (TimeLine tm : timeLines) {
@@ -112,7 +113,7 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
             );
             tlCount++;
         }
-        update = true;
+        setUpdate();
     }
     
     /**
@@ -124,32 +125,30 @@ public class CollectionDisplayPanel extends JPanel implements ChangeListener {
             level1 = true;
             level2 = false;
             level3 = false;
-            update = true;
+            setUpdate();
             dateArray = scaleBuilder.createScaleInfo(collection, 1);
         } else if (scale > 4 && scale <= 40 && !level2) {
             level1 = false;
             level2 = true;
             level3 = false;
-            update = true;
+            setUpdate();
             dateArray = scaleBuilder.createScaleInfo(collection, 10);
         } else if (scale > 40 && !level3) {
             level1 = false;
             level2 = false;
             level3 = true;
-            update = true;
+            setUpdate();
             dateArray = scaleBuilder.createScaleInfo(collection, 100);
-        } else {
-            update = false;
         }
     }
     
     /**
      * Returns the status of the 'update' variable.
-     * 
-     * @return the update variable.
      */
-    public boolean getUpdate() {
-        return update;
+    private void setUpdate() {
+        for (TimeLine tm : timeLines) {
+            tm.setUpdate();
+        }
     }
   
     /**
