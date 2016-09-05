@@ -78,6 +78,8 @@ public class TimeLine extends JLayeredPane {
         this.setOpaque(true);
         this.setBackground(color);
         
+        viewPort  = (JViewport) cdp.getParent();
+        
         this.add(description);
         description.setVisible(true);
         description.setText(WordUtils.capitalize(name));
@@ -100,10 +102,12 @@ public class TimeLine extends JLayeredPane {
         
     }
     
+    private boolean update = true;
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (getUpdate()) {
+        if (update) {
             setLabels();
         }
         paintTimeLine(g);
@@ -124,6 +128,7 @@ public class TimeLine extends JLayeredPane {
             labels[i] = new JLabel();
             this.add(labels[i]);
         }
+        update = false;
     }
     
     /**
@@ -154,7 +159,6 @@ public class TimeLine extends JLayeredPane {
      * Places the description onto the TimeLine.
      */
     private void paintDescription() {
-        viewPort  = (JViewport) cdp.getParent();
         int viewPortX = viewPort.getViewPosition().x;
         if (viewPortX != viewPortLastX) {
             viewPortLastX = viewPortX;
@@ -168,7 +172,7 @@ public class TimeLine extends JLayeredPane {
     }
     
     /**
-     * Adds labels to the scale.
+     * Set labels on the scale.
      * 
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
@@ -245,6 +249,9 @@ public class TimeLine extends JLayeredPane {
     }
     
     private int timeLineWidth;
+    private Integer firstYear;
+    private Integer lastYear;
+    private Integer thisYear;
     
     /**
      * Paints the entities onto the TimeLine.
@@ -253,8 +260,8 @@ public class TimeLine extends JLayeredPane {
      */
     private void paintEntities(Graphics g) {
         
-        Integer firstYear = intervals[0];
-        Integer lastYear = intervals[intervals.length - 1];
+        firstYear = intervals[0];
+        lastYear = intervals[intervals.length - 1];
 
         int timeSpan = lastYear - firstYear;
         double ratio = ((double) scaleLength / timeSpan);
@@ -266,7 +273,7 @@ public class TimeLine extends JLayeredPane {
         }
         
         for (EntityDisplay eDisplay : eDisplays) {
-            Integer thisYear = eDisplay.getYear();
+            thisYear = eDisplay.getYear();
             if (thisYear != null) {
                 int timePosition = thisYear - firstYear;
                 int x, y;
@@ -306,12 +313,10 @@ public class TimeLine extends JLayeredPane {
     }
     
     /**
-     * Checks whether or not the labels need updating.
-     * 
-     * @return 
+     * Notifies the TimeLine that an update is necessary.
      */
-    public boolean getUpdate() {
-        return cdp.getUpdate();
+    public void setUpdate() {
+        update = true;
     }
     
 }
