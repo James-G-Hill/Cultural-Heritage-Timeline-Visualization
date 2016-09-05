@@ -103,10 +103,10 @@ public class TimeLine extends JLayeredPane {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-            if (getUpdate()) {
-                setLabels();
-            }
-            paintTimeLine(g);
+        if (getUpdate()) {
+            setLabels();
+        }
+        paintTimeLine(g);
     }
     
     /**
@@ -244,6 +244,8 @@ public class TimeLine extends JLayeredPane {
         }
     }
     
+    private int timeLineWidth;
+    
     /**
      * Paints the entities onto the TimeLine.
      * 
@@ -253,9 +255,15 @@ public class TimeLine extends JLayeredPane {
         
         Integer firstYear = intervals[0];
         Integer lastYear = intervals[intervals.length - 1];
-        
+
         int timeSpan = lastYear - firstYear;
         double ratio = ((double) scaleLength / timeSpan);
+        
+        boolean updateLocations = false;
+        if (this.getSize().width != timeLineWidth) {
+            updateLocations = true;
+            timeLineWidth = this.getSize().width;
+        }
         
         for (EntityDisplay eDisplay : eDisplays) {
             Integer thisYear = eDisplay.getYear();
@@ -264,10 +272,15 @@ public class TimeLine extends JLayeredPane {
                 int x, y;
                 x = LINE_INDENT + SCALE_INDENT + (int) (timePosition * ratio);
                 y = vertical - IMAGE_UPPER;
-                positionDisplay(x, y, eDisplay);
+
                 g.setColor(Color.BLACK);
                 g.drawLine(x, y + eDisplay.getHeight(), x, vertical);
                 g.fillOval(x  - RADIUS, vertical - RADIUS, DIAMETER, DIAMETER);
+                
+                if (updateLocations) {
+                    positionDisplay(x, y, eDisplay);
+                }
+                
             }
         }
         
