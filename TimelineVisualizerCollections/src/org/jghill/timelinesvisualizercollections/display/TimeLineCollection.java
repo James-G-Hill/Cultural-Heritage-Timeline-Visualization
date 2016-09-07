@@ -96,11 +96,13 @@ public class TimeLineCollection {
         if (!filters.get(filterName).containsKey(objectDimension)) {
             filters.get(filterName).put(
                 objectDimension,
-                1);
+                1
+            );
         } else {
             filters.get(filterName).put(
                 objectDimension,
-                filters.get(filterName).get(objectDimension) + 1);
+                filters.get(filterName).get(objectDimension) + 1
+            );
         }
     }
     
@@ -114,20 +116,28 @@ public class TimeLineCollection {
         
         String choice = "None";
         int maxScore = 0;
-        int tempScore = 1;
-        
-        TreeMap<String, Integer> scoreMap = new TreeMap<>();
         
         for (Map.Entry<String, TreeMap<String, Integer>> entry : filterList.entrySet()) {
+            int tempScore = 1;
+            System.out.println("Entry " + entry.getKey());
             for (Map.Entry<String, Integer> dimension : entry.getValue().entrySet()) {
-                scoreMap.put(entry.getKey(),
-                        tempScore = tempScore * dimension.getValue());
+                tempScore = (tempScore * dimension.getValue());
             }
+            tempScore = tempScore * Math.min(
+                    MAX_CATEGORIES - 1,
+                    entry.getValue().entrySet().size()
+            );
+            if (entry.getKey().equalsIgnoreCase(query) ||
+                        entry.getKey().equalsIgnoreCase(source)) {
+                            int penalty = 2;
+                            tempScore = tempScore / penalty;
+            }
+            System.out.println("Score       " + tempScore);
             if (tempScore > maxScore) {
                 choice = entry.getKey();
+                System.out.println("Choice       " + choice);
                 maxScore = tempScore;
             }
-            tempScore = 1;
         }
                 
         return choice;
