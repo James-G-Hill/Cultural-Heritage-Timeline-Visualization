@@ -39,8 +39,8 @@ public class TimeLineCollection {
     
     private TimeLine[] timeLines;
     
-    private final TreeMap<String, List<String>> filters;
-    private List<String> filterList;
+    private final TreeMap<String, TreeMap<String, Integer>> filters;
+    private TreeMap<String, TreeMap<String, Integer>> filterList;
     
     /**
      * Constructor.
@@ -53,48 +53,87 @@ public class TimeLineCollection {
     /**
      * Selects the filters that will be used to fill the ComboBox.
      * 
-     * @param collection 
+     * @param collection of objects.
      */
     public void createFilters(ManMadeObject[] collection) {
         
         createInitialFilter();
         for (ManMadeObject object: collection) {
             if (object.getTimeSpan() != null) {
-                if (!filters.get(query).contains(object.getQueryName())) {
-                    filters.get(query).add(object.getQueryName());
-                }
-                if (!filters.get(source).contains(object.getSourceName())) {
-                    filters.get(source).add(object.getSourceName());
-                }
-                if (!filters.get(depicts).contains(object.getDepicts())) {
-                    filters.get(depicts).add(object.getDepicts());
-                }
-                if (!filters.get(material).contains(object.getConsists())) {
-                    filters.get(material).add(object.getConsists());
-                }
-                if (!filters.get(type).contains(object.getType())) {
-                    filters.get(type).add(object.getType());
-                }
-                if (!filters.get(technique).contains(object.getTechnique())) {
-                    filters.get(technique).add(object.getTechnique());
-                }
-                if (!filters.get(creator).contains(object.getCreator())) {
-                    filters.get(creator).add(object.getCreator());
-                }
+                
+                addToFilter(object.getQueryName(), query);
+                addToFilter(object.getSourceName(), source);
+                addToFilter(object.getDepicts(), depicts);
+                addToFilter(object.getConsists(), material);
+                addToFilter(object.getType(), type);
+                addToFilter(object.getTechnique(), technique);
+                addToFilter(object.getCreator(), creator);
+                
             }
         }
         
-        filterList = new ArrayList<>();
-        filterList.add(none);
+        filterList = new TreeMap<>();
+        filterList.put(none, new TreeMap<>());
         filters.forEach((k, v) -> {
             if (v.size() > 1) {
-                filterList.add(k);
+                filterList.put(k, v);
             }
         });
         
     }
     
+    /**
+     * Adds a dimension and adds to the count if the dimension already has been
+     * entered.
+     * 
+     * @param objectDimension
+     * @param filterName 
+     */
+    private void addToFilter(
+            String objectDimension,
+            String filterName
+    ) {
+        if (!filters.get(filterName).containsKey(objectDimension)) {
+            filters.get(filterName).put(
+                objectDimension,
+                1);
+        } else {
+            filters.get(filterName).put(
+                objectDimension,
+                filters.get(filterName).get(objectDimension) + 1);
+        }
+    }
     
+    
+    /**
+     * Chooses the option to filter the results by.
+     * 
+     * @return the option.
+     */
+    public String chooseFilter() {
+        
+        String choice = "None";
+        int maxScore = 0;
+        int tempScore = 1;
+        
+        TreeMap<String, Integer> scoreMap = new TreeMap<>();
+        
+        for (Map.Entry<String, TreeMap<String, Integer>> entry : filterList.entrySet()) {
+            for (Map.Entry<String, Integer> dimension : entry.getValue().entrySet()) {
+                scoreMap.put(entry.getKey(),
+                        tempScore = tempScore * dimension.getValue());
+            }
+            if (tempScore > maxScore) {
+                choice = entry.getKey();
+                maxScore = tempScore;
+            }
+            tempScore = 1;
+        }
+                
+        return choice;
+        
+    }
+        
     /**
      * Create TimeLines from a set of objects.
      * 
@@ -332,7 +371,7 @@ public class TimeLineCollection {
      * @return the comboBox model.
      */
     public ComboBoxModel getFilterComboBoxModel() {
-        return new DefaultComboBoxModel(filterList.toArray());
+        return new DefaultComboBoxModel(filterList.keySet().toArray());
     }
     
     /**
@@ -349,14 +388,14 @@ public class TimeLineCollection {
      */
     private void createInitialFilter() {
         filters.clear();
-        filters.put(none, new ArrayList<>());
-        filters.put(query, new ArrayList<>());
-        filters.put(source, new ArrayList<>());
-        filters.put(depicts, new ArrayList<>());
-        filters.put(material, new ArrayList<>());
-        filters.put(type, new ArrayList<>());
-        filters.put(technique, new ArrayList<>());
-        filters.put(creator, new ArrayList<>());
+        filters.put(none, new TreeMap<>());
+        filters.put(query, new TreeMap<>());
+        filters.put(source, new TreeMap<>());
+        filters.put(depicts, new TreeMap<>());
+        filters.put(material, new TreeMap<>());
+        filters.put(type, new TreeMap<>());
+        filters.put(technique, new TreeMap<>());
+        filters.put(creator, new TreeMap<>());
     }
     
 }
