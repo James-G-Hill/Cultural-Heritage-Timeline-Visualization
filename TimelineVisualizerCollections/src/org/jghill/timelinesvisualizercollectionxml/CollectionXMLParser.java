@@ -14,6 +14,7 @@ public interface CollectionXMLParser {
      * A method for parsing Collections from XML files.
      * 
      * @return a Collection.
+     * @throws javax.xml.xpath.XPathExpressionException
      */
     public Collection parseCollection() throws XPathExpressionException;
     
