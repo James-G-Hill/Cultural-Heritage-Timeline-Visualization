@@ -119,7 +119,6 @@ public class TimeLineCollection {
         
         for (Map.Entry<String, TreeMap<String, Integer>> entry : filterList.entrySet()) {
             int tempScore = 1;
-            System.out.println("Entry " + entry.getKey());
             for (Map.Entry<String, Integer> dimension : entry.getValue().entrySet()) {
                 tempScore = (tempScore * dimension.getValue());
             }
@@ -132,10 +131,8 @@ public class TimeLineCollection {
                             int penalty = 2;
                             tempScore = tempScore / penalty;
             }
-            System.out.println("Score       " + tempScore);
             if (tempScore > maxScore) {
                 choice = entry.getKey();
-                System.out.println("Choice       " + choice);
                 maxScore = tempScore;
             }
         }
