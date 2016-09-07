@@ -1325,13 +1325,22 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         FirstFilterComboBox.setModel(
                 timeLinesCollection.getFilterComboBoxModel()
         );
-        FirstFilterComboBox.setSelectedIndex(0);
-        setComboBoxes(
+        FirstFilterComboBox.setSelectedItem(timeLinesCollection.chooseFilter());
+        if (FirstFilterComboBox.getSelectedItem().equals("None")) {
+            setComboBoxes(
                 false,
                 false,
                 false,
                 false
+            );
+        } else {
+            setComboBoxes(
+                true,
+                false,
+                false,
+                false
         );
+        }
     }
     
     /**
@@ -1349,7 +1358,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
     }
     
     /**
-     * 
+     * Sets the first sub group model.
      */
     private void setSubGroup1() {
         Group1ComboBox.setModel(
@@ -1386,6 +1395,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         Group1FilterComboBox.setModel(
                 timeLinesCollection.getFilterComboBoxModel()
         );
+        Group1FilterComboBox.setSelectedItem(timeLinesCollection.chooseFilter());
         setComboBoxes(
                 true,
                 true,
@@ -1437,6 +1447,7 @@ public final class CollectionTopComponent extends TopComponent implements FocusL
         Group2FilterComboBox.setModel(
                 timeLinesCollection.getFilterComboBoxModel()
         );
+        Group2FilterComboBox.setSelectedItem(timeLinesCollection.chooseFilter());
     }
     
 }
