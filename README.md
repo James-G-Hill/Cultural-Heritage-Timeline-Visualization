@@ -1,15 +1,3 @@
 # README #
 
-### What is this repository for? ###
-
-* A repository for the Timeline Visualizer created for my MSc project.
-* Version 0.1
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+This application has been designed to allow users to access cultural heritage collections that have been implemented in accordance with the CIDOC CRM ontology.  Users can create simple queries through a user interface.  Objects from collections can then be retrieved and viewed either in table or timeline formats.
